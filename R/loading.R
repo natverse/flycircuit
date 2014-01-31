@@ -15,3 +15,19 @@ load_fcdata <- function(data, Force=FALSE, folder=c('data','db')) {
     stop("Unable to read file: ", rdafile)
   load(rdafile, envir=.GlobalEnv)
 }
+
+#' Load a database cached in the db subfolder into the Global Environment.
+#'
+#' @param db Name of table (and the stem of rda file).
+#' @param Force Whether to load even if table already exists (default FALSE).
+#' @return A character vector of the names of objects created, invisibly
+#'  or NULL if nothing loaded.
+#' @export
+#' @examples
+#' load_fcdb("neuron")
+#' load_fcdb(neuron) # also works
+#' load_fcdb(neuron,Force=TRUE)
+load_fcdb <- function(db, Force=FALSE,...) {
+  db=as.character(substitute(db))
+  load_fcdata(db,Force=Force,folder='db',...)
+}

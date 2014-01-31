@@ -1,0 +1,26 @@
+\name{load_fcdb}
+\alias{load_fcdb}
+\title{Load a database cached in the db subfolder into the Global Environment.}
+\usage{
+load_fcdb(db, Force = FALSE, ...)
+}
+\arguments{
+  \item{db}{Name of table (and the stem of rda file).}
+
+  \item{Force}{Whether to load even if table already exists
+  (default FALSE).}
+}
+\value{
+A character vector of the names of objects created,
+invisibly or NULL if nothing loaded.
+}
+\description{
+Load a database cached in the db subfolder into the Global
+Environment.
+}
+\examples{
+load_fcdb("neuron")
+load_fcdb(neuron) # also works
+load_fcdb(neuron,Force=TRUE)
+}
+
