@@ -1,6 +1,6 @@
 \name{plot3d.hclust}
 \alias{plot3d.hclust}
-\title{Plot dotprops coloured by groups cut from an hclust object.}
+\title{Plot dotprops coloured by groups cut from an hclust object}
 \usage{
 \method{plot3d}{hclust}(hc, k = NULL, h = NULL, groups, col = rainbow,
   ...)
@@ -21,7 +21,7 @@
 List of rgl ids for plotted objects.
 }
 \description{
-Plot dotprops coloured by groups cut from an hclust object.
+Plot dotprops coloured by groups cut from an hclust object
 }
 \details{
 Note that the colours are in the order of the dendrogram as

@@ -1,4 +1,4 @@
-#' Cluster a set of FlyCircuit neurons identified by gene_name.
+#' Cluster a set of FlyCircuit neurons identified by gene_name
 #'
 #' Given a vector of gene/neuron names or neuronids use hclust to carry out a
 #' hierarchical clustering. The default value of distfun will handle square
@@ -18,7 +18,7 @@ hclustfc <- function(gns, meth='ward', distmat="abc2.normdmat", distfun=as.dist,
   hclust(as.dist(subdistmat), meth=meth, ...)
 }
 
-#' Return a subset of a distance matrix stored in a file-backed matrix.
+#' Return a subset of a distance matrix stored in a file-backed matrix
 #'
 #' @param gns FlyCircuit identifiers (passed to fc_gene_name).
 #' @param distmat The distance matrix (default allbyallblast.canon).
@@ -42,7 +42,7 @@ fc_sub_distmat <- function(gns, distmat="abc2.normdmat", form=c('matrix', 'dist'
   else as.dist(d)
 }
 
-#' Plot dotprops coloured by groups cut from an hclust object.
+#' Plot dotprops coloured by groups cut from an hclust object
 #'
 #' @details Note that the colours are in the order of the dendrogram as assigned
 #'   by colour_clusters.

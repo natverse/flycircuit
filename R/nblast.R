@@ -1,4 +1,4 @@
-#' Return (normalised) nblast similarity scores for FlyCircuit neurons.
+#' Return (normalised) nblast similarity scores for FlyCircuit neurons
 #'
 #' Precomputed scores are stored in bigmatrix form on disk. The bigmatrix object
 #' is created in the global environment once per session and then reused. When

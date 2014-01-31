@@ -1,6 +1,6 @@
 \name{plot3dfc}
 \alias{plot3dfc}
-\title{Plot FlyCircuit neurons using rgl.}
+\title{Plot FlyCircuit neurons using rgl}
 \usage{
 plot3dfc(id, col, db = NULL, flip = F, soma = F, alpharange = NULL,
   skipRedraw = 200, ...)

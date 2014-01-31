@@ -1,6 +1,6 @@
 \name{load_fcdata}
 \alias{load_fcdata}
-\title{Load an rda object cached on disk into the Global Environment.}
+\title{Load an rda object cached on disk into the Global Environment}
 \usage{
 load_fcdata(data, Force = FALSE, folder = c("data", "db"))
 }
@@ -19,6 +19,6 @@ invisibly or NULL if nothing loaded.
 }
 \description{
 Load an rda object cached on disk into the Global
-Environment.
+Environment
 }
 

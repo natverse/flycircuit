@@ -1,6 +1,6 @@
 \name{pop3dfc}
 \alias{pop3dfc}
-\title{Remove plotted FlyCircuit neurons.}
+\title{Remove plotted FlyCircuit neurons}
 \usage{
 pop3dfc(x, slow = FALSE, type = "shapes")
 }

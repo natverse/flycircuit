@@ -1,4 +1,4 @@
-#' Plot FlyCircuit neurons using rgl.
+#' Plot FlyCircuit neurons using rgl
 #'
 #' * Plotted soma positions are a prediction based on location in the FlyCircuit
 #' template brain mapped onto my selected template. The positions are looked up 
@@ -64,7 +64,7 @@ plot3dfc <- function(id, col, db=NULL, flip=F, soma=F, alpharange=NULL, skipRedr
   invisible(rlist)
 }
 
-#' Remove plotted FlyCircuit neurons.
+#' Remove plotted FlyCircuit neurons
 #' 
 #' If no neurons are specified, the last plotted are removed.
 #' @param x Neurons to remove

@@ -1,6 +1,6 @@
 \name{hclustfc}
 \alias{hclustfc}
-\title{Cluster a set of FlyCircuit neurons identified by gene_name.}
+\title{Cluster a set of FlyCircuit neurons identified by gene_name}
 \usage{
 hclustfc(gns, meth = "ward", distmat = "abc2.normdmat", distfun = as.dist,
   ..., maxneurons = 4000)

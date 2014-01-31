@@ -1,6 +1,6 @@
 \name{fc_attach_bigmat}
 \alias{fc_attach_bigmat}
-\title{Attach a big.matrix (typically used for all-by-all blast distances).}
+\title{Attach a big.matrix (typically used for all-by-all blast distances)}
 \usage{
 fc_attach_bigmat(bigmat)
 }
@@ -12,9 +12,9 @@ fc_attach_bigmat(bigmat)
 }
 \description{
 These are file based matrices that are not loaded into
-memory. If bigmat="mybigmat" there should be a big.matrix
-description file called
-file.path(fcconfig$bigmatrixdir,'mybigmat.desc')
+memory. If \code{bigmat="mybigmat"} there should be a
+big.matrix description file called
+\code{file.path(fcconfig$bigmatrixdir,'mybigmat.desc')}
 }
 \examples{
 \dontrun{

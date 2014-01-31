@@ -1,4 +1,4 @@
-#' Load an rda object cached on disk into the Global Environment.
+#' Load an rda object cached on disk into the Global Environment
 #'
 #' @param data Name of object (and the stem of rda file).
 #' @param folder Name of the project subfolder containing object.
@@ -17,7 +17,7 @@ load_fcdata <- function(data, Force=FALSE, folder=c('data','db')) {
   load(rdafile, envir=.GlobalEnv)
 }
 
-#' Load a database cached in the db subfolder into the Global Environment.
+#' Load a database cached in the db subfolder into the Global Environment
 #'
 #' @param db Name of table (and the stem of rda file).
 #' @param Force Whether to load even if table already exists (default FALSE).
@@ -33,11 +33,11 @@ load_fcdb <- function(db, Force=FALSE, ...) {
   load_fcdata(db, Force=Force, folder='db', ...)
 }
 
-#' Attach a big.matrix (typically used for all-by-all blast distances).
+#' Attach a big.matrix (typically used for all-by-all blast distances)
 #'
 #' These are file based matrices that are not loaded into memory. If
-#' bigmat="mybigmat" there should be a big.matrix description file called 
-#' file.path(fcconfig$bigmatrixdir,'mybigmat.desc')
+#' \code{bigmat="mybigmat"} there should be a big.matrix description file called 
+#' \code{file.path(fcconfig$bigmatrixdir,'mybigmat.desc')}
 #' @param bigmat Name of big matrix object (which should match file on disk).
 #' @param return A big matrix object.
 #' @export

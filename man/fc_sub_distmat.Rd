@@ -1,6 +1,6 @@
 \name{fc_sub_distmat}
 \alias{fc_sub_distmat}
-\title{Return a subset of a distance matrix stored in a file-backed matrix.}
+\title{Return a subset of a distance matrix stored in a file-backed matrix}
 \usage{
 fc_sub_distmat(gns, distmat = "abc2.normdmat", form = c("matrix", "dist"),
   maxneurons = NA)
@@ -21,6 +21,6 @@ distance matrix
 }
 \description{
 Return a subset of a distance matrix stored in a
-file-backed matrix.
+file-backed matrix
 }
 

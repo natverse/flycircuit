@@ -1,6 +1,6 @@
 \name{fc_nblast}
 \alias{fc_nblast}
-\title{Return (normalised) nblast similarity scores for FlyCircuit neurons.}
+\title{Return (normalised) nblast similarity scores for FlyCircuit neurons}
 \usage{
 fc_nblast(query, target, normalised = FALSE, ...)
 }

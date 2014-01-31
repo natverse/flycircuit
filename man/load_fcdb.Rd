@@ -1,6 +1,6 @@
 \name{load_fcdb}
 \alias{load_fcdb}
-\title{Load a database cached in the db subfolder into the Global Environment.}
+\title{Load a database cached in the db subfolder into the Global Environment}
 \usage{
 load_fcdb(db, Force = FALSE, ...)
 }
@@ -16,7 +16,7 @@ invisibly or NULL if nothing loaded.
 }
 \description{
 Load a database cached in the db subfolder into the Global
-Environment.
+Environment
 }
 \examples{
 load_fcdb("neuron")

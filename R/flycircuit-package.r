@@ -6,14 +6,14 @@ NULL
 
 #' fcidtable - Data.frame of flycircuit identifiers
 #' 
-#' The flycircuit database seems to have at least 3 unique identifiers for neurons
-#' These are
+#' The flycircuit database seems to have at least 3 unique identifiers for neurons.
+#' These are:
 #' \itemize{
-#' \item{idid}{ An integere identifier which ranged from 1:16226 in the April
+#' \item{idid}{An integer identifier which ranged from 1:16226 in the April
 #' 2011 release}
-#' \item{gene_name}{ A character identifier of the general form
+#' \item{gene_name}{A character identifier of the general form
 #' "DvGlutMARCM-F003905_seg001"}
-#' \item{Name}{ A character identifier of the general form "VGlut-F-400794"}
+#' \item{Name}{A character identifier of the general form "VGlut-F-400794"}
 #' }
 #' 
 #' Although the neuron \code{Name} is generally what is reported in publications
