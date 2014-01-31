@@ -10,6 +10,7 @@ load_fcdata <- function(data, Force=FALSE, folder=c('data','db')) {
   folder <- match.arg(folder)
   if(exists(data) && !is.function(get(data)) && !Force)
     return(NULL)
+  folder <- ifelse(folder == 'db', getOption('flycircuit.dbdir'), getOption('flycircuit.datadir')) 
   rdafile <- file.path(getOption('flycircuit.localroot'), folder, paste(data, sep=".", "rda"))
   if(!file.exists(rdafile))
     stop("Unable to read file: ", rdafile)
