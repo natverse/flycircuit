@@ -1,8 +1,12 @@
 Package: flycircuit
-Title: 
-Description: 
+Title: Functions to support analysis of the flycircuit single neuron dataset
+Description: Thhis package contains a small number of functions specifically
+    designed to assist in the spatial analysis of neurons from the collection
+    available online at http://flycircuit.tw.
 Version: 0.1
-Authors@R: Gregory, Jefferis, aut, cre, jefferis@gmail.com
-Depends: R (>= 3.0.2)
-License: GPL>=3
+Authors@R: c(person("Gregory", "Jefferis", email="jefferis@gmail.com", role =
+    c("aut", "cre")))
+Depends:
+    R (>= 3.0.2)
+License: GPL-3
 LazyData: true
