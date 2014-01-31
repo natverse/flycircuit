@@ -35,3 +35,7 @@ NULL
   options('flycircuit.bigmatdir' = file.path(getOption('flycircuit.datadir'), 'bigmat'))
   options('flycircuit.remoteloc' = 'http://flybrain.mrc-lmb.cam.ac.uk/flycircuit/')
 }
+
+.onAttach <- function(libname, pkgname) {
+  options('nat.default.neuronlist' = 'dps')
+}
