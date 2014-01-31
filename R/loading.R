@@ -28,7 +28,33 @@ load_fcdata <- function(data, Force=FALSE, folder=c('data','db')) {
 #' load_fcdb("neuron")
 #' load_fcdb(neuron) # also works
 #' load_fcdb(neuron,Force=TRUE)
-load_fcdb <- function(db, Force=FALSE,...) {
-  db=as.character(substitute(db))
-  load_fcdata(db,Force=Force,folder='db',...)
+load_fcdb <- function(db, Force=FALSE, ...) {
+  db <- as.character(substitute(db))
+  load_fcdata(db, Force=Force, folder='db', ...)
+}
+
+#' Attach a big.matrix (typically used for all-by-all blast distances).
+#'
+#' These are file based matrices that are not loaded into memory. If
+#' bigmat="mybigmat" there should be a big.matrix description file called 
+#' file.path(fcconfig$bigmatrixdir,'mybigmat.desc')
+#' @param bigmat Name of big matrix object (which should match file on disk).
+#' @param return A big matrix object.
+#' @export
+#' @seealso \code{\link{attach.big.matrix}}
+#' @examples
+#' \dontrun{
+#' fc_attach_bigmat()
+#' }
+fc_attach_bigmat <- function(bigmat) {
+  if(!require(bigmemory))
+    stop("Please install bigmemory package!")
+  if(!exists(bigmat)) {
+    bigmatfile <- file.path(getOption('flycircuit.bigmatdir'), paste(bigmat, ".desc", sep=""))
+    if(!file.exists(bigmatfile))
+      stop("Cannot find file: ", bigmatfile)
+    message("attaching: ", bigmat)
+    assign(bigmat, attach.big.matrix(bigmatfile), envir=.GlobalEnv)
+  }
+  get(bigmat, envir=.GlobalEnv)
 }

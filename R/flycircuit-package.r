@@ -32,5 +32,6 @@ NULL
   options('flycircuit.localroot' = '~/projects/flycircuit/')
   options('flycircuit.datadir' = 'data')
   options('flycircuit.dbdir' = 'db')
+  options('flycircuit.bigmatdir' = file.path(getOption('flycircuit.datadir'), 'bigmat'))
   options('flycircuit.remoteloc' = 'http://flybrain.mrc-lmb.cam.ac.uk/flycircuit/')
 }
