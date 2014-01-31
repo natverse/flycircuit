@@ -1,4 +1,4 @@
-context("Test .onLoad")
+context(".onLoad")
 
 test_that("onLoad setup is correct", {
   expect_equal(getOption('flycircuit.localroot'), '~/projects/flycircuit/')

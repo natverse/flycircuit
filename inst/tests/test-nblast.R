@@ -1,4 +1,4 @@
-context("Test fc_nblast")
+context("Blasting")
 
 oldbigmatdir <- getOption('flycircuit.bigmatdir')
 options('flycircuit.bigmatdir' = '~/projects/ChiangReanalysis/data/bigmatrix/')

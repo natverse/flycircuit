@@ -1,4 +1,4 @@
-context("Test clustering")
+context("Clustering")
 
 oldbigmatdir <- getOption('flycircuit.bigmatdir')
 options('flycircuit.bigmatdir' = '~/projects/ChiangReanalysis/data/bigmatrix/')
