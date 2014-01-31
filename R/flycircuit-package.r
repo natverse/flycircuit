@@ -26,3 +26,9 @@ NULL
 #' @family flycircuit-ids
 #' @docType data
 NULL
+
+# Set local directory for data storage and remote location for data download
+.onLoad <- function(libname, pkgname) {
+  options('flycircuit.localroot' = '~/projects/flycircuit/')
+  options('flycircuit.remoteloc' = 'http://flybrain.mrc-lmb.cam.ac.uk/flycircuit/')
+}
