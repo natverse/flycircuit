@@ -1,0 +1,44 @@
+\name{fc_gene_name}
+\alias{fc_gene_name}
+\alias{fc_idid}
+\alias{fc_neuron}
+\title{Convert between different flycircuit identifiers}
+\usage{
+fc_gene_name(x)
+
+fc_idid(x)
+
+fc_neuron(x)
+}
+\arguments{
+  \item{x}{Vector of flycircuit identifiers (integer idid,
+  chaacter/factor gene_name/Name)}
+}
+\value{
+character vector of gene_name/Name or integer vector of
+idid.
+}
+\description{
+\code{fc_gene_name} returns a \code{character} vector of
+\code{gene_name}s of fly circuit neurons given \code{idid}
+or neuron \code{Name}
+
+\code{fc_idid} returns an integer \code{idid} of a fly
+circuit neuron given \code{gene_name} or neuron \code{Name}
+
+\code{fc_neuron} gets the neuron Name of a fly circuit
+neuron given gene_name or idid
+}
+\details{
+Depends on fcidtable dataframe
+}
+\examples{
+fc_gene_name(1)
+# "FruMARCM-M002262_seg001"
+isTRUE(fc_idid("FruMARCM-M002262_seg001")==1)
+isTRUE(fc_neuron("FruMARCM-M002262_seg001")=="fru-M-200266")
+}
+\seealso{
+Other flycircuit.ids: \code{\link{fcidtable}}
+}
+
