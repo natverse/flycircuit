@@ -1,4 +1,4 @@
-#' Convert between different flycircuit identifiers
+#' Convert between different FlyCircuit identifiers
 #' 
 #' @description \code{fc_gene_name} returns a \code{character} vector of 
 #'   \code{gene_name}s of fly circuit neurons given \code{idid} or neuron 

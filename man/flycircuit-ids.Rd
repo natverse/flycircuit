@@ -2,7 +2,7 @@
 \alias{fc_gene_name}
 \alias{fc_idid}
 \alias{fc_neuron}
-\title{Convert between different flycircuit identifiers}
+\title{Convert between different FlyCircuit identifiers}
 \usage{
 fc_gene_name(x)
 
