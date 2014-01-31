@@ -50,7 +50,7 @@ fc_attach_bigmat <- function(bigmat) {
   if(!require(bigmemory))
     stop("Please install bigmemory package!")
   if(!exists(bigmat)) {
-    bigmatfile <- file.path(getOption('flycircuit.bigmatdir'), paste(bigmat, ".desc", sep=""))
+    bigmatfile <- file.path(getOption('flycircuit.localroot'), getOption('flycircuit.bigmatdir'), paste(bigmat, ".desc", sep=""))
     if(!file.exists(bigmatfile))
       stop("Cannot find file: ", bigmatfile)
     message("attaching: ", bigmat)
