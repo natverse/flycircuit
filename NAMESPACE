@@ -1,3 +1,4 @@
+S3method(plot3d,hclust)
 export(fc_attach_bigmat)
 export(fc_gene_name)
 export(fc_idid)

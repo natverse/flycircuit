@@ -41,3 +41,33 @@ fc_sub_distmat <- function(gns, distmat="abc2.normdmat", form=c('matrix', 'dist'
   if(form=='matrix') d
   else as.dist(d)
 }
+
+#' Plot dotprops coloured by groups cut from an hclust object.
+#'
+#' @details Note that the colours are in the order of the dendrogram as assigned
+#'   by colour_clusters.
+#' @param hc An hclust object.
+#' @param k Number of clusters to cut from hclust object.
+#' @param h Height to cut hclust object.
+#' @param groups Numeric vector of groups to plot.
+#' @param col Colours for groups (directly specified or a function).
+#' @return List of rgl ids for plotted objects.
+#' @export
+#' @seealso \code{\link{hclust},\link{slice},\link{colour_clusters}}
+plot3d.hclust <- function(hc, k=NULL, h=NULL, groups, col=rainbow, ...) {
+  # Cut the dendrogram into k groups of neurons. Note that these will now have
+  # the neurons in dendrogram order
+  kgroups <- slice(hc,k,h)
+  k <- max(kgroups)
+  if(is.function(col))
+    col <- col(k)
+
+  neurons <- names(kgroups)
+
+  if(!missing(groups)){
+    matching <- kgroups%in%groups
+    kgroups <- kgroups[matching]
+    neurons <- neurons[matching]
+  }
+  plot3dfc(neurons, col=col[kgroups], ...)
+}
