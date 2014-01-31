@@ -58,3 +58,20 @@ fc_attach_bigmat <- function(bigmat) {
   }
   get(bigmat, envir=.GlobalEnv)
 }
+
+#' Download a data file from a remote location
+#'
+#' @param url The location of the remote file
+#' @param type The type of file (data, db, or bigmat)
+#' @export
+fc_download_data <- function(url, type=c('data', 'db', 'bigmat')) {
+  folder <- match.arg(type)
+  folderpath <- switch(folder,
+    'data' = getOption('flycircuit.datadir'),
+    'db' = getOption('flycircuit.dbdir'),
+    'bigmat' = getOption('flycircuit.bigmatdir')
+  )
+  download.file(url, destfile=file.path(folderpath, basename(url)))
+  # If we've been given the URL for a bigmat .desc file, also download the bigmat
+  if(folder == 'bigmat') download.file(sub("[.][^.]*$", "", url, perl=T), destfile=file.path(folderpath, sub("[.][^.]*$", "", basename(url), perl=T)))
+}

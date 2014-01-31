@@ -4,7 +4,7 @@
   options('flycircuit.datadir' = file.path(getOption('flycircuit.localroot'), 'data'))
   options('flycircuit.dbdir' = file.path(getOption('flycircuit.localroot'), 'db'))
   options('flycircuit.bigmatdir' = file.path(getOption('flycircuit.datadir'), 'bigmat'))
-  options('flycircuit.remoteloc' = 'http://flybrain.mrc-lmb.cam.ac.uk/flycircuit/')
+  options('flycircuit.remoteloc' = 'http://flybrain.mrc-lmb.cam.ac.uk/flycircuit')
 }
 
 # Set default neuronlist for plotting
