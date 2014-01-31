@@ -5,6 +5,11 @@
   options('flycircuit.dbdir' = file.path(getOption('flycircuit.localroot'), 'db'))
   options('flycircuit.bigmatdir' = file.path(getOption('flycircuit.datadir'), 'bigmat'))
   options('flycircuit.remoteloc' = 'http://flybrain.mrc-lmb.cam.ac.uk/flycircuit')
+
+  # Create directories if they do not already exist
+  dir.create(file.path(getOption('flycircuit.datadir')), showWarnings=FALSE)
+  dir.create(file.path(getOption('flycircuit.dbdir')), showWarnings=FALSE)
+  dir.create(file.path(getOption('flycircuit.bigmatdir')), showWarnings=FALSE)
 }
 
 # Set default neuronlist for plotting
