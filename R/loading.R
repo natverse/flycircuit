@@ -11,7 +11,7 @@ load_fcdata <- function(data, Force=FALSE, folder=c('data','db')) {
   if(exists(data) && !is.function(get(data)) && !Force)
     return(NULL)
   folder <- ifelse(folder == 'db', getOption('flycircuit.dbdir'), getOption('flycircuit.datadir')) 
-  rdafile <- file.path(getOption('flycircuit.localroot'), folder, paste(data, sep=".", "rda"))
+  rdafile <- file.path(folder, paste(data, sep=".", "rda"))
   if(!file.exists(rdafile))
     stop("Unable to read file: ", rdafile)
   load(rdafile, envir=.GlobalEnv)
@@ -50,7 +50,7 @@ fc_attach_bigmat <- function(bigmat) {
   if(!require(bigmemory))
     stop("Please install bigmemory package!")
   if(!exists(bigmat)) {
-    bigmatfile <- file.path(getOption('flycircuit.localroot'), getOption('flycircuit.bigmatdir'), paste(bigmat, ".desc", sep=""))
+    bigmatfile <- file.path(getOption('flycircuit.bigmatdir'), paste(bigmat, ".desc", sep=""))
     if(!file.exists(bigmatfile))
       stop("Cannot find file: ", bigmatfile)
     message("attaching: ", bigmat)
