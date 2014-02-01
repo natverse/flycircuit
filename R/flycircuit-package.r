@@ -26,3 +26,9 @@ NULL
 #' @family flycircuit-ids
 #' @docType data
 NULL
+
+#' FCWB.surf - Amira surface of FlyCircuit reference brain
+#'
+#' @name FCWBSurf
+#' @docType data
+NULL
