@@ -32,3 +32,8 @@ NULL
 #' @name FCWBSurf
 #' @docType data
 NULL
+
+#' FCWBNPSurf - RGL surface object of FlyLight neuropil segmentation in FlyCircuit coordinate space
+#'
+#' @name FCWBNPSurf
+#' @docType data

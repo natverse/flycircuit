@@ -1,0 +1,14 @@
+\name{fcwbnpsurf}
+\alias{fcwbnpsurf}
+\title{Plot 3D surfaces of the FlyLight neuropil segmentation in FlyCircuit coordinate space}
+\usage{
+fcwbnpsurf(...)
+}
+\arguments{
+  \item{...}{Extra arguments to pass to plot3d}
+}
+\description{
+Plot 3D surfaces of the FlyLight neuropil segmentation in
+FlyCircuit coordinate space
+}
+

@@ -12,3 +12,7 @@ test_that("hclust objects are plottable in 3d", {
 test_that("fcwbsurf works", {
   fcwbsurf()
 })
+
+test_that("fcwbnpsurf works", {
+  fcwbnpsurf()
+})
