@@ -55,8 +55,8 @@ plot3dfc <- function(id, col, db=NULL, flip=F, soma=F, alpharange=NULL, skipRedr
       df <- attr(db,'df')
       if(!is.null(df)) {
         # Attached dataframe gives soma positions
-        rlist <- c(rlist, spheres3d(df[id, c("X", "Y", "Z")], rad=2, col=col))
-      } else rlist <- c(rlist, spheres3d(somapos[id, c("X", "Y", "Z")], rad=2, col=col))
+        rlist <- c(rlist, spheres3d(df[id, c("X", "Y", "Z")], radius=2, col=col))
+      } else rlist <- c(rlist, spheres3d(somapos[id, c("X", "Y", "Z")], radius=2, col=col))
     }
   }
   # Save this info so we can pop stuff later

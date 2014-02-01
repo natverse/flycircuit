@@ -11,11 +11,11 @@
 #' @return An object of class \code{\link{hclust}} which describes the tree produced by the clustering process.
 #' @export
 #' @seealso \code{\link{fc_gene_name}}, \code{\link{hclust}}, \code{\link{dist}}
-hclustfc <- function(gns, meth='ward', distmat="abc2.normdmat", distfun=as.dist, ..., maxneurons=4000) {
+hclustfc <- function(gns, method='ward', distmat="abc2.normdmat", distfun=as.dist, ..., maxneurons=4000) {
   subdistmat <- fc_sub_distmat(gns, distmat, maxneurons=maxneurons)
   if(min(subdistmat) < 0)
     stop("Negative distances not allowed. Are you sure this is a distance matrix?")
-  hclust(as.dist(subdistmat), meth=meth, ...)
+  hclust(as.dist(subdistmat), method=method, ...)
 }
 
 #' Return a subset of a distance matrix stored in a file-backed matrix
