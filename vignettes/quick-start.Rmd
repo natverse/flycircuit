@@ -1,0 +1,25 @@
+# Quick-start guide
+
+## Set up environment
+### Load flycircuit package
+```{r load-flycircuit, cache=T}
+library(flycircuit)
+```
+
+### Load visual projection neuron NBLAST scores
+Download NBLAST scores for visual projection neurons and load them into the workspace.
+
+**WARNING:** The download totals 146 MB.
+```{r download-vpn_scores, cache=T}
+# Download scores...
+fc_download_data('http://flybrain.mrc-lmb.cam.ac.uk/flycircuit/vpn_scores.desc', type='bigmat')
+```
+```{r load-vpn_scores, cache=T}
+# ...and load them into the workspace
+fc_attach_bigmat('vpn_scores')
+```
+
+Show the scores for the first five genes:
+```{r score-peek}
+vpn_scores[1:5, 1:5]
+```
