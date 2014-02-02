@@ -11,9 +11,9 @@ Depends:
     nat,
     rgl
 Suggests:
-    testthat,
-    bigmemory
+    testthat
 Imports:
-    dendroextras
+    dendroextras,
+    bigmemory
 License: GPL-3
 LazyData: true

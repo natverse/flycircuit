@@ -41,14 +41,13 @@ load_fcdb <- function(db, Force=FALSE, ...) {
 #' @param bigmat Name of big matrix object (which should match file on disk).
 #' @return A big matrix object.
 #' @export
+#' @importFrom bigmemory attach.big.matrix
 #' @seealso \code{\link{attach.big.matrix}}
 #' @examples
 #' \dontrun{
 #' fc_attach_bigmat()
 #' }
 fc_attach_bigmat <- function(bigmat) {
-  if(!require(bigmemory))
-    stop("Please install bigmemory package!")
   if(!exists(bigmat)) {
     bigmatfile <- file.path(getOption('flycircuit.bigmatdir'), paste(bigmat, ".desc", sep=""))
     if(!file.exists(bigmatfile))

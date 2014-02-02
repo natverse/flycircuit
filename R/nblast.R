@@ -12,7 +12,6 @@
 #' @return Matrix of scores, columns are query neurons, rows, target.
 #' @seealso \code{\link{hclustfc},\link{fc_sub_distmat}}
 fc_nblast <- function(query, target, normalised=FALSE){
-  require(bigmemory)
   # Note global assignment
   scorematname <- if(normalised) "abc2.normdmat" else "allbyallblastcv2.5.bin"
   scoremat <- fc_attach_bigmat(scorematname)
