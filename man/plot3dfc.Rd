@@ -41,6 +41,6 @@ variable in the global environment called
 remove all objects plotted in last call to plot3dfc.
 }
 \seealso{
-\code{\link{rgl::plot3d}}
+\code{\link[rgl]{plot3d}}
 }
 

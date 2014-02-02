@@ -19,7 +19,7 @@
 #' @param skipRedraw Numeric threshold above which to disable rgl redraw.
 #' @return List of rgl stack ids (see rgl::plot3d).
 #' @export
-#' @seealso \code{\link{rgl::plot3d}}
+#' @seealso \code{\link[rgl]{plot3d}}
 plot3dfc <- function(id, col, db=NULL, flip=F, soma=F, alpharange=NULL, skipRedraw=200, ...) {
   if(soma && (is.null(attr(dps, 'df')) && !exists('somapos', envir=.GlobalEnv))) {
     message("load_fcdb('somapos') to allow plotting of predicted soma positions")
@@ -69,7 +69,7 @@ plot3dfc <- function(id, col, db=NULL, flip=F, soma=F, alpharange=NULL, skipRedr
 #' If no neurons are specified, the last plotted are removed.
 #' @param x Neurons to remove
 #' @export
-#' @seealso \code{\link{rgl::pop3d}}
+#' @seealso \code{\link[rgl]{pop3d}}
 #' @importFrom rgl pop3d
 pop3dfc <- function(x, slow=FALSE, type='shapes') {
   if(missing(x)){

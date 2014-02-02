@@ -11,6 +11,6 @@ pop3dfc(x, slow = FALSE, type = "shapes")
 If no neurons are specified, the last plotted are removed.
 }
 \seealso{
-\code{\link{rgl::pop3d}}
+\code{\link[rgl]{pop3d}}
 }
 
