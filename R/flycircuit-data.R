@@ -21,18 +21,19 @@
 #' @docType data
 NULL
 
-#' FCWBSurf - Surface model of FCWB FlyCircuit reference brain
+#' FCWB.surf - Surface model of FCWB FlyCircuit reference brain
 #' 
 #' The FCWB reference brain is a shape averaged template brain generated using 
-#' the CMTK avg_adm tool.
+#' the CMTK avg_adm tool. See
+#' \url{https://github.com/jefferislab/MakeAverageBrain} for the relevant code.
 #' 
-#' @name FCWBSurf
+#' @name FCWB.surf
 #' @docType data
 NULL
 
-#' FCWBNPSurf - Surface model of FlyLight neuropil segmentation in FlyCircuit
+#' FCWBNP.surf - Surface model of FlyLight neuropil segmentation in FlyCircuit
 #' coordinate space
 #' 
-#' @name FCWBNPSurf
+#' @name FCWBNP.surf
 #' @docType data
 NULL

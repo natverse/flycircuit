@@ -94,8 +94,7 @@ pop3dfc <- function(x, slow=FALSE, type='shapes') {
 #' @importFrom rgl plot3d
 #' @export
 fcwbsurf <- function(col='grey', alpha=0.3, ...) {
-  if(!exists('FCWBSurf')) FCWBSurf <<- read.hxsurf(file.path(getOption('flycircuit.resourcesdir'), 'FCWB.surf'))
-  plot3d(FCWBSurf, col=col, alpha=alpha, ...)
+  plot3d(FCWB.surf, col=col, alpha=alpha, ...)
 }
 
 #' Plot 3D surfaces of the FlyLight neuropil segmentation in FlyCircuit coordinate space
@@ -104,6 +103,5 @@ fcwbsurf <- function(col='grey', alpha=0.3, ...) {
 #' @export
 #' @importFrom rgl plot3d
 fcwbnpsurf <- function(...) {
-  if(!exists('FCWBNPSurf')) load(file.path(getOption('flycircuit.resourcesdir'), 'FCWBNPSurf.rda'), envir=globalenv())
-  plot3d(FCWBNPSurf, ...)
+  plot3d(FCWBNP.surf, ...)
 }
