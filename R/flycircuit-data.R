@@ -37,3 +37,11 @@ NULL
 #' @name FCWBNP.surf
 #' @docType data
 NULL
+
+#' A dataframe containing manual annotations of some FlyCircuit neurons
+#' 
+#' @details \code{neuron_idid} matches \code{idid} of fcidtable
+#' @seealso \code{\link{fcidtable}}
+#' @name annotation
+#' @docType data
+NULL
