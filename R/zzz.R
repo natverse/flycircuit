@@ -2,7 +2,7 @@
 .onLoad <- function(libname, pkgname) {
   #options('flycircuit.localroot' = system.file(package='flycircuit'))
   options('flycircuit.localroot' = '~/projects/flycircuit')
-  options('flycircuit.datadir' = file.path(getOption('flycircuit.localroot'), 'data'))
+  options('flycircuit.datadir' = file.path(getOption('flycircuit.localroot'), 'extdata'))
   options('flycircuit.dbdir' = file.path(getOption('flycircuit.datadir'), 'db'))
   options('flycircuit.bigmatdir' = file.path(getOption('flycircuit.datadir'), 'bigmat'))
   options('flycircuit.resourcesdir' = file.path(getOption('flycircuit.datadir'), 'resources'))
