@@ -19,13 +19,21 @@ plot3dfc(id, col, db = NULL, flip = F, soma = F, alpharange = NULL,
   \item{soma}{Whether to show the estimated cell body
   position.}
 
+  \item{alpharange}{Range of alpha values for which
+  vectors/dots should be plotted..}
+
   \item{skipRedraw}{Numeric threshold above which to
   disable rgl redraw.}
+
+  \item{...}{Additional arguments for \code{plot3d}}
 }
 \value{
 List of rgl stack ids (see rgl::plot3d).
 }
 \description{
+Plot FlyCircuit neurons using rgl
+}
+\details{
 * Plotted soma positions are a prediction based on location
 in the FlyCircuit template brain mapped onto my selected
 template. The positions are looked up in the df attribute
@@ -37,10 +45,10 @@ more than 200 neurons are plotted in a single call rgl
 redraw is suspended. This can be >10x faster. * Note that
 the ids of objects on the rgl stack are stored in a
 variable in the global environment called
-\code{.last.plot3dfc} that can be used by pop3dfc() to
-remove all objects plotted in last call to plot3dfc.
+\code{.last.plot3dfc} that can be used by \code{pop3dfc()}
+to remove all objects plotted in last call to plot3dfc.
 }
 \seealso{
-\code{\link[rgl]{plot3d}}
+\code{\link[rgl]{plot3d}, \link{pop3dfc}}
 }
 

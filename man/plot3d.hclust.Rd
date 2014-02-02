@@ -15,6 +15,8 @@
 
   \item{col}{Colours for groups (directly specified or a
   function).}
+
+  \item{...}{Additional arguments for \code{plot3dfc}}
 }
 \value{
 List of rgl ids for plotted objects.
@@ -27,6 +29,6 @@ Note that the colours are in the order of the dendrogram as
 assigned by colour_clusters.
 }
 \seealso{
-\code{\link{hclust},\link{slice},\link{colour_clusters}}
+\code{\link{hclust},\link{slice},\link{colour_clusters},\link{plot3dfc}}
 }
 

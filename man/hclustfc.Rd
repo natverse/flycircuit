@@ -9,7 +9,7 @@ hclustfc(gns, method = "ward", distmat = "abc2.normdmat",
   \item{gns}{FlyCircuit identifiers (passed to
   fc_gene_name).}
 
-  \item{meth}{Clustering method (default Ward's).}
+  \item{method}{Clustering method (default Ward's).}
 
   \item{distmat}{The distance matrix (default
   allbyallblast.canon).}
@@ -18,6 +18,9 @@ hclustfc(gns, method = "ward", distmat = "abc2.normdmat",
   object (default=as.dist).}
 
   \item{...}{Additional parameters passed to hclust.}
+
+  \item{maxneurons}{Set this to a sensible value to avoid
+  loading huge order N^2 distances directly into memory.}
 }
 \value{
 An object of class \code{\link{hclust}} which describes the

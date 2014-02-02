@@ -4,14 +4,16 @@
 #' hierarchical clustering. The default value of distfun will handle square
 #' distance matrices and R.
 #' @param gns FlyCircuit identifiers (passed to fc_gene_name).
-#' @param meth Clustering method (default Ward's).
+#' @param method Clustering method (default Ward's).
 #' @param distmat The distance matrix (default allbyallblast.canon).
 #' @param distfun Function to convert distmat into R dist object (default=as.dist).
 #' @param ... Additional parameters passed to hclust.
+#' @inheritParams fc_sub_distmat
 #' @return An object of class \code{\link{hclust}} which describes the tree produced by the clustering process.
 #' @export
 #' @seealso \code{\link{fc_gene_name}}, \code{\link{hclust}}, \code{\link{dist}}
-hclustfc <- function(gns, method='ward', distmat="abc2.normdmat", distfun=as.dist, ..., maxneurons=4000) {
+hclustfc <- function(gns, method='ward', distmat="abc2.normdmat", 
+                     distfun=as.dist, ..., maxneurons=4000) {
   subdistmat <- fc_sub_distmat(gns, distmat, maxneurons=maxneurons)
   if(min(subdistmat) < 0)
     stop("Negative distances not allowed. Are you sure this is a distance matrix?")
@@ -46,7 +48,7 @@ fc_sub_distmat <- function(gns, distmat="abc2.normdmat",
 }
 
 #' Plot dotprops coloured by groups cut from an hclust object
-#'
+#' 
 #' @details Note that the colours are in the order of the dendrogram as assigned
 #'   by colour_clusters.
 #' @param x An hclust object.
@@ -54,9 +56,11 @@ fc_sub_distmat <- function(gns, distmat="abc2.normdmat",
 #' @param h Height to cut hclust object.
 #' @param groups Numeric vector of groups to plot.
 #' @param col Colours for groups (directly specified or a function).
+#' @param ... Additional arguments for \code{plot3dfc}
 #' @return List of rgl ids for plotted objects.
 #' @export
-#' @seealso \code{\link{hclust},\link{slice},\link{colour_clusters}}
+#' @seealso
+#'   \code{\link{hclust},\link{slice},\link{colour_clusters},\link{plot3dfc}}
 #' @importFrom dendroextras slice
 plot3d.hclust <- function(x, k=NULL, h=NULL, groups, col=rainbow, ...) {
   # Cut the dendrogram into k groups of neurons. Note that these will now have

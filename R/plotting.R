@@ -1,5 +1,6 @@
 #' Plot FlyCircuit neurons using rgl
 #'
+#' @details
 #' * Plotted soma positions are a prediction based on location in the FlyCircuit
 #' template brain mapped onto my selected template. The positions are looked up 
 #' in the df attribute of the neuronlist or in a dataframe called somapos.
@@ -9,17 +10,19 @@
 #' redraw is suspended. This can be >10x faster.
 #' * Note that the ids of objects on the rgl stack are stored in a variable in
 #' the global environment called \code{.last.plot3dfc} that can be used by
-#' pop3dfc() to remove all objects plotted in last call to plot3dfc.
+#' \code{pop3dfc()} to remove all objects plotted in last call to plot3dfc.
 #' @param id Character vector of FlyCircuit gene names.
 #' @param col Function or vector specifying colour.
 #' @param db Object of class neuronlist (only tested for dotprops objects).
 #' @param flip Logical vector (whether to use list containing flipped neurons). 
 #'   Recycled if length 1.
 #' @param soma Whether to show the estimated cell body position.
+#' @param alpharange Range of alpha values for which vectors/dots should be plotted..
 #' @param skipRedraw Numeric threshold above which to disable rgl redraw.
+#' @param ... Additional arguments for \code{plot3d}
 #' @return List of rgl stack ids (see rgl::plot3d).
 #' @export
-#' @seealso \code{\link[rgl]{plot3d}}
+#' @seealso \code{\link[rgl]{plot3d}, \link{pop3dfc}}
 plot3dfc <- function(id, col, db=NULL, flip=F, soma=F, alpharange=NULL, skipRedraw=200, ...) {
   if(soma && (is.null(attr(dps, 'df')) && !exists('somapos', envir=.GlobalEnv))) {
     message("load_fcdb('somapos') to allow plotting of predicted soma positions")
@@ -68,6 +71,8 @@ plot3dfc <- function(id, col, db=NULL, flip=F, soma=F, alpharange=NULL, skipRedr
 #' 
 #' If no neurons are specified, the last plotted are removed.
 #' @param x Neurons to remove
+#' @param slow Whether to remove neurons one by one (slowly) default: FALSE
+#' @param type Type of objects to remove see \code[rgl]{pop3d}.
 #' @export
 #' @seealso \code{\link[rgl]{pop3d}}
 #' @importFrom rgl pop3d

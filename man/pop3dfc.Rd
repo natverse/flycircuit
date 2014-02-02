@@ -6,6 +6,12 @@ pop3dfc(x, slow = FALSE, type = "shapes")
 }
 \arguments{
   \item{x}{Neurons to remove}
+
+  \item{slow}{Whether to remove neurons one by one (slowly)
+  default: FALSE}
+
+  \item{type}{Type of objects to remove see
+  \code[rgl]{pop3d}.}
 }
 \description{
 If no neurons are specified, the last plotted are removed.
