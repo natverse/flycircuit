@@ -70,6 +70,7 @@ plot3dfc <- function(id, col, db=NULL, flip=F, soma=F, alpharange=NULL, skipRedr
 #' @param x Neurons to remove
 #' @export
 #' @seealso \code{\link{rgl::pop3d}}
+#' @importFrom rgl pop3d
 pop3dfc <- function(x, slow=FALSE, type='shapes') {
   if(missing(x)){
     if(exists(".last.plot3dfc", envir=.plotted3d))
@@ -85,6 +86,7 @@ pop3dfc <- function(x, slow=FALSE, type='shapes') {
 #' @param col The colour of the surface
 #' @param alpha The opacity of the surface
 #' @param ... Extra arguments to pass to plot3d
+#' @importFrom rgl plot3d
 #' @export
 fcwbsurf <- function(col='grey', alpha=0.3, ...) {
   if(!exists('FCWBSurf')) FCWBSurf <<- read.hxsurf(file.path(getOption('flycircuit.resourcesdir'), 'FCWB.surf'))
@@ -95,6 +97,7 @@ fcwbsurf <- function(col='grey', alpha=0.3, ...) {
 #'
 #' @param ... Extra arguments to pass to plot3d
 #' @export
+#' @importFrom rgl plot3d
 fcwbnpsurf <- function(...) {
   if(!exists('FCWBNPSurf')) load(file.path(getOption('flycircuit.resourcesdir'), 'FCWBNPSurf.rda'), envir=globalenv())
   plot3d(FCWBNPSurf, ...)
