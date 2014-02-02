@@ -8,11 +8,12 @@ Authors@R: c(person("Gregory", "Jefferis", email="jefferis@gmail.com", role =
     c("aut", "cre")))
 Depends:
     R (>= 3.0.2),
-    nat
+    nat,
+    rgl
 Suggests:
-    testthat
+    testthat,
+    bigmemory
 Imports:
-    apcluster,
     dendroextras
 License: GPL-3
 LazyData: true
