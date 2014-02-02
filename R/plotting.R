@@ -24,10 +24,6 @@
 #' @export
 #' @seealso \code{\link[rgl]{plot3d}, \link{pop3dfc}}
 plot3dfc <- function(id, col, db=NULL, flip=F, soma=F, alpharange=NULL, skipRedraw=200, ...) {
-  if(soma && (is.null(attr(dps, 'df')) && !exists('somapos', envir=.GlobalEnv))) {
-    message("load_fcdb('somapos') to allow plotting of predicted soma positions")
-    soma=FALSE
-  }
   if(!is.list(id) && length(id) > 1) {
     if(missing(col))
       col <- rainbow
@@ -60,7 +56,7 @@ plot3dfc <- function(id, col, db=NULL, flip=F, soma=F, alpharange=NULL, skipRedr
       if(!is.null(df)) {
         # Attached dataframe gives soma positions
         rlist <- c(rlist, spheres3d(df[id, c("X", "Y", "Z")], radius=2, col=col))
-      } else rlist <- c(rlist, spheres3d(somapos[id, c("X", "Y", "Z")], radius=2, col=col))
+      }
     }
   }
   # Save this info so we can pop stuff later
