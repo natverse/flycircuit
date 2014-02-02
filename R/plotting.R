@@ -44,8 +44,8 @@ plot3dfc <- function(id, col, db=NULL, flip=F, soma=F, alpharange=NULL, skipRedr
     return(invisible(rval))
   }
   if(is.null(db)) {
-    if(flip) db <- dpsflip
-    else db <- dps
+    if(flip) db <- get('dpsflip')
+    else db <- get('dps')
   }
   
   if(missing(col)) col <- 'black'
@@ -56,6 +56,7 @@ plot3dfc <- function(id, col, db=NULL, flip=F, soma=F, alpharange=NULL, skipRedr
     rlist <- plot3d(n, col=col, alpharange=alpharange, ...)
     if(soma) {
       df <- attr(db,'df')
+      somapos<-get("somapos")
       if(!is.null(df)) {
         # Attached dataframe gives soma positions
         rlist <- c(rlist, spheres3d(df[id, c("X", "Y", "Z")], radius=2, col=col))
