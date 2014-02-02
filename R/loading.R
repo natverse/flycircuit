@@ -39,7 +39,7 @@ load_fcdb <- function(db, Force=FALSE, ...) {
 #' \code{bigmat="mybigmat"} there should be a big.matrix description file called 
 #' \code{file.path(fcconfig$bigmatrixdir,'mybigmat.desc')}
 #' @param bigmat Name of big matrix object (which should match file on disk).
-#' @param return A big matrix object.
+#' @return A big matrix object.
 #' @export
 #' @seealso \code{\link{attach.big.matrix}}
 #' @examples

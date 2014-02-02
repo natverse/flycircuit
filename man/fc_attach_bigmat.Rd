@@ -7,8 +7,9 @@ fc_attach_bigmat(bigmat)
 \arguments{
   \item{bigmat}{Name of big matrix object (which should
   match file on disk).}
-
-  \item{return}{A big matrix object.}
+}
+\value{
+A big matrix object.
 }
 \description{
 These are file based matrices that are not loaded into
