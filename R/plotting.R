@@ -72,7 +72,7 @@ plot3dfc <- function(id, col, db=NULL, flip=F, soma=F, alpharange=NULL, skipRedr
 #' If no neurons are specified, the last plotted are removed.
 #' @param x Neurons to remove
 #' @param slow Whether to remove neurons one by one (slowly) default: FALSE
-#' @param type Type of objects to remove see \code[rgl]{pop3d}.
+#' @param type Type of objects to remove see \code{pop3d}.
 #' @export
 #' @seealso \code{\link[rgl]{pop3d}}
 #' @importFrom rgl pop3d
