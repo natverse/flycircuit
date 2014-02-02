@@ -19,14 +19,17 @@ hclustfc <- function(gns, method='ward', distmat="abc2.normdmat", distfun=as.dis
 }
 
 #' Return a subset of a distance matrix stored in a file-backed matrix
-#'
+#' 
 #' @param gns FlyCircuit identifiers (passed to fc_gene_name).
 #' @param distmat The distance matrix (default allbyallblast.canon).
 #' @param form The type of object to return.
-#' @return return An object of class matrix or dist (as determined by the form
+#' @param maxneurons Set this to a sensible value to avoid loading huge order 
+#'   N^2 distances directly into memory.
+#' @return return An object of class matrix or dist (as determined by the form 
 #'   argument), corresponding to a subset of the distance matrix
 #' @export
-fc_sub_distmat <- function(gns, distmat="abc2.normdmat", form=c('matrix', 'dist'), maxneurons=NA){
+fc_sub_distmat <- function(gns, distmat="abc2.normdmat", 
+                           form=c('matrix', 'dist'), maxneurons=NA){
   form <- match.arg(form)
   distmat <- fc_attach_bigmat(distmat)
   gns <- fc_gene_name(gns)

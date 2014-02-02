@@ -13,6 +13,9 @@ fc_sub_distmat(gns, distmat = "abc2.normdmat", form = c("matrix", "dist"),
   allbyallblast.canon).}
 
   \item{form}{The type of object to return.}
+
+  \item{maxneurons}{Set this to a sensible value to avoid
+  loading huge order N^2 distances directly into memory.}
 }
 \value{
 return An object of class matrix or dist (as determined by
