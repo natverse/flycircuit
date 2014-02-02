@@ -54,6 +54,7 @@ fc_sub_distmat <- function(gns, distmat="abc2.normdmat", form=c('matrix', 'dist'
 #' @return List of rgl ids for plotted objects.
 #' @export
 #' @seealso \code{\link{hclust},\link{slice},\link{colour_clusters}}
+#' @importFrom dendroextras slice
 plot3d.hclust <- function(hc, k=NULL, h=NULL, groups, col=rainbow, ...) {
   # Cut the dendrogram into k groups of neurons. Note that these will now have
   # the neurons in dendrogram order
