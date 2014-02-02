@@ -46,7 +46,7 @@ fc_sub_distmat <- function(gns, distmat="abc2.normdmat", form=c('matrix', 'dist'
 #'
 #' @details Note that the colours are in the order of the dendrogram as assigned
 #'   by colour_clusters.
-#' @param hc An hclust object.
+#' @param x An hclust object.
 #' @param k Number of clusters to cut from hclust object.
 #' @param h Height to cut hclust object.
 #' @param groups Numeric vector of groups to plot.
@@ -55,10 +55,10 @@ fc_sub_distmat <- function(gns, distmat="abc2.normdmat", form=c('matrix', 'dist'
 #' @export
 #' @seealso \code{\link{hclust},\link{slice},\link{colour_clusters}}
 #' @importFrom dendroextras slice
-plot3d.hclust <- function(hc, k=NULL, h=NULL, groups, col=rainbow, ...) {
+plot3d.hclust <- function(x, k=NULL, h=NULL, groups, col=rainbow, ...) {
   # Cut the dendrogram into k groups of neurons. Note that these will now have
   # the neurons in dendrogram order
-  kgroups <- slice(hc,k,h)
+  kgroups <- slice(x,k,h)
   k <- max(kgroups)
   if(is.function(col))
     col <- col(k)

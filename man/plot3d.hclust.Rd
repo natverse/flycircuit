@@ -2,11 +2,10 @@
 \alias{plot3d.hclust}
 \title{Plot dotprops coloured by groups cut from an hclust object}
 \usage{
-\method{plot3d}{hclust}(hc, k = NULL, h = NULL, groups, col = rainbow,
-  ...)
+\method{plot3d}{hclust}(x, k = NULL, h = NULL, groups, col = rainbow, ...)
 }
 \arguments{
-  \item{hc}{An hclust object.}
+  \item{x}{An hclust object.}
 
   \item{k}{Number of clusters to cut from hclust object.}
 
