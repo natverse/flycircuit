@@ -19,15 +19,12 @@ fc_gene_name<-function(x){
     # FIXME check that ALL x values look like gene_names
     if(regexpr('seg',x[1])>=0) return(x)
     else {
-      res=subset(fcidtable,Name%in%x,c(gene_name,Name))
-      rownames(res)=res$Name
-      as.character(res[x,"gene_name"])
+      res=match(x,fcidtable$Name)
     }
   } else {
-    res=subset(fcidtable,idid%in%x,c(gene_name,idid))
-    rownames(res)=res$idid
-    as.character(res[as.character(x),"gene_name"])
+    res=match(x,fcidtable$idid)
   }
+  fcidtable$gene_name[res]
 }
 
 #' @description \code{fc_idid} returns an integer \code{idid} of a fly circuit
@@ -45,14 +42,12 @@ fc_idid<-function(x){
       # but make sure they all are ...
       if(!all(xAreNames)) 
         stop("ambiguous flycircuit neuron Names:",paste(x[!xAreNames],collapse=", "))
-      res=subset(fcidtable,Name%in%x,c(idid,Name))
-      rownames(res)=res$Name
+      res=match(x,fcidtable$Name)
     } else {
       # assume we have gene_names
-      res=subset(fcidtable,gene_name%in%x,c(gene_name,idid))
-      rownames(res)=res$gene_name
+      res=match(x,fcidtable$gene_name)
     }
-    res[x,"idid"]
+    fcidtable$idid[res]
   } else {
     x
   }
@@ -76,14 +71,11 @@ fc_neuron<-function(x){
       return(x)
     } else {
       # assume we have gene_names
-      res=subset(fcidtable,gene_name%in%x,c(gene_name,Name))
-      rownames(res)=res$gene_name
+      res=match(x,fcidtable$gene_name)
     }
-    res[x,"idid"]
   } else {
     # assume these are idids
-    res=subset(fcidtable,idid%in%x,c(Name,idid))
-    rownames(res)=as.character(res$idid)
+    res=match(x,fcidtable$idid)
   }
-  res[x,"Name"]
+  fcidtable$Name[res]
 }
