@@ -79,3 +79,23 @@ pop3dfc <- function(x, slow=FALSE, type='shapes') {
   if(slow) invisible(sapply(x, function(x) try(pop3d(x, type=type))))
   else try(pop3d(unlist(x), type=type))
 }
+
+#' Plot a 3D surface of the FlyCircuit reference brain
+#'
+#' @param col The colour of the surface
+#' @param alpha The opacity of the surface
+#' @param ... Extra arguments to pass to plot3d
+#' @export
+fcwbsurf <- function(col='grey', alpha=0.3, ...) {
+  if(!exists('FCWBSurf')) FCWBSurf <<- read.hxsurf(file.path(getOption('flycircuit.resourcesdir'), 'FCWB.surf'))
+  plot3d(FCWBSurf, col=col, alpha=alpha, ...)
+}
+
+#' Plot 3D surfaces of the FlyLight neuropil segmentation in FlyCircuit coordinate space
+#'
+#' @param ... Extra arguments to pass to plot3d
+#' @export
+fcwbnpsurf <- function(...) {
+  if(!exists('FCWBNPSurf')) load(file.path(getOption('flycircuit.resourcesdir'), 'FCWBNPSurf.rda'), envir=globalenv())
+  plot3d(FCWBNPSurf, ...)
+}

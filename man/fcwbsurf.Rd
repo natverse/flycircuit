@@ -1,0 +1,17 @@
+\name{fcwbsurf}
+\alias{fcwbsurf}
+\title{Plot a 3D surface of the FlyCircuit reference brain}
+\usage{
+fcwbsurf(col = "grey", alpha = 0.3, ...)
+}
+\arguments{
+  \item{col}{The colour of the surface}
+
+  \item{alpha}{The opacity of the surface}
+
+  \item{...}{Extra arguments to pass to plot3d}
+}
+\description{
+Plot a 3D surface of the FlyCircuit reference brain
+}
+

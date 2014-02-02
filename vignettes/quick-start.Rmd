@@ -1,0 +1,58 @@
+# Quick-start guide
+
+## Set up environment
+### Load flycircuit package
+```{r load-flycircuit, cache=T}
+library(flycircuit)
+```
+
+
+### Load visual projection neuron NBLAST scores
+Download NBLAST scores for visual projection neurons and load them into the workspace.
+
+**WARNING:** The download totals 146 MB.
+```{r download-vpn_scores, cache=T}
+# Download scores...
+fc_download_data('http://flybrain.mrc-lmb.cam.ac.uk/flycircuit/vpn_scores.desc', type='bigmat')
+```
+```{r load-vpn_scores, cache=T}
+# ...and load them into the workspace
+fc_attach_bigmat('vpn_scores')
+```
+
+Show the scores for the first five genes:
+```{r score-peek}
+vpn_scores[1:5, 1:5]
+```
+
+
+### Download visual projection neuron data
+At the moment we have the NBLAST scores for the visual projection neurons, but no other information about them. Let's download some.
+```{r download-vpn-info, cache=T}
+# Download the data and save it to a 'vpns' folder in the home directory.
+vpns <- read.neuronlistfh('http://flybrain.mrc-lmb.cam.ac.uk/flycircuit/vpns.rds', '~/vpns')
+```
+This `vpns` object now contains summary data about all `r length(vpns)` the visual projection neurons. When more information about a particular neuron is requested, the corresponding file is downloaded and saved to a `data` subdirectory of the folder specified in the `read.neuronlistfh` command.
+
+
+### Plotting NBLAST hits
+Now, let's plot the two neurons that NBLAST thinks are most similar.
+```{r plot top-hits, cache=T}
+# Find the indices of the maximum score in the score matrix
+ind <- which(vpn_scores[, ] == max(vpn_scores[, ]), arr.ind=T)
+queryneuron <- colnames(vpn_scores)[ind[2]]
+targetneuron <- rownames(vpn_scores)[ind[1]]
+
+# What was the query?
+queryneuron
+
+# What was the target?
+targetneuron
+
+# What do they look like?
+open3d()
+plot3dfc(c(queryneuron, targetneuron), db=vpns)
+
+# Where in the brain are they?
+fcwbsurf()
+```
