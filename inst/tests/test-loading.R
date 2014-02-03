@@ -18,24 +18,15 @@ test_that("can download data from remote lcoation", {
   bigmatdir <- tempdir()
 
   # Overwrite directory options for this test
-  olddatadir <- getOption('flycircuit.datadir')
-  options('flycircuit.datadir' = datadir)
-  olddbdir <- getOption('flycircuit.dbdir')
-  options('flycircuit.dbdir' = dbdir)
-  oldbigmatdir <- getOption('flycircuit.bigmatdir')
-  options('flycircuit.bigmatdir' = bigmatdir)
-
   fc_download_data('http://flybrain.mrc-lmb.cam.ac.uk/fcremtest/data', type='data')
   fc_download_data('http://flybrain.mrc-lmb.cam.ac.uk/fcremtest/db', type='db')
   fc_download_data('http://flybrain.mrc-lmb.cam.ac.uk/fcremtest/bigmat.desc', type='bigmat')
+  op=options(flycircuit.datadir=datadir, flycircuit.dbdir=dbdir, flycircuit.bigmatdir=bigmatdir)
+  on.exit(options(op))
+  
 
   expect_true(file.exists(file.path(datadir, 'data')))
   expect_true(file.exists(file.path(dbdir, 'db')))
   expect_true(file.exists(file.path(bigmatdir, 'bigmat.desc')))
   expect_true(file.exists(file.path(bigmatdir, 'bigmat')))
-
-  # Reset directory options back to their previous values
-  options('flycircuit.datadir' = olddatadir)
-  options('flycircuit.bigmatdir' = olddbdir)
-  options('flycircuit.bigmatdir' = oldbigmatdir)
 })
