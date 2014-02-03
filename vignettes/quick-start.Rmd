@@ -14,11 +14,16 @@ library(nat)
 ```
 
 ### Package options
-By default, the package will download data to an 'extdata' subdirectory of where the package was installed. If you wish to save data to a different location, then this can be set using: 
+By default, the package will download data to an 'extdata' subdirectory of where the package was installed. If you wish to save data to a different location then this can be set using: 
 ```{r package-options, eval=FALSE}
 options(flycircuit.localroot = '/my/favourite/directory')
 ```
-For example, you may wish to do this if you want to cluster neurons and so need to download a 2 GB score matrix.
+For example, you may wish to do this if you want to cluster a lot of neurons and so need to download a 2 GB score matrix. To download and load this matrix, you'll need to run:
+```{r download-huge-matrix, eval=FALSE}
+fc_download_data('http://jefferislab.org/si/nblast/flycircuit/abc2.normdmat.desc', type='bigmat')
+fc_attach_bigmat('abc2.normdmat')
+```
+
 
 ## Load Kenyon cell NBLAST scores
 Download NBLAST scores for visual projection neurons and load them into the workspace.
