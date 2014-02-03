@@ -1,7 +1,7 @@
 # Set local directory for data storage and remote location for data download
 .onLoad <- function(libname, pkgname) {
-  #options('flycircuit.localroot' = system.file(package='flycircuit'))
-  options('flycircuit.localroot' = path.expand('~/projects/flycircuit'))
+  options('flycircuit.localroot' = system.file(package='flycircuit'))
+  #options('flycircuit.localroot' = path.expand('~/projects/flycircuit'))
   options('flycircuit.datadir' = file.path(getOption('flycircuit.localroot'), 'extdata'))
   options('flycircuit.dbdir' = file.path(getOption('flycircuit.datadir'), 'db'))
   options('flycircuit.bigmatdir' = file.path(getOption('flycircuit.datadir'), 'bigmat'))
