@@ -2,8 +2,8 @@
 \alias{plot3dfc}
 \title{Plot FlyCircuit neurons using rgl}
 \usage{
-plot3dfc(id, col, db = NULL, flip = F, soma = F, alpharange = NULL,
-  skipRedraw = 200, ...)
+plot3dfc(id, col, db = get(getOption("nat.default.neuronlist")), flip = F,
+  soma = F, alpharange = NULL, skipRedraw = 200, ...)
 }
 \arguments{
   \item{id}{Character vector of FlyCircuit gene names.}
