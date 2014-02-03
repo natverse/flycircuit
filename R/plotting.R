@@ -102,3 +102,57 @@ fcwbsurf <- function(col='grey', alpha=0.3, ...) {
 fcwbnpsurf <- function(...) {
   plot3d(FCWBNP.surf, ...)
 }
+
+#' Creates a surface for specified regions in a given surface
+#'
+#' Details
+#' @param regionNames A list of regions to include in the surface
+#' @param surf A surface which contains a superset of the regions
+#' @return A surface containing the specified regions
+#' @export
+getRegionSurf <- function(regionNames, surf) {
+  regionIdxs <- match(regionNames,surf$RegionList)
+  if (any(is.na(regionIdxs))) stop("Some regionNames are not present in surf")
+  surfNew <- list()
+  surfNew$Regions <- surf$Regions[regionNames]
+  surfNew$Vertices <- surf$Vertices
+  surfNew$RegionList <- surf$RegionList[regionIdxs]
+  surfNew$RegionColourList <- surf$RegionColourList[regionIdxs]
+  # TODO define a [.surf method
+  class(surfNew) <- class(surf)
+  surfNew
+}
+
+#' Draws an RGL surface corresponding to a given list of regions in a given surface
+#'
+#' Details
+#' @param regionNames A list of regions to draw
+#' @param surf A surface containing a superset of the regions to draw
+#' @export
+drawRegionSurf <- function(regionNames, surf, ...) {
+  surf <- getRegionSurf(regionNames, surf)
+  plot3d(surf, ...)
+}
+
+#' Return a list of regions contained in a surface
+#'
+#' Details
+#' @param surf The surface to examine
+#' @return Returns a list of the regions in the surface object
+#' @export
+getRegionsFromSurf <- function(surf) {
+  surf$RegionList
+}
+
+#' Select regions from a surface
+#'
+#' Details
+#' @param surf The surface from which regions should be selected
+#' @export
+selectRegionsFromSurf <- function(surf) {
+  message("Draw a selection box in the RGL window")
+  s <- select3d()
+  selverts <- s(surf$Vertices[, 1:3])
+  selpointnums <- subset(surf$Vertices, PointNo %in% which(selverts))[, 4]
+  surf$RegionList[lapply(surf$Regions, function(x) any(selpointnums %in% unlist(x))) == TRUE]
+}
