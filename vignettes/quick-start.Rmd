@@ -66,10 +66,15 @@ fcwbsurf()
 par3d('userMatrix'=structure(c(1, 0, 0, 0, 0, -1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 1), .Dim = c(4L, 4L)))
 ```
 
+We'll be plotting these Kenyon cells a lot, so let's set an option that will save us some typing:
+```{r option-set}
+options(nat.default.neuronlist = 'kcs20')
+```
+
 ## Plotting NBLAST hits
 Let's plot the two neurons that NBLAST thinks are most similar.
 
-Find the indices of the maximum score in the score matrix:
+Find the indices of the minimum score (i.e. least distance) in the score matrix:
 ```{r top-hits}
 ind <- which(kcs20scores[, ] == min(kcs20scores[, ]), arr.ind=T)
 queryneuron <- colnames(kcs20scores)[ind[2]]
@@ -94,17 +99,38 @@ par3d('userMatrix'=structure(c(1, 0, 0, 0, 0, -1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 1)
 ```
 
 ## Cluster Kenyon cells by morphology
-
 ```{r cluster-kcs}
-hckc=hclustfc(rownames(kcs20scores),distmat="kcs20scores")
+hckc <- hclustfc(rownames(kcs20scores),distmat="kcs20scores")
 library(dendroextras)
-plot(colour_clusters(hckc,k=3))
+plot(colour_clusters(hckc, k=3))
 ```
 
 Now let's look at the neurons:
 
 ```{r rgl-cluster-kcs, rgl=TRUE}
-plot3d(hckc,k=3,db=kcs20)
-
+open3d()
+plot3d(hckc, k=3, db=kcs20)
 ```
 Good, we can see the 3 main classes (gamma, alpha'/beta' and alpha/beta).
+
+## More NBLASTing
+We know that `r queryneuron` and `r targetneuron` are the two most similar neurons in our subset of 20 Kenyon cells, but how do other neurons compare with `r queryneuron`? Let's NBLAST it against all the other neurons and look at the scores.
+```{r blasting}
+results <- fc_nblast(queryneuron, names(kcs20), 'kcs20scores')
+par(las=2)                # Horizontal labels
+par(mar=c(5, 14, 2, 2))   # Extra margin for labels
+barplot(results, horiz=T)
+```
+Unsurprisingly, `r queryneuron` itself has the lowest score (seeing as it should have zero distance from itself). Interestingly, while `r targetneuron` has the second-lowest score, `r names(sort(results)[3])` has a similarly small score, closely followed by `r paste0(names(sort(results)[4:5]), collapse=' and ')`. Let's plot them all, with the query neuron in black, to see how similar they are:
+```{r plot-good-hits, rgl=TRUE}
+open3d()
+plot3d(queryneuron, col='black')
+plot3dfc(names(sort(results)[2:5]))
+```
+Hmm, they look pretty similar. Let's plot the four worst hits for comparison:
+```{r plot-bad-hits, rgl=TRUE}
+open3d()
+plot3d(queryneuron, col='black')
+plot3dfc(names(sort(results)[(length(results)-4):length(results)]))
+```
+Definitely different.
