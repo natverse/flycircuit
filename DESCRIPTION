@@ -11,9 +11,11 @@ Depends:
     rgl
 Suggests:
     testthat,
-    nat
+    nat,
+    knitr
 Imports:
     dendroextras,
     bigmemory
 License: GPL-3
 LazyData: true
+VignetteBuilder: knitr

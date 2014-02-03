@@ -1,14 +1,21 @@
+<!--
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{Quick-start guide}
+-->
+
 # Quick-start guide
 Data for various neurons can be downloaded from jefferislab.org and analysed using this package. The data include information on the location of the neurons in 3D space, details on innervation in different neuropils, and NBLAST scores. This quick-start guide is designed to give a brief examples of a subset of the analyses that can be carried out using this package, using an example dataset of 20 Kenyon cells.
 
 ## Set up environment
 ```{r setup, message=FALSE, warning=FALSE}
 # Allow production of figures using RGL
+library(knitr)
 knit_hooks$set(rgl = hook_rgl)
 opts_chunk$set(dev=c('png','pdf'))
 # sidestep a bug in knitr that fails to produce output dir for rgl snapshots
 dir.create('figure')
 ```
+
 ### Load flycircuit and nat packages
 ```{r load-flycircuit}
 library(flycircuit)
