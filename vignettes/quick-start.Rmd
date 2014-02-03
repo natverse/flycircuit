@@ -1,4 +1,5 @@
 # Quick-start guide
+Data for various neurons can be downloaded from jefferislab.org and analysed using this package. The data include information on the location of the neurons in 3D space, details on innervation in different neuropils, and NBLAST scores. This quick-start guide is designed to give a brief examples of a subset of the analyses that can be carried out using this package, using an example dataset of 20 Kenyon cells.
 
 ## Set up environment
 ```{r setup, message=FALSE, warning=FALSE}
@@ -6,36 +7,42 @@
 knit_hooks$set(rgl = hook_rgl)
 opts_chunk$set(dev=c('png','pdf'))
 ```
-### Load flycircuit package
+### Load flycircuit and nat packages
 ```{r load-flycircuit}
 library(flycircuit)
 library(nat)
 ```
 
+### Package options
+By default, the package will download data to an 'extdata' subdirectory of where the package was installed. If you wish to save data to a different location, then this can be set using: 
+```{r package-options, eval=FALSE}
+options(flycircuit.localroot = '/my/favourite/directory')
+```
+For example, you may wish to do this if you want to cluster neurons and so need to download a 2 GB score matrix.
 
-### Load visual projection neuron NBLAST scores
+## Load Kenyon cell NBLAST scores
 Download NBLAST scores for visual projection neurons and load them into the workspace.
 
-```{r download-vpn_scores, eval=F}
+```{r download-kcs20scores}
 # Download scores...
-fc_download_data('http://flybrain.mrc-lmb.cam.ac.uk/flycircuit/kcs20scores.desc', type='bigmat')
+fc_download_data('http://jefferislab.org/si/nblast/flycircuit/kcs20scores.desc', type='bigmat')
 ```
-```{r load-vpn_scores}
+```{r load-kcs20scores}
 # ...and load them into the workspace
 fc_attach_bigmat('kcs20scores')
 ```
 
 Show the scores for the first five genes:
-```{r score-peek, eval=F}
+```{r score-peek}
 kcs20scores[1:5, 1:5]
 ```
 
 
-### Download Kenyon cell data
+## Download other Kenyon cell data
 At the moment we have the NBLAST scores for the Kenyon cells, but no other information about them. Let's download some.
 ```{r download-kc-info}
-# Download the data and save it to a 'vpns' folder in the home directory.
-kcs20 <- read.neuronlistfh('http://flybrain.mrc-lmb.cam.ac.uk/flycircuit/kcs20.rds', '~/kcs20')
+# Download the data
+kcs20 <- read.neuronlistfh('http://jefferislab.org/si/nblast/flycircuit/kcs20.rds', getOption('flycircuit.datadir'))
 ```
 
 Now we can plot these 20 neurons and see where they are located in the brain:
@@ -46,24 +53,29 @@ fcwbsurf()
 par3d('userMatrix'=structure(c(1, 0, 0, 0, 0, -1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 1), .Dim = c(4L, 4L)))
 ```
 
-### Plotting NBLAST hits
-Now, let's plot the two neurons that NBLAST thinks are most similar.
-```{r plot top-hits}
-# Find the indices of the maximum score in the score matrix
-#ind <- which(vpn_scores[, ] == max(vpn_scores[, ]), arr.ind=T)
-#queryneuron <- colnames(vpn_scores)[ind[2]]
-#targetneuron <- rownames(vpn_scores)[ind[1]]
+## Plotting NBLAST hits
+Let's plot the two neurons that NBLAST thinks are most similar.
 
-# What was the query?
-#queryneuron
+Find the indices of the maximum score in the score matrix:
+```{r top-hits}
+ind <- which(kcs20scores[, ] == max(kcs20scores[, ]), arr.ind=T)
+queryneuron <- colnames(kcs20scores)[ind[2]]
+targetneuron <- rownames(kcs20scores)[ind[1]]
+```
+What was the query?
+```{r query}
+queryneuron
+```
 
-# What was the target?
-#targetneuron
+What was the target?
+```{r target}
+targetneuron
+```
 
-# What do they look like?
-#open3d()
-#plot3dfc(c(queryneuron, targetneuron), db=vpns)
-
-# Where in the brain are they?
-#fcwbsurf()
+What do they look like and where in the brain are they?
+```{r plot-top-hits, rgl=TRUE}
+open3d()
+plot3dfc(c(queryneuron, targetneuron), db=kcs20)
+fcwbsurf()
+par3d('userMatrix'=structure(c(1, 0, 0, 0, 0, -1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 1), .Dim = c(4L, 4L)))
 ```
