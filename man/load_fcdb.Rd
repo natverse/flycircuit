@@ -19,8 +19,10 @@ Load a database cached in the db subfolder into the Global
 Environment
 }
 \examples{
+\dontrun{
 load_fcdb("neuron")
 load_fcdb(neuron) # also works
 load_fcdb(neuron,Force=TRUE)
+}
 }
 
