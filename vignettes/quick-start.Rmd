@@ -35,7 +35,7 @@ fc_attach_bigmat('abc2.normdmat')
 
 
 ## Load Kenyon cell NBLAST scores
-Download NBLAST scores for visual projection neurons and load them into the workspace.
+Download NBLAST scores for Kenyon Cells and load them into the workspace.
 
 ```{r download-kcs20scores}
 # Download scores...
@@ -46,11 +46,10 @@ fc_download_data('http://jefferislab.org/si/nblast/flycircuit/kcs20scores.desc',
 fc_attach_bigmat('kcs20scores')
 ```
 
-Show the scores for the first five genes:
+Show the scores for the first five neurons:
 ```{r score-peek}
 kcs20scores[1:5, 1:5]
 ```
-
 
 ## Download other Kenyon cell data
 At the moment we have the NBLAST scores for the Kenyon cells, but no other information about them. Let's download some.
