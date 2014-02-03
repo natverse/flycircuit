@@ -6,6 +6,8 @@ Data for various neurons can be downloaded from jefferislab.org and analysed usi
 # Allow production of figures using RGL
 knit_hooks$set(rgl = hook_rgl)
 opts_chunk$set(dev=c('png','pdf'))
+# sidestep a bug in knitr that fails to produce output dir for rgl snapshots
+dir.create('figure')
 ```
 ### Load flycircuit and nat packages
 ```{r load-flycircuit}
