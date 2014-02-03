@@ -71,7 +71,7 @@ Let's plot the two neurons that NBLAST thinks are most similar.
 
 Find the indices of the maximum score in the score matrix:
 ```{r top-hits}
-ind <- which(kcs20scores[, ] == max(kcs20scores[, ]), arr.ind=T)
+ind <- which(kcs20scores[, ] == min(kcs20scores[, ]), arr.ind=T)
 queryneuron <- colnames(kcs20scores)[ind[2]]
 targetneuron <- rownames(kcs20scores)[ind[1]]
 ```
