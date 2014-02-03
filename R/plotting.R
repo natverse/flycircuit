@@ -23,7 +23,7 @@
 #' @return List of rgl stack ids (see rgl::plot3d).
 #' @export
 #' @seealso \code{\link[rgl]{plot3d}, \link{pop3dfc}}
-plot3dfc <- function(id, col, db=NULL, flip=F, soma=F, alpharange=NULL, skipRedraw=200, ...) {
+plot3dfc <- function(id, col, db=get(getOption('nat.default.neuronlist')), flip=F, soma=F, alpharange=NULL, skipRedraw=200, ...) {
   if(!is.list(id) && length(id) > 1) {
     if(missing(col))
       col <- rainbow
@@ -38,10 +38,6 @@ plot3dfc <- function(id, col, db=NULL, flip=F, soma=F, alpharange=NULL, skipRedr
     rval <- mapply(plot3dfc, id, flip=flip, soma=soma, col=col, MoreArgs=list(db=db, alpharange=alpharange), ...)
     assign(".last.plot3dfc", rval, envir=.plotted3d)
     return(invisible(rval))
-  }
-  if(is.null(db)) {
-    if(flip) db <- get('dpsflip')
-    else db <- get('dps')
   }
   
   if(missing(col)) col <- 'black'
