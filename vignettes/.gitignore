@@ -1,0 +1,4 @@
+*.md
+figure/
+cache/
+*.html
