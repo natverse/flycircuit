@@ -7,13 +7,13 @@
 #' normalised forward and reverse scores (as used for clustering in hclustfc)
 #' but are similarity scores (not distances).
 #' @param query,target Vectors of FlyCircuit identifiers
+#' @param scorematname The score matrix to use.
 #' @param normalised Logical indicating whether to return normalised scores.
 #' @param ... A
 #' @return Matrix of scores, columns are query neurons, rows, target.
 #' @seealso \code{\link{hclustfc},\link{fc_sub_distmat}}
-fc_nblast <- function(query, target, normalised=FALSE){
-  # Note global assignment
-  scorematname <- if(normalised) "abc2.normdmat" else "allbyallblastcv2.5.bin"
+#' @export
+fc_nblast <- function(query, target, scorematname='abc2.normdmat', normalised=FALSE){
   scoremat <- fc_attach_bigmat(scorematname)
   available_gns <- rownames(scoremat)
   if(missing(target)) target <- rownames(scoremat)
