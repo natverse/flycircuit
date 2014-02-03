@@ -18,12 +18,12 @@ test_that("can download data from remote lcoation", {
   bigmatdir <- tempdir()
 
   # Overwrite directory options for this test
-  fc_download_data('http://flybrain.mrc-lmb.cam.ac.uk/fcremtest/data', type='data')
-  fc_download_data('http://flybrain.mrc-lmb.cam.ac.uk/fcremtest/db', type='db')
-  fc_download_data('http://flybrain.mrc-lmb.cam.ac.uk/fcremtest/bigmat.desc', type='bigmat')
   op=options(flycircuit.datadir=datadir, flycircuit.dbdir=dbdir, flycircuit.bigmatdir=bigmatdir)
   on.exit(options(op))
   
+  fc_download_data('http://flybrain.mrc-lmb.cam.ac.uk/fcremtest/data', type='data', quiet=TRUE)
+  fc_download_data('http://flybrain.mrc-lmb.cam.ac.uk/fcremtest/db', type='db', quiet=TRUE)
+  fc_download_data('http://flybrain.mrc-lmb.cam.ac.uk/fcremtest/bigmat.desc', type='bigmat', quiet=TRUE)
 
   expect_true(file.exists(file.path(datadir, 'data')))
   expect_true(file.exists(file.path(dbdir, 'db')))
