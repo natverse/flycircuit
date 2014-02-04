@@ -1,6 +1,7 @@
 context("Blasting")
 
 fc_download_data('http://jefferislab.org/si/nblast/flycircuit/kcs20scores.desc', type='bigmat', quiet=TRUE)
+library(nat)
 kcs20 <- read.neuronlistfh('http://jefferislab.org/si/nblast/flycircuit/kcs20.rds', getOption('flycircuit.datadir'), quiet=TRUE)
 
 test_that("fc_nblast returns correct scores", {
