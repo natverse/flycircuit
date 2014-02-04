@@ -12,7 +12,7 @@ You can, however, download the [tar ball](https://github.com/jefferis/flycircuit
 # if necessary
 install.packages("devtools")
 
-devtools::install_github("flycircuit", "jefferis")
+devtools::install_github("flycircuit", "jefferis", dependencies=TRUE)
 ```
 
 Note: Windows users need [Rtools](http://www.murdoch-sutherland.com/Rtools/) and [devtools](http://CRAN.R-project.org/package=devtools) to install this way.
