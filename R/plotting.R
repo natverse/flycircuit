@@ -153,6 +153,6 @@ selectRegionsFromSurf <- function(surf, selfun=NULL) {
     selfun <- select3d()
   }
   selverts <- selfun(surf$Vertices[, 1:3])
-  selpointnums <- subset(surf$Vertices, PointNo %in% which(selverts))[, 4]
+  selpointnums <- surf$Vertices[selverts,'PointNo']
   surf$RegionList[lapply(surf$Regions, function(x) any(selpointnums %in% unlist(x))) == TRUE]
 }
