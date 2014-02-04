@@ -139,14 +139,20 @@ getRegionsFromSurf <- function(surf) {
 }
 
 #' Select regions from a surface
-#'
-#' Details
+#' 
+#' @details if selfun is not set (i.e. it is NULL) then a call will be made to 
+#'   select3d() with a message prompting for the user to draw a selection box.
 #' @param surf The surface from which regions should be selected
+#' @param selfun (optional) function returning determining whether x,y,z coords 
+#'   are within a selection region.
 #' @export
-selectRegionsFromSurf <- function(surf) {
-  message("Draw a selection box in the RGL window")
-  s <- select3d()
-  selverts <- s(surf$Vertices[, 1:3])
+#' @seealso \code{\link{select3d}}
+selectRegionsFromSurf <- function(surf, selfun=NULL) {
+  if(is.null(selfun)){
+    message("Draw a selection box in the RGL window")
+    selfun <- select3d()
+  }
+  selverts <- selfun(surf$Vertices[, 1:3])
   selpointnums <- subset(surf$Vertices, PointNo %in% which(selverts))[, 4]
   surf$RegionList[lapply(surf$Regions, function(x) any(selpointnums %in% unlist(x))) == TRUE]
 }
