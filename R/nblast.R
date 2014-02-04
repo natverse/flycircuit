@@ -42,8 +42,18 @@ fc_nblast <- function(query, target, scorematname=NULL, normalised=FALSE){
       query <- intersect(query, available_gns)
     }
   }
-  if(normalised)
-    1 - scoremat[target, query]
-  else
-    scoremat[target, query]
+  if(normalised){
+    # check if we have been given a distance or similarity matrix by looking at
+    # the first diagonal - should be 1 for a similarity matrix, 0 for distance
+    first_diagonal_term=scoremat[1, 1]
+    if(!first_diagonal_term%in%c(0,1)){
+      warning("Normalised matrices should have a 0 or 1 diagonal. ",
+              "Assuming this is a similarity matrix")
+      scoremat[target, query]
+    } else if(first_diagonal_term==0){
+      # a distance matrix - we want a similarity matrix
+      1 - scoremat[target, query]
+    } else scoremat[target, query]
+  }
+  else scoremat[target, query]
 }
