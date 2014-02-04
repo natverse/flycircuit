@@ -3,7 +3,7 @@ Title: Functions to support analysis of the FlyCircuit single neuron dataset
 Description: This package contains a small number of functions specifically
     designed to assist in the spatial analysis of neurons from the collection
     available online at http://flycircuit.tw.
-Version: 0.1
+Version: 0.2
 Authors@R: c(person("Gregory", "Jefferis", email="jefferis@gmail.com", role =
     c("aut", "cre")),person("Ashley", "Manton", role = c("aut")))
 Depends:
