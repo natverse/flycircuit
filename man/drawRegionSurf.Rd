@@ -1,6 +1,6 @@
 \name{drawRegionSurf}
 \alias{drawRegionSurf}
-\title{Draws an RGL surface corresponding to a given list of regions in a given surface}
+\title{Draw surface corresponding to a given list of regions from surface object}
 \usage{
 drawRegionSurf(regionNames, surf, ...)
 }
@@ -9,8 +9,11 @@ drawRegionSurf(regionNames, surf, ...)
 
   \item{surf}{A surface containing a superset of the
   regions to draw}
+
+  \item{...}{Additional arguments passed to plot3d}
 }
 \description{
-Details
+Draw surface corresponding to a given list of regions from
+surface object
 }
 

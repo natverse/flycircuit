@@ -99,9 +99,8 @@ fcwbnpsurf <- function(...) {
   plot3d(FCWBNP.surf, ...)
 }
 
-#' Creates a surface for specified regions in a given surface
+#' Creates a new surface containing specified regions from a given surface
 #'
-#' Details
 #' @param regionNames A list of regions to include in the surface
 #' @param surf A surface which contains a superset of the regions
 #' @return A surface containing the specified regions
@@ -119,11 +118,11 @@ getRegionSurf <- function(regionNames, surf) {
   surfNew
 }
 
-#' Draws an RGL surface corresponding to a given list of regions in a given surface
+#' Draw surface corresponding to a given list of regions from surface object
 #'
-#' Details
 #' @param regionNames A list of regions to draw
 #' @param surf A surface containing a superset of the regions to draw
+#' @param ... Additional arguments passed to plot3d
 #' @export
 drawRegionSurf <- function(regionNames, surf, ...) {
   surf <- getRegionSurf(regionNames, surf)
@@ -132,7 +131,6 @@ drawRegionSurf <- function(regionNames, surf, ...) {
 
 #' Return a list of regions contained in a surface
 #'
-#' Details
 #' @param surf The surface to examine
 #' @return Returns a list of the regions in the surface object
 #' @export

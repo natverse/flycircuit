@@ -21,9 +21,11 @@ load_fcdata <- function(data, Force=FALSE, folder=c('data','db')) {
 #'
 #' @param db Name of table (and the stem of rda file).
 #' @param Force Whether to load even if table already exists (default FALSE).
+#' @param ... Additional arguments passed to load_fcdata
 #' @return A character vector of the names of objects created, invisibly
 #'  or NULL if nothing loaded.
 #' @export
+#' @seealso load_fcdata
 #' @examples
 #' \dontrun{
 #' load_fcdb("neuron")

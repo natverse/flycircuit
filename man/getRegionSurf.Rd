@@ -1,6 +1,6 @@
 \name{getRegionSurf}
 \alias{getRegionSurf}
-\title{Creates a surface for specified regions in a given surface}
+\title{Creates a new surface containing specified regions from a given surface}
 \usage{
 getRegionSurf(regionNames, surf)
 }
@@ -15,6 +15,7 @@ getRegionSurf(regionNames, surf)
 A surface containing the specified regions
 }
 \description{
-Details
+Creates a new surface containing specified regions from a
+given surface
 }
 

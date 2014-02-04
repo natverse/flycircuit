@@ -11,6 +11,6 @@ getRegionsFromSurf(surf)
 Returns a list of the regions in the surface object
 }
 \description{
-Details
+Return a list of regions contained in a surface
 }
 

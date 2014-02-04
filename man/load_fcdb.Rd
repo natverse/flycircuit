@@ -9,6 +9,8 @@ load_fcdb(db, Force = FALSE, ...)
 
   \item{Force}{Whether to load even if table already exists
   (default FALSE).}
+
+  \item{...}{Additional arguments passed to load_fcdata}
 }
 \value{
 A character vector of the names of objects created,
@@ -24,5 +26,8 @@ load_fcdb("neuron")
 load_fcdb(neuron) # also works
 load_fcdb(neuron,Force=TRUE)
 }
+}
+\seealso{
+load_fcdata
 }
 
