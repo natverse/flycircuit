@@ -57,3 +57,63 @@ fc_nblast <- function(query, target, scorematname=NULL, normalised=FALSE){
   }
   else scoremat[target, query]
 }
+
+#' @export
+fc_subscoremat<-function(query, target, scoremat, distance=FALSE,
+                      normalisation=c("raw","normalised",'mean')){
+  normalisation <- match.arg(normalisation)
+  if(distance  && normalisation=='raw')
+    stop("raw scores are always similarity scores")
+  
+  if(is.null(scoremat)) scoremat <- "allbyallblastcv2.5.bin"
+  if(is.character(scoremat)) scoremat <- fc_attach_bigmat(scoremat)
+  
+  available_gns <- rownames(scoremat)
+  if(missing(target)) target <- rownames(scoremat)
+  else {
+    # Check what we were given
+    target <- fc_gene_name(target)
+    target_missing <- setdiff(target, available_gns)
+    if(length(target_missing) > 0){
+      warning("Dropping ", length(target_missing), " target neurons")
+      target <- intersect(target, available_gns)
+    }
+  }
+  
+  if(missing(query)) query <- rownames(scoremat)
+  else {
+    query <- fc_gene_name(query)
+    query_missing <- setdiff(query, available_gns)
+    if(length(query_missing) > 0) {
+      warning("Dropping ", length(query_missing), " query neurons")
+      query <- intersect(query, available_gns)
+    }
+  }
+  
+  fwdscores=scoremat[target, query]
+  
+  if(normalisation=='mean'){
+    # normalise fwdscores
+    self_matches=rep(NA,length(query))
+    names(self_matches)=query
+    for(n in query){
+      self_matches[n]=scoremat[n, n]
+    }
+    fwdscores = scale(fwdscores, center=FALSE, scale=self_matches)
+    # fetch reverse scores
+    revscores=scoremat[query, target]
+    # normalise revscores
+    self_matches=rep(NA,length(target))
+    names(self_matches)=target
+    for(n in target){
+      self_matches[n]=scoremat[n, n]
+    }
+    revscores = scale(revscores, center=FALSE, scale=self_matches)
+    (fwdscores+t(revscores))/2
+  } else if (normalisation == 'normalised'){
+    stop("normalisation=normalised not yet implemented")
+  } else {
+    fwdscores
+  }
+}
+
