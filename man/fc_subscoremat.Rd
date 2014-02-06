@@ -1,0 +1,34 @@
+\name{fc_subscoremat}
+\alias{fc_subscoremat}
+\title{Return scores (or distances) for given query and target neurons}
+\usage{
+fc_subscoremat(query, target, scoremat, distance = FALSE,
+  normalisation = c("raw", "normalised", "mean"))
+}
+\arguments{
+  \item{query,target}{Vectors of FlyCircuit identifiers}
+
+  \item{scoremat}{The name of the score matrix to use. When
+  \code{NULL}, this will default to
+  \code{'allbyallblastcv2.5.bin'}.}
+
+  \item{distance}{Logical indicating whether to return
+  distances or scores.}
+
+  \item{normalisation}{The type of normalisation procedure
+  that should be carried out, selected from \code{'raw'},
+  \code{'normalised'} or \code{'mean'} (i.e. the average of
+  normalised scores in both directions).  If
+  \code{distance=TRUE} then this cannot be raw.}
+}
+\description{
+Scores can either be returned as raw numbers, normalised
+such that a self-hit has score 1, or as the average of the
+normalised scores in both the forwards & reverse directions
+(i.e. \code{|query->target| + |target->query| / 2}).
+Distances are returned as either \code{1 - normscore} in
+the forwards direction, or as \code{1 - normscorebar},
+where \code{normscorebar} is \code{normscore} averaged
+across both directions.
+}
+
