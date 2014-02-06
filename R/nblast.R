@@ -60,9 +60,9 @@ fc_nblast <- function(query, target, scorematname=NULL, normalised=FALSE){
 
 #' @export
 fc_subscoremat<-function(query, target, scoremat, distance=FALSE,
-                      normalisation=c("raw","normalised",'mean')){
+                      normalisation=c("raw","normalised","mean")){
   normalisation <- match.arg(normalisation)
-  if(distance  && normalisation=='raw')
+  if(distance && normalisation=='raw')
     stop("raw scores are always similarity scores")
   
   if(is.null(scoremat)) scoremat <- "allbyallblastcv2.5.bin"
