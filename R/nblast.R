@@ -58,11 +58,28 @@ fc_nblast <- function(query, target, scorematname=NULL, normalised=FALSE){
   else scoremat[target, query]
 }
 
+
+#' Return scores (or distances) for given query and target neurons
+#' 
+#' Scores can either be returned as raw numbers, normalised such that a self-hit
+#' has score 1, or as the average of the normalised scores in both the forwards 
+#' & reverse directions (i.e. \code{|query->target| + |target->query| / 2}). 
+#' Distances are returned as either \code{1 - normscore} in the forwards 
+#' direction, or as \code{1 - normscorebar}, where \code{normscorebar} is 
+#' \code{normscore} averaged across both directions.
+#' @param query,target Vectors of FlyCircuit identifiers
+#' @param scoremat The name of the score matrix to use. When \code{NULL}, this 
+#'   will default to \code{'allbyallblastcv2.5.bin'}.
+#' @param distance Logical indicating whether to return distances or scores.
+#' @param normalisation The type of normalisation procedure that should be 
+#'   carried out, selected from  \code{'raw'}, \code{'normalised'} or
+#'   \code{'mean'} (i.e. the average of normalised scores in both directions).
+#'   If \code{distance=TRUE} then this cannot be raw.
 #' @export
 fc_subscoremat<-function(query, target, scoremat, distance=FALSE,
-                      normalisation=c("raw","normalised",'mean')){
+                         normalisation=c('raw', 'normalised', 'mean')){
   normalisation <- match.arg(normalisation)
-  if(distance  && normalisation=='raw')
+  if(distance && normalisation=='raw')
     stop("raw scores are always similarity scores")
   
   if(is.null(scoremat)) scoremat <- "allbyallblastcv2.5.bin"
@@ -92,7 +109,7 @@ fc_subscoremat<-function(query, target, scoremat, distance=FALSE,
   
   fwdscores=scoremat[target, query]
   
-  x=if(normalisation=='mean'){
+  x <- if(normalisation %in% c('mean', 'normalised')) {
     # normalise fwdscores
     self_matches=rep(NA,length(query))
     names(self_matches)=query
@@ -100,21 +117,24 @@ fc_subscoremat<-function(query, target, scoremat, distance=FALSE,
       self_matches[n]=scoremat[n, n]
     }
     fwdscores = scale(fwdscores, center=FALSE, scale=self_matches)
-    # fetch reverse scores
-    revscores=scoremat[query, target]
-    # normalise revscores
-    self_matches=rep(NA,length(target))
-    names(self_matches)=target
-    for(n in target){
-      self_matches[n]=scoremat[n, n]
+    
+    if(normalisation == 'mean') {
+      # fetch reverse scores
+      revscores=scoremat[query, target]
+      # normalise revscores
+      self_matches=rep(NA,length(target))
+      names(self_matches)=target
+      for(n in target){
+        self_matches[n]=scoremat[n, n]
+      }
+      revscores = scale(revscores, center=FALSE, scale=self_matches)
+      (fwdscores+t(revscores))/2
+    } else {
+      fwdscores
     }
-    revscores = scale(revscores, center=FALSE, scale=self_matches)
-    (fwdscores+t(revscores))/2
-  } else if (normalisation == 'normalised'){
-    stop("normalisation=normalised not yet implemented")
   } else {
     fwdscores
   }
+  
   if(distance) 1-x else x
 }
-
