@@ -21,6 +21,10 @@ test_that('fc_subscoremat complains if asked to return distances without normali
 })
 
 normscores <- apply(scores[1:5, 1:5], 2, function(x) x / max(x))
+test_that('fc_subscoremat can return normalised forward scores', {
+  expect_equivalent(fc_subscoremat(nn[1:5], nn[1:5], scoremat=scores, distance=F, normalisation='normalised'), normscores)
+})
+
 avgscores <- (normscores + t(normscores)) / 2
 test_that('fc_subscoremat can return scores that are the average of the forwards and reverse directions', {
   expect_equivalent(fc_subscoremat(nn[1:5], nn[1:5], scoremat=scores, distance=F, normalisation='mean'), avgscores)

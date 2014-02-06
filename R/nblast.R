@@ -92,7 +92,7 @@ fc_subscoremat<-function(query, target, scoremat, distance=FALSE,
   
   fwdscores=scoremat[target, query]
   
-  x=if(normalisation=='mean'){
+  x <- if(normalisation %in% c('mean', 'normalised')) {
     # normalise fwdscores
     self_matches=rep(NA,length(query))
     names(self_matches)=query
@@ -100,21 +100,24 @@ fc_subscoremat<-function(query, target, scoremat, distance=FALSE,
       self_matches[n]=scoremat[n, n]
     }
     fwdscores = scale(fwdscores, center=FALSE, scale=self_matches)
-    # fetch reverse scores
-    revscores=scoremat[query, target]
-    # normalise revscores
-    self_matches=rep(NA,length(target))
-    names(self_matches)=target
-    for(n in target){
-      self_matches[n]=scoremat[n, n]
+    
+    if(normalisation == 'mean') {
+      # fetch reverse scores
+      revscores=scoremat[query, target]
+      # normalise revscores
+      self_matches=rep(NA,length(target))
+      names(self_matches)=target
+      for(n in target){
+        self_matches[n]=scoremat[n, n]
+      }
+      revscores = scale(revscores, center=FALSE, scale=self_matches)
+      (fwdscores+t(revscores))/2
+    } else {
+      fwdscores
     }
-    revscores = scale(revscores, center=FALSE, scale=self_matches)
-    (fwdscores+t(revscores))/2
-  } else if (normalisation == 'normalised'){
-    stop("normalisation=normalised not yet implemented")
   } else {
     fwdscores
   }
+  
   if(distance) 1-x else x
 }
-
