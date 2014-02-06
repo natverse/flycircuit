@@ -92,7 +92,7 @@ fc_subscoremat<-function(query, target, scoremat, distance=FALSE,
   
   fwdscores=scoremat[target, query]
   
-  if(normalisation=='mean'){
+  x=if(normalisation=='mean'){
     # normalise fwdscores
     self_matches=rep(NA,length(query))
     names(self_matches)=query
@@ -115,5 +115,6 @@ fc_subscoremat<-function(query, target, scoremat, distance=FALSE,
   } else {
     fwdscores
   }
+  if(distance) 1-x else x
 }
 
