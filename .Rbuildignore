@@ -2,4 +2,4 @@
 ^\.gitignore
 ^.*\.Rproj$
 ^\.Rproj\.user$
-inst/extdata/
+inst/extdata/.*
