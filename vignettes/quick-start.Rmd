@@ -120,12 +120,12 @@ Unsurprisingly, `r queryneuron` itself has the lowest score (seeing as it should
 ```{r plot-good-hits, rgl=TRUE}
 open3d()
 plot3d(queryneuron, col='black')
-plot3dfc(names(sort(results)[2:5]))
+plot3dfc(names(sort(results,decreasing=TRUE)[2:5]))
 ```
 Hmm, they look pretty similar. Let's plot the four worst hits for comparison:
 ```{r plot-bad-hits, rgl=TRUE}
 open3d()
 plot3d(queryneuron, col='black')
-plot3dfc(names(sort(results)[(length(results)-4):length(results)]))
+plot3dfc(names(sort(results)[1:4]))
 ```
 Definitely different.
