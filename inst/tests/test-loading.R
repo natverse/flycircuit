@@ -16,17 +16,35 @@ test_that("can download data from remote lcoation", {
   datadir <- tempdir()
   dbdir <- tempdir()
   bigmatdir <- tempdir()
+  ffdir <- tempdir()
 
   # Overwrite directory options for this test
-  op=options(flycircuit.datadir=datadir, flycircuit.dbdir=dbdir, flycircuit.bigmatdir=bigmatdir)
+  op=options(flycircuit.datadir=datadir, flycircuit.dbdir=dbdir, flycircuit.bigmatdir=bigmatdir, flycircuit.ffdir=ffdir)
   on.exit(options(op))
   
   fc_download_data('http://flybrain.mrc-lmb.cam.ac.uk/fcremtest/data', type='data', quiet=TRUE)
   fc_download_data('http://flybrain.mrc-lmb.cam.ac.uk/fcremtest/db', type='db', quiet=TRUE)
   fc_download_data('http://flybrain.mrc-lmb.cam.ac.uk/fcremtest/bigmat.desc', type='bigmat', quiet=TRUE)
+  fc_download_data('http://flybrain.mrc-lmb.cam.ac.uk/fcremtest/mat.ffrds', type='ff', quiet=TRUE)
 
   expect_true(file.exists(file.path(datadir, 'data')))
   expect_true(file.exists(file.path(dbdir, 'db')))
   expect_true(file.exists(file.path(bigmatdir, 'bigmat.desc')))
   expect_true(file.exists(file.path(bigmatdir, 'bigmat')))
+  expect_true(file.exists(file.path(ffdir, 'mat.ff')))
+  expect_true(file.exists(file.path(ffdir, 'mat.ffrds')))
+})
+
+context("Attaching ff")
+
+test_that("can attach an ff object", {
+  datadir <- tempdir()
+  dbdir <- tempdir()
+  bigmatdir <- tempdir()
+  ffdir <- tempdir()
+  # Overwrite directory options for this test
+  op=options(flycircuit.datadir=datadir, flycircuit.dbdir=dbdir, flycircuit.bigmatdir=bigmatdir, flycircuit.ffdir=ffdir)
+  on.exit(options(op))
+  fc_attach_ff('mat')
+  expect_true(exists('mat'))
 })

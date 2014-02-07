@@ -16,7 +16,8 @@ Suggests:
     ff
 Imports:
     dendroextras,
-    bigmemory
+    bigmemory,
+    ff
 License: GPL-3
 LazyData: true
 VignetteBuilder: knitr
