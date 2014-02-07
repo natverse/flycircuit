@@ -46,3 +46,11 @@ test_that('we can supply an ff matrix and get expected results', {
   expect_equivalent(fc_subscoremat(nn[1:5], nn[1:5], scoremat=scoresff, distance=T,
                                    normalisation='mean'), distances)
 })
+
+test_that('fc_subscoremat and fc_nblast agree', {
+  expect_equal(fc_nblast(nn[1],nn),fc_subscoremat(nn[1],nn,scoremat=scores))
+  expect_equal(fc_nblast(nn,nn[1]),fc_subscoremat(nn,nn[1],scoremat=scores))
+  expect_equal(fc_nblast(nn,nn[1],normalised=TRUE),
+               fc_subscoremat(nn,nn[1],scoremat=scores,normalisation='mean',distance=FALSE))
+})
+
