@@ -124,7 +124,7 @@ fc_download_data <- function(url, type=c('data', 'db', 'bigmat', 'ff'), ...) {
     bigmaturl=sub("[.][^.]*$", "", url, perl=T)
     download.file(bigmaturl, destfile=file.path(folderpath, basename(bigmaturl)), ...)
   }
-  # If we've been given the URL for a .ff file, also download the .ff file
+  # If we've been given the URL for a .ff file, also download the .ffrds file
   if(folder == 'ff') {
     ffurl <- paste0(sub("[.][^.]*$", "", url, perl=T), '.ffrds')
     download.file(ffurl, destfile=file.path(folderpath, basename(ffurl)), ...)
