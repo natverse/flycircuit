@@ -88,6 +88,8 @@ fc_attach_ff <- function(ff) {
       stop("Cannot find file: ", fffile)
     message("attaching: ", ff)
     ffobj <- readRDS(fffile)
+    # Correct path to backing file
+    attr(attr(ffobj, 'physical'), 'filename') <- paste0(getOption('flycircuit.ffdir'), '/', ff, '.ff')
     assign(ff, ffobj, envir=.GlobalEnv)
   }
   get(ff, envir=.GlobalEnv)

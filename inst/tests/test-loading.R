@@ -35,6 +35,17 @@ test_that("can download data from remote lcoation", {
   expect_true(file.exists(file.path(ffdir, 'mat.ffrds')))
 })
 
+test_that("downloaded ff objects have their backing path corrected", {
+  # Overwrite directory options for this test
+  ffdir <- tempdir()
+  op=options(flycircuit.ffdir=ffdir)
+  on.exit(options(op))
+  
+  fc_download_data('http://flybrain.mrc-lmb.cam.ac.uk/fcremtest/mat.ffrds', type='ff', quiet=TRUE)
+  fc_attach_ff('mat')
+  expect_equivalent(attr(attr(mat, 'physical'), 'filename'), paste0(getOption('flycircuit.ffdir'), '/mat.ff'))
+})
+
 context("Attaching ff")
 
 test_that("can attach an ff object", {
