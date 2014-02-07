@@ -87,7 +87,7 @@ fc_subscoremat<-function(query, target, scoremat="allbyallblastcv2.5.bin",
   if(is.character(scoremat)) scoremat <- fc_attach_bigmat(scoremat)
   
   available_gns <- rownames(scoremat)
-  if(missing(target)) target <- rownames(scoremat)
+  if(missing(target)) target <- available_gns
   else {
     # Check what we were given
     target <- fc_gene_name(target)
@@ -108,25 +108,29 @@ fc_subscoremat<-function(query, target, scoremat="allbyallblastcv2.5.bin",
     }
   }
   
-  fwdscores=scoremat[target, query]
+  # subsetting big matrices by name is slow
+  qidxs=match(query,available_gns)
+  tidxs=match(target,available_gns)
+  fwdscores=scoremat[tidxs, qidxs]
   
   x <- if(normalisation %in% c('mean', 'normalised')) {
     # normalise fwdscores
     self_matches=rep(NA,length(query))
-    names(self_matches)=query
-    for(n in query){
-      self_matches[n]=scoremat[n, n]
+    #names(self_matches)=query
+    for(i in seq_along(query)){
+      idx=qidxs[i]
+      self_matches[i]=scoremat[idx, idx]
     }
     fwdscores = scale(fwdscores, center=FALSE, scale=self_matches)
     
     if(normalisation == 'mean') {
       # fetch reverse scores
-      revscores=scoremat[query, target]
+      revscores=scoremat[qidxs, tidxs]
       # normalise revscores
       self_matches=rep(NA,length(target))
-      names(self_matches)=target
-      for(n in target){
-        self_matches[n]=scoremat[n, n]
+      for(i in seq_along(target)){
+        idx=tidxs[i]
+        self_matches[i]=scoremat[idx, idx]
       }
       revscores = scale(revscores, center=FALSE, scale=self_matches)
       (fwdscores+t(revscores))/2
