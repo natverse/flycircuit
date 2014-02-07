@@ -3,6 +3,8 @@ context("Blasting")
 library(nat)
 kcs20 <- read.neuronlistfh('http://jefferislab.org/si/nblast/flycircuit/kcs20.rds', getOption('flycircuit.datadir'), quiet=TRUE)
 
+op=options(flycircuit.scoremat = 'kcs20scores')
+
 # Use sample raw NBLAST scores from package
 scores <- kcs20scores
 nn=rownames(scores)
@@ -53,3 +55,5 @@ test_that('fc_subscoremat and fc_nblast agree', {
   expect_equal(fc_nblast(nn,nn[1],normalised=TRUE),
                fc_subscoremat(nn,nn[1],scoremat=scores,normalisation='mean',distance=FALSE))
 })
+
+options(op)
