@@ -85,10 +85,9 @@ targetneuron
 
 What do they look like and where in the brain are they?
 ```{r plot-top-hits, rgl=TRUE}
-open3d()
+clear3d()
 plot3dfc(c(queryneuron, targetneuron), db=kcs20)
 fcwbsurf()
-par3d('userMatrix'=structure(c(1, 0, 0, 0, 0, -1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 1), .Dim = c(4L, 4L)))
 ```
 
 ## Cluster Kenyon cells by morphology
@@ -104,7 +103,7 @@ plot(colour_clusters(hckc, k=3))
 Now let's look at the neurons:
 
 ```{r rgl-cluster-kcs, rgl=TRUE}
-open3d()
+clear3d()
 plot3d(hckc, k=3, db=kcs20)
 ```
 Good, we can see the 3 main classes (gamma, alpha'/beta' and alpha/beta).
@@ -119,13 +118,13 @@ barplot(results, horiz=T)
 ```
 Unsurprisingly, `r queryneuron` itself has the lowest score (seeing as it should have zero distance from itself). Interestingly, while `r targetneuron` has the second-lowest score, `r names(sort(results)[3])` has a similarly small score, closely followed by `r paste0(names(sort(results)[4:5]), collapse=' and ')`. Let's plot them all, with the query neuron in black, to see how similar they are:
 ```{r plot-good-hits, rgl=TRUE}
-open3d()
+clear3d()
 plot3d(queryneuron, col='black')
 plot3dfc(names(sort(results,decreasing=TRUE)[2:5]))
 ```
 Hmm, they look pretty similar. Let's plot the four worst hits for comparison:
 ```{r plot-bad-hits, rgl=TRUE}
-open3d()
+clear3d()
 plot3d(queryneuron, col='black')
 plot3dfc(names(sort(results)[1:4]))
 ```
