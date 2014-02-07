@@ -1,6 +1,7 @@
 S3method(plot3d,hclust)
 export(drawRegionSurf)
 export(fc_attach_bigmat)
+export(fc_attach_ff)
 export(fc_download_data)
 export(fc_gene_name)
 export(fc_idid)

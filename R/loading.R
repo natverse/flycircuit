@@ -62,6 +62,30 @@ fc_attach_bigmat <- function(bigmat) {
   get(bigmat, envir=.GlobalEnv)
 }
 
+#' Attach an ff object (typically used for all-by-all blast distances)
+#'
+#' These are file based matrices that are not loaded into memory. If
+#' \code{ff="myff"} there should be a ff data file called 
+#' \code{'myff.ffData'}
+#' @param ff Name of ff object (which should match file on disk).
+#' @return An ff object.
+#' @export
+#' @examples
+#' \dontrun{
+#' fc_attach_ff()
+#' }
+fc_attach_ff <- function(ff) {
+  if(!exists(ff)) {
+    fffile <- file.path(getOption('flycircuit.ffdir'), paste0(ff, '.ffrds'))
+    if(!file.exists(fffile))
+      stop("Cannot find file: ", fffile)
+    message("attaching: ", ff)
+    ffobj <- readRDS(fffile)
+    assign(ff, ffobj, envir=.GlobalEnv)
+  }
+  get(ff, envir=.GlobalEnv)
+}
+
 #' Download a data file from a remote location
 #'
 #' @param url The location of the remote file
@@ -73,17 +97,23 @@ fc_attach_bigmat <- function(bigmat) {
 #' \dontrun{
 #' fc_download_data("http://myurl.com/data", quiet=TRUE)
 #' }
-fc_download_data <- function(url, type=c('data', 'db', 'bigmat'), ...) {
+fc_download_data <- function(url, type=c('data', 'db', 'bigmat', 'ff'), ...) {
   folder <- match.arg(type)
   folderpath <- switch(folder,
     'data' = getOption('flycircuit.datadir'),
     'db' = getOption('flycircuit.dbdir'),
-    'bigmat' = getOption('flycircuit.bigmatdir')
+    'bigmat' = getOption('flycircuit.bigmatdir'),
+    'ff' = getOption('flycircuit.ffdir')
   )
   download.file(url, destfile=file.path(folderpath, basename(url)), ...)
   # If we've been given the URL for a bigmat .desc file, also download the bigmat
   if(folder == 'bigmat') {
     bigmaturl=sub("[.][^.]*$", "", url, perl=T)
     download.file(bigmaturl, destfile=file.path(folderpath, basename(bigmaturl)), ...)
+  }
+  # If we've been given the URL for a .ffrds file, also download the .ff file
+  if(folder == 'ff') {
+    ffurl <- paste0(sub("[.][^.]*$", "", url, perl=T), '.ff')
+    download.file(ffurl, destfile=file.path(folderpath, basename(ffurl)), ...)
   }
 }
