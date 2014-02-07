@@ -68,21 +68,22 @@ fc_nblast <- function(query, target, scorematname=NULL, normalised=FALSE){
 #' direction, or as \code{1 - normscorebar}, where \code{normscorebar} is 
 #' \code{normscore} averaged across both directions.
 #' @param query,target Vectors of FlyCircuit identifiers
-#' @param scoremat The name of the score matrix to use. When \code{NULL}, this 
-#'   will default to \code{'allbyallblastcv2.5.bin'}.
+#' @param scoremat A matrix, bigmatrix or a character vector specifiying the 
+#'   name of the big matrix containing the all by all score matrix. Defaults to
+#'   \code{'allbyallblastcv2.5.bin'}.
 #' @param distance Logical indicating whether to return distances or scores.
 #' @param normalisation The type of normalisation procedure that should be 
-#'   carried out, selected from  \code{'raw'}, \code{'normalised'} or
-#'   \code{'mean'} (i.e. the average of normalised scores in both directions).
+#'   carried out, selected from  \code{'raw'}, \code{'normalised'} or 
+#'   \code{'mean'} (i.e. the average of normalised scores in both directions). 
 #'   If \code{distance=TRUE} then this cannot be raw.
 #' @export
-fc_subscoremat<-function(query, target, scoremat, distance=FALSE,
+fc_subscoremat<-function(query, target, scoremat="allbyallblastcv2.5.bin",
+                         distance=FALSE,
                          normalisation=c('raw', 'normalised', 'mean')){
   normalisation <- match.arg(normalisation)
   if(distance && normalisation=='raw')
     stop("raw scores are always similarity scores")
   
-  if(is.null(scoremat)) scoremat <- "allbyallblastcv2.5.bin"
   if(is.character(scoremat)) scoremat <- fc_attach_bigmat(scoremat)
   
   available_gns <- rownames(scoremat)

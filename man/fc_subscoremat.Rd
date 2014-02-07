@@ -2,14 +2,15 @@
 \alias{fc_subscoremat}
 \title{Return scores (or distances) for given query and target neurons}
 \usage{
-fc_subscoremat(query, target, scoremat, distance = FALSE,
-  normalisation = c("raw", "normalised", "mean"))
+fc_subscoremat(query, target, scoremat = "allbyallblastcv2.5.bin",
+  distance = FALSE, normalisation = c("raw", "normalised", "mean"))
 }
 \arguments{
   \item{query,target}{Vectors of FlyCircuit identifiers}
 
-  \item{scoremat}{The name of the score matrix to use. When
-  \code{NULL}, this will default to
+  \item{scoremat}{A matrix, bigmatrix or a character vector
+  specifiying the name of the big matrix containing the all
+  by all score matrix. Defaults to
   \code{'allbyallblastcv2.5.bin'}.}
 
   \item{distance}{Logical indicating whether to return
