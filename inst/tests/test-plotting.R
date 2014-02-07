@@ -2,7 +2,7 @@ context("Plotting")
 
 library(nat)
 kcs20 <- read.neuronlistfh('http://jefferislab.org/si/nblast/flycircuit/kcs20.rds', getOption('flycircuit.datadir'), quiet=TRUE)
-options(nat.default.neuronlist = 'kcs20')
+op=options(nat.default.neuronlist = 'kcs20', flycircuit.scoremat = 'kcs20scores')
 
 open3d()
 
@@ -27,3 +27,5 @@ test_that("fcwbnpsurf works", {
 })
 
 rgl.close()
+
+options(op)

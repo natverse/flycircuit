@@ -2,20 +2,20 @@
 \alias{fc_nblast}
 \title{Return (normalised) nblast similarity scores for FlyCircuit neurons}
 \usage{
-fc_nblast(query, target, scorematname = NULL, normalised = FALSE)
+fc_nblast(query, target, scoremat = NULL, normalised = FALSE)
 }
 \arguments{
-  \item{query,target}{Vectors of FlyCircuit identifiers}
-
-  \item{scorematname}{The score matrix to use. When NULL
-  will default to "abc2.normdmat" if
-  \code{normalised=TRUE}, \code{allbyallblastcv2.5.bin}
-  otherwise.}
-
   \item{normalised}{Logical indicating whether to return
   normalised scores.}
 
-  \item{...}{A}
+  \item{query}{Vectors of FlyCircuit identifiers}
+
+  \item{target}{Vectors of FlyCircuit identifiers}
+
+  \item{scoremat}{A matrix, ff matrix, bigmatrix or a
+  character vector specifiying the name of an ff matrix
+  containing the all by all score matrix. Defaults to value
+  of \code{options(flycircuit.scoremat)}.}
 }
 \value{
 Matrix of scores, columns are query neurons, rows, target.

@@ -53,4 +53,3 @@ test_that('fc_subscoremat and fc_nblast agree', {
   expect_equal(fc_nblast(nn,nn[1],normalised=TRUE),
                fc_subscoremat(nn,nn[1],scoremat=scores,normalisation='mean',distance=FALSE))
 })
-

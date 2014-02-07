@@ -2,16 +2,16 @@
 \alias{fc_subscoremat}
 \title{Return scores (or distances) for given query and target neurons}
 \usage{
-fc_subscoremat(query, target, scoremat = "allbyallblastcv2.5.bin",
-  distance = FALSE, normalisation = c("raw", "normalised", "mean"))
+fc_subscoremat(query, target, scoremat = NULL, distance = FALSE,
+  normalisation = c("raw", "normalised", "mean"))
 }
 \arguments{
   \item{query,target}{Vectors of FlyCircuit identifiers}
 
-  \item{scoremat}{A matrix, bigmatrix or a character vector
-  specifiying the name of the big matrix containing the all
-  by all score matrix. Defaults to
-  \code{'allbyallblastcv2.5.bin'}.}
+  \item{scoremat}{A matrix, ff matrix, bigmatrix or a
+  character vector specifiying the name of an ff matrix
+  containing the all by all score matrix. Defaults to value
+  of \code{options(flycircuit.scoremat)}.}
 
   \item{distance}{Logical indicating whether to return
   distances or scores.}
@@ -31,5 +31,8 @@ Distances are returned as either \code{1 - normscore} in
 the forwards direction, or as \code{1 - normscorebar},
 where \code{normscorebar} is \code{normscore} averaged
 across both directions.
+}
+\seealso{
+\code{\link{big.matrix}, \link{ff}}
 }
 

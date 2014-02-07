@@ -8,17 +8,12 @@
 #' hclustfc) but are similarity scores (not distances).
 #' @details See the package vignette for an examlple of how to download a 
 #'   precomputed score matrix.
-#' @param query,target Vectors of FlyCircuit identifiers
-#' @param scorematname The score matrix to use. When NULL will default to 
-#'    \code{allbyallblastcv2.5.bin} 
-#'   otherwise.
+#' @inheritParams fc_subscoremat
 #' @param normalised Logical indicating whether to return normalised scores.
-#' @param ... A
 #' @return Matrix of scores, columns are query neurons, rows, target.
 #' @seealso \code{\link{hclustfc},\link{fc_sub_distmat}}
 #' @export
-fc_nblast <- function(query, target, scoremat="allbyallblastcv2.5.bin",
-                      normalised=FALSE){
+fc_nblast <- function(query, target, scoremat=NULL, normalised=FALSE){
   fc_subscoremat(query, target, scoremat=scoremat, 
                  normalisation=ifelse(normalised,'mean','raw'))
 }
@@ -35,7 +30,7 @@ fc_nblast <- function(query, target, scoremat="allbyallblastcv2.5.bin",
 #' @param query,target Vectors of FlyCircuit identifiers
 #' @param scoremat A matrix, ff matrix, bigmatrix or a character vector
 #'   specifiying the name of an ff matrix containing the all by all score
-#'   matrix. Defaults to \code{'allbyallblastcv2.5.ff'}.
+#'   matrix. Defaults to value of \code{options(flycircuit.scoremat)}.
 #' @param distance Logical indicating whether to return distances or scores.
 #' @param normalisation The type of normalisation procedure that should be 
 #'   carried out, selected from  \code{'raw'}, \code{'normalised'} or 
@@ -43,13 +38,13 @@ fc_nblast <- function(query, target, scoremat="allbyallblastcv2.5.bin",
 #'   If \code{distance=TRUE} then this cannot be raw.
 #' @export
 #' @seealso \code{\link{big.matrix}, \link{ff}}
-fc_subscoremat<-function(query, target, scoremat="allbyallblastcv2.5.bin",
-                         distance=FALSE,
+fc_subscoremat<-function(query, target, scoremat=NULL, distance=FALSE,
                          normalisation=c('raw', 'normalised', 'mean')){
   normalisation <- match.arg(normalisation)
   if(distance && normalisation=='raw')
     stop("raw scores are always similarity scores")
   
+  if(is.null(scoremat)) scoremat=getOption('flycircuit.scoremat')
   if(is.character(scoremat)) scoremat <- fc_attach_bigmat(scoremat)
   
   available_gns <- rownames(scoremat)
