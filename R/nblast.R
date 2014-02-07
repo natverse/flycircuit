@@ -104,6 +104,7 @@ fc_subscoremat<-function(query, target, scoremat="allbyallblastcv2.5.bin",
 
 # utility function to extract diagonal terms from matrices
 #' @importFrom bigmemory is.big.matrix
+#' @importFrom ff is.ff
 diagonal<-function(x, indices=NULL){
   if(is.character(indices)) indices=match(indices,rownames(x))
   if(is.logical(indices)) indices=which(indices)
