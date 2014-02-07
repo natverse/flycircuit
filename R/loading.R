@@ -44,7 +44,9 @@ load_fcdb <- function(db, Force=FALSE, ...) {
 #' \code{file.path(fcconfig$bigmatrixdir,'mybigmat.desc')}. If passed a name 
 #' ending in \code{'.ff'}, the corresponding ff object is attached.
 #' @param bigmat Name of big matrix object (which should match file on disk).
-#' @return A big matrix object.
+#' @param envir The environment in which the resultant object should be created.
+#' @param force Whether to overwrite an existing object of the same name
+#' @return A \code{big.matrix} or \code{ff} object.
 #' @export
 #' @importFrom bigmemory attach.big.matrix
 #' @seealso \code{\link{attach.big.matrix}}
@@ -52,21 +54,20 @@ load_fcdb <- function(db, Force=FALSE, ...) {
 #' \dontrun{
 #' fc_attach_bigmat()
 #' }
-fc_attach_bigmat <- function(bigmat) {
+fc_attach_bigmat <- function(bigmat, envir=NULL, force=FALSE) {
+  if(is.null(envir)) envir=.extdata
   # Check to make sure we haven't been given an ff object
   if(tail(strsplit(bigmat, "\\.")[[1]], n=1) == 'ff') {
     ffname <- sub("[.][^.]*$", "", bigmat, perl=T)
-    fc_attach_ff(ffname)
-    return(get(ffname, envir=.GlobalEnv))
-  }
-  if(!exists(bigmat)) {
+    return(fc_attach_ff(ffname))
+  } else if(!exists(bigmat, where=envir)) {
     bigmatfile <- file.path(getOption('flycircuit.bigmatdir'), paste(bigmat, ".desc", sep=""))
     if(!file.exists(bigmatfile))
       stop("Cannot find file: ", bigmatfile)
     message("attaching: ", bigmat)
-    assign(bigmat, attach.big.matrix(bigmatfile), envir=.GlobalEnv)
+    assign(bigmat, attach.big.matrix(bigmatfile), envir=envir)
   }
-  get(bigmat, envir=.GlobalEnv)
+  invisible(get(bigmat, envir=envir))
 }
 
 #' Attach an ff object (typically used for all-by-all blast distances)
@@ -75,14 +76,16 @@ fc_attach_bigmat <- function(bigmat) {
 #' \code{ff="myff"} there should be a ff data file called 
 #' \code{'myff.ffData'}
 #' @param ff Name of ff object (which should match file on disk).
+#' @inheritParams fc_attach_bigmat
 #' @return An ff object.
 #' @export
 #' @examples
 #' \dontrun{
 #' fc_attach_ff()
 #' }
-fc_attach_ff <- function(ff) {
-  if(!exists(ff)) {
+fc_attach_ff <- function(ff, envir=NULL, force=FALSE) {
+  if(is.null(envir)) envir=.extdata
+  if(force || !exists(ff, where=envir)) {
     fffile <- file.path(getOption('flycircuit.ffdir'), paste0(ff, '.ffrds'))
     if(!file.exists(fffile))
       stop("Cannot find file: ", fffile)
@@ -90,9 +93,9 @@ fc_attach_ff <- function(ff) {
     ffobj <- readRDS(fffile)
     # Correct path to backing file
     attr(attr(ffobj, 'physical'), 'filename') <- paste0(getOption('flycircuit.ffdir'), '/', ff, '.ff')
-    assign(ff, ffobj, envir=.GlobalEnv)
+    assign(ff, ffobj, envir=envir)
   }
-  get(ff, envir=.GlobalEnv)
+  invisible(get(ff, envir=envir))
 }
 
 #' Download a data file from a remote location
