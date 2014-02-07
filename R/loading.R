@@ -128,5 +128,12 @@ fc_download_data <- function(url, type=c('data', 'db', 'bigmat', 'ff'), ...) {
   if(folder == 'ff') {
     ffurl <- paste0(sub("[.][^.]*$", "", url, perl=T), '.ffrds')
     download.file(ffurl, destfile=file.path(folderpath, basename(ffurl)), ...)
+# utility function to download a file if not already present
+# wraps regular download file
+download.file.wcheck<-function(url, destfile, overwrite=FALSE, ...){
+  if(!overwrite && file.exists(destfile)){
+    return(TRUE)
   }
+  download.file(url, destfile, ...)
 }
+
