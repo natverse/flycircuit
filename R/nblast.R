@@ -140,7 +140,7 @@ fc_subscoremat<-function(query, target, scoremat="allbyallblastcv2.5.bin",
 # utility function to extract diagonal terms from matrices
 #' @importFrom bigmemory is.big.matrix
 diagonal<-function(x, indices=NULL){
-  if(is.character(indices)) indices=match(indices,rownames)
+  if(is.character(indices)) indices=match(indices,rownames(x))
   if(is.logical(indices)) indices=which(indices)
   ndiags <- if(is.null(indices)){
     nrow(x)
@@ -156,7 +156,7 @@ diagonal<-function(x, indices=NULL){
     diags=rep(NA,ndiags)
     for(i in seq_len(ndiags)){
       idx=indices[i]
-      diags[i]=diags[idx, idx]
+      diags[i]=x[idx, idx]
     }
     diags
   } else {
