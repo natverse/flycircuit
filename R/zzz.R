@@ -2,7 +2,7 @@
 .onLoad <- function(libname, pkgname) {
   # start by establishing location of data directory
   if(is.null(getOption('flycircuit.datadir'))) 
-    options(flycircuit.datadir)=file.path(system.file(package='flycircuit'), 'extdata')
+    options(flycircuit.datadir=file.path(system.file(package='flycircuit'), 'extdata'))
   op<-options()
   dd=getOption('flycircuit.datadir')
   
