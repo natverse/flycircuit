@@ -1,6 +1,5 @@
 context("Plotting")
 
-fc_download_data('http://jefferislab.org/si/nblast/flycircuit/kcs20scores.desc', type='bigmat', quiet=TRUE)
 library(nat)
 kcs20 <- read.neuronlistfh('http://jefferislab.org/si/nblast/flycircuit/kcs20.rds', getOption('flycircuit.datadir'), quiet=TRUE)
 options(nat.default.neuronlist = 'kcs20')
