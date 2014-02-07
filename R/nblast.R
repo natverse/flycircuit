@@ -68,15 +68,16 @@ fc_nblast <- function(query, target, scorematname=NULL, normalised=FALSE){
 #' direction, or as \code{1 - normscorebar}, where \code{normscorebar} is 
 #' \code{normscore} averaged across both directions.
 #' @param query,target Vectors of FlyCircuit identifiers
-#' @param scoremat A matrix, ff matriex, bigmatrix or a character vector specifiying the 
-#'   name of an ff matrix containing the all by all score matrix. Defaults to
-#'   \code{'allbyallblastcv2.5.ff'}.
+#' @param scoremat A matrix, ff matrix, bigmatrix or a character vector
+#'   specifiying the name of an ff matrix containing the all by all score
+#'   matrix. Defaults to \code{'allbyallblastcv2.5.ff'}.
 #' @param distance Logical indicating whether to return distances or scores.
 #' @param normalisation The type of normalisation procedure that should be 
 #'   carried out, selected from  \code{'raw'}, \code{'normalised'} or 
 #'   \code{'mean'} (i.e. the average of normalised scores in both directions). 
 #'   If \code{distance=TRUE} then this cannot be raw.
 #' @export
+#' @seealso \code{\link{big.matrix}, \link{ff}}
 fc_subscoremat<-function(query, target, scoremat="allbyallblastcv2.5.bin",
                          distance=FALSE,
                          normalisation=c('raw', 'normalised', 'mean')){
