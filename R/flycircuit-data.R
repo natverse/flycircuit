@@ -45,3 +45,11 @@ NULL
 #' @name annotation
 #' @docType data
 NULL
+
+#' A matrix containing all by all nblast similarity scores for 20 neurons
+#' 
+#' These are the same neurons whose morphology is present in kcs20
+#' @seealso \code{\link{kcs20}}
+#' @name kcs20scores
+#' @docType data
+NULL

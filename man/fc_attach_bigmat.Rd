@@ -15,7 +15,9 @@ A big matrix object.
 These are file based matrices that are not loaded into
 memory. If \code{bigmat="mybigmat"} there should be a
 big.matrix description file called
-\code{file.path(fcconfig$bigmatrixdir,'mybigmat.desc')}
+\code{file.path(fcconfig$bigmatrixdir,'mybigmat.desc')}. If
+passed a name ending in \code{'.ff'}, the corresponding ff
+object is attached.
 }
 \examples{
 \dontrun{

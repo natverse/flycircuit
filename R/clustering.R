@@ -23,26 +23,20 @@ hclustfc <- function(gns, method='ward', distmat="abc2.normdmat",
 #' Return a subset of a distance matrix stored in a file-backed matrix
 #' 
 #' @param gns FlyCircuit identifiers (passed to fc_gene_name).
-#' @param distmat The distance matrix (default allbyallblast.canon).
+#' @param distmat score matrix to use (defaults to whatever fc_subscoremat uses)
 #' @param form The type of object to return.
 #' @param maxneurons Set this to a sensible value to avoid loading huge order 
 #'   N^2 distances directly into memory.
 #' @return return An object of class matrix or dist (as determined by the form 
 #'   argument), corresponding to a subset of the distance matrix
 #' @export
-fc_sub_distmat <- function(gns, distmat="abc2.normdmat", 
+fc_sub_distmat <- function(gns, distmat=NULL, 
                            form=c('matrix', 'dist'), maxneurons=NA){
   form <- match.arg(form)
-  distmat <- fc_attach_bigmat(distmat)
-  gns <- fc_gene_name(gns)
-  gns.sel <- intersect(rownames(distmat), gns)
-  if(!is.na(maxneurons) && length(gns.sel) > maxneurons) {
+  if(!is.na(maxneurons) && length(gns) > maxneurons) {
     stop("Too many neurons! Use maxneurons to override if you're sure.")
   }
-  nmissing <- length(gns) - length(gns.sel)
-  if(nmissing > 0)
-    warning("Dropping ", nmissing, "neurons")
-  d <- distmat[gns.sel,gns.sel]
+  d <- fc_subscoremat(gns, gns, distance=TRUE, normalisation='mean')
   if(form=='matrix') d
   else as.dist(d)
 }
