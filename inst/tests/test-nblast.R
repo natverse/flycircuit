@@ -36,3 +36,9 @@ test_that('fc_subscoremat can return distances created from the average of the f
 })
 
 
+test_that('we can supply an ff matrix and get expected results', {
+  scoresff=as.ff(scores)
+  expect_equivalent(fc_subscoremat(nn,nn,scoremat=scoresff),scores)
+  expect_equivalent(fc_subscoremat(nn,nn[1],scoremat=scoresff),scores[1,])
+  expect_equivalent(fc_subscoremat(nn[1],nn,scoremat=scoresff),scores[,1])
+})
