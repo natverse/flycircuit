@@ -99,9 +99,13 @@ fc_attach_ff <- function(ff, envir=NULL, force=FALSE) {
 }
 
 #' Download a data file from a remote location
-#'
+#' 
+#' @details the \code{update} argument could be more intelligently implemented 
+#'   e.g. by comparing the etag reported by the url header to see if the file
+#'   has changed.
 #' @param url The location of the remote file
 #' @param type The type of file (data, db, or bigmat)
+#' @param update Whether to overwrite an existing file (default: FALSE)
 #' @param ... Additional arguments passed to download.file (e.g. quiet)
 #' @export
 #' @seealso \code{\link{download.file}}
@@ -110,7 +114,7 @@ fc_attach_ff <- function(ff, envir=NULL, force=FALSE) {
 #' fc_download_data("http://myurl.com/data", quiet=TRUE)
 #' fc_download_data("http://myurl.com/data.ff", type='ff')
 #' }
-fc_download_data <- function(url, type=c('data', 'db', 'bigmat', 'ff'), ...) {
+fc_download_data <- function(url, type=c('data', 'db', 'bigmat', 'ff'), update=FALSE, ...) {
   folder <- match.arg(type)
   folderpath <- switch(folder,
     'data' = getOption('flycircuit.datadir'),
@@ -118,16 +122,23 @@ fc_download_data <- function(url, type=c('data', 'db', 'bigmat', 'ff'), ...) {
     'bigmat' = getOption('flycircuit.bigmatdir'),
     'ff' = getOption('flycircuit.ffdir')
   )
-  download.file(url, destfile=file.path(folderpath, basename(url)), ...)
+  
+  download.file.wcheck(url, destfile=file.path(folderpath, basename(url)), ...,
+                       overwrite=update)
   # If we've been given the URL for a bigmat .desc file, also download the bigmat
   if(folder == 'bigmat') {
     bigmaturl=sub("[.][^.]*$", "", url, perl=T)
-    download.file(bigmaturl, destfile=file.path(folderpath, basename(bigmaturl)), ...)
+    download.file.wcheck(bigmaturl, destfile=file.path(folderpath, basename(bigmaturl)),
+                         ..., overwrite=update)
   }
   # If we've been given the URL for a .ff file, also download the .ffrds file
   if(folder == 'ff') {
     ffurl <- paste0(sub("[.][^.]*$", "", url, perl=T), '.ffrds')
-    download.file(ffurl, destfile=file.path(folderpath, basename(ffurl)), ...)
+    download.file.wcheck(ffurl, destfile=file.path(folderpath, basename(ffurl)), 
+                         ..., overwrite=update)
+  }
+}
+
 # utility function to download a file if not already present
 # wraps regular download file
 download.file.wcheck<-function(url, destfile, overwrite=FALSE, ...){
