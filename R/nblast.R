@@ -68,9 +68,9 @@ fc_nblast <- function(query, target, scorematname=NULL, normalised=FALSE){
 #' direction, or as \code{1 - normscorebar}, where \code{normscorebar} is 
 #' \code{normscore} averaged across both directions.
 #' @param query,target Vectors of FlyCircuit identifiers
-#' @param scoremat A matrix, bigmatrix or a character vector specifiying the 
-#'   name of the big matrix containing the all by all score matrix. Defaults to
-#'   \code{'allbyallblastcv2.5.bin'}.
+#' @param scoremat A matrix, ff matriex, bigmatrix or a character vector specifiying the 
+#'   name of an ff matrix containing the all by all score matrix. Defaults to
+#'   \code{'allbyallblastcv2.5.ff'}.
 #' @param distance Logical indicating whether to return distances or scores.
 #' @param normalisation The type of normalisation procedure that should be 
 #'   carried out, selected from  \code{'raw'}, \code{'normalised'} or 
@@ -115,23 +115,14 @@ fc_subscoremat<-function(query, target, scoremat="allbyallblastcv2.5.bin",
   
   x <- if(normalisation %in% c('mean', 'normalised')) {
     # normalise fwdscores
-    self_matches=rep(NA,length(query))
-    #names(self_matches)=query
-    for(i in seq_along(query)){
-      idx=qidxs[i]
-      self_matches[i]=scoremat[idx, idx]
-    }
+    self_matches=diagonal(scoremat,qidxs)
     fwdscores = scale(fwdscores, center=FALSE, scale=self_matches)
     
     if(normalisation == 'mean') {
       # fetch reverse scores
       revscores=scoremat[qidxs, tidxs]
       # normalise revscores
-      self_matches=rep(NA,length(target))
-      for(i in seq_along(target)){
-        idx=tidxs[i]
-        self_matches[i]=scoremat[idx, idx]
-      }
+      self_matches=diagonal(scoremat,tidxs)
       revscores = scale(revscores, center=FALSE, scale=self_matches)
       (fwdscores+t(revscores))/2
     } else {
@@ -142,4 +133,30 @@ fc_subscoremat<-function(query, target, scoremat="allbyallblastcv2.5.bin",
   }
   
   if(distance) 1-x else x
+}
+
+# utility function to extract diagonal terms from matrices
+diagonal<-function(x, indices=NULL){
+  if(is.character(indices)) indices=match(indices,rownames)
+  if(is.logical(indices)) indices=which(indices)
+  ndiags <- if(is.null(indices)){
+    nrow(x)
+  } else {
+    length(indices)
+  }
+  
+  if(is.ff(x)){
+    # convert array indices to vector indices
+    vidxs=arrayIndex2vectorIndex(cbind(indices,indices),dim=dim(x))
+    x[vidxs]
+  } else if(is.big.matrix(x)) {
+    diags=rep(NA,ndiags)
+    for(i in seq_len(ndiags)){
+      idx=indices[i]
+      diags[i]=diags[idx, idx]
+    }
+    diags
+  } else {
+    if(is.null(indices)) diag(x) else diag(x)[indices]
+  }
 }
