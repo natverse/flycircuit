@@ -10,7 +10,8 @@
   op.flycircuit=list(
     flycircuit.dbdir=file.path(dd,'db'),
     flycircuit.bigmatdir=file.path(dd,'bigmat'),
-    flycircuit.ffdir=file.path(dd,'ff')
+    flycircuit.ffdir=file.path(dd,'ff'),
+    flycircuit.scoremat='kcs20scores'
   )
   
   toset <- !(names(op.flycircuit) %in% names(op))
