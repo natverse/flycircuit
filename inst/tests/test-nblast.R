@@ -41,4 +41,8 @@ test_that('we can supply an ff matrix and get expected results', {
   expect_equivalent(fc_subscoremat(nn,nn,scoremat=scoresff),scores)
   expect_equivalent(fc_subscoremat(nn,nn[1],scoremat=scoresff),scores[1,])
   expect_equivalent(fc_subscoremat(nn[1],nn,scoremat=scoresff),scores[,1])
+  expect_equivalent(fc_subscoremat(nn[1:5], nn[1:5], scoremat=scoresff, distance=F,
+                                   normalisation='normalised'), normscores)
+  expect_equivalent(fc_subscoremat(nn[1:5], nn[1:5], scoremat=scoresff, distance=T,
+                                   normalisation='mean'), distances)
 })
