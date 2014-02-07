@@ -38,10 +38,11 @@ load_fcdb <- function(db, Force=FALSE, ...) {
 }
 
 #' Attach a big.matrix (typically used for all-by-all blast distances)
-#'
-#' These are file based matrices that are not loaded into memory. If
-#' \code{bigmat="mybigmat"} there should be a big.matrix description file called 
-#' \code{file.path(fcconfig$bigmatrixdir,'mybigmat.desc')}
+#' 
+#' These are file based matrices that are not loaded into memory. If 
+#' \code{bigmat="mybigmat"} there should be a big.matrix description file called
+#' \code{file.path(fcconfig$bigmatrixdir,'mybigmat.desc')}. If passed a name 
+#' ending in \code{'.ff'}, the corresponding ff object is attached.
 #' @param bigmat Name of big matrix object (which should match file on disk).
 #' @return A big matrix object.
 #' @export
@@ -52,6 +53,12 @@ load_fcdb <- function(db, Force=FALSE, ...) {
 #' fc_attach_bigmat()
 #' }
 fc_attach_bigmat <- function(bigmat) {
+  # Check to make sure we haven't been given an ff object
+  if(tail(strsplit(bigmat, "\\.")[[1]], n=1) == 'ff') {
+    ffname <- sub("[.][^.]*$", "", bigmat, perl=T)
+    fc_attach_ff(ffname)
+    return(get(ffname, envir=.GlobalEnv))
+  }
   if(!exists(bigmat)) {
     bigmatfile <- file.path(getOption('flycircuit.bigmatdir'), paste(bigmat, ".desc", sep=""))
     if(!file.exists(bigmatfile))
