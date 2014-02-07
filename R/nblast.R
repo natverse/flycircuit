@@ -20,7 +20,7 @@
 fc_nblast <- function(query, target, scorematname=NULL, normalised=FALSE){
   if(is.null(scorematname))
     scorematname <- if(normalised) "abc2.normdmat" else "allbyallblastcv2.5.bin"
-  scoremat <- fc_attach_bigmat(scorematname)
+  scoremat <- if(is.character(scorematname)) fc_attach_bigmat(scorematname) else scorematname
   available_gns <- rownames(scoremat)
   if(missing(target)) target <- rownames(scoremat)
   else {
@@ -137,6 +137,7 @@ fc_subscoremat<-function(query, target, scoremat="allbyallblastcv2.5.bin",
 }
 
 # utility function to extract diagonal terms from matrices
+#' @importFrom bigmemory is.big.matrix
 diagonal<-function(x, indices=NULL){
   if(is.character(indices)) indices=match(indices,rownames)
   if(is.logical(indices)) indices=which(indices)
