@@ -52,10 +52,11 @@ kcs20 <- read.neuronlistfh('http://jefferislab.org/si/nblast/flycircuit/kcs20.rd
 
 Now we can plot these 20 neurons and see where they are located in the brain:
 ```{r plot-kcs, rgl=T}
+# set default view to frontal
+r3dDefaults$userMatrix=structure(c(1, 0, 0, 0, 0, -1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 1), .Dim = c(4L, 4L))
 open3d()
 plot3dfc(names(kcs20), db=kcs20)
 fcwbsurf()
-par3d('userMatrix'=structure(c(1, 0, 0, 0, 0, -1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 1), .Dim = c(4L, 4L)))
 ```
 
 We'll be plotting these Kenyon cells a lot, so let's set an option that will save us some typing:
