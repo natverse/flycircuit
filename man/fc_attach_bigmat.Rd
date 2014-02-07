@@ -2,14 +2,20 @@
 \alias{fc_attach_bigmat}
 \title{Attach a big.matrix (typically used for all-by-all blast distances)}
 \usage{
-fc_attach_bigmat(bigmat)
+fc_attach_bigmat(bigmat, envir = NULL, force = FALSE)
 }
 \arguments{
   \item{bigmat}{Name of big matrix object (which should
   match file on disk).}
+
+  \item{envir}{The environment in which the resultant
+  object should be created.}
+
+  \item{force}{Whether to overwrite an existing object of
+  the same name}
 }
 \value{
-A big matrix object.
+A \code{big.matrix} or \code{ff} object.
 }
 \description{
 These are file based matrices that are not loaded into

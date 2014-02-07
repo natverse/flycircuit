@@ -2,11 +2,17 @@
 \alias{fc_attach_ff}
 \title{Attach an ff object (typically used for all-by-all blast distances)}
 \usage{
-fc_attach_ff(ff)
+fc_attach_ff(ff, envir = NULL, force = FALSE)
 }
 \arguments{
   \item{ff}{Name of ff object (which should match file on
   disk).}
+
+  \item{envir}{The environment in which the resultant
+  object should be created.}
+
+  \item{force}{Whether to overwrite an existing object of
+  the same name}
 }
 \value{
 An ff object.
