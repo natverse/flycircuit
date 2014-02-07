@@ -12,7 +12,8 @@ Depends:
 Suggests:
     testthat,
     knitr,
-    nat
+    nat,
+    ff
 Imports:
     dendroextras,
     bigmemory
