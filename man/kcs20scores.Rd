@@ -4,9 +4,9 @@
 \title{A matrix containing all by all nblast similarity scores for 20 neurons}
 \description{
 These are the same neurons whose morphology is present in
-kcs20
+the nat \code{kcs20} neuronlist object.
 }
 \seealso{
-\code{\link{kcs20}}
+\code{\link[nat]{kcs20}}
 }
 

@@ -48,8 +48,9 @@ NULL
 
 #' A matrix containing all by all nblast similarity scores for 20 neurons
 #' 
-#' These are the same neurons whose morphology is present in kcs20
-#' @seealso \code{\link{kcs20}}
+#' These are the same neurons whose morphology is present in the nat
+#' \code{kcs20} neuronlist object.
+#' @seealso \code{\link[nat]{kcs20}}
 #' @name kcs20scores
 #' @docType data
 NULL
