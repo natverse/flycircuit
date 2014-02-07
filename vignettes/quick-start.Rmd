@@ -92,7 +92,10 @@ par3d('userMatrix'=structure(c(1, 0, 0, 0, 0, -1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 1)
 
 ## Cluster Kenyon cells by morphology
 ```{r cluster-kcs}
-hckc <- hclustfc(rownames(kcs20scores),distmat="kcs20scores")
+# nb this works because options(flycircuit.scoremat="kcs20scores")
+# can also set the score matrix to use explicitly
+# hckc <- hclustfc(rownames(kcs20scores), scoremat=kcs20scores)
+hckc <- hclustfc(rownames(kcs20scores))
 library(dendroextras)
 plot(colour_clusters(hckc, k=3))
 ```

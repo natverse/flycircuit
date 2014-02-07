@@ -2,8 +2,8 @@
 \alias{hclustfc}
 \title{Cluster a set of FlyCircuit neurons identified by gene_name}
 \usage{
-hclustfc(gns, method = "ward", distmat = "abc2.normdmat",
-  distfun = as.dist, ..., maxneurons = 4000)
+hclustfc(gns, method = "ward", scoremat = NULL, distfun = as.dist, ...,
+  maxneurons = 4000)
 }
 \arguments{
   \item{gns}{FlyCircuit identifiers (passed to
@@ -11,11 +11,12 @@ hclustfc(gns, method = "ward", distmat = "abc2.normdmat",
 
   \item{method}{Clustering method (default Ward's).}
 
-  \item{distmat}{The distance matrix (default
-  allbyallblast.canon).}
+  \item{scoremat}{Score matrix to use (see
+  \code{fc_subscoremat} for details of default)}
 
-  \item{distfun}{Function to convert distmat into R dist
-  object (default=as.dist).}
+  \item{distfun}{Function to convert distance matrix
+  returned by \code{fc_sub_distmat} into R dist object
+  (default=as.dist).}
 
   \item{...}{Additional parameters passed to hclust.}
 
@@ -34,5 +35,7 @@ of distfun will handle square distance matrices and R.
 \seealso{
 \code{\link{fc_gene_name}}, \code{\link{hclust}},
 \code{\link{dist}}
+
+Other scoremats: \code{\link{fc_sub_distmat}}
 }
 

@@ -2,7 +2,7 @@
 .onLoad <- function(libname, pkgname) {
   # start by establishing location of data directory
   if(is.null(getOption('flycircuit.datadir'))) 
-    options(flycircuit.datadir)=file.path(system.file(package='flycircuit'), 'extdata')
+    options(flycircuit.datadir=file.path(system.file(package='flycircuit'), 'extdata'))
   op<-options()
   dd=getOption('flycircuit.datadir')
   
@@ -10,7 +10,8 @@
   op.flycircuit=list(
     flycircuit.dbdir=file.path(dd,'db'),
     flycircuit.bigmatdir=file.path(dd,'bigmat'),
-    flycircuit.ffdir=file.path(dd,'ff')
+    flycircuit.ffdir=file.path(dd,'ff'),
+    flycircuit.scoremat='kcs20scores'
   )
   
   toset <- !(names(op.flycircuit) %in% names(op))

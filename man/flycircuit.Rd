@@ -27,6 +27,10 @@ image data provided by \url{http://flycircuit.tw}.
   \code{big.matrix} objects previously used for all by all
   score matrices.
 
+  \item \code{flycircuit.scoremat}: name of the default
+  regular or \code{ff} matrix object containing nblast
+  scores.
+
   }
 }
 

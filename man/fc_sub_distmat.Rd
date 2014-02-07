@@ -2,20 +2,20 @@
 \alias{fc_sub_distmat}
 \title{Return a subset of a distance matrix stored in a file-backed matrix}
 \usage{
-fc_sub_distmat(gns, distmat = "abc2.normdmat", form = c("matrix", "dist"),
+fc_sub_distmat(gns, scoremat = NULL, form = c("matrix", "dist"),
   maxneurons = NA)
 }
 \arguments{
-  \item{gns}{FlyCircuit identifiers (passed to
-  fc_gene_name).}
-
-  \item{distmat}{The distance matrix (default
-  allbyallblast.canon).}
-
   \item{form}{The type of object to return.}
 
   \item{maxneurons}{Set this to a sensible value to avoid
   loading huge order N^2 distances directly into memory.}
+
+  \item{gns}{FlyCircuit identifiers (passed to
+  fc_gene_name).}
+
+  \item{scoremat}{Score matrix to use (see
+  \code{fc_subscoremat} for details of default)}
 }
 \value{
 return An object of class matrix or dist (as determined by
@@ -25,5 +25,8 @@ distance matrix
 \description{
 Return a subset of a distance matrix stored in a
 file-backed matrix
+}
+\seealso{
+Other scoremats: \code{\link{hclustfc}}
 }
 
