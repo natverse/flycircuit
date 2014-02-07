@@ -3,8 +3,8 @@ context("Blasting")
 library(nat)
 kcs20 <- read.neuronlistfh('http://jefferislab.org/si/nblast/flycircuit/kcs20.rds', getOption('flycircuit.datadir'), quiet=TRUE)
 
-# Load raw NBLAST scores
-scores <- readRDS("../testdata/kcs20scores.rds")
+# Use sample raw NBLAST scores from package
+scores <- kcs20scores
 nn=rownames(scores)
 
 test_that('fc_subscoremat subsets correctly',{

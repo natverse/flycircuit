@@ -33,17 +33,10 @@ fc_download_data('http://jefferislab.org/si/nblast/flycircuit/abc2.normdmat.desc
 fc_attach_bigmat('abc2.normdmat')
 ```
 
-## Load Kenyon cell NBLAST scores
-Download NBLAST scores for Kenyon Cells and load them into the workspace.
-
-```{r download-kcs20scores}
-# Download scores...
-fc_download_data('http://jefferislab.org/si/nblast/flycircuit/kcs20scores.desc', type='bigmat')
-```
-```{r load-kcs20scores}
-# ...and load them into the workspace
-fc_attach_bigmat('kcs20scores')
-```
+## Inspect Kenyon cell NBLAST scores
+The package comes with some sample NBLAST scores for a set of 20 Kenyon cells.
+Each score is a pairwise comparison between two neurons. The score is asymmetric
+i.e. S(A,B)!=S(B,A). See ?kcs20scores for details.
 
 Show the scores for the first five neurons:
 ```{r score-peek}
