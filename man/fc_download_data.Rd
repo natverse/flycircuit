@@ -18,6 +18,7 @@ Download a data file from a remote location
 \examples{
 \dontrun{
 fc_download_data("http://myurl.com/data", quiet=TRUE)
+fc_download_data("http://myurl.com/data.ff", type='ff')
 }
 }
 \seealso{

@@ -108,6 +108,7 @@ fc_attach_ff <- function(ff, envir=NULL, force=FALSE) {
 #' @examples
 #' \dontrun{
 #' fc_download_data("http://myurl.com/data", quiet=TRUE)
+#' fc_download_data("http://myurl.com/data.ff", type='ff')
 #' }
 fc_download_data <- function(url, type=c('data', 'db', 'bigmat', 'ff'), ...) {
   folder <- match.arg(type)
@@ -123,9 +124,9 @@ fc_download_data <- function(url, type=c('data', 'db', 'bigmat', 'ff'), ...) {
     bigmaturl=sub("[.][^.]*$", "", url, perl=T)
     download.file(bigmaturl, destfile=file.path(folderpath, basename(bigmaturl)), ...)
   }
-  # If we've been given the URL for a .ffrds file, also download the .ff file
+  # If we've been given the URL for a .ff file, also download the .ff file
   if(folder == 'ff') {
-    ffurl <- paste0(sub("[.][^.]*$", "", url, perl=T), '.ff')
+    ffurl <- paste0(sub("[.][^.]*$", "", url, perl=T), '.ffrds')
     download.file(ffurl, destfile=file.path(folderpath, basename(ffurl)), ...)
   }
 }
