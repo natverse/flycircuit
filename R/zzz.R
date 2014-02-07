@@ -24,3 +24,6 @@
 
 # Will store stack of plotted rgl objects, ready for popping
 .plotted3d <- new.env()
+
+# environment to store downloaded data to avoid polluting global namespace
+.extdata <- new.env()
