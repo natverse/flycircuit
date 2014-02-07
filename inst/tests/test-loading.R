@@ -42,7 +42,7 @@ test_that("downloaded ff objects have their backing path corrected", {
   on.exit(options(op))
   
   fc_download_data('http://flybrain.mrc-lmb.cam.ac.uk/fcremtest/mat.ffrds', type='ff', quiet=TRUE)
-  fc_attach_ff('mat')
+  mat=fc_attach_ff('mat')
   expect_equivalent(attr(attr(mat, 'physical'), 'filename'), paste0(getOption('flycircuit.ffdir'), '/mat.ff'))
 })
 
@@ -57,5 +57,5 @@ test_that("can attach an ff object", {
   op=options(flycircuit.datadir=datadir, flycircuit.dbdir=dbdir, flycircuit.bigmatdir=bigmatdir, flycircuit.ffdir=ffdir)
   on.exit(options(op))
   fc_attach_ff('mat')
-  expect_true(exists('mat'))
+  expect_true(exists('mat',envir=.extdata))
 })
