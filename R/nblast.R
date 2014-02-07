@@ -112,7 +112,7 @@ fc_subscoremat<-function(query, target, scoremat="allbyallblastcv2.5.bin",
   # subsetting big matrices by name is slow
   qidxs=match(query,available_gns)
   tidxs=match(target,available_gns)
-  fwdscores=scoremat[tidxs, qidxs]
+  fwdscores=scoremat[tidxs, qidxs, drop = FALSE]
   
   x <- if(normalisation %in% c('mean', 'normalised')) {
     # normalise fwdscores
@@ -121,7 +121,7 @@ fc_subscoremat<-function(query, target, scoremat="allbyallblastcv2.5.bin",
     
     if(normalisation == 'mean') {
       # fetch reverse scores
-      revscores=scoremat[qidxs, tidxs]
+      revscores=scoremat[qidxs, tidxs, drop = FALSE]
       # normalise revscores
       self_matches=diagonal(scoremat,tidxs)
       revscores = scale(revscores, center=FALSE, scale=self_matches)
@@ -132,7 +132,8 @@ fc_subscoremat<-function(query, target, scoremat="allbyallblastcv2.5.bin",
   } else {
     fwdscores
   }
-  
+  # drop dimensions in the standard R way (including names etc)
+  if(nrow(x)==1 || ncol(x)==1) x = x[seq_len(nrow(x)), seq_len(ncol(x))]
   if(distance) 1-x else x
 }
 
