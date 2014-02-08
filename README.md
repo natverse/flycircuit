@@ -12,6 +12,8 @@ You can, however, download the [tar ball](https://github.com/jefferis/flycircuit
 # if necessary
 install.packages("devtools")
 
+# install latest version of nat package (rather than CRAN version)
+devtools::install_github("nat", "jefferis")
 devtools::install_github("flycircuit", "jefferis", dependencies=TRUE)
 ```
 
