@@ -51,7 +51,7 @@ kcs20 <- read.neuronlistfh('http://jefferislab.org/si/nblast/flycircuit/kcs20.rd
 ```
 
 Now we can plot these 20 neurons and see where they are located in the brain:
-```{r plot-kcs, rgl=T}
+```{r plot-kcs, rgl=TRUE, dev='png'}
 # set default view to frontal
 r3dDefaults$userMatrix=structure(c(1, 0, 0, 0, 0, -1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 1), .Dim = c(4L, 4L))
 open3d()
@@ -84,7 +84,7 @@ targetneuron
 ```
 
 What do they look like and where in the brain are they?
-```{r plot-top-hits, rgl=TRUE}
+```{r plot-top-hits, rgl=TRUE, dev='png'}
 clear3d()
 plot3dfc(c(queryneuron, targetneuron), db=kcs20)
 fcwbsurf()
@@ -102,7 +102,7 @@ plot(colour_clusters(hckc, k=3))
 
 Now let's look at the neurons:
 
-```{r rgl-cluster-kcs, rgl=TRUE}
+```{r rgl-cluster-kcs, rgl=TRUE, dev='png'}
 clear3d()
 plot3d(hckc, k=3, db=kcs20)
 ```
@@ -117,13 +117,13 @@ par(mar=c(5, 14, 2, 2))   # Extra margin for labels
 barplot(results, horiz=T)
 ```
 Unsurprisingly, `r queryneuron` itself has the lowest score (seeing as it should have zero distance from itself). Interestingly, while `r targetneuron` has the second-lowest score, `r names(sort(results)[3])` has a similarly small score, closely followed by `r paste0(names(sort(results)[4:5]), collapse=' and ')`. Let's plot them all, with the query neuron in black, to see how similar they are:
-```{r plot-good-hits, rgl=TRUE}
+```{r plot-good-hits, rgl=TRUE, dev='png'}
 clear3d()
 plot3d(queryneuron, col='black')
 plot3dfc(names(sort(results,decreasing=TRUE)[2:5]))
 ```
 Hmm, they look pretty similar. Let's plot the four worst hits for comparison:
-```{r plot-bad-hits, rgl=TRUE}
+```{r plot-bad-hits, rgl=TRUE, dev='png'}
 clear3d()
 plot3d(queryneuron, col='black')
 plot3dfc(names(sort(results)[1:4]))
