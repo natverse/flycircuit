@@ -67,9 +67,11 @@ options(nat.default.neuronlist = 'kcs20')
 ## Plotting NBLAST hits
 Let's plot the two neurons that NBLAST thinks are most similar.
 
-Find the indices of the minimum score (i.e. least distance) in the score matrix:
+Find the indices of the maximum off-diagonal score in the score matrix:
 ```{r top-hits}
-ind <- which(kcs20scores[, ] == min(kcs20scores[, ]), arr.ind=T)
+# find the maximum off-diagonal (i.e. non-self match)
+max_realmatch=max(kcs20scores[upper.tri(kcs20scores,diag=F)])
+ind<-which(kcs20scores==max_realmatch,arr.ind=T)
 queryneuron <- colnames(kcs20scores)[ind[2]]
 targetneuron <- rownames(kcs20scores)[ind[1]]
 ```
@@ -89,6 +91,7 @@ clear3d()
 plot3dfc(c(queryneuron, targetneuron), db=kcs20)
 fcwbsurf()
 ```
+Look like a pair of alpha/beta core Kenyon cells.
 
 ## Cluster Kenyon cells by morphology
 ```{r cluster-kcs}
