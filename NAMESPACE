@@ -1,4 +1,5 @@
 S3method(plot3d,hclust)
+S3method(subset,hclust)
 export(drawRegionSurf)
 export(fc_attach_bigmat)
 export(fc_attach_ff)
