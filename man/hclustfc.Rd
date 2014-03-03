@@ -39,13 +39,14 @@ hckcs=hclustfc(names(kcs20))
 library(dendroextras)
 plot(colour_clusters(hckcs, k=3))
 # 3d plot of neurons in those clusters (with matching colours)
-plot3d(hckcs, k=3)
+library(nat)
+plot3d(hckcs, k=3, db=kcs20)
 # names of neurons in 3 groups
 subset(hckcs, k=3)
 }
 \seealso{
-\code{\link{fc_gene_name}}, \code{\link{hclust}},
-\code{\link{dist}, \code{plot3d.hclust}}
+\code{\link{fc_gene_name}, \link{hclust}, \link{dist},
+\link{plot3d.hclust}}
 
 Other scoremats: \code{\link{fc_sub_distmat}}
 }
