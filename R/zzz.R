@@ -25,11 +25,6 @@
   dir.create(file.path(getOption('flycircuit.ffdir')), showWarnings=FALSE)
 }
 
-# Set default neuronlist for plotting
-.onAttach <- function(libname, pkgname) {
-  options('nat.default.neuronlist' = 'dps')
-}
-
 # Will store stack of plotted rgl objects, ready for popping
 .plotted3d <- new.env()
 
