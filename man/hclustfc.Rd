@@ -32,9 +32,20 @@ Given a vector of gene/neuron names or neuronids use hclust
 to carry out a hierarchical clustering. The default value
 of distfun will handle square distance matrices and R.
 }
+\examples{
+data(kcs20, package='nat')
+hckcs=hclustfc(names(kcs20))
+# dividide hclust object into 3 groups
+library(dendroextras)
+plot(colour_clusters(hckcs, k=3))
+# 3d plot of neurons in those clusters (with matching colours)
+plot3d(hckcs, k=3)
+# names of neurons in 3 groups
+subset(hckcs, k=3)
+}
 \seealso{
 \code{\link{fc_gene_name}}, \code{\link{hclust}},
-\code{\link{dist}}
+\code{\link{dist}, \code{plot3d.hclust}}
 
 Other scoremats: \code{\link{fc_sub_distmat}}
 }

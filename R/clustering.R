@@ -15,7 +15,18 @@
 #'   produced by the clustering process.
 #' @export
 #' @family scoremats
-#' @seealso \code{\link{fc_gene_name}}, \code{\link{hclust}}, \code{\link{dist}}
+#' @seealso \code{\link{fc_gene_name}}, \code{\link{hclust}}, \code{\link{dist},
+#'   \code{plot3d.hclust}}
+#' @examples
+#' data(kcs20, package='nat')
+#' hckcs=hclustfc(names(kcs20))
+#' # dividide hclust object into 3 groups
+#' library(dendroextras)
+#' plot(colour_clusters(hckcs, k=3))
+#' # 3d plot of neurons in those clusters (with matching colours)
+#' plot3d(hckcs, k=3)
+#' # names of neurons in 3 groups
+#' subset(hckcs, k=3)
 hclustfc <- function(gns, method='ward', scoremat=NULL, 
                      distfun=as.dist, ..., maxneurons=4000) {
   subdistmat <- fc_sub_distmat(gns, scoremat, maxneurons=maxneurons)
