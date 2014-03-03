@@ -1,20 +1,33 @@
-#' Load an rda object cached on disk into the Global Environment
-#'
+#' Load an rda/rds object cached on disk into the Global Environment
+#' 
+#' @details if object.rda and object.rds \strong{both} exist on disk, the 
+#'   \strong{former} will take priority.
+#' @details Starts by checking whether an object of the appropiate name is
+#'   already loaded unless \code{Force=TRUE}.
 #' @param data Name of object (and the stem of rda file).
 #' @param folder Name of the project subfolder containing object.
 #' @param Force Whether to load even if table already exists (default FALSE).
-#' @return A character vector of the names of objects created, invisibly
-#'  or NULL if nothing loaded.
+#' @param envir The environment into which the contents of an rda (but not rds) 
+#'   file should be loaded. Defaults to \code{.GlobalEnv}, the global user 
+#'   environment.
+#' @param inherits Whether to check the enclosing frames of the environment 
+#'   specified by \code{envir} for existence of \code{data}. See the 
+#'   \code{inherits} argument of \code{\link{exists}} for details.
+#' @return For rda files, a character vector of the names of objects created, 
+#'   invisibly or NULL if nothing loaded. For rds files, the object itself.
 #' @export
-load_fcdata <- function(data, Force=FALSE, folder=c('data','db')) {
+load_fcdata <- function(data, Force=FALSE, folder=c('data','db'),
+                        envir=.GlobalEnv, inherits=TRUE) {
   folder <- match.arg(folder)
-  if(exists(data) && !is.function(get(data)) && !Force)
+  if(exists(data, where=envir, inherits=inherits) && !is.function(get(data)) && !Force)
     return(NULL)
   folder <- ifelse(folder == 'db', getOption('flycircuit.dbdir'), getOption('flycircuit.datadir')) 
   rdafile <- file.path(folder, paste(data, sep=".", "rda"))
-  if(!file.exists(rdafile))
-    stop("Unable to read file: ", rdafile)
-  load(rdafile, envir=.GlobalEnv)
+  if(file.exists(rdafile)) return(load(rdafile, envir=envir))
+  rdsfile <- file.path(folder, paste(data, sep=".", "rds"))
+  if(!file.exists(rdsfile))
+    stop("Neither ", rdafile,' nor ',rdsfile,' exists!')
+  readRDS(file=rdsfile)
 }
 
 #' Load a database cached in the db subfolder into the Global Environment

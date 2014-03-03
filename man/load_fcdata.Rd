@@ -1,8 +1,9 @@
 \name{load_fcdata}
 \alias{load_fcdata}
-\title{Load an rda object cached on disk into the Global Environment}
+\title{Load an rda/rds object cached on disk into the Global Environment}
 \usage{
-load_fcdata(data, Force = FALSE, folder = c("data", "db"))
+load_fcdata(data, Force = FALSE, folder = c("data", "db"),
+  envir = .GlobalEnv, inherits = TRUE)
 }
 \arguments{
   \item{data}{Name of object (and the stem of rda file).}
@@ -12,13 +13,27 @@ load_fcdata(data, Force = FALSE, folder = c("data", "db"))
 
   \item{Force}{Whether to load even if table already exists
   (default FALSE).}
+
+  \item{envir}{The environment into which the contents of
+  an rda (but not rds) file should be loaded. Defaults to
+  \code{.GlobalEnv}, the global user environment.}
+
+  \item{inherits}{Whether to check the enclosing frames of
+  the environment specified by \code{envir} for existence
+  of \code{data}. See the \code{inherits} argument of
+  \code{\link{exists}} for details.}
 }
 \value{
-A character vector of the names of objects created,
-invisibly or NULL if nothing loaded.
+For rda files, a character vector of the names of objects
+created, invisibly or NULL if nothing loaded. For rds
+files, the object itself.
 }
 \description{
-Load an rda object cached on disk into the Global
+Load an rda/rds object cached on disk into the Global
 Environment
+}
+\details{
+if object.rda and object.rds \strong{both} exist on disk,
+the \strong{former} will take priority.
 }
 
