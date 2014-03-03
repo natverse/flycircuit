@@ -76,7 +76,7 @@ fc_sub_distmat <- function(gns, scoremat=NULL,
 #' @seealso 
 #' \code{\link{hclustfc}, \link{plot3dfc}, \link{slice}, \link{colour_clusters}}
 #' @importFrom dendroextras slice
-plot3d.hclust <- function(x, k=NULL, h=NULL, groups, col=rainbow, ...) {
+plot3d.hclust <- function(x, k=NULL, h=NULL, groups=NULL, col=rainbow, ...) {
   # Cut the dendrogram into k groups of neurons. Note that these will now have
   # the neurons in dendrogram order
   kgroups <- slice(x,k,h)
@@ -86,7 +86,7 @@ plot3d.hclust <- function(x, k=NULL, h=NULL, groups, col=rainbow, ...) {
 
   neurons <- names(kgroups)
 
-  if(!missing(groups)){
+  if(!is.null(groups)){
     matching <- kgroups%in%groups
     kgroups <- kgroups[matching]
     neurons <- neurons[matching]
@@ -103,7 +103,7 @@ plot3d.hclust <- function(x, k=NULL, h=NULL, groups, col=rainbow, ...) {
 #' @export
 #' @rdname hclustfc-slice
 #' @importFrom dendroextras slice
-subset.hclust<-function(x, groups, k=NULL, h=NULL, ...){
+subset.hclust<-function(x, k=NULL, h=NULL, groups=NULL, ...){
   kgroups=slice(x, k, h)
   
   neurons=names(kgroups)
