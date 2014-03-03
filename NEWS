@@ -1,0 +1,9 @@
+flycircuit 0.3
+==============
+* ready for use by external code
+* add subset.hclust, plot3d.hclust
+* make sure that clustering based on pre-computed nblast scores all works 
+  properly and that ff cached versions of the data are available
+* only provide ff cached versions of raw scores for download and normalise on
+  the fly
+* fix errors in package vignette
