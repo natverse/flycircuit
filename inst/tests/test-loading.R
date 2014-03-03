@@ -12,20 +12,31 @@ test_that("load_fcdb can load local database", {
 
 context("Downloading data")
 
-test_that("can download data from remote lcoation", {
-  datadir <- tempdir()
-  dbdir <- tempdir()
-  bigmatdir <- tempdir()
-  ffdir <- tempdir()
+test_that("can download data from remote location", {
+  
+  datadir <- tempfile('flycircuit_testdata')
+  dbdir <- file.path(datadir,'db')
+  bigmatdir <- file.path(datadir,'bigmat')
+  ffdir <- file.path(datadir,'ff')
+  dir.create(datadir)
+  dir.create(dbdir)
+  dir.create(bigmatdir)
+  dir.create(ffdir)
+  on.exit(unlink(datadir, recursive=TRUE))
 
   # Overwrite directory options for this test
-  op=options(flycircuit.datadir=datadir, flycircuit.dbdir=dbdir, flycircuit.bigmatdir=bigmatdir, flycircuit.ffdir=ffdir)
-  on.exit(options(op))
+  op=options(flycircuit.datadir=datadir, flycircuit.dbdir=dbdir, 
+             flycircuit.bigmatdir=bigmatdir, flycircuit.ffdir=ffdir)
+  on.exit(options(op), add=TRUE)
   
-  fc_download_data('http://flybrain.mrc-lmb.cam.ac.uk/fcremtest/data', type='data', quiet=TRUE)
-  fc_download_data('http://flybrain.mrc-lmb.cam.ac.uk/fcremtest/db', type='db', quiet=TRUE)
-  fc_download_data('http://flybrain.mrc-lmb.cam.ac.uk/fcremtest/bigmat.desc', type='bigmat', quiet=TRUE)
-  fc_download_data('http://flybrain.mrc-lmb.cam.ac.uk/fcremtest/mat.ffrds', type='ff', quiet=TRUE)
+  fc_download_data('http://flybrain.mrc-lmb.cam.ac.uk/fcremtest/data', 
+                   type='data', quiet=TRUE)
+  fc_download_data('http://flybrain.mrc-lmb.cam.ac.uk/fcremtest/db', 
+                   type='db', quiet=TRUE)
+  fc_download_data('http://flybrain.mrc-lmb.cam.ac.uk/fcremtest/bigmat.desc', 
+                   type='bigmat', quiet=TRUE)
+  fc_download_data('http://flybrain.mrc-lmb.cam.ac.uk/fcremtest/mat.ff', 
+                   type='ff', quiet=TRUE)
 
   expect_true(file.exists(file.path(datadir, 'data')))
   expect_true(file.exists(file.path(dbdir, 'db')))
@@ -35,27 +46,18 @@ test_that("can download data from remote lcoation", {
   expect_true(file.exists(file.path(ffdir, 'mat.ffrds')))
 })
 
-test_that("downloaded ff objects have their backing path corrected", {
+test_that("downloaded ff can be attached and have their backing path corrected", {
   # Overwrite directory options for this test
-  ffdir <- tempdir()
+  ffdir <- file.path(tempfile(),'ff')
+  dir.create(ffdir, recursive=TRUE)
+  on.exit(unlink(ffdir, recursive=TRUE))
   op=options(flycircuit.ffdir=ffdir)
-  on.exit(options(op))
+  on.exit(options(op), add=TRUE)
   
-  fc_download_data('http://flybrain.mrc-lmb.cam.ac.uk/fcremtest/mat.ff', type='ff', quiet=TRUE)
+  fc_download_data('http://flybrain.mrc-lmb.cam.ac.uk/fcremtest/mat.ff',
+                   type='ff', quiet=TRUE)
   mat=fc_attach_ff('mat')
-  expect_equivalent(attr(attr(mat, 'physical'), 'filename'), paste0(getOption('flycircuit.ffdir'), '/mat.ff'))
-})
-
-context("Attaching ff")
-
-test_that("can attach an ff object", {
-  datadir <- tempdir()
-  dbdir <- tempdir()
-  bigmatdir <- tempdir()
-  ffdir <- tempdir()
-  # Overwrite directory options for this test
-  op=options(flycircuit.datadir=datadir, flycircuit.dbdir=dbdir, flycircuit.bigmatdir=bigmatdir, flycircuit.ffdir=ffdir)
-  on.exit(options(op))
-  fc_attach_ff('mat')
   expect_true(exists('mat',envir=.extdata))
+  expect_equivalent(attr(attr(mat, 'physical'), 'filename'), 
+                    file.path(getOption('flycircuit.ffdir'), 'mat.ff'))
 })
