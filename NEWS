@@ -1,3 +1,8 @@
+flycircuit 0.3.1
+================
+* significant (20x in my tests) speedup for hclustfc using large ff objects
+  containing raw scores.
+
 flycircuit 0.3
 ==============
 * ready for use by external code
