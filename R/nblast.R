@@ -74,18 +74,25 @@ fc_subscoremat<-function(query, target, scoremat=NULL, distance=FALSE,
   tidxs=match(target,available_gns)
   fwdscores=scoremat[tidxs, qidxs, drop = FALSE]
   
+  # figure out if we have been asked to provide a square matrix
+  squaremat = length(qidxs)==length(tidxs) && all(qidxs==tidxs)
+  
   x <- if(normalisation %in% c('mean', 'normalised')) {
+    self_matches = if(squaremat) diag(fwdscores) else diagonal(scoremat,qidxs)
     # normalise fwdscores
-    self_matches=diagonal(scoremat,qidxs)
     fwdscores = scale(fwdscores, center=FALSE, scale=self_matches)
     
     if(normalisation == 'mean') {
-      # fetch reverse scores
-      revscores=scoremat[qidxs, tidxs, drop = FALSE]
-      # normalise revscores
-      self_matches=diagonal(scoremat,tidxs)
-      revscores = scale(revscores, center=FALSE, scale=self_matches)
-      (fwdscores+t(revscores))/2
+      if(squaremat) {
+        (fwdscores+t(fwdscores))/2
+      } else {
+        # fetch reverse scores
+        revscores=scoremat[qidxs, tidxs, drop = FALSE]
+        # normalise revscores
+        self_matches=diagonal(scoremat,tidxs)
+        revscores = scale(revscores, center=FALSE, scale=self_matches)
+        (fwdscores+t(revscores))/2
+      }
     } else {
       fwdscores
     }
