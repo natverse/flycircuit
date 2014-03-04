@@ -36,6 +36,25 @@ test_that('fc_subscoremat can return distances created from the average of the f
   expect_equivalent(fc_subscoremat(nn[1:5], nn[1:5], scoremat=scores, distance=T, normalisation='mean'), distances)
 })
 
+test_that('fc_subscoremat for square matrices gives same as fetching scores independently', {
+  dists5.mean=fc_subscoremat(nn[1:5], nn[1:5], scoremat=scores, distance=T, normalisation='mean')
+  expect_equivalent(fc_subscoremat(nn[1:5], nn[1:2], scoremat=scores, distance=T, normalisation='mean'), dists5.mean[1:2,])
+  expect_equivalent(fc_subscoremat(nn[1:2], nn[1:5], scoremat=scores, distance=T, normalisation='mean'), dists5.mean[,1:2])
+  
+  expect_equivalent(fc_subscoremat(nn[1], nn[1], scoremat=scores, distance=T, normalisation='mean'), dists5.mean[1,1])
+  
+  dists5.normdist=fc_subscoremat(nn[1:5], nn[1:5], scoremat=scores, distance=T, normalisation='normalised')
+  expect_equivalent(fc_subscoremat(nn[1:5], nn[1:2], scoremat=scores, distance=T, normalisation='normalised'), dists5.normdist[1:2,])
+  expect_equivalent(fc_subscoremat(nn[1:2], nn[1:5], scoremat=scores, distance=T, normalisation='normalised'), dists5.normdist[,1:2])
+
+  dists5.norm=fc_subscoremat(nn[1:5], nn[1:5], scoremat=scores, normalisation='normalised')
+  expect_equivalent(fc_subscoremat(nn[1:5], nn[1:2], scoremat=scores, normalisation='normalised'), dists5.norm[1:2,])
+  expect_equivalent(fc_subscoremat(nn[1:2], nn[1:5], scoremat=scores, normalisation='normalised'), dists5.norm[,1:2])
+  
+  dists5.raw=fc_subscoremat(nn[1:5], nn[1:5], scoremat=scores, normalisation='raw')
+  expect_equivalent(fc_subscoremat(nn[1:5], nn[1:2], scoremat=scores, normalisation='raw'), dists5.raw[1:2,])
+  expect_equivalent(fc_subscoremat(nn[1:2], nn[1:5], scoremat=scores, normalisation='raw'), dists5.raw[,1:2])
+})
 
 test_that('we can supply an ff matrix and get expected results', {
   library(ff)
