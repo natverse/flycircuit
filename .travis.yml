@@ -18,3 +18,5 @@ env:
     - WARNINGS_ARE_ERRORS=1
     - _R_CHECK_FORCE_SUGGESTS_=0
     - DISPLAY=:99.0
+after_failure:
+  - cat /home/travis/build/ajdm/flycircuit/flycircuit.Rcheck/00check.log
