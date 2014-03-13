@@ -1,7 +1,7 @@
 context("Blasting")
 
 library(nat)
-kcs20 <- read.neuronlistfh('http://jefferislab.org/si/nblast/flycircuit/kcs20.rds', getOption('flycircuit.datadir'), quiet=TRUE)
+kcs20 <- read.neuronlistfh('http://flybrain.mrc-lmb.cam.ac.uk/si/nblast/flycircuit/kcs20.rds', getOption('flycircuit.datadir'), quiet=TRUE)
 
 op=options(flycircuit.scoremat = 'kcs20scores')
 
