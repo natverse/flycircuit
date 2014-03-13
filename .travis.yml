@@ -5,6 +5,7 @@ before_install:
   - chmod 755 ./travis-tool.sh
   - ./travis-tool.sh bootstrap
   - ./travis-tool.sh r_binary_install rgl RANN igraph filehash digest testthat bigmemory ff
+  - ./travis-tool.sh install_github jefferis/nat
 install:
   - ./travis-tool.sh install_deps
   - sh -e /etc/init.d/xvfb start
