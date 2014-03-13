@@ -10,8 +10,8 @@ install:
   - sh -e /etc/init.d/xvfb start
 notifications:
   email:
-  on_success: change
-on_failure: change
+    on_success: change
+    on_failure: change
 env:
   - global:
     - WARNINGS_ARE_ERRORS=1
