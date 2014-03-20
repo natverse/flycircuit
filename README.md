@@ -1,4 +1,6 @@
 # flycircuit
+[![Build Status](https://travis-ci.org/jefferis/flycircuit.png)](https://travis-ci.org/jefferis/flycircuit)
+
 Plot and analyse neurons skeletonised from image data released by 
 [FlyCircuit](http://flycircuit.tw).
 
