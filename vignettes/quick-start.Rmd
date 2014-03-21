@@ -119,7 +119,7 @@ par(las=2)                # Horizontal labels
 par(mar=c(5, 14, 2, 2))   # Extra margin for labels
 barplot(results, horiz=T)
 ```
-Unsurprisingly, `r queryneuron` itself has the lowest score (seeing as it should have zero distance from itself). Interestingly, while `r targetneuron` has the second-lowest score, `r names(sort(results)[3])` has a similarly small score, closely followed by `r paste0(names(sort(results)[4:5]), collapse=' and ')`. Let's plot them all, with the query neuron in black, to see how similar they are:
+Unsurprisingly, `r queryneuron` itself has the highest score (seeing as it is exactly the same as itself). Interestingly, while `r targetneuron` has the second-highest score, `r names(sort(results, decreasing=TRUE)[3])` has a similarly high score, closely followed by `r paste0(names(sort(results, decreasing=TRUE)[4:5]), collapse=' and ')`. Let's plot them all, with the query neuron in black, to see how similar they are:
 ```{r plot-good-hits, rgl=TRUE, dev='png'}
 clear3d()
 plot3d(queryneuron, col='black')
