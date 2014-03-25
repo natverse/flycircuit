@@ -83,6 +83,7 @@ test_that('we can use diagonal attribute on a score matrix',{
   expect_equal(fc_nblast(nn[1], nn, scoremat = scoresff),
                fc_nblast(nn[1], nn, scoremat = scoresffd))
   expect_equal(diag(scores), diagonal(scoresffd))
+  expect_error(diagonal(scores[1:10,1:8]))
 })
 
 options(op)

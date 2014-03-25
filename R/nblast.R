@@ -109,6 +109,8 @@ fc_subscoremat<-function(query, target, scoremat=NULL, distance=FALSE,
 #' @importFrom bigmemory is.big.matrix
 #' @importFrom ff is.ff arrayIndex2vectorIndex
 diagonal<-function(x, indices=NULL){
+  if(!isTRUE(nrow(x)==ncol(x))) stop("x is not a square matrix!")
+  
   if(is.character(indices)) indices=match(indices,rownames(x))
   if(!is.null(xdiag<-attr(x,'diagonal'))){
     return(if(is.null(indices)) xdiag else xdiag[indices])
