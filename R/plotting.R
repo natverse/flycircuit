@@ -24,7 +24,20 @@
 #' @export
 #' @seealso \code{\link[rgl]{plot3d}, \link{pop3dfc}}
 plot3dfc <- function(id, col, db=get(getOption('nat.default.neuronlist')), flip=F, soma=F, alpharange=NULL, skipRedraw=200, ...) {
+  # drop any missing ids with a warning
+  missing_ids=setdiff(id, names(db))
+  if(nmissing<-length(missing_ids)){
+    warning("Dropping ", nmissing,' neurons that are not present in db!')
+    id=setdiff(id, missing_ids)
+  }
+  # bail if we have nothing to plot
+  if(!length(id)){
+    warning("No valid neurons to plot!")
+    return(invisible(NULL))
+  }
+    
   if(!is.list(id) && length(id) > 1) {
+    # set colours
     if(missing(col))
       col <- rainbow
     if(is.function(col))

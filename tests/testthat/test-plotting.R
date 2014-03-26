@@ -26,6 +26,12 @@ test_that("fcwbnpsurf works", {
   fcwbnpsurf()
 })
 
+test_that("plot3dfc produces a warning for missing neurons", {
+  clear3d()
+  expect_is(plot3dfc(names(kcs20)[1:5]),'list')
+  expect_warning(plot3dfc('rhubarb'))
+})
+
 rgl.close()
 
 options(op)
