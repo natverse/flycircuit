@@ -79,3 +79,33 @@ fc_neuron<-function(x){
   }
   fcidtable$Name[res]
 }
+
+#' Return the flycircuit gene_name identifier for a file
+#'
+#' This works for a variety of tested filenames including things like:
+#'   FCWB_..._01_warp...
+#' @param file Path to file(s) to extract gene_name
+#' @param checkExists Check that calculated gene_name exists in identifiers table
+#' @return Character vector of gene_names (or NA if checkExists fails)
+#' @export
+#' @seealso \code{\link{fc_gene_name}, \link{fcidtable}}
+#' @examples
+#' fcgn_forfile('FruMARCM-M002373_seg002_03.nrrd-files/FruMARCM-M002373_seg002_03.nrrd.am')
+fcgn_forfile<-function(file,checkExists=FALSE){
+  # get rid of any leading directories
+  gn=basename(file)
+  #trim off template brain
+  gn=sub("^((IS2|FC[^_]+|JFRC[^_]+)_)+","",gn)
+  # trim off extension
+  gn=sub("\\.[^.]+",'',gn)
+  # trim off channel and other suffix
+  gn=sub("(seg[^_]*)_.*$","\\1",gn)
+  if(checkExists){
+    missing=!gn%in%fcidtable$gene_name
+    if(any(missing)){
+      warning("gene_name:",gn[missing]," for file:",file[missing]," not present in fcid table")
+      gn[missing]=NA_character_
+    }
+  }
+  gn
+}

@@ -1,0 +1,26 @@
+\name{fcgn_forfile}
+\alias{fcgn_forfile}
+\title{Return the flycircuit gene_name identifier for a file}
+\usage{
+fcgn_forfile(file, checkExists = FALSE)
+}
+\arguments{
+  \item{file}{Path to file(s) to extract gene_name}
+
+  \item{checkExists}{Check that calculated gene_name exists
+  in identifiers table}
+}
+\value{
+Character vector of gene_names (or NA if checkExists fails)
+}
+\description{
+This works for a variety of tested filenames including
+things like: FCWB_..._01_warp...
+}
+\examples{
+fcgn_forfile('FruMARCM-M002373_seg002_03.nrrd-files/FruMARCM-M002373_seg002_03.nrrd.am')
+}
+\seealso{
+\code{\link{fc_gene_name}, \link{fcidtable}}
+}
+
