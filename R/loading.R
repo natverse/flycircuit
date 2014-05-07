@@ -105,7 +105,7 @@ fc_attach_ff <- function(ff, envir=NULL, force=FALSE) {
     message("attaching: ", ff)
     ffobj <- readRDS(fffile)
     # Correct path to backing file
-    attr(attr(ffobj, 'physical'), 'filename') <- paste0(getOption('flycircuit.ffdir'), '/', ff, '.ff')
+    attr(attr(ffobj, 'physical'), 'filename') <- path.expand(paste0(getOption('flycircuit.ffdir'), '/', ff, '.ff'))
     assign(ff, ffobj, envir=envir)
   }
   invisible(get(ff, envir=envir))
