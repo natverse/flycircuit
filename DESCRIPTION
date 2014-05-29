@@ -20,3 +20,4 @@ Imports:
 License: GPL-3
 LazyData: true
 VignetteBuilder: knitr
+Roxygen: list(wrap = TRUE)
