@@ -73,7 +73,7 @@ plot3dfc <- function(id, col, db=get(getOption('nat.default.neuronlist')), flip=
       df <- attr(db,'df')
       if(!is.null(df)) {
         # Attached dataframe gives soma positions
-        rlist <- c(rlist, spheres3d(df[id, c("X", "Y", "Z")], radius=2, col=col))
+        if(!is.na(df[id, 'X'])) rlist <- c(rlist, spheres3d(df[id, c("X", "Y", "Z")], radius=2, col=col))
       }
     }
   }
