@@ -51,8 +51,12 @@ fc_subscoremat<-function(query, target, scoremat=NULL, distance=FALSE,
   if(missing(target)) target <- available_gns
   else {
     # Check what we were given
-    target <- fc_gene_name(target)
     target_missing <- setdiff(target, available_gns)
+    # only use fc_gene_name if there are missing neurons
+    if(length(target_missing)) {
+      target <- fc_gene_name(target)
+      target_missing <- setdiff(target, available_gns)
+    }
     if(length(target_missing) > 0){
       warning("Dropping ", length(target_missing), " target neurons")
       target <- intersect(target, available_gns)
@@ -61,8 +65,12 @@ fc_subscoremat<-function(query, target, scoremat=NULL, distance=FALSE,
   
   if(missing(query)) query <- rownames(scoremat)
   else {
-    query <- fc_gene_name(query)
     query_missing <- setdiff(query, available_gns)
+    # only use fc_gene_name if there are missing neurons
+    if(length(query_missing)) {
+      query <- fc_gene_name(query)
+      query_missing <- setdiff(query, available_gns)
+    }
     if(length(query_missing) > 0) {
       warning("Dropping ", length(query_missing), " query neurons")
       query <- intersect(query, available_gns)
