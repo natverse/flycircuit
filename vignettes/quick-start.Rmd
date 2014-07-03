@@ -20,6 +20,7 @@ dir.create('figure')
 ```{r load-flycircuit}
 library(flycircuit)
 library(nat)
+library(nat.nblast)
 ```
 
 ### Package options

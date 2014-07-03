@@ -12,9 +12,10 @@ Depends:
 Suggests:
     testthat,
     knitr,
-    nat
+    nat,
+    nat.nblast,
+    dendroextras
 Imports:
-    dendroextras,
     bigmemory,
     ff
 License: GPL-3

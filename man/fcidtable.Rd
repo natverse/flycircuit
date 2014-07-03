@@ -21,7 +21,7 @@ to the segmentation of individiual neurons from stacks that
 might contain multiple labelled neurons after MARCM.
 }
 \seealso{
-Other flycircuit.ids: \code{\link{fc_gene_name}},
+Other flycircuit-ids: \code{\link{fc_gene_name}},
 \code{\link{fc_idid}}, \code{\link{fc_neuron}}
 }
 

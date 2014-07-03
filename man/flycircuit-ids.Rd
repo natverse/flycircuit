@@ -40,6 +40,6 @@ isTRUE(fc_idid("FruMARCM-M002262_seg001")==1)
 isTRUE(fc_neuron("FruMARCM-M002262_seg001")=="fru-M-200266")
 }
 \seealso{
-Other flycircuit.ids: \code{\link{fcidtable}}
+Other flycircuit-ids: \code{\link{fcidtable}}
 }
 

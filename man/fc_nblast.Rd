@@ -36,6 +36,6 @@ See the package vignette for an examlple of how to download
 a precomputed score matrix.
 }
 \seealso{
-\code{\link{hclustfc},\link{fc_sub_distmat}}
+\code{\link{hclustfc}}
 }
 
