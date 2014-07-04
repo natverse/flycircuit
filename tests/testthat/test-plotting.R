@@ -13,7 +13,7 @@ test_that("FlyCircuit neurons can be plotted", {
 test_that("hclust objects are plottable in 3d", {
   hclustres <- hclustfc(names(kcs20))
   clear3d()
-  expect_is(plot3d(hclustres, h=3),'list')
+  expect_is(plot3d(hclustres, h=3, db=kcs20),'list')
 })
 
 test_that("fcwbsurf works", {

@@ -11,7 +11,7 @@
 #' @inheritParams fc_subscoremat
 #' @param normalised Logical indicating whether to return normalised scores.
 #' @return Matrix of scores, columns are query neurons, rows, target.
-#' @seealso \code{\link{hclustfc},\link{fc_sub_distmat}}
+#' @seealso \code{\link{hclustfc}}
 #' @export
 fc_nblast <- function(query, target, scoremat=NULL, normalised=FALSE){
   fc_subscoremat(query, target, scoremat=scoremat, 
