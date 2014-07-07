@@ -1,3 +1,19 @@
+flycircuit 0.5
+==============
+* deprecated pop3dfc in favour of nat::npop3d
+* refactored plot3dfc to use nat::plot3d.character. plot3dfc will be deprecated
+  in favour of plot3d.character when that function can coped with multiple
+  identifier styles.
+
+flycircuit 0.4.1
+================
+* extensive refactoring so that fc_nblast, hclustfc and friends are now thin
+  wrappers on more generic functions in nat.nblast
+* plot3dfc can handle NA soma positions
+* update annotation table
+* docs: plot3dfc improvements
+* add fcgn_forfile
+
 flycircuit 0.3.1
 ================
 * significant (20x in my tests) speedup for hclustfc using large ff objects
