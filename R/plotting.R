@@ -2,37 +2,31 @@
 #' 
 #' @details \itemize{
 #'   
-#'   \item Plotted soma positions are a prediction based on location in the
-#'   FlyCircuit template brain mapped onto my selected template. The positions
-#'   are looked up in the df attribute of the neuronlist or in a dataframe
-#'   called somapos.
-#'   
-#'   \item Colour is rainbow(length(id)) when more than one neuron is plotted. It
-#'   can be specified as a function, a vector (length(id)) or a single recycled 
-#'   value.
+#'   \item Colour defaults to black for a single neuron or rainbow(length(id))
+#'   when more than one neuron is plotted. It can be specified as a function, a
+#'   vector (length(id)) or a single recycled value.
 #'   
 #'   \item By default when more than 200 neurons are plotted in a single call 
 #'   rgl redraw is suspended. This can be >10x faster.
 #'   
-#'   \item Note that the ids of objects on the rgl stack are stored in a 
-#'   variable in the global environment called \code{.last.plot3dfc} that can be
-#'   used by \code{pop3dfc()} to remove all objects plotted in last call to 
-#'   plot3dfc. }
+#'   \item see \code{\link[nat]{npop3d}} can be used to remove the last plotted 
+#'   neurons.
+#'   
+#'   \item Plotted soma positions (when \code{soma=TRUE}) is passed as an 
+#'   additional argument for plot3d.neuronlist are a prediction based on 
+#'   location in the FlyCircuit template brain mapped onto my selected template.
+#'   The positions are looked up in the df attribute of the neuronlist.
+#'   
+#'   }
 #' @param id Vector of FlyCircuit gene or neuron names or idids (passed to 
 #'   \code{\link{fc_gene_name}})
 #' @param col Function or vector specifying colour.
 #' @param db Object of class neuronlist (only tested for dotprops objects).
-#' @param flip Logical vector (whether to use list containing flipped neurons). 
-#'   Recycled if length 1.
-#' @param soma Whether to show the estimated cell body position.
-#' @param alpharange Range of alpha values for which vectors/dots should be 
-#'   plotted..
-#' @param skipRedraw Numeric threshold above which to disable rgl redraw.
 #' @param ... Additional arguments for \code{plot3d}
 #' @return List of rgl stack ids (see rgl::plot3d).
 #' @export
 #' @seealso \code{\link[rgl]{plot3d}, \link{pop3dfc}}
-plot3dfc <- function(id, col, db=get(getOption('nat.default.neuronlist')), flip=F, soma=F, alpharange=NULL, skipRedraw=200, ...) {
+plot3dfc <- function(id, col, db=get(getOption('nat.default.neuronlist')), ...) {
   id=fc_gene_name(id)
   # drop any missing ids with a warning
   missing_ids=setdiff(id, names(db))
@@ -46,40 +40,10 @@ plot3dfc <- function(id, col, db=get(getOption('nat.default.neuronlist')), flip=
     return(invisible(NULL))
   }
   
-  if(!is.list(id) && length(id) > 1) {
-    # set colours
-    if(missing(col))
-      col <- rainbow
-    if(is.function(col))
-      col <- col(length(id))
-    # Speed up drawing when there are lots of neurons
-    if(is.numeric(skipRedraw)) skipRedraw <- ifelse(length(id) > skipRedraw, TRUE, FALSE)
-    if(is.logical(skipRedraw)) {
-      op <- par3d(skipRedraw=skipRedraw)
-      on.exit(par3d(op))
-    }
-    rval <- mapply(plot3dfc, id, flip=flip, soma=soma, col=col, MoreArgs=list(db=db, alpharange=alpharange), ...)
-    assign(".last.plot3dfc", rval, envir=.plotted3d)
-    return(invisible(rval))
+  if(missing(col)) {
+    col = if(length(id)>1) rainbow else 'black'
   }
-  
-  if(missing(col)) col <- 'black'
-  id <- fc_gene_name(id)
-  n <- db[[id]]
-  rlist <- NULL
-  if(!is.null(n)) {
-    rlist <- plot3d(n, col=col, alpharange=alpharange, ...)
-    if(soma) {
-      df <- attr(db,'df')
-      if(!is.null(df)) {
-        # Attached dataframe gives soma positions
-        if(!is.na(df[id, 'X'])) rlist <- c(rlist, spheres3d(df[id, c("X", "Y", "Z")], radius=2, col=col))
-      }
-    }
-  }
-  # Save this info so we can pop stuff later
-  assign(".last.plot3dfc", rlist, envir=.plotted3d)
-  invisible(rlist)
+  nat:::plot3d.character(x=id, col=substitute(col), db=db, ..., SUBSTITUTE = FALSE)
 }
 
 #' Remove plotted FlyCircuit neurons (deprecated, see nat::npop3d)
