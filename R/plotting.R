@@ -82,7 +82,7 @@ plot3dfc <- function(id, col, db=get(getOption('nat.default.neuronlist')), flip=
   invisible(rlist)
 }
 
-#' Remove plotted FlyCircuit neurons
+#' Remove plotted FlyCircuit neurons (deprecated, see nat::npop3d)
 #' 
 #' If no neurons are specified, the last plotted are removed.
 #' @param x Neurons to remove
@@ -92,13 +92,8 @@ plot3dfc <- function(id, col, db=get(getOption('nat.default.neuronlist')), flip=
 #' @seealso \code{\link[rgl]{pop3d}}
 #' @importFrom rgl pop3d
 pop3dfc <- function(x, slow=FALSE, type='shapes') {
-  if(missing(x)){
-    if(exists(".last.plot3dfc", envir=.plotted3d))
-      x <- get(".last.plot3dfc", envir=.plotted3d)
-    else x <- NULL
-  }
-  if(slow) invisible(sapply(x, function(x) try(pop3d(x, type=type))))
-  else try(pop3d(unlist(x), type=type))
+  .Deprecated('nat::npop3d', msg = 'Please use npop3d for identical functionality that can work with any neuronlist')
+  nat::npop3d(x=x, slow=slow, type=type)
 }
 
 #' Plot a 3D surface of the FlyCircuit reference brain
