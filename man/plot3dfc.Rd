@@ -45,6 +45,14 @@ looked up in the df attribute of the neuronlist.
 
 }
 }
+\examples{
+open3d()
+library(nat)
+plot3dfc("fru-M-300145", col='green', db=kcs20)
+npop3d()
+plot3dfc("fru-M-100014", col='red', db=kcs20, soma=TRUE)
+rgl.close()
+}
 \seealso{
 \code{\link[rgl]{plot3d}, \link{pop3dfc}}
 }

@@ -26,6 +26,13 @@
 #' @return List of rgl stack ids (see rgl::plot3d).
 #' @export
 #' @seealso \code{\link[rgl]{plot3d}, \link{pop3dfc}}
+#' @examples
+#' open3d()
+#' library(nat)
+#' plot3dfc("fru-M-300145", col='green', db=kcs20)
+#' npop3d()
+#' plot3dfc("fru-M-100014", col='red', db=kcs20, soma=TRUE)
+#' rgl.close()
 plot3dfc <- function(id, col, db=get(getOption('nat.default.neuronlist')), ...) {
   id=fc_gene_name(id)
   # drop any missing ids with a warning
