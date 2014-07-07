@@ -12,8 +12,8 @@ Depends:
 Suggests:
     testthat,
     knitr,
-    nat,
-    nat.nblast,
+    nat (>= 1.5.7),
+    nat.nblast (>= 1.2),
     dendroextras
 Imports:
     bigmemory,
