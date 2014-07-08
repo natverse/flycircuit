@@ -75,15 +75,4 @@ test_that('fc_subscoremat and fc_nblast agree', {
                fc_subscoremat(nn,nn[1],scoremat=scores,normalisation='mean',distance=FALSE))
 })
 
-test_that('we can use diagonal attribute on a score matrix',{
-  library(ff)
-  scoresff=as.ff(scores)
-  scoresffd=scoresff
-  attr(scoresffd,'diagonal')=diag(scores)
-  expect_equal(fc_nblast(nn[1], nn, scoremat = scoresff),
-               fc_nblast(nn[1], nn, scoremat = scoresffd))
-  expect_equal(diag(scores), diagonal(scoresffd))
-  expect_error(diagonal(scores[1:10,1:8]))
-})
-
 options(op)

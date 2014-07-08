@@ -92,6 +92,7 @@ fc_attach_bigmat <- function(bigmat, envir=NULL, force=FALSE) {
 #' @inheritParams fc_attach_bigmat
 #' @return An ff object.
 #' @export
+#' @import ff
 #' @examples
 #' \dontrun{
 #' fc_attach_ff()
