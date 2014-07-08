@@ -3,7 +3,8 @@
 \alias{fc_nblast}
 \title{Return (normalised) nblast similarity scores for FlyCircuit neurons}
 \usage{
-fc_nblast(query, target, scoremat = NULL, normalised = FALSE)
+fc_nblast(query, target, scoremat = getOption("flycircuit.scoremat"),
+  normalised = FALSE)
 }
 \arguments{
   \item{normalised}{Logical indicating whether to return

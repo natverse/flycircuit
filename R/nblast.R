@@ -13,8 +13,9 @@
 #' @return Matrix of scores, columns are query neurons, rows, target.
 #' @seealso \code{\link{hclustfc}}
 #' @export
-fc_nblast <- function(query, target, scoremat=NULL, normalised=FALSE){
-  fc_subscoremat(query, target, scoremat=scoremat, 
+fc_nblast <- function(query, target, scoremat=getOption('flycircuit.scoremat'),
+                      normalised=FALSE){
+  fc_subscoremat(query, target, scoremat=scoremat,
                  normalisation=ifelse(normalised,'mean','raw'))
 }
 
@@ -38,13 +39,12 @@ fc_nblast <- function(query, target, scoremat=NULL, normalised=FALSE){
 #'   If \code{distance=TRUE} then this cannot be raw.
 #' @export
 #' @seealso \code{\link{big.matrix}, \link{ff}}
-fc_subscoremat<-function(query, target, scoremat=NULL, distance=FALSE,
-                         normalisation=c('raw', 'normalised', 'mean')){
+fc_subscoremat<-function(query, target, scoremat=getOption('flycircuit.scoremat'),
+                         distance=FALSE, normalisation=c('raw', 'normalised', 'mean')){
   normalisation <- match.arg(normalisation)
   if(distance && normalisation=='raw')
     stop("raw scores are always similarity scores")
   
-  if(is.null(scoremat)) scoremat=getOption('flycircuit.scoremat')
   if(is.character(scoremat)) scoremat <- fc_attach_bigmat(scoremat)
   
   available_gns <- rownames(scoremat)

@@ -3,8 +3,8 @@
 \alias{fc_subscoremat}
 \title{Return scores (or distances) for given query and target neurons}
 \usage{
-fc_subscoremat(query, target, scoremat = NULL, distance = FALSE,
-  normalisation = c("raw", "normalised", "mean"))
+fc_subscoremat(query, target, scoremat = getOption("flycircuit.scoremat"),
+  distance = FALSE, normalisation = c("raw", "normalised", "mean"))
 }
 \arguments{
   \item{query,target}{Vectors of FlyCircuit identifiers}
