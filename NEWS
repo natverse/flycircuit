@@ -1,3 +1,9 @@
+flycircuit 0.5.1
+================
+* fix hclustfc (was not attaching scoremat)
+* refactor fc_subscoremat (using nat.nblast::sub_score_mat)
+* dev: remove internal diagonal function and tests
+
 flycircuit 0.5
 ==============
 * deprecated pop3dfc in favour of nat::npop3d
