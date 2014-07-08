@@ -51,39 +51,3 @@ fc_subscoremat<-function(query, target, scoremat=getOption('flycircuit.scoremat'
                             scoremat = scoremat, distance = distance,
                             normalisation = normalisation)
 }
-
-# utility function to extract diagonal terms from matrices
-# uses the 'diagonal' attribute when available
-#' @importFrom bigmemory is.big.matrix
-#' @importFrom ff is.ff arrayIndex2vectorIndex
-diagonal<-function(x, indices=NULL){
-  if(!isTRUE(nrow(x)==ncol(x))) stop("x is not a square matrix!")
-  
-  if(is.character(indices)) indices=match(indices,rownames(x))
-  if(!is.null(xdiag<-attr(x,'diagonal'))){
-    return(if(is.null(indices)) xdiag else xdiag[indices])
-  }
-
-  if(is.logical(indices)) indices=which(indices)
-  
-  if(is.ff(x)){
-    # convert array indices to vector indices
-    if(is.null(indices)) indices=seq.int(nrow(x))
-    vidxs=arrayIndex2vectorIndex(cbind(indices,indices),dim=dim(x))
-    x[vidxs]
-  } else if(is.big.matrix(x)) {
-    ndiags <- if(is.null(indices)){
-      nrow(x)
-    } else {
-      length(indices)
-    }
-    diags=rep(NA,ndiags)
-    for(i in seq_len(ndiags)){
-      idx=indices[i]
-      diags[i]=x[idx, idx]
-    }
-    diags
-  } else {
-    if(is.null(indices)) diag(x) else diag(x)[indices]
-  }
-}
