@@ -3,9 +3,8 @@
 \alias{hclustfc}
 \title{Cluster a set of FlyCircuit neurons identified by gene_name}
 \usage{
-hclustfc(gns, method = "ward",
-  scoremat = get(getOption("flycircuit.scoremat")), distfun = as.dist, ...,
-  maxneurons = 4000)
+hclustfc(gns, method = "ward", scoremat = getOption("flycircuit.scoremat"),
+  distfun = as.dist, ..., maxneurons = 4000)
 }
 \arguments{
   \item{gns}{FlyCircuit identifiers (passed to

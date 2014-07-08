@@ -21,7 +21,9 @@
 #' plot3d(hckcs, k=3, db=kcs20)
 #' # names of neurons in 3 groups
 #' subset(hckcs, k=3)
-hclustfc <- function(gns, method='ward', scoremat=get(getOption('flycircuit.scoremat')), 
+hclustfc <- function(gns, method='ward', scoremat=getOption('flycircuit.scoremat'), 
                      distfun=as.dist, ..., maxneurons=4000) {
-  nat.nblast::nhclust(fc_gene_name(gns), method=method, scoremat=scoremat, distfun=distfun, maxneurons=maxneurons, ...)
+  if(is.character(scoremat)) scoremat <- fc_attach_bigmat(scoremat)
+  nat.nblast::nhclust(fc_gene_name(gns), method=method, scoremat=scoremat,
+                      distfun=distfun, maxneurons=maxneurons, ...)
 }
