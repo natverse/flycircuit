@@ -54,7 +54,7 @@ plot3dfc <- function(id, col, db=getOption('nat.default.neuronlist'), ...) {
   if(missing(col)) {
     col = if(length(id)>1) rainbow else 'black'
   }
-  nat:::plot3d.character(x=id, col=substitute(col), db=db, ..., SUBSTITUTE = FALSE)
+  do.call(plot3d, args = list(x=id, col=col, db=db, ...))
 }
 
 #' Remove plotted FlyCircuit neurons (deprecated, see nat::npop3d)
