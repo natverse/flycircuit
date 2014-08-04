@@ -1,4 +1,6 @@
 *.md
+*.js
 figure/
 cache/
 *.html
+*cache/
