@@ -2,14 +2,14 @@
 #' 
 #' @details \itemize{
 #'   
-#'   \item Colour defaults to black for a single neuron or rainbow(length(id))
-#'   when more than one neuron is plotted. It can be specified as a function, a
+#'   \item Colour defaults to black for a single neuron or rainbow(length(id)) 
+#'   when more than one neuron is plotted. It can be specified as a function, a 
 #'   vector (length(id)) or a single recycled value.
 #'   
 #'   \item By default when more than 200 neurons are plotted in a single call 
 #'   rgl redraw is suspended. This can be >10x faster.
 #'   
-#'   \item see \code{\link[nat]{npop3d}} can be used to remove the last plotted 
+#'   \item \code{\link[nat]{npop3d}} can be used to remove the last plotted 
 #'   neurons.
 #'   
 #'   \item Plotted soma positions (when \code{soma=TRUE}) is passed as an 
@@ -21,11 +21,12 @@
 #' @param id Vector of FlyCircuit gene or neuron names or idids (passed to 
 #'   \code{\link{fc_gene_name}})
 #' @param col Function or vector specifying colour.
-#' @param db Object of class neuronlist (only tested for dotprops objects).
+#' @param db Object of class \code{neuronlist} or a character vector naming a 
+#'   neuronlist that will be passed to \code{link{get}}.
 #' @param ... Additional arguments for \code{plot3d}
 #' @return List of rgl stack ids (see rgl::plot3d).
 #' @export
-#' @seealso \code{\link[rgl]{plot3d}, \link{pop3dfc}}
+#' @seealso \code{\link[rgl]{plot3d}, \link{pop3dfc}, \link{fc_gene_name}}
 #' @examples
 #' open3d()
 #' library(nat)
@@ -33,7 +34,10 @@
 #' npop3d()
 #' plot3dfc("fru-M-100014", col='red', db=kcs20, soma=TRUE)
 #' rgl.close()
-plot3dfc <- function(id, col, db=get(getOption('nat.default.neuronlist')), ...) {
+plot3dfc <- function(id, col, db=getOption('nat.default.neuronlist'), ...) {
+  if(is.null(db)) stop("Must specify a neuronlist")
+  if(is.character(db)) db=get(db)
+  
   id=fc_gene_name(id)
   # drop any missing ids with a warning
   missing_ids=setdiff(id, names(db))

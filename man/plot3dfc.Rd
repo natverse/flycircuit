@@ -3,7 +3,7 @@
 \alias{plot3dfc}
 \title{Plot FlyCircuit neurons using rgl}
 \usage{
-plot3dfc(id, col, db = get(getOption("nat.default.neuronlist")), ...)
+plot3dfc(id, col, db = getOption("nat.default.neuronlist"), ...)
 }
 \arguments{
   \item{id}{Vector of FlyCircuit gene or neuron names or
@@ -11,8 +11,9 @@ plot3dfc(id, col, db = get(getOption("nat.default.neuronlist")), ...)
 
   \item{col}{Function or vector specifying colour.}
 
-  \item{db}{Object of class neuronlist (only tested for
-  dotprops objects).}
+  \item{db}{Object of class \code{neuronlist} or a
+  character vector naming a neuronlist that will be passed
+  to \code{link{get}}.}
 
   \item{...}{Additional arguments for \code{plot3d}}
 }
@@ -34,8 +35,8 @@ a single recycled value.
 a single call rgl redraw is suspended. This can be >10x
 faster.
 
-\item see \code{\link[nat]{npop3d}} can be used to remove
-the last plotted neurons.
+\item \code{\link[nat]{npop3d}} can be used to remove the
+last plotted neurons.
 
 \item Plotted soma positions (when \code{soma=TRUE}) is
 passed as an additional argument for plot3d.neuronlist are
@@ -54,6 +55,7 @@ plot3dfc("fru-M-100014", col='red', db=kcs20, soma=TRUE)
 rgl.close()
 }
 \seealso{
-\code{\link[rgl]{plot3d}, \link{pop3dfc}}
+\code{\link[rgl]{plot3d}, \link{pop3dfc},
+\link{fc_gene_name}}
 }
 
