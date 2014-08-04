@@ -1,3 +1,8 @@
+flycircuit 0.5.2
+================
+* fix subtle bug in plot3dfc revealed only when this is used inside a function.
+* plot3dfc can now accept a character vector for the db argument.
+
 flycircuit 0.5.1
 ================
 * fix hclustfc (was not attaching scoremat)
