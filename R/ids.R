@@ -80,6 +80,24 @@ fc_neuron<-function(x){
   fcidtable$Name[res]
 }
 
+#' return sex of the animal for one or more FlyCircuit identifiers
+#' 
+#' The sex is computed by normalising the identifier using fc_neuron and then
+#' using the middle letter (e.g. -M-) to identify the sex.
+#' 
+#' @inheritParams fc_neuron
+#' @return a character vector with values "M", "F" or \code{NA_character_}
+#' @examples
+#' fc_sex(1)
+#' fc_sex(c("FruMARCM-M001589_seg001","TPHMARCM-596M_seg1"))
+fc_sex<-function(x){
+  nids=fc_neuron(x)
+  sexes=rep(NA_character_,length(nids))
+  sexes[grepl("-M-",nids,fixed=T)]="M"
+  sexes[grepl("-F-",nids,fixed=T)]="F"
+  sexes
+}
+  
 #' Return the flycircuit gene_name identifier for a file
 #'
 #' This works for a variety of tested filenames including things like:

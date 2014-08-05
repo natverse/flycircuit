@@ -18,3 +18,11 @@ test_that('turn a path into a FlyCircuit gene_name',{
                             checkExists = TRUE),
                'FruMARCM-M002373_seg002')
 })
+
+test_that("identify sex",{
+  expect_equal(fc_sex(1), "M")
+  expect_equal(fc_sex(c("FruMARCM-M001589_seg001","TPHMARCM-596M_seg1")), 
+               c("M","M"))
+  expect_equal(fc_sex(c("FruMARCM-M001589_seg001",'rhubarb')), 
+               c('M',NA_character_))
+})
