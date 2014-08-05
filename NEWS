@@ -1,3 +1,9 @@
+flycircuit 0.5.3
+================
+* add fc_sex utility function to find sex of animal for any valid flycircuit
+  neuron identifier.
+* give hclustfc an unsquare argument
+
 flycircuit 0.5.2
 ================
 * fix subtle bug in plot3dfc revealed only when this is used inside a function.
