@@ -87,6 +87,7 @@ fc_neuron<-function(x){
 #' 
 #' @inheritParams fc_neuron
 #' @return a character vector with values "M", "F" or \code{NA_character_}
+#' @export
 #' @examples
 #' fc_sex(1)
 #' fc_sex(c("FruMARCM-M001589_seg001","TPHMARCM-596M_seg1"))
