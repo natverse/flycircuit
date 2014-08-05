@@ -4,7 +4,7 @@ op=options(flycircuit.scoremat = 'kcs20scores')
 
 test_that("hclustfc can cluster based on gene names", {
   data(kcs20, package='nat')
-  expect_is(hclustres <- hclustfc(fc_gene_name(names(kcs20))), 'hclust')
+  expect_is(hclustres <- hclustfc(names(kcs20)), 'hclust')
   baseline = structure(list(merge = structure(c(-13L, -3L, -7L, -5L, 1L, -12L, 
   -18L, -6L, -4L, -16L, 8L, 6L, -8L, -11L, -2L, -1L, 5L, 13L, 17L, 
   -14L, -10L, -15L, -20L, 2L, -17L, -19L, 3L, -9L, 4L, 10L, 7L, 
@@ -25,6 +25,10 @@ test_that("hclustfc can cluster based on gene names", {
   )), .Names = c("merge", "height", "order", "labels"))
   
   expect_equal(hclustres[1:4], baseline)
+  # unsquared
+  hclustres2=hclustres
+  hclustres2$height=sqrt(hclustres2$height)
+  expect_equal(hclustfc(names(kcs20), unsquare=TRUE)[1:4], hclustres2[1:4])
 })
 
 options(op)
