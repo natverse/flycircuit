@@ -17,7 +17,8 @@ Suggests:
     dendroextras
 Imports:
     bigmemory,
-    ff
+    ff,
+    yaml
 License: GPL-3
 LazyData: true
 VignetteBuilder: knitr
