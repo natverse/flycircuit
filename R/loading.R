@@ -166,3 +166,25 @@ download.file.wcheck<-function(url, destfile, overwrite=FALSE, ...){
   download.file(url, destfile, ...)
 }
 
+
+#' Download data for Supplemental Information for NBLAST paper from Jefferis Lab website
+#'
+#' @param data_name the name of the file to load.
+#' @param type the type of file (data, db, ff, or bigmat).
+#' @param update whether to overwrite an existing file (default: \code{TRUE}).
+#' @param ... extra arguments to pass to \code{\link{fc_download_data}}.
+#'
+#' @return For rda files, a character vector of the names of objects created, invisibly or \code{NULL} if nothing loaded. For rds files, the object itself.
+#' @export
+load_si_data <- function(data_name, type=c('data', 'db', 'bigmat', 'ff'), update=TRUE, ...) {
+  if(!exists(data_name, where=.GlobalEnv)) {
+    fc_download_data(file.path(getOption('flycircuit.si_data_url'), data_name), update=update, type=type, ...)
+    if(type=="data" || type=="db") {
+    data_name <- gsub("\\.rds", "", data_name)
+    data_name <- gsub("\\.rda", "", data_name)
+    load_fcdata(data_name)
+    } else if(type=="bigmat" || type=="ff") {
+      fc_attach_bigmat(data_name)
+    }
+  }
+}
