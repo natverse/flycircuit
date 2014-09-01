@@ -178,7 +178,7 @@ download.file.wcheck<-function(url, destfile, overwrite=FALSE, ...){
 #' @export
 load_si_data <- function(data_name, type=c('data', 'db', 'bigmat', 'ff'), update=TRUE, ...) {
   if(!exists(data_name, where=.GlobalEnv)) {
-    fc_download_data(file.path(getOption('flycircuit.si_data_url'), data_name), update=update, type=type, ...)
+    fc_download_data(file.path(getOption('flycircuit.sidataurl'), data_name), update=update, type=type, ...)
     if(type=="data" || type=="db") {
     data_name <- gsub("\\.rds", "", data_name)
     data_name <- gsub("\\.rda", "", data_name)
