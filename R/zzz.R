@@ -11,7 +11,8 @@
     flycircuit.dbdir=file.path(dd,'db'),
     flycircuit.bigmatdir=file.path(dd,'bigmat'),
     flycircuit.ffdir=file.path(dd,'ff'),
-    flycircuit.scoremat='kcs20scores'
+    flycircuit.scoremat='kcs20scores',
+    flycircuit.sidataurl='http://flybrain.mrc-lmb.cam.ac.uk/si/nblast/flycircuit/'
   )
   
   toset <- !(names(op.flycircuit) %in% names(op))
