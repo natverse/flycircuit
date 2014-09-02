@@ -70,3 +70,208 @@ as.data.frame.APResult <- function(x, row.names=NULL, optional=FALSE, clusters, 
                 idx=ulc,item=names(ulc),row.names=names(ulc),optional=optional,stringsAsFactors=FALSE,...=...)
   df
 }
+
+
+#' Plot exemplar neurons/all cluster members after clustering by affinity
+#' propagation
+#' 
+#' For each cluster, savefun receives the exemplar, the other neurons for the 
+#' current cluster, all exemplars and the cluster_id (numeric). selected is a
+#' list with 0 or 1 named entries for each neuron. An entry can contain up to 3
+#' fields: * keepcluster (TRUE/FALSE) * keep        (character vector of
+#' neurons) * reject      (character vector of neurons)
+#' @param x An APResult object from apcluster
+#' @param plot Whether to plot exemplars or all members of each cluster
+#' @param suppressPlot logical indicating that plots should be suppressed.
+#' @param savefun Optional function called after each plot is shown
+#' @param clusters Names of subset of clusters to plot
+#' @param soma Whether to plot somata (default TRUE)
+#' @param Verbose logical indicating that output should be verbose.
+#' @param selected A list selecting some of the neurons from each cluster (see
+#'   Details)
+#' @param selected_file an optional path to a yaml file to load a selection
+#'   from.
+#' @param yaml logical indicating that selections should be saved as yaml files,
+#'   not rda files.
+#' @param col Optional argument passed to \code{plot3dfc}.
+#' @param ... options passed to plot3dfc when plot=exemplars
+#' @return list with names of selected neurons for each cluster
+#' @importFrom yaml yaml.load_file
+#' @export
+#' @seealso \code{\link[apcluster]{apcluster}}
+#' @examples
+#' \dontrun{
+#' myselection=plot3d(apres15kv2ns,'bycluster')
+#' myselection=LoadObjsFromRda('myselectionfile.rda')[[1]]
+#' mynewselection=plot3d(apres15kv2ns,'bycluster',selected=myselection)
+#' }
+plot3d.APResult<-function(x,plot=c("exemplars","bycluster","all"),suppressPlot=FALSE,
+                          savefun=NULL,clusters=NULL,soma=TRUE,Verbose=TRUE,selected=list(),
+                          selected_file=NULL, yaml=TRUE, col=NULL,...){
+  plot=match.arg(plot)
+  if(is.null(clusters)){
+    exemplars=names(x@exemplars)
+  } else {
+    if(is.numeric(clusters)){
+      # assume that we've been given the numeic id of clusters
+      # (nb not flycircuit idids)
+      exemplars=names(x@exemplars)[clusters]
+    } else exemplars=intersect(clusters,names(x@exemplars))
+  }
+  # FIXME only plot selected neurons if a selection is specified 
+  # even when plotting exemplars or all neurons, not by cluster
+  if(plot=='exemplars'){
+    return(plot3dfc(exemplars,soma=soma,col=col,...))
+  }
+  if(plot=='all'){
+    df=as.data.frame(x,exemplars)
+    if(is.null(col)) col=rainbow(nlevels(df$exemplar))[df$exemplar]
+    return(plot3dfc(df$item,soma=soma,col=col,...))
+  }
+  
+  if(length(selected)==0 && !is.null(selected_file) && file.exists(selected_file)) {
+    selected=yaml.load_file(selected_file)
+    if(!all(names(selected) %in%names(x@exemplars))) stop("Mismatch between exemplars in selection file and apres")
+  }
+  i=1
+  
+  cluster_ids=match(exemplars,names(x@exemplars))
+  while(i <= length(exemplars) & i>0 ){
+    exemplar=exemplars[i]
+    cluster_id=match(exemplar,names(x@exemplars))
+    j=which(names(x@exemplars)==exemplar)
+    if(Verbose) {
+      cat("Cluster:",j,'exemplar:',exemplar,"\n")
+      selex=selected[[exemplar]]
+      extrafields=setdiff(names(selex),c("keep",'selected'))
+      if(!is.null(selex) && length(extrafields))
+        print(selex[extrafields])
+    }
+    others=setdiff(names(x@clusters[[j]]),exemplar)
+    if(!suppressPlot) pl=plot3dfc(exemplar,lwd=4,soma=soma,...)
+    if(length(others)>0){
+      if(!is.null(selected[[exemplar]][['keep']])){
+        # we have a subset of neurons that we have selected from this cluster
+        # just plot those
+        others=intersect(others,selected[[exemplar]]$keep)
+      } 
+      if(!suppressPlot) pl=c(pl,plot3dfc(others,soma=soma,...))
+    }
+    
+    if(is.null(savefun)){
+      chc=readline("Return (or f) [forward], b [back], c [cancel], s [select], p [pause], j [jump], k [keep individuals], r [reject individuals], l [clear individuals], d [save to disk]: ")
+      if(chc=="c") {
+        rgl.pop(unlist(pl),type='shape')
+        break
+      }
+      if(chc=="s") {
+        if(is.null(selected[[exemplar]]$keepcluster)){
+          message("Selected cluster: ",exemplar)
+          selected[[exemplar]]$keepcluster=TRUE
+        } else {
+          # remove the selection field for this exemplar
+          message("Deselected cluster: ",exemplar)
+          selected[[exemplar]]$keepcluster=NULL
+          # if there are no other fields in the sublist for this cluster, 
+          # remove the sublist as well
+          if(length(selected[[exemplar]])==0) selected[[exemplar]]=NULL
+        }
+      }
+      if(chc=='l'){
+        selected[[exemplar]]$keep=NULL
+        if(length(selected[[exemplar]])==0) selected[[exemplar]]=NULL
+        message("Clearing selected individuals for cluster: ",exemplar)
+      }
+      else if(chc=='d'){
+        # save selection to disk
+        if(is.null(selected_file)) selected_file=file.choose(new=TRUE)
+        if(yaml){
+          if(!grepl("\\.yaml$",selected_file)) selected_file=paste(selected_file,sep="",".yaml")
+          message("Saving selection to disk as ",selected_file)
+          writeLines(as.yaml(selected),con=selected_file)
+        } else {
+          if(!grepl("\\.rda$",selected_file)) selected_file=paste(selected_file,sep="",".rda")
+          save(selected,file=selected_file)
+          message("Saving selection to disk as ",selected_file)
+        }
+      }
+      else if(chc=='p') {
+        message("You can now carry out interactive R commands. ",
+                "To assign to global variables, use <<-.\n",
+                "To continue plotting, press return on an empty line (?browser for more info)")
+        browser()
+      }
+      else if(chc=='k' || chc=='r') {
+        cur_rgl_window=rgl.cur()
+        # get camera orientation
+        op=par3d()[c("userMatrix","zoom","windowRect")]
+        nopen3d()
+        # use same camera orientation
+        par3d(op)
+        plot3dfc(exemplar,lwd=3,soma=soma)
+        selected_from_scan=dpscan(others,soma=soma)
+        if(!is.null(selected_from_scan)){
+          # invert selection if we asked to reject not select
+          if(chc=='r') selected_from_scan=setdiff(others,selected_from_scan)
+          if(length(selected_from_scan)==0)
+            selected[[exemplar]]$keep=NULL
+          else 
+            selected[[exemplar]]$keep=selected_from_scan
+          rejected=setdiff(others,selected_from_scan)
+          if(length(selected_from_scan))
+            plot3dfc(selected_from_scan,soma=soma)
+          message("Selected neurons: ",paste(selected[[exemplar]]$keep,collapse=" "))
+          message("Rejected neurons: ",paste(rejected,collapse=" "))
+          readline("Showing current selection. Press return to continue")
+        } else {
+          readline("Aborted selection process. Press return to continue")
+        }
+        rgl.close()
+        rgl.set(cur_rgl_window)
+      }
+      else if(chc=="b") i=i-1
+      else if(chc=="j") {
+        # we're going to jump
+        while(TRUE){
+          jumptarget=readline("Cluster to jump to or c to cancel:")
+          if(jumptarget=='c') break
+          # numeric
+          if(!is.na(as.integer(jumptarget))){
+            # assume this refers to cluster_id of
+            jumptarget=as.integer(jumptarget)
+            if(jumptarget%in%cluster_ids){
+              i=which(cluster_ids==jumptarget)
+              break
+            }
+            else message(jumptarget," is outside range of current clusters")
+          } else {
+            # assume character
+            cand=pmatch(jumptarget,exemplars)
+            if(is.na(cand))
+              message(jumptarget," does not partially match any current exemplar")
+            else {
+              i=cand
+              break
+            }
+          }
+        }
+      }
+      else if(nchar(chc)>1){
+        # maybe a note that we are going to keep
+        if(grepl("=",chc)){
+          key=sub("^([^=]+)=.*$","\\1",chc)
+          value=sub("^[^=]+=(.*)$","\\1",chc)
+          if(is.null(selected[[exemplar]]))
+            selected[[exemplar]]=list()
+          selected[[exemplar]][[key]]=value
+        }
+      }
+      else i=i+1
+    } else {
+      savefun(exemplar,others,names(x@exemplars),cluster_id)
+      i=i+1
+    }
+    if(!suppressPlot) try(rgl.pop(unlist(pl),type='shape'))
+  }
+  selected
+}
