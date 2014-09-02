@@ -121,6 +121,7 @@ fc_attach_ff <- function(ff, envir=NULL, force=FALSE) {
 #' @param type The type of file (data, db, or bigmat)
 #' @param update Whether to overwrite an existing file (default: FALSE)
 #' @param ... Additional arguments passed to download.file (e.g. quiet)
+#' @return The path to the downloaded file.
 #' @export
 #' @seealso \code{\link{download.file}}
 #' @examples
@@ -137,20 +138,23 @@ fc_download_data <- function(url, type=c('data', 'db', 'bigmat', 'ff'), update=F
     'ff' = getOption('flycircuit.ffdir')
   )
   
-  download.file.wcheck(url, destfile=file.path(folderpath, basename(url)), ...,
-                       overwrite=update)
+  destfile <- file.path(folderpath, basename(url))
+  
+  download.file.wcheck(url, destfile=destfile, ..., overwrite=update)
   # If we've been given the URL for a bigmat .desc file, also download the bigmat
   if(folder == 'bigmat') {
     bigmaturl=sub("[.][^.]*$", "", url, perl=T)
-    download.file.wcheck(bigmaturl, destfile=file.path(folderpath, basename(bigmaturl)),
-                         ..., overwrite=update)
+    destfile <- file.path(folderpath, basename(bigmaturl))
+    download.file.wcheck(bigmaturl, destfile=destfile, ..., overwrite=update)
   }
   # If we've been given the URL for a .ff file, also download the .ffrds file
   if(folder == 'ff') {
     ffurl <- paste0(sub("[.][^.]*$", "", url, perl=T), '.ffrds')
-    download.file.wcheck(ffurl, destfile=file.path(folderpath, basename(ffurl)), 
-                         ..., overwrite=update)
+    destfile <- file.path(folderpath, basename(ffurl))
+    download.file.wcheck(ffurl, destfile=destfile, ..., overwrite=update)
   }
+  
+  destfile
 }
 
 # utility function to download a file if not already present

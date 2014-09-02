@@ -4,11 +4,14 @@
 \title{Return (normalised) nblast similarity scores for FlyCircuit neurons}
 \usage{
 fc_nblast(query, target, scoremat = getOption("flycircuit.scoremat"),
-  normalised = FALSE)
+  normalisation = c("raw", "normalised", "mean"))
 }
 \arguments{
-  \item{normalised}{Logical indicating whether to return
-  normalised scores.}
+  \item{normalisation}{the type of normalisation procedure
+  that should be carried out, selected from \code{'raw'},
+  \code{'normalised'} or \code{'mean'} (i.e. the average of
+  normalised scores in both directions). If
+  \code{distance=TRUE} then this cannot be raw.}
 
   \item{query}{Vectors of FlyCircuit identifiers}
 

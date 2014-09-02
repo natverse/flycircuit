@@ -17,6 +17,9 @@ fc_download_data(url, type = c("data", "db", "bigmat", "ff"),
   \item{...}{Additional arguments passed to download.file
   (e.g. quiet)}
 }
+\value{
+The path to the downloaded file.
+}
 \description{
 Download a data file from a remote location
 }
