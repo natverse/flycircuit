@@ -18,7 +18,8 @@ Suggests:
 Imports:
     bigmemory,
     ff,
-    yaml
+    yaml,
+    rappdirs
 License: GPL-3
 LazyData: true
 VignetteBuilder: knitr
