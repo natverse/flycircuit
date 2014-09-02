@@ -14,12 +14,12 @@ Suggests:
     knitr,
     nat (>= 1.5.7),
     nat.nblast (>= 1.2),
-    dendroextras,
-    apcluster
+    dendroextras
 Imports:
     bigmemory,
     ff,
-    yaml
+    yaml,
+    apcluster
 License: GPL-3
 LazyData: true
 VignetteBuilder: knitr

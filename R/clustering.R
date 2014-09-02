@@ -275,3 +275,44 @@ plot3d.APResult<-function(x,plot=c("exemplars","bycluster","all"),suppressPlot=F
   }
   selected
 }
+
+
+#' Affinity propagation clustering of FlyCircuit neurons
+#'
+#' @details Given a vector of gene_names/neuron names or neuronids use apcluster
+#' to carry out a hierarchical clustering. The default value of FUN
+#' will handle square distance matrices and R.
+#' 
+#' The default input preference of 0 has been chosen because an nblast2 score
+#' greater than 0 indicates that pair of neurons show some similarity.
+#' 
+#' Note that the distance matrix will be converted to a similarity matrix before
+#' use with apcluster by calculating 1-d.
+#' 
+#' maxneurons of 4000 has been chosen to prevent inadvertent clustering of huge
+#' numbers of neurons. 4000 is reasonable on a decent laptop.
+#' @param gns flycircuit identifiers (passed to \code{\link{fc_gene_name}}).
+#' @param p input preference (default 0).
+#' @param ... additional parameters passed to \code{\link[apcluster]{apcluster}}.
+#' @param scoremat name of a file backed matrix containing raw scores.
+#' @param FUN an (optional) function to apply to the mean normalised scores 
+#' returned by \code{fc_subscoremat}. Default \code{NULL}.
+#' @param maxneurons error out if we have more than this many neurons.
+#' @return An object of class \code{\link[apcluster]{APResult}}.
+#' @importFrom apcluster apcluster
+#' @export
+#' @seealso \code{\link[apcluster]{apcluster},\link{fc_gene_name}}
+apclusterfc <- function(gns, p=0, ..., scoremat=getOption('flycircuit.scoremat'), 
+                      FUN=NULL, maxneurons=4000) {
+  if (!is.na(maxneurons) && length(gns) > maxneurons) {
+    stop("Too many neurons! Use maxneurons to override if you're sure.")
+  }
+  scores=fc_subscoremat(gns, gns, scoremat=scoremat, distance=FALSE,
+                        normalisation='mean')
+  # nb apcluster requires square similarity matrix
+  if(!is.null(FUN)) {
+    FUN=match.fun(FUN)
+    scores=FUN(scores)
+  }
+  apcluster(scores, p=p, ...)
+}
