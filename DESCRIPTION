@@ -14,7 +14,8 @@ Suggests:
     knitr,
     nat (>= 1.5.7),
     nat.nblast (>= 1.2),
-    dendroextras
+    dendroextras,
+    apcluster
 Imports:
     bigmemory,
     ff,
