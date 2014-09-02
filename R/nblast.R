@@ -9,14 +9,17 @@
 #' @details See the package vignette for an examlple of how to download a 
 #'   precomputed score matrix.
 #' @inheritParams fc_subscoremat
-#' @param normalised Logical indicating whether to return normalised scores.
+#' @param normalisation the type of normalisation procedure that should be 
+#'   carried out, selected from \code{'raw'}, \code{'normalised'} or
+#'   \code{'mean'} (i.e. the average of normalised scores in both directions).
+#'   If \code{distance=TRUE} then this cannot be raw.
 #' @return Matrix of scores, columns are query neurons, rows, target.
 #' @seealso \code{\link{hclustfc}}
 #' @export
 fc_nblast <- function(query, target, scoremat=getOption('flycircuit.scoremat'),
-                      normalised=FALSE){
+                      normalisation = c("raw", "normalised", "mean")) {
   fc_subscoremat(query, target, scoremat=scoremat,
-                 normalisation=ifelse(normalised,'mean','raw'))
+                 normalisation=normalisation)
 }
 
 
