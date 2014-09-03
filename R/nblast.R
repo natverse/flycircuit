@@ -2,17 +2,18 @@
 #' 
 #' Precomputed scores are stored in bigmatrix form on disk. The bigmatrix object
 #' is created in the global environment once per session and then reused. When 
-#' normalised is TRUE, scores are in the interval [-1, 1] or, more exactly, 
-#' range(scorematrix). Higher is always better. NB normalised scores are the 
-#' mean of the normalised forward and reverse scores (as used for clustering in 
-#' hclustfc) but are similarity scores (not distances).
+#' \code{normalisation='normalised'}, scores are in the interval [-1, 1] or,
+#' more exactly, range(scorematrix), as the raw scores are divided by the
+#' self-match score. Higher is always better. When \code{normalisation='mean'},
+#' the returned scores are the mean of the normalised forward and reverse scores
+#' (as used for clustering in \code{\link{hclustfc}}) but are similarity scores
+#' (not distances).
 #' @details See the package vignette for an examlple of how to download a 
 #'   precomputed score matrix.
 #' @inheritParams fc_subscoremat
 #' @param normalisation the type of normalisation procedure that should be 
-#'   carried out, selected from \code{'raw'}, \code{'normalised'} or
+#'   carried out, selected from \code{'raw'}, \code{'normalised'} or 
 #'   \code{'mean'} (i.e. the average of normalised scores in both directions).
-#'   If \code{distance=TRUE} then this cannot be raw.
 #' @return Matrix of scores, columns are query neurons, rows, target.
 #' @seealso \code{\link{hclustfc}}
 #' @export
