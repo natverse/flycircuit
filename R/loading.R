@@ -195,10 +195,10 @@ load_si_data <- function(data_name, type=c('auto', 'data', 'db', 'bigmat', 'ff',
     if(type == "plain") {
       filepath
     } else if(type == "data" || type == "db") {
-      data_name <- gsub("\\.rds", "", data_name)
-      data_name <- gsub("\\.rda", "", data_name)
+      data_name <- gsub("\\.rd[as]$", "", data_name)
       load_fcdata(data_name)
     } else if(type == "bigmat" || type == "ff") {
+      data_name <- gsub("\\.desc$", "", data_name)
       fc_attach_bigmat(data_name)
     }
   }
