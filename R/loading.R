@@ -183,6 +183,7 @@ download.file.wcheck<-function(url, destfile, overwrite=FALSE, ...){
 #' @export
 load_si_data <- function(data_name, type=c('auto', 'data', 'db', 'bigmat', 'ff', 'plain'), update=TRUE, ...) {
   if(!exists(data_name, where=.GlobalEnv)) {
+    type <- match.arg(type)
     if(type == "auto") {
       if(grepl("\\.rd[as]$", data_name)) type <- "data"
       else if(grepl("\\.ff(rds)*$", data_name)) type <- "ff"
