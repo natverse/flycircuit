@@ -2,8 +2,14 @@ context("Loading data")
 
 test_that("load_fcdata can load local file", {
   savepath=file.path(getOption("flycircuit.dbdir"),'fcidtable_copy.rds')
+  on.exit(unlink(savepath))
   saveRDS(fcidtable,file=savepath)
   expect_equal(load_fcdb('fcidtable_copy'), fcidtable)
+  rdapath=file.path(getOption("flycircuit.datadir"),'fcidtable.rda')
+  save(fcidtable,file=rdapath)
+  expect_equal(load_fcdata('fcidtable'), NULL)
+  expect_equal(load_fcdata('fcidtable', Force = T), 'fcidtable')
+  on.exit(unlink(rdapath), add = TRUE)
 })
 
 context("Downloading data")

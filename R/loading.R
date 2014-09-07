@@ -2,8 +2,13 @@
 #' 
 #' @details if object.rda and object.rds \strong{both} exist on disk, the 
 #'   \strong{former} will take priority.
-#' @details Starts by checking whether an object of the appropiate name is
-#'   already loaded unless \code{Force=TRUE}.
+#' @details Starts by checking whether an object of the appropiate name is 
+#'   already loaded in the specified environment unless \code{Force=TRUE}. Note 
+#'   that only the name is inspected and there is no way to check if the object
+#'   matches the one on disk implied by the call i.e. if you create a different
+#'   object with a name matching one that you would like to use with
+#'   \code{load_fcdata}, the object you want will be masked by the one in memory
+#'   and will not be loaded.
 #' @param data Name of object (and the stem of rda file).
 #' @param folder Name of the project subfolder containing object.
 #' @param Force Whether to load even if table already exists (default FALSE).
@@ -19,15 +24,23 @@
 load_fcdata <- function(data, Force=FALSE, folder=c('data','db'),
                         envir=.GlobalEnv, inherits=TRUE) {
   folder <- match.arg(folder)
-  if(exists(data, where=envir, inherits=inherits) && !is.function(get(data)) && !Force)
-    return(NULL)
+  dontload = exists(data, where=envir, inherits=inherits) && !is.function(get(data)) && !Force
   folder <- ifelse(folder == 'db', getOption('flycircuit.dbdir'), getOption('flycircuit.datadir')) 
   rdafile <- file.path(folder, paste(data, sep=".", "rda"))
-  if(file.exists(rdafile)) return(load(rdafile, envir=envir))
+  if(file.exists(rdafile)) {
+    if(dontload) return(invisible(NULL)) else {
+      loadres=load(rdafile, envir=envir)
+      if(length(loadres)!=1)
+        warning("load_fcdata is not recommended when > 1 object per rda file!")
+      if(loadres!=data)
+        warning("load_fcdata expects that object name matches file name!")
+      return(invisible(loadres))
+    } 
+  }
   rdsfile <- file.path(folder, paste(data, sep=".", "rds"))
   if(!file.exists(rdsfile))
     stop("Neither ", rdafile,' nor ',rdsfile,' exists!')
-  readRDS(file=rdsfile)
+  if(dontload) return(get(data)) else readRDS(file=rdsfile)
 }
 
 #' Load a database cached in the db subfolder into the Global Environment
