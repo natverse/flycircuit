@@ -19,7 +19,8 @@ Imports:
     bigmemory,
     ff,
     yaml,
-    apcluster
+    apcluster,
+    rappdirs
 License: GPL-3
 LazyData: true
 VignetteBuilder: knitr

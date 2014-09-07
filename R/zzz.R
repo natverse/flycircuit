@@ -2,14 +2,14 @@
 .onLoad <- function(libname, pkgname) {
   # start by establishing location of data directory
   if(is.null(getOption('flycircuit.datadir'))) 
-    options(flycircuit.datadir=file.path(system.file(package='flycircuit'), 'extdata'))
+    options(flycircuit.datadir=file.path(rappdirs::user_data_dir(appname='rpkg-flycircuit'), 'data'))
   op<-options()
   dd=getOption('flycircuit.datadir')
   
   # then set the other options (if they have not already been set by the user)
   op.flycircuit=list(
-    flycircuit.dbdir=file.path(dd,'db'),
-    flycircuit.bigmatdir=file.path(dd,'bigmat'),
+    flycircuit.dbdir=file.path(dirname(dd),'db'),
+    flycircuit.bigmatdir=file.path(dd,'bigmatrix'),
     flycircuit.ffdir=file.path(dd,'ff'),
     flycircuit.scoremat='kcs20scores',
     flycircuit.sidataurl='http://flybrain.mrc-lmb.cam.ac.uk/si/nblast/flycircuit'
