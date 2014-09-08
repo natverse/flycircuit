@@ -5,7 +5,7 @@
 website}
 \usage{
 load_si_data(data_name, type = c("auto", "data", "db", "bigmat", "ff",
-  "plain"), update = TRUE, ...)
+  "plain"), overwrite = FALSE, ...)
 }
 \arguments{
   \item{data_name}{the name of the file to load.}
@@ -15,8 +15,9 @@ load_si_data(data_name, type = c("auto", "data", "db", "bigmat", "ff",
   that the file should just be downloaded, or the type of
   file (data, db, ff, or bigmat).}
 
-  \item{update}{whether to overwrite an existing file
-  (default: \code{TRUE}).}
+  \item{overwrite}{whether to overwrite an existing file
+  (default: \code{FALSE}). See
+  \code{\link{fc_download_data}}.}
 
   \item{...}{extra arguments to pass to
   \code{\link{fc_download_data}}.}

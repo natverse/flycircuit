@@ -127,14 +127,21 @@ fc_attach_ff <- function(ff, envir=NULL, force=FALSE) {
 
 #' Download a data file from a remote location
 #' 
-#' @details the \code{update} argument could be more intelligently implemented 
-#'   e.g. by comparing the etag reported by the url header to see if the file
-#'   has changed.
-#' @param url The location of the remote file
-#' @param type The type of file (data, db, or bigmat)
-#' @param update Whether to overwrite an existing file (default: FALSE)
-#' @param ... Additional arguments passed to download.file (e.g. quiet)
+#' @details The default value for the \code{overwrite} argument can be changed
+#'   by setting \code{options('flycircuit.remote_overwrite')} to \code{TRUE} or
+#'   \code{FALSE}. Setting this to \code{FALSE} may be useful if checking the
+#'   headers of the remote files takes too long.
+#'   
+#' @param url the location of the remote file.
+#' @param type the type of file (data, db, or bigmat).
+#' @param overwrite whether to overwrite an existing file. If \code{NULL} (the 
+#'   default package option), the HTTP headers are inspected to see if the 
+#'   remote version is newer than the local version and only downloads the 
+#'   remote version if this is so.
+#' @param ... additional arguments passed to download.file (e.g. quiet).
 #' @return The path to the downloaded file.
+#'   
+#' @importFrom httr HEAD
 #' @export
 #' @seealso \code{\link{download.file}}
 #' @examples
@@ -142,7 +149,7 @@ fc_attach_ff <- function(ff, envir=NULL, force=FALSE) {
 #' fc_download_data("http://myurl.com/data", quiet=TRUE)
 #' fc_download_data("http://myurl.com/data.ff", type='ff')
 #' }
-fc_download_data <- function(url, type=c('data', 'db', 'bigmat', 'ff'), update=FALSE, ...) {
+fc_download_data <- function(url, type=c('data', 'db', 'bigmat', 'ff'), overwrite=getOption('flycircuit.remote_overwrite'), ...) {
   folder <- match.arg(type)
   folderpath <- switch(folder,
     'data' = getOption('flycircuit.datadir'),
@@ -153,18 +160,32 @@ fc_download_data <- function(url, type=c('data', 'db', 'bigmat', 'ff'), update=F
   
   destfile <- file.path(folderpath, basename(url))
   
-  download.file.wcheck(url, destfile=destfile, ..., overwrite=update)
+  http_header <- HEAD(url)
+  header_file <- paste0(destfile, '.http_header.rds')
+  needs_update <- TRUE
+  
+  if(file.exists(header_file)) {
+    http_file_header <- readRDS(header_file)
+    needs_update <- !identical(http_header$headers$etag, http_file_header$headers$etag)
+    if(!is.null(overwrite)) needs_update <- overwrite
+    if(!needs_update) message("Using cached version of file.")
+  }
+  saveRDS(http_header[c("url", "headers")], file=header_file, compress='xz')
+  if(is.null(overwrite)) overwrite <- TRUE
+  
+  if(needs_update) download.file.wcheck(url, destfile=destfile, ..., overwrite=overwrite)
+  
   # If we've been given the URL for a bigmat .desc file, also download the bigmat
   if(folder == 'bigmat') {
     bigmaturl=sub("[.][^.]*$", "", url, perl=T)
     destfile <- file.path(folderpath, basename(bigmaturl))
-    download.file.wcheck(bigmaturl, destfile=destfile, ..., overwrite=update)
+    if(needs_update) download.file.wcheck(bigmaturl, destfile=destfile, ..., overwrite=overwrite)
   }
   # If we've been given the URL for a .ff file, also download the .ffrds file
   if(folder == 'ff') {
     ffurl <- paste0(sub("[.][^.]*$", "", url, perl=T), '.ffrds')
     destfile <- file.path(folderpath, basename(ffurl))
-    download.file.wcheck(ffurl, destfile=destfile, ..., overwrite=update)
+    if(needs_update) download.file.wcheck(ffurl, destfile=destfile, ..., overwrite=overwrite)
   }
   
   destfile
@@ -184,17 +205,18 @@ download.file.wcheck<-function(url, destfile, overwrite=FALSE, ...){
 #' website
 #' 
 #' @param data_name the name of the file to load.
-#' @param type either \code{auto}, stating that the file should be handled
-#'   automagically, \code{plain}, specifying that the file should just be
+#' @param type either \code{auto}, stating that the file should be handled 
+#'   automagically, \code{plain}, specifying that the file should just be 
 #'   downloaded, or the type of file (data, db, ff, or bigmat).
-#' @param update whether to overwrite an existing file (default: \code{TRUE}).
+#' @param overwrite whether to overwrite an existing file (default:
+#'   \code{FALSE}). See \code{\link{fc_download_data}}.
 #' @param ... extra arguments to pass to \code{\link{fc_download_data}}.
 #'   
 #' @return For rda files, a character vector of the names of objects created, 
 #'   invisibly or \code{NULL} if nothing loaded. For rds files, the object 
 #'   itself. Otherwise, the path to the downloaded file.
 #' @export
-load_si_data <- function(data_name, type=c('auto', 'data', 'db', 'bigmat', 'ff', 'plain'), update=TRUE, ...) {
+load_si_data <- function(data_name, type=c('auto', 'data', 'db', 'bigmat', 'ff', 'plain'), overwrite=FALSE, ...) {
   if(!exists(data_name, where=.GlobalEnv)) {
     type <- match.arg(type)
     if(type == "auto") {
@@ -203,7 +225,7 @@ load_si_data <- function(data_name, type=c('auto', 'data', 'db', 'bigmat', 'ff',
       else if(grepl("\\.desc$", data_name)) type <- "bigmat"
       else type <- "plain"
     }
-    filepath <- fc_download_data(file.path(getOption('flycircuit.sidataurl'), data_name), update=update, type=ifelse(type=="plain", "data", type), ...)
+    filepath <- fc_download_data(file.path(getOption('flycircuit.sidataurl'), data_name), overwrite=overwrite, type=ifelse(type=="plain", "data", type), ...)
     
     if(type == "plain") {
       filepath

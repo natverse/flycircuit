@@ -20,7 +20,8 @@ Imports:
     ff,
     yaml,
     apcluster,
-    rappdirs
+    rappdirs,
+    httr
 License: GPL-3
 LazyData: true
 VignetteBuilder: knitr

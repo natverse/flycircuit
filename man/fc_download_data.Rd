@@ -4,18 +4,21 @@
 \title{Download a data file from a remote location}
 \usage{
 fc_download_data(url, type = c("data", "db", "bigmat", "ff"),
-  update = FALSE, ...)
+  overwrite = getOption("flycircuit.remote_overwrite"), ...)
 }
 \arguments{
-  \item{url}{The location of the remote file}
+  \item{url}{the location of the remote file.}
 
-  \item{type}{The type of file (data, db, or bigmat)}
+  \item{type}{the type of file (data, db, or bigmat).}
 
-  \item{update}{Whether to overwrite an existing file
-  (default: FALSE)}
+  \item{overwrite}{whether to overwrite an existing file.
+  If \code{NULL} (the default package option), the HTTP
+  headers are inspected to see if the remote version is
+  newer than the local version and only downloads the
+  remote version if this is so.}
 
-  \item{...}{Additional arguments passed to download.file
-  (e.g. quiet)}
+  \item{...}{additional arguments passed to download.file
+  (e.g. quiet).}
 }
 \value{
 The path to the downloaded file.
@@ -24,9 +27,12 @@ The path to the downloaded file.
 Download a data file from a remote location
 }
 \details{
-the \code{update} argument could be more intelligently
-implemented e.g. by comparing the etag reported by the url
-header to see if the file has changed.
+The default value for the \code{overwrite} argument can be
+changed by setting
+\code{options('flycircuit.remote_overwrite')} to
+\code{TRUE} or \code{FALSE}. Setting this to \code{FALSE}
+may be useful if checking the headers of the remote files
+takes too long.
 }
 \examples{
 \dontrun{
