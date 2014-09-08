@@ -162,6 +162,7 @@ fc_download_data <- function(url, type=c('data', 'db', 'bigmat', 'ff'), update=F
   if(file.exists(header_file)) {
     http_file_header <- readRDS(header_file)
     needs_update <- !identical(http_header$headers$etag, http_file_header$headers$etag)
+    needs_update <- update | needs_update
     if(!needs_update) message("Using cached version of file.")
   }
   saveRDS(http_header[c("url", "headers")], file=header_file, compress='xz')
