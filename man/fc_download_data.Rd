@@ -26,6 +26,14 @@ The path to the downloaded file.
 \description{
 Download a data file from a remote location
 }
+\details{
+The default value for the \code{overwrite} argument can be
+changed by setting
+\code{options('flycircuit.remote_overwrite')} to
+\code{TRUE} or \code{FALSE}. Setting this to \code{FALSE}
+may be useful if checking the headers of the remote files
+takes too long.
+}
 \examples{
 \dontrun{
 fc_download_data("http://myurl.com/data", quiet=TRUE)

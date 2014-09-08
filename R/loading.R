@@ -127,9 +127,14 @@ fc_attach_ff <- function(ff, envir=NULL, force=FALSE) {
 
 #' Download a data file from a remote location
 #' 
+#' @details The default value for the \code{overwrite} argument can be changed
+#'   by setting \code{options('flycircuit.remote_overwrite')} to \code{TRUE} or
+#'   \code{FALSE}. Setting this to \code{FALSE} may be useful if checking the
+#'   headers of the remote files takes too long.
+#'   
 #' @param url the location of the remote file.
 #' @param type the type of file (data, db, or bigmat).
-#' @param overwrite whether to overwrite an existing file. If \code{NULL} (the
+#' @param overwrite whether to overwrite an existing file. If \code{NULL} (the 
 #'   default package option), the HTTP headers are inspected to see if the 
 #'   remote version is newer than the local version and only downloads the 
 #'   remote version if this is so.
