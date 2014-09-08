@@ -135,6 +135,8 @@ fc_attach_ff <- function(ff, envir=NULL, force=FALSE) {
 #' @param update Whether to overwrite an existing file (default: FALSE)
 #' @param ... Additional arguments passed to download.file (e.g. quiet)
 #' @return The path to the downloaded file.
+#' 
+#' @importFrom httr HEAD
 #' @export
 #' @seealso \code{\link{download.file}}
 #' @examples
@@ -153,18 +155,30 @@ fc_download_data <- function(url, type=c('data', 'db', 'bigmat', 'ff'), update=F
   
   destfile <- file.path(folderpath, basename(url))
   
-  download.file.wcheck(url, destfile=destfile, ..., overwrite=update)
+  http_header <- HEAD(url)
+  header_file <- paste0(destfile, '.http_header.rds')
+  needs_update <- TRUE
+  
+  if(file.exists(header_file)) {
+    http_file_header <- readRDS(header_file)
+    needs_update <- !identical(http_header$headers$etag, http_file_header$headers$etag)
+    if(!needs_update) message("Using cached version of file.")
+  }
+  saveRDS(http_header[c("url", "headers")], file=header_file, compress='xz')
+  
+  if(needs_update) download.file.wcheck(url, destfile=destfile, ..., overwrite=update)
+  
   # If we've been given the URL for a bigmat .desc file, also download the bigmat
   if(folder == 'bigmat') {
     bigmaturl=sub("[.][^.]*$", "", url, perl=T)
     destfile <- file.path(folderpath, basename(bigmaturl))
-    download.file.wcheck(bigmaturl, destfile=destfile, ..., overwrite=update)
+    if(needs_update) download.file.wcheck(bigmaturl, destfile=destfile, ..., overwrite=update)
   }
   # If we've been given the URL for a .ff file, also download the .ffrds file
   if(folder == 'ff') {
     ffurl <- paste0(sub("[.][^.]*$", "", url, perl=T), '.ffrds')
     destfile <- file.path(folderpath, basename(ffurl))
-    download.file.wcheck(ffurl, destfile=destfile, ..., overwrite=update)
+    if(needs_update) download.file.wcheck(ffurl, destfile=destfile, ..., overwrite=update)
   }
   
   destfile
