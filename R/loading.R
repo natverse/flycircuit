@@ -200,17 +200,18 @@ download.file.wcheck<-function(url, destfile, overwrite=FALSE, ...){
 #' website
 #' 
 #' @param data_name the name of the file to load.
-#' @param type either \code{auto}, stating that the file should be handled
-#'   automagically, \code{plain}, specifying that the file should just be
+#' @param type either \code{auto}, stating that the file should be handled 
+#'   automagically, \code{plain}, specifying that the file should just be 
 #'   downloaded, or the type of file (data, db, ff, or bigmat).
-#' @param update whether to overwrite an existing file (default: \code{TRUE}).
+#' @param overwrite whether to overwrite an existing file (default:
+#'   \code{FALSE}). See \code{\link{fc_download_data}}.
 #' @param ... extra arguments to pass to \code{\link{fc_download_data}}.
 #'   
 #' @return For rda files, a character vector of the names of objects created, 
 #'   invisibly or \code{NULL} if nothing loaded. For rds files, the object 
 #'   itself. Otherwise, the path to the downloaded file.
 #' @export
-load_si_data <- function(data_name, type=c('auto', 'data', 'db', 'bigmat', 'ff', 'plain'), update=TRUE, ...) {
+load_si_data <- function(data_name, type=c('auto', 'data', 'db', 'bigmat', 'ff', 'plain'), overwrite=FALSE, ...) {
   if(!exists(data_name, where=.GlobalEnv)) {
     type <- match.arg(type)
     if(type == "auto") {
@@ -219,7 +220,7 @@ load_si_data <- function(data_name, type=c('auto', 'data', 'db', 'bigmat', 'ff',
       else if(grepl("\\.desc$", data_name)) type <- "bigmat"
       else type <- "plain"
     }
-    filepath <- fc_download_data(file.path(getOption('flycircuit.sidataurl'), data_name), update=update, type=ifelse(type=="plain", "data", type), ...)
+    filepath <- fc_download_data(file.path(getOption('flycircuit.sidataurl'), data_name), overwrite=overwrite, type=ifelse(type=="plain", "data", type), ...)
     
     if(type == "plain") {
       filepath
