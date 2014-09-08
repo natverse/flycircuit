@@ -127,15 +127,15 @@ fc_attach_ff <- function(ff, envir=NULL, force=FALSE) {
 
 #' Download a data file from a remote location
 #' 
-#' @details the \code{update} argument could be more intelligently implemented 
-#'   e.g. by comparing the etag reported by the url header to see if the file
-#'   has changed.
-#' @param url The location of the remote file
-#' @param type The type of file (data, db, or bigmat)
-#' @param update Whether to overwrite an existing file (default: FALSE)
-#' @param ... Additional arguments passed to download.file (e.g. quiet)
+#' @param url the location of the remote file.
+#' @param type the type of file (data, db, or bigmat).
+#' @param overwrite whether to overwrite an existing file. If \code{NULL} (the
+#'   default package option), the HTTP headers are inspected to see if the 
+#'   remote version is newer than the local version and only downloads the 
+#'   remote version if this is so.
+#' @param ... additional arguments passed to download.file (e.g. quiet).
 #' @return The path to the downloaded file.
-#' 
+#'   
 #' @importFrom httr HEAD
 #' @export
 #' @seealso \code{\link{download.file}}
@@ -144,7 +144,7 @@ fc_attach_ff <- function(ff, envir=NULL, force=FALSE) {
 #' fc_download_data("http://myurl.com/data", quiet=TRUE)
 #' fc_download_data("http://myurl.com/data.ff", type='ff')
 #' }
-fc_download_data <- function(url, type=c('data', 'db', 'bigmat', 'ff'), update=FALSE, ...) {
+fc_download_data <- function(url, type=c('data', 'db', 'bigmat', 'ff'), overwrite=getOption('flycircuit.remote_overwrite'), ...) {
   folder <- match.arg(type)
   folderpath <- switch(folder,
     'data' = getOption('flycircuit.datadir'),
@@ -162,24 +162,25 @@ fc_download_data <- function(url, type=c('data', 'db', 'bigmat', 'ff'), update=F
   if(file.exists(header_file)) {
     http_file_header <- readRDS(header_file)
     needs_update <- !identical(http_header$headers$etag, http_file_header$headers$etag)
-    needs_update <- update | needs_update
+    if(!is.null(overwrite)) needs_update <- overwrite
     if(!needs_update) message("Using cached version of file.")
   }
   saveRDS(http_header[c("url", "headers")], file=header_file, compress='xz')
+  if(is.null(overwrite)) overwrite <- TRUE
   
-  if(needs_update) download.file.wcheck(url, destfile=destfile, ..., overwrite=update)
+  if(needs_update) download.file.wcheck(url, destfile=destfile, ..., overwrite=overwrite)
   
   # If we've been given the URL for a bigmat .desc file, also download the bigmat
   if(folder == 'bigmat') {
     bigmaturl=sub("[.][^.]*$", "", url, perl=T)
     destfile <- file.path(folderpath, basename(bigmaturl))
-    if(needs_update) download.file.wcheck(bigmaturl, destfile=destfile, ..., overwrite=update)
+    if(needs_update) download.file.wcheck(bigmaturl, destfile=destfile, ..., overwrite=overwrite)
   }
   # If we've been given the URL for a .ff file, also download the .ffrds file
   if(folder == 'ff') {
     ffurl <- paste0(sub("[.][^.]*$", "", url, perl=T), '.ffrds')
     destfile <- file.path(folderpath, basename(ffurl))
-    if(needs_update) download.file.wcheck(ffurl, destfile=destfile, ..., overwrite=update)
+    if(needs_update) download.file.wcheck(ffurl, destfile=destfile, ..., overwrite=overwrite)
   }
   
   destfile
