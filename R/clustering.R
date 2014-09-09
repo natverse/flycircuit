@@ -125,7 +125,7 @@ plot3d.APResult<-function(x,plot=c("exemplars","bycluster","all"),suppressPlot=F
   }
   if(plot=='all'){
     df=as.data.frame(x,exemplars)
-    if(!is.null(clusters)) df <- df[df$cluster %in% clusters, ]
+    if(!is.null(clusters)) df <- droplevels(df[df$cluster %in% clusters, ])
     if(is.null(col)) col=rainbow(nlevels(df$exemplar))[df$exemplar]
     return(plot3dfc(df$item,soma=soma,col=col,...))
   }
