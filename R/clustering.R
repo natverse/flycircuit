@@ -118,13 +118,14 @@ plot3d.APResult<-function(x,plot=c("exemplars","bycluster","all"),suppressPlot=F
       exemplars=names(x@exemplars)[clusters]
     } else exemplars=intersect(clusters,names(x@exemplars))
   }
-  # FIXME only plot selected neurons if a selection is specified 
-  # even when plotting exemplars or all neurons, not by cluster
+  
+
   if(plot=='exemplars'){
     return(plot3dfc(exemplars,soma=soma,col=col,...))
   }
   if(plot=='all'){
     df=as.data.frame(x,exemplars)
+    if(!is.null(clusters)) df <- df[df$cluster %in% clusters, ]
     if(is.null(col)) col=rainbow(nlevels(df$exemplar))[df$exemplar]
     return(plot3dfc(df$item,soma=soma,col=col,...))
   }
