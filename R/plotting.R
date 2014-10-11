@@ -156,8 +156,6 @@ selectRegionsFromSurf <- function(surf, selfun=NULL) {
 #' forwards and backwards.
 #' 
 #' @param neurons character vector of names of neuron to plot.
-#' @param flip logical vector indicating whether to use list containing flipped
-#'   neurons. Recycled if length 1.
 #' @param col the color with which to plot the neurons (default \code{'red'}).
 #' @param Verbose logical indicating that info about each selected neuron should
 #'   be printed (default \code{TRUE}).
@@ -180,10 +178,9 @@ selectRegionsFromSurf <- function(surf, selfun=NULL) {
 #' @importFrom yaml yaml.load_file
 #' @importFrom yaml as.yaml
 #' @export
-dpscan <- function(neurons, flip=F, col='red', Verbose=T, Wait=T, sleep=0.1,
+dpscan <- function(neurons, col='red', Verbose=T, Wait=T, sleep=0.1,
                    extrafun=NULL, selected_file=NULL, selected_col='green', yaml=TRUE, ...) {
   frames <- length(neurons)
-  if(length(flip)==1) flip <- rep(flip,frames)
   if(length(col)==1) col <- rep(col,frames)
   selected <- character()
   i <- 1
@@ -210,7 +207,7 @@ dpscan <- function(neurons, flip=F, col='red', Verbose=T, Wait=T, sleep=0.1,
     if(i > length(neurons) || i < 1) break
     n <- neurons[i]
     cat("Current neuron:", n, "(", i, "/", length(neurons), ")\n")
-    pl <- plot3dfc(n, col=ifelse(n %in% selected, selected_col, col[i]), flip=flip[i], ...)
+    pl <- plot3dfc(n, col=ifelse(n %in% selected, selected_col, col[i]), ...)
     # call user supplied function
     more_rgl_ids <- list()
     if(!is.null(extrafun))

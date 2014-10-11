@@ -3,16 +3,13 @@
 \alias{dpscan}
 \title{Scan through a set of flycircuit neurons, plotting each with plot3dfc}
 \usage{
-dpscan(neurons, flip = F, col = "red", Verbose = T, Wait = T,
-  sleep = 0.1, extrafun = NULL, selected_file = NULL,
-  selected_col = "green", yaml = TRUE, ...)
+dpscan(neurons, col = "red", Verbose = T, Wait = T, sleep = 0.1,
+  extrafun = NULL, selected_file = NULL, selected_col = "green",
+  yaml = TRUE, ...)
 }
 \arguments{
   \item{neurons}{character vector of names of neuron to
   plot.}
-
-  \item{flip}{logical vector indicating whether to use list
-  containing flipped neurons. Recycled if length 1.}
 
   \item{col}{the color with which to plot the neurons
   (default \code{'red'}).}
