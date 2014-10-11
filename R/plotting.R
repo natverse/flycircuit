@@ -154,7 +154,7 @@ selectRegionsFromSurf <- function(surf, selfun=NULL) {
 #' 
 #' Can also choose to select specific neurons along the way and navigate 
 #' forwards and backwards. NB this is simply a wrapper for 
-#' \code{nat::\link{nlscan}}, with the additional function of converting all
+#' \code{nat::\link{nlscan}}, with the additional function of converting all 
 #' neuron identifiers to standard flycircuit identifiers.
 #' 
 #' @param neurons vector of flycircuit identifiers to plot *(anything that 
@@ -178,11 +178,23 @@ selectRegionsFromSurf <- function(surf, selfun=NULL) {
 #'   \code{yaml} rather than \code{rda} format.
 #' @param ... extra arguments to pass to \code{\link{plot3dfc}}.
 #'   
-#' @return A character vector of names of any selected neurons, \code{NULL} if 
+#' @return A character vector of names of any selected neurons, of length 0 if 
 #'   none selected.
 #' @importFrom yaml yaml.load_file
 #' @importFrom yaml as.yaml
 #' @export
+#' @seealso \code{\link[nat]{nlscan}}, \code{\link{fc_gene_name}}
+#' @examples
+#' \dontrun{
+#' # numeric idids, specifying db explicitly
+#' dpscan(c(1024L, 10616L, 8399L), db=kcs20)
+#' 
+#' # using an option to set db
+#' op<-options(nat.default.neuronlist='kcs20')
+#' dpscan(c("fru-M-500112", "Gad1-F-900005", "Gad1-F-100010"))
+#' options(op)
+#' 
+#' }
 dpscan <- function(neurons, db=NULL, col='red', 
                    Verbose=T, Wait=T, sleep=0.1, extrafun=NULL, 
                    selected_file=NULL, selected_col='green', yaml=TRUE, ...) {
