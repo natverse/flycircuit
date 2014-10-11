@@ -154,7 +154,7 @@ selectRegionsFromSurf <- function(surf, selfun=NULL) {
 #' 
 #' Can also choose to select specific neurons along the way and navigate 
 #' forwards and backwards. NB this is simply a wrapper for 
-#' \code{nat::\link{nlscan}}, with the additional function of converting all 
+#' \code{nat::\link[nat]{nlscan}}, with the additional function of converting all 
 #' neuron identifiers to standard flycircuit identifiers.
 #' 
 #' @param neurons vector of flycircuit identifiers to plot *(anything that 

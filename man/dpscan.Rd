@@ -52,9 +52,9 @@ length 0 if none selected.
 \description{
 Can also choose to select specific neurons along the way
 and navigate forwards and backwards. NB this is simply a
-wrapper for \code{nat::\link{nlscan}}, with the additional
-function of converting all neuron identifiers to standard
-flycircuit identifiers.
+wrapper for \code{nat::\link[nat]{nlscan}}, with the
+additional function of converting all neuron identifiers to
+standard flycircuit identifiers.
 }
 \examples{
 \dontrun{
