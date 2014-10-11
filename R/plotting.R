@@ -178,8 +178,11 @@ selectRegionsFromSurf <- function(surf, selfun=NULL) {
 #' @importFrom yaml yaml.load_file
 #' @importFrom yaml as.yaml
 #' @export
-dpscan <- function(neurons, col='red', Verbose=T, Wait=T, sleep=0.1,
-                   extrafun=NULL, selected_file=NULL, selected_col='green', yaml=TRUE, ...) {
+dpscan <- function(neurons, db=getOption('nat.default.neuronlist'), col='red', 
+                   Verbose=T, Wait=T, sleep=0.1, extrafun=NULL, 
+                   selected_file=NULL, selected_col='green', yaml=TRUE, ...) {
+  neurons=fc_gene_name(neurons)
+  
   frames <- length(neurons)
   if(length(col)==1) col <- rep(col,frames)
   selected <- character()
@@ -207,7 +210,7 @@ dpscan <- function(neurons, col='red', Verbose=T, Wait=T, sleep=0.1,
     if(i > length(neurons) || i < 1) break
     n <- neurons[i]
     cat("Current neuron:", n, "(", i, "/", length(neurons), ")\n")
-    pl <- plot3dfc(n, col=ifelse(n %in% selected, selected_col, col[i]), ...)
+    pl <- plot3dfc(n, col=ifelse(n %in% selected, selected_col, col[i]), db=db, ...)
     # call user supplied function
     more_rgl_ids <- list()
     if(!is.null(extrafun))

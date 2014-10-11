@@ -3,9 +3,9 @@
 \alias{dpscan}
 \title{Scan through a set of flycircuit neurons, plotting each with plot3dfc}
 \usage{
-dpscan(neurons, col = "red", Verbose = T, Wait = T, sleep = 0.1,
-  extrafun = NULL, selected_file = NULL, selected_col = "green",
-  yaml = TRUE, ...)
+dpscan(neurons, db = getOption("nat.default.neuronlist"), col = "red",
+  Verbose = T, Wait = T, sleep = 0.1, extrafun = NULL,
+  selected_file = NULL, selected_col = "green", yaml = TRUE, ...)
 }
 \arguments{
   \item{neurons}{character vector of names of neuron to
