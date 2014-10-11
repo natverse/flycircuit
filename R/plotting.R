@@ -150,13 +150,18 @@ selectRegionsFromSurf <- function(surf, selfun=NULL) {
 }
 
 
-#' Scan through a set of flycircuit neurons, plotting each with plot3dfc
+#' Scan through a set of flycircuit neurons
 #' 
 #' Can also choose to select specific neurons along the way and navigate 
-#' forwards and backwards.
+#' forwards and backwards. NB this is simply a wrapper for 
+#' \code{nat::\link{nlscan}}, with the additional function of converting all
+#' neuron identifiers to standard flycircuit identifiers.
 #' 
-#' @param neurons character vector of names of neuron to plot.
-#' @param col the color with which to plot the neurons (default \code{'red'}).
+#' @param neurons vector of flycircuit identifiers to plot *(anything that 
+#'   \code{\link{fc_gene_name}} understands)
+#' @param db the neuronlist containing the neurons. Defaults to the list named 
+#'   by \code{options("nat.default.neuronlist")}.
+#' @param col the colour with which to plot the neurons (default \code{'red'}).
 #' @param Verbose logical indicating that info about each selected neuron should
 #'   be printed (default \code{TRUE}).
 #' @param Wait logical indicating that there should be a pause between each 
@@ -178,68 +183,28 @@ selectRegionsFromSurf <- function(surf, selfun=NULL) {
 #' @importFrom yaml yaml.load_file
 #' @importFrom yaml as.yaml
 #' @export
-dpscan <- function(neurons, db=getOption('nat.default.neuronlist'), col='red', 
+dpscan <- function(neurons, db=NULL, col='red', 
                    Verbose=T, Wait=T, sleep=0.1, extrafun=NULL, 
                    selected_file=NULL, selected_col='green', yaml=TRUE, ...) {
+  if(is.null(db))
+    db=get(getOption('nat.default.neuronlist',
+                   default=stop('Option "nat.default.neuronlist" is not set.',
+                                ' See ?nat for details.')))
+  if(!is.neuronlist(db))
+    stop("Please set options(nat.default.neuronlist='myfavneuronlist'). ",
+         "See ?nat for details.")
+  
+  # convert identifiers to standard flycircuit ids
   neurons=fc_gene_name(neurons)
-  
-  frames <- length(neurons)
-  if(length(col)==1) col <- rep(col,frames)
-  selected <- character()
-  i <- 1
-  if(!is.null(selected_file) && file.exists(selected_file)) {
-    selected <- yaml.load_file(selected_file)
-    if(!all(names(selected) %in% neurons)) stop("Mismatch between selection file and neurons.")
+  # drop any missing ids with a warning
+  missing_ids=setdiff(neurons, names(db))
+  if(nmissing<-length(missing_ids)){
+    warning("Dropping ", nmissing,' neurons that are not present in db!')
+    neurons=setdiff(neurons, missing_ids)
   }
-  
-  savetodisk <- function(selected, selected_file) {
-    if(is.null(selected_file)) selected_file <- file.choose(new=TRUE)
-    if(yaml){
-      if(!grepl("\\.yaml$",selected_file)) selected_file <- paste(selected_file,sep="",".yaml")
-      message("Saving selection to disk as ", selected_file, ".")
-      writeLines(as.yaml(selected), con=selected_file)
-    } else {
-      if(!grepl("\\.rda$", selected_file)) selected_file <- paste(selected_file, sep="", ".rda")
-      save(selected, file=selected_file)
-      message("Saving selection to disk as ", selected_file)
-    }
-    selected_file
-  }
-  
-  while(TRUE){
-    if(i > length(neurons) || i < 1) break
-    n <- neurons[i]
-    cat("Current neuron:", n, "(", i, "/", length(neurons), ")\n")
-    pl <- plot3dfc(n, col=ifelse(n %in% selected, selected_col, col[i]), db=db, ...)
-    # call user supplied function
-    more_rgl_ids <- list()
-    if(!is.null(extrafun))
-      more_rgl_ids <- extrafun(n, selected=selected)
-    if(Wait){
-      chc <- readline("Return to continue, b to go back, s to select, d [save to disk], t to stop, c to cancel (without returning a selection): ")
-      if(chc=="c" || chc=='t'){
-        sapply(pl, rgl.pop, type='shape')
-        sapply(more_rgl_ids, rgl.pop, type='shape')
-        break
-      }
-      if(chc=="s") {
-        if(n %in% selected) {
-          message("Deselected: ", n)
-          selected <- setdiff(selected, n)
-        } else selected <- union(selected, n)
-      }
-      if(chc=="b") i <- i-1
-      else if (chc=='d') savetodisk(selected, selected_file)
-      else i <- i+1
-    } else {
-      Sys.sleep(sleep)
-      i <- i+1
-    }
-    sapply(pl, rgl.pop, type='shape')
-    sapply(more_rgl_ids, rgl.pop, type='shape')
-  }
-  if(chc=='c') return(NULL)
-  if(!is.null(selected_file)) savetodisk(selected, selected_file)
-  selected
+
+  nlscan(neurons, db=db, col=col, Verbose=Verbose, Wait=Wait, sleep=sleep,
+         extrafun=extrafun, selected_file=selected_file, selected_col=selected_col,
+         yaml=yaml, ...)
 }
 
