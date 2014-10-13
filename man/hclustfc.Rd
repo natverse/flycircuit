@@ -29,9 +29,10 @@ hclustfc(gns, method = "ward", scoremat = getOption("flycircuit.scoremat"),
   loading huge (order N^2) distances directly into memory.}
 }
 \description{
-Given a vector of gene/neuron names or neuronids use hclust
-to carry out a hierarchical clustering. The default value
-of distfun will handle square distance matrices and R.
+Given a vector of flycircuit gene/neuron names or neuronids
+use hclust to carry out a hierarchical clustering. The
+default value of distfun will handle square distance
+matrices and R dist objects.
 }
 \details{
 when \code{method} is ward, ward.D or ward.D2 it may make

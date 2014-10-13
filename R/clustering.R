@@ -1,14 +1,14 @@
 #' Cluster a set of FlyCircuit neurons identified by gene_name
 #' 
-#' @description Given a vector of gene/neuron names or neuronids use hclust to 
-#'   carry out a hierarchical clustering. The default value of distfun will 
-#'   handle square distance matrices and R.
+#' @description Given a vector of flycircuit gene/neuron names or neuronids use
+#'   hclust to carry out a hierarchical clustering. The default value of distfun
+#'   will handle square distance matrices and R dist objects.
 #'   
 #' @details when \code{method} is ward, ward.D or ward.D2 it may make sense to 
 #'   unsquare the resultant distance before plotting.
 #'   
 #' @param gns FlyCircuit identifiers (passed to fc_gene_name).
-#' @param unsquare Whether to return the square root of the distance calculated
+#' @param unsquare Whether to return the square root of the distance calculated 
 #'   by \code{hclust} (see details, default \code{FALSE}).
 #' @inheritParams nat.nblast::nhclust
 #'   
