@@ -1,8 +1,12 @@
 #' Cluster a set of FlyCircuit neurons identified by gene_name
 #' 
-#' @description Given a vector of flycircuit gene/neuron names or neuronids use
+#' @description Given a vector of flycircuit gene/neuron names or neuronids use 
 #'   hclust to carry out a hierarchical clustering. The default value of distfun
-#'   will handle square distance matrices and R dist objects.
+#'   will handle square distance matrices and R dist objects. Note that hclustfc
+#'   is a thin wrapper around the \code{\link[nat.nblast]{nhclust}} function and that 
+#'   is what you want to use if you have calculated a score matrix yourself e.g.
+#'   for a set of all by all pairwise neurons similarities computed by
+#'   \code{nblast} or \code{nblast_allbyall}.
 #'   
 #' @details when \code{method} is ward, ward.D or ward.D2 it may make sense to 
 #'   unsquare the resultant distance before plotting.
@@ -14,8 +18,8 @@
 #'   
 #' @export
 #' @family scoremats
-#' @seealso \code{\link{fc_gene_name}, \link{hclust}, \link{dist}, 
-#'   \link[nat.nblast]{plot3d.hclust}}
+#' @seealso \code{\link{fc_gene_name}, \link[nat.nblast]{nhclust}, 
+#'   \link{hclust}, \link{dist}, \link[nat.nblast]{plot3d.hclust}}
 #' @examples
 #' data(kcs20, package='nat')
 #' hckcs=hclustfc(names(kcs20))
