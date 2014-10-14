@@ -141,7 +141,7 @@ fc_attach_ff <- function(ff, envir=NULL, force=FALSE) {
 #' @param ... additional arguments passed to download.file (e.g. quiet).
 #' @return The path to the downloaded file.
 #'   
-#' @importFrom httr HEAD
+#' @importFrom RCurl url.exists
 #' @export
 #' @seealso \code{\link{download.file}}
 #' @examples
@@ -160,17 +160,20 @@ fc_download_data <- function(url, type=c('data', 'db', 'bigmat', 'ff'), overwrit
   
   destfile <- file.path(folderpath, basename(url))
   
-  http_header <- HEAD(url)
+  http_header <- c(url.exists(url, .header = T), url)
+  if(!identical(http_header[['statusMessage']],"OK")){
+    stop("Unable to read URL: ", url)
+  }
   header_file <- paste0(destfile, '.http_header.rds')
   needs_update <- TRUE
   
   if(file.exists(header_file)) {
     http_file_header <- readRDS(header_file)
-    needs_update <- !identical(http_header$headers$etag, http_file_header$headers$etag)
+    needs_update <- !identical(http_header['ETag'], http_file_header['ETag'])
     if(!is.null(overwrite)) needs_update <- overwrite
     if(!needs_update) message("Using cached version of file.")
   }
-  saveRDS(http_header[c("url", "headers")], file=header_file, compress='xz')
+  saveRDS(http_header, file=header_file, compress='xz')
   if(is.null(overwrite)) overwrite <- TRUE
   
   if(needs_update) download.file.wcheck(url, destfile=destfile, ..., overwrite=overwrite)

@@ -46,6 +46,9 @@ test_that("can download data from remote location", {
   expect_true(file.exists(file.path(bigmatdir, 'bigmat')))
   expect_true(file.exists(file.path(ffdir, 'mat.ff')))
   expect_true(file.exists(file.path(ffdir, 'mat.ffrds')))
+  
+  expect_error(fc_download_data('http://flybrain.mrc-lmb.cam.ac.uk/wurgle', 
+                   type='data', quiet=TRUE))
 })
 
 test_that("downloaded ff can be attached and have their backing path corrected", {
