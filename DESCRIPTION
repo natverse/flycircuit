@@ -21,7 +21,7 @@ Imports:
     yaml,
     apcluster,
     rappdirs,
-    httr
+    RCurl
 License: GPL-3
 LazyData: true
 VignetteBuilder: knitr
