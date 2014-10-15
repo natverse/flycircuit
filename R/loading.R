@@ -173,10 +173,13 @@ fc_download_data <- function(url, type=c('data', 'db', 'bigmat', 'ff'), overwrit
     if(!is.null(overwrite)) needs_update <- overwrite
     if(!needs_update) message("Using cached version of file.")
   }
-  saveRDS(http_header, file=header_file, compress='xz')
+  
   if(is.null(overwrite)) overwrite <- TRUE
   
-  if(needs_update) download.file.wcheck(url, destfile=destfile, ..., overwrite=overwrite)
+  if(needs_update) {
+    download.file.wcheck(url, destfile=destfile, ..., overwrite=overwrite)
+    saveRDS(http_header, file=header_file, compress='xz')
+  }
   
   # If we've been given the URL for a bigmat .desc file, also download the bigmat
   if(folder == 'bigmat') {
