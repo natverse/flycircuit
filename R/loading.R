@@ -199,7 +199,9 @@ fc_download_data <- function(url, type=c('data', 'db', 'bigmat', 'ff'), overwrit
 
 # utility function to download a file if not already present
 # wraps regular download file
-download.file.wcheck<-function(url, destfile, overwrite=FALSE, ...){
+download.file.wcheck<-function(url, destdir=NULL, destfile=NULL, overwrite=FALSE, ...){
+  if(is.null(destdir) && is.null(destfile)) stop("Must specify one of destdir or destfile")
+  if(is.null(destfile)) destfile=file.path(destdir, basename(url))
   if(!overwrite && file.exists(destfile)){
     return(TRUE)
   }
