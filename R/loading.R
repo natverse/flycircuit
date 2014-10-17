@@ -158,54 +158,49 @@ fc_download_data <- function(url, type=c('data', 'db', 'bigmat', 'ff'), overwrit
     'ff' = getOption('flycircuit.ffdir')
   )
   
-  destfile <- file.path(folderpath, basename(url))
-  
-  http_header <- c(url.exists(url, .header = T), url)
-  if(!identical(http_header[['statusMessage']],"OK")){
-    stop("Unable to read URL: ", url)
-  }
-  header_file <- paste0(destfile, '.http_header.rds')
-  needs_update <- TRUE
-  
-  if(file.exists(header_file)) {
-    http_file_header <- readRDS(header_file)
-    needs_update <- !identical(http_header['ETag'], http_file_header['ETag'])
-    if(!is.null(overwrite)) needs_update <- overwrite
-    if(!needs_update) message("Using cached version of file.")
-  }
-  
-  if(is.null(overwrite)) overwrite <- TRUE
-  
-  if(needs_update) {
-    download.file.wcheck(url, destfile=destfile, ..., overwrite=overwrite)
-    saveRDS(http_header, file=header_file, compress='xz')
-  }
+  rval=download.file.wcheck(url, destdir=folderpath, ...)
   
   # If we've been given the URL for a bigmat .desc file, also download the bigmat
   if(folder == 'bigmat') {
     bigmaturl=sub("[.][^.]*$", "", url, perl=T)
-    destfile <- file.path(folderpath, basename(bigmaturl))
-    if(needs_update) download.file.wcheck(bigmaturl, destfile=destfile, ..., overwrite=overwrite)
-  }
-  # If we've been given the URL for a .ff file, also download the .ffrds file
-  if(folder == 'ff') {
+    rval=c(rval,download.file.wcheck(bigmaturl, destdir=folderpath, ...))
+  } else if(folder == 'ff') {
+    # If we've been given the URL for a .ff file, also download the .ffrds file
     ffurl <- paste0(sub("[.][^.]*$", "", url, perl=T), '.ffrds')
-    destfile <- file.path(folderpath, basename(ffurl))
-    if(needs_update) download.file.wcheck(ffurl, destfile=destfile, ..., overwrite=overwrite)
+    rval=c(rval, download.file.wcheck(ffurl, destdir=folderpath, ...))
   }
   
-  destfile
+  rval
 }
 
 # utility function to download a file if not already present
 # wraps regular download file
-download.file.wcheck<-function(url, destdir=NULL, destfile=NULL, overwrite=FALSE, ...){
+# when overwrite=NULL will check etag in header to see if update required
+download.file.wcheck<-function(url, destdir=NULL, destfile=NULL, overwrite=NULL, ...){
   if(is.null(destdir) && is.null(destfile)) stop("Must specify one of destdir or destfile")
   if(is.null(destfile)) destfile=file.path(destdir, basename(url))
-  if(!overwrite && file.exists(destfile)){
-    return(TRUE)
+  
+  if(is.null(overwrite)){
+    http_header <- c(url.exists(url, .header = T), url)
+    if(!identical(http_header[['statusMessage']],"OK")){
+      stop("Unable to read URL: ", url)
+    }
+    header_file <- paste0(destfile, '.http_header.rds')
+    needs_update <- TRUE
+    
+    if(file.exists(header_file)) {
+      http_file_header <- readRDS(header_file)
+      needs_update <- !identical(http_header['ETag'], http_file_header['ETag'])
+      if(!is.null(overwrite)) needs_update <- overwrite
+      if(!needs_update) message("Using cached version of file.")
+    }
+    on.exit(saveRDS(http_header, file=header_file, compress='xz'))
+  } else if(!overwrite && file.exists(destfile)){
+    return(invisible(NULL))
   }
-  download.file(url, destfile, ...)
+  
+  download.file(url, destfile=destfile, ...)
+  invisible(destfile)
 }
 
 
