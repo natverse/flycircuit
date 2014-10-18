@@ -3,6 +3,7 @@
 S3method(as.data.frame,APResult)
 S3method(plot3d,APResult)
 export(apclusterfc)
+export(download.file.wcheck)
 export(dpscan)
 export(drawRegionSurf)
 export(fc_attach_bigmat)

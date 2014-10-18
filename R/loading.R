@@ -173,9 +173,21 @@ fc_download_data <- function(url, type=c('data', 'db', 'bigmat', 'ff'), overwrit
   rval
 }
 
-# utility function to download a file if not already present
-# wraps regular download file
-# when overwrite=NULL will check etag in header to see if update required
+#' Download a remote file if it is new or updated
+#' 
+#' Wraps regular download file, but by default caches the the etag in the file 
+#' header and then compares this before downloading again.
+#' 
+#' @param url Location of remote file to download
+#' @param destdir Path to local download directory
+#' @param destfile Full path to local downloaded file
+#' @param overwrite Whether to check etag (\code{NULL}) or only download if file
+#'   is missing (\code{FALSE}) or always download (\code{TRUE}).
+#' @param ... Additional arguments passed to \code{download.file}
+#' @seealso \code{\link{download.file}}
+#' @details The header will be cached in a file called XXXX.http_header.rds next
+#'   to the downloaded file
+#' @export
 download.file.wcheck<-function(url, destdir=NULL, destfile=NULL, overwrite=NULL, ...){
   if(is.null(destdir) && is.null(destfile)) stop("Must specify one of destdir or destfile")
   if(is.null(destfile)) destfile=file.path(destdir, basename(url))
@@ -185,18 +197,19 @@ download.file.wcheck<-function(url, destdir=NULL, destfile=NULL, overwrite=NULL,
     if(!identical(http_header[['statusMessage']],"OK")){
       stop("Unable to read URL: ", url)
     }
-    header_file <- paste0(destfile, '.http_header.rds')
-    needs_update <- TRUE
+    overwrite <- TRUE
     
+    header_file <- paste0(destfile, '.http_header.rds')
     if(file.exists(header_file)) {
       http_file_header <- readRDS(header_file)
-      needs_update <- !identical(http_header['ETag'], http_file_header['ETag'])
-      if(!is.null(overwrite)) needs_update <- overwrite
-      if(!needs_update) message("Using cached version of file.")
+      overwrite <- !identical(http_header['ETag'], http_file_header['ETag'])
     }
     on.exit(saveRDS(http_header, file=header_file, compress='xz'))
-  } else if(!overwrite && file.exists(destfile)){
-    return(invisible(NULL))
+  }
+  
+  if(!overwrite && file.exists(destfile)){
+    message("Using cached version of file.")
+    return(invisible(character(0)))
   }
   
   download.file(url, destfile=destfile, ...)
