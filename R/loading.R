@@ -205,7 +205,7 @@ download.file.wcheck<-function(url, destdir=NULL, destfile=NULL, overwrite=NULL,
   rval = try({
     if(is.null(overwrite)){
       http_header <- c(url.exists(url, .header = T), url)
-      if(!isTRUE(http_header[[1]]) || !identical(http_header[['statusMessage']],"OK")){
+      if(isTRUE(http_header[[1]]==FALSE) || !identical(http_header[['statusMessage']],"OK")){
         stop("Unable to read URL: ", url)
       }
       overwrite <- TRUE
@@ -219,11 +219,11 @@ download.file.wcheck<-function(url, destdir=NULL, destfile=NULL, overwrite=NULL,
     }
       
     if(!overwrite && file.exists(destfile)){
-    message("Using cached version of file.")
-    return(invisible(character(0)))
-    
+      message("Using cached version of file.")
+      return(invisible(character(0)))
+    }
     download.file(url, destfile=destfile, ...)
-  }}, silent=T)
+  }, silent=T)
   
   if(inherits(rval, 'try-error')){
     if(!file.exists(destfile))
