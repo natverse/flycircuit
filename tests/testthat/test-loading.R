@@ -13,7 +13,8 @@ test_that("load_fcdata can load local file", {
 })
 
 context("Downloading data")
-
+if(RCurl::url.exists("http://flybrain.mrc-lmb.cam.ac.uk")) {
+  
 test_that("can download data from remote location", {
   
   datadir <- tempfile('flycircuit_testdata')
@@ -66,3 +67,7 @@ test_that("downloaded ff can be attached and have their backing path corrected",
   expect_equivalent(attr(attr(mat, 'physical'), 'filename'), 
                     file.path(getOption('flycircuit.ffdir'), 'mat.ff'))
 })
+
+} else {
+  message("Skipping download tests. Is internet connection OK?")
+}
