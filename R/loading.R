@@ -194,7 +194,7 @@ download.file.wcheck<-function(url, destdir=NULL, destfile=NULL, overwrite=NULL,
   
   if(is.null(overwrite)){
     http_header <- c(url.exists(url, .header = T), url)
-    if(!identical(http_header[['statusMessage']],"OK")){
+    if(!isTRUE(http_header[[1]]) || !identical(http_header[['statusMessage']],"OK")){
       stop("Unable to read URL: ", url)
     }
     overwrite <- TRUE
