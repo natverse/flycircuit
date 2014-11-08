@@ -192,27 +192,36 @@ download.file.wcheck<-function(url, destdir=NULL, destfile=NULL, overwrite=NULL,
   if(is.null(destdir) && is.null(destfile)) stop("Must specify one of destdir or destfile")
   if(is.null(destfile)) destfile=file.path(destdir, basename(url))
   
-  if(is.null(overwrite)){
-    http_header <- c(url.exists(url, .header = T), url)
-    if(!isTRUE(http_header[[1]]) || !identical(http_header[['statusMessage']],"OK")){
-      stop("Unable to read URL: ", url)
+  rval = try({
+    if(is.null(overwrite)){
+      http_header <- c(url.exists(url, .header = T), url)
+      if(!isTRUE(http_header[[1]]) || !identical(http_header[['statusMessage']],"OK")){
+        stop("Unable to read URL: ", url)
+      }
+      overwrite <- TRUE
+      
+      header_file <- paste0(destfile, '.http_header.rds')
+      if(file.exists(header_file)) {
+        http_file_header <- readRDS(header_file)
+        overwrite <- !identical(http_header['ETag'], http_file_header['ETag'])
+      }
+      on.exit(saveRDS(http_header, file=header_file, compress='xz'))
     }
-    overwrite <- TRUE
-    
-    header_file <- paste0(destfile, '.http_header.rds')
-    if(file.exists(header_file)) {
-      http_file_header <- readRDS(header_file)
-      overwrite <- !identical(http_header['ETag'], http_file_header['ETag'])
-    }
-    on.exit(saveRDS(http_header, file=header_file, compress='xz'))
-  }
-  
-  if(!overwrite && file.exists(destfile)){
+      
+    if(!overwrite && file.exists(destfile)){
     message("Using cached version of file.")
     return(invisible(character(0)))
-  }
+    
+    download.file(url, destfile=destfile, ...)
+  }}, silent=T)
   
-  download.file(url, destfile=destfile, ...)
+  if(inherits(rval, 'try-error')){
+    if(!file.exists(destfile))
+      stop("Unable to read url: ",url," and no cached file exists!")
+    warning("Unable to read url: ",url,". Using cached file: ", destfile)
+    destfile<-character(0)
+  }
+
   invisible(destfile)
 }
 

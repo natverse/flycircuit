@@ -50,6 +50,9 @@ test_that("can download data from remote location", {
   
   expect_error(fc_download_data('http://flybrain.mrc-lmb.cam.ac.uk/wurgle', 
                    type='data', quiet=TRUE))
+  writeLines("Test data", con = file.path(datadir, 'wurgle'))
+  expect_warning(fc_download_data('http://flybrain.mrc-lmb.cam.ac.uk/wurgle', 
+                   type='data', quiet=TRUE), 'cached')
 })
 
 test_that("downloaded ff can be attached and have their backing path corrected", {
