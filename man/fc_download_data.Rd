@@ -24,7 +24,9 @@ fc_download_data(url, type = c("data", "db", "bigmat", "ff"),
 The path to the downloaded file.
 }
 \description{
-Download a data file from a remote location
+By default this function will check for an up to date local
+version of the remote file using the
+\code{\link{download.file.wcheck}} function.
 }
 \details{
 The default value for the \code{overwrite} argument can be
@@ -41,6 +43,6 @@ fc_download_data("http://myurl.com/data.ff", type='ff')
 }
 }
 \seealso{
-\code{\link{download.file}}
+\code{\link{download.file.wcheck}}
 }
 

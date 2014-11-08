@@ -21,13 +21,18 @@ download.file.wcheck(url, destdir = NULL, destfile = NULL,
   \code{download.file}}
 }
 \description{
-Wraps regular download file, but by default caches the the
-etag in the file header and then compares this before
-downloading again.
+Wraps regular \code{\link{download.file}}, but by default
+caches the the etag in the file header and then compares
+this before downloading again.
 }
 \details{
 The header will be cached in a file called
-XXXX.http_header.rds next to the downloaded file
+\code{XXXX.http_header.rds} next to the downloaded file.
+
+When the URL is unreachable, a check is made to see if the
+corresponding file already exists locally. If yes, then a
+warning is issued, but that path is used. If no, then the
+function will error out.
 }
 \seealso{
 \code{\link{download.file}}

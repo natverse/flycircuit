@@ -127,9 +127,12 @@ fc_attach_ff <- function(ff, envir=NULL, force=FALSE) {
 
 #' Download a data file from a remote location
 #' 
-#' @details The default value for the \code{overwrite} argument can be changed
-#'   by setting \code{options('flycircuit.remote_overwrite')} to \code{TRUE} or
-#'   \code{FALSE}. Setting this to \code{FALSE} may be useful if checking the
+#' By default this function will check for an up to date local version of the 
+#' remote file using the \code{\link{download.file.wcheck}} function.
+#' 
+#' @details The default value for the \code{overwrite} argument can be changed 
+#'   by setting \code{options('flycircuit.remote_overwrite')} to \code{TRUE} or 
+#'   \code{FALSE}. Setting this to \code{FALSE} may be useful if checking the 
 #'   headers of the remote files takes too long.
 #'   
 #' @param url the location of the remote file.
@@ -143,13 +146,14 @@ fc_attach_ff <- function(ff, envir=NULL, force=FALSE) {
 #'   
 #' @importFrom RCurl url.exists
 #' @export
-#' @seealso \code{\link{download.file}}
+#' @seealso \code{\link{download.file.wcheck}}
 #' @examples
 #' \dontrun{
 #' fc_download_data("http://myurl.com/data", quiet=TRUE)
 #' fc_download_data("http://myurl.com/data.ff", type='ff')
 #' }
-fc_download_data <- function(url, type=c('data', 'db', 'bigmat', 'ff'), overwrite=getOption('flycircuit.remote_overwrite'), ...) {
+fc_download_data <- function(url, type=c('data', 'db', 'bigmat', 'ff'),
+                             overwrite=getOption('flycircuit.remote_overwrite'), ...) {
   folder <- match.arg(type)
   folderpath <- switch(folder,
     'data' = getOption('flycircuit.datadir'),
@@ -175,9 +179,15 @@ fc_download_data <- function(url, type=c('data', 'db', 'bigmat', 'ff'), overwrit
 
 #' Download a remote file if it is new or updated
 #' 
-#' Wraps regular download file, but by default caches the the etag in the file 
-#' header and then compares this before downloading again.
+#' Wraps regular \code{\link{download.file}}, but by default caches the the etag
+#' in the file header and then compares this before downloading again.
 #' 
+#' @details The header will be cached in a file called 
+#'   \code{XXXX.http_header.rds} next to the downloaded file.
+#'   
+#'   When the URL is unreachable, a check is made to see if the corresponding 
+#'   file already exists locally. If yes, then a warning is issued, but that 
+#'   path is used. If no, then the function will error out.
 #' @param url Location of remote file to download
 #' @param destdir Path to local download directory
 #' @param destfile Full path to local downloaded file
