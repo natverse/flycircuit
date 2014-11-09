@@ -197,6 +197,7 @@ fc_download_data <- function(url, type=c('data', 'db', 'bigmat', 'ff'),
 #' @seealso \code{\link{download.file}}
 #' @details The header will be cached in a file called XXXX.http_header.rds next
 #'   to the downloaded file
+#' @return Path to downloaded (or cached) file.
 #' @export
 download.file.wcheck<-function(url, destdir=NULL, destfile=NULL, overwrite=NULL, ...){
   if(is.null(destdir) && is.null(destfile)) stop("Must specify one of destdir or destfile")
@@ -218,18 +219,15 @@ download.file.wcheck<-function(url, destdir=NULL, destfile=NULL, overwrite=NULL,
       on.exit(saveRDS(http_header, file=header_file, compress='xz'))
     }
       
-    if(!overwrite && file.exists(destfile)){
+    if(!overwrite && file.exists(destfile))
       message("Using cached version of file.")
-      return(invisible(character(0)))
-    }
-    download.file(url, destfile=destfile, ...)
+    else download.file(url, destfile=destfile, ...)
   }, silent=T)
   
   if(inherits(rval, 'try-error')){
     if(!file.exists(destfile))
       stop("Unable to read url: ",url," and no cached file exists!")
     warning("Unable to read url: ",url,". Using cached file: ", destfile)
-    destfile<-character(0)
   }
 
   invisible(destfile)

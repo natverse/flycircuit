@@ -20,6 +20,9 @@ download.file.wcheck(url, destdir = NULL, destfile = NULL,
   \item{...}{Additional arguments passed to
   \code{download.file}}
 }
+\value{
+Path to downloaded (or cached) file.
+}
 \description{
 Wraps regular \code{\link{download.file}}, but by default
 caches the the etag in the file header and then compares
