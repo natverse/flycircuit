@@ -47,11 +47,16 @@ test_that("can download data from remote location", {
   expect_true(file.exists(file.path(ffdir, 'mat.ff')))
   expect_true(file.exists(file.path(ffdir, 'mat.ffrds')))
   
+  # check that we use cached version second time round
+  expect_message(fc_download_data('http://flybrain.mrc-lmb.cam.ac.uk/fcremtest/data', 
+                   type='data', quiet=TRUE), "Using cached")
+  
   expect_error(fc_download_data('http://flybrain.mrc-lmb.cam.ac.uk/wurgle', 
                    type='data', quiet=TRUE))
   writeLines("Test data", con = file.path(datadir, 'wurgle'))
-  expect_warning(fc_download_data('http://flybrain.mrc-lmb.cam.ac.uk/wurgle', 
+  expect_warning(downloaded_file<-fc_download_data('http://flybrain.mrc-lmb.cam.ac.uk/wurgle', 
                    type='data', quiet=TRUE), 'cached')
+  expect_equal(downloaded_file, file.path(datadir, 'wurgle'))
 })
 
 test_that("downloaded ff can be attached and have their backing path corrected", {
