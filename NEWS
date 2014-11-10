@@ -1,3 +1,15 @@
+flycircuit 0.6
+==============
+* Store persistent data in directory determined by rappdirs package
+* add load_si_data
+* add plot3d.APResult
+* Add apclusterfc
+* fc_download_data (always) returns path to file
+* ... and can use local file (with warning) if remote url unreadable
+* ... plus additional bug fixes
+* add as.data.frame.APResult for affinity propagation clustering results
+* fc_nblast normalises like sub_score_mat
+
 flycircuit 0.5.3
 ================
 * add fc_sex utility function to find sex of animal for any valid flycircuit
