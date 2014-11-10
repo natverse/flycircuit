@@ -12,7 +12,7 @@ Depends:
 Suggests:
     testthat,
     knitr,
-    nat (>= 1.5.7),
+    nat (>= 1.5.14),
     nat.nblast (>= 1.2),
     dendroextras
 Imports:
