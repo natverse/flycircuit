@@ -22,7 +22,7 @@ hclustfc(gns, method = "ward", scoremat = getOption("flycircuit.scoremat"),
 
   \item{distfun}{function to convert distance matrix
   returned by \code{sub_dist_mat} into R dist object
-  (default=as.dist).}
+  (default= \code{\link{as.dist}}).}
 
   \item{...}{additional parameters passed to hclust.}
 
