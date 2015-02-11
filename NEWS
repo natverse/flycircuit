@@ -1,3 +1,7 @@
+flycircuit 0.6.2
+================
+* depend on nat
+
 flycircuit 0.6.1
 ================
 * fix bug when creating data directories (based on rappdirs location) on a new
