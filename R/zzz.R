@@ -21,7 +21,7 @@
   
   # Create directories if they do not already exist
   # NB this will never be acceptable behaviour for a CRAN package
-  dir.create(file.path(getOption('flycircuit.datadir')), showWarnings=FALSE)
+  dir.create(file.path(getOption('flycircuit.datadir')), showWarnings=FALSE, recursive = TRUE)
   dir.create(file.path(getOption('flycircuit.dbdir')), showWarnings=FALSE)
   dir.create(file.path(getOption('flycircuit.bigmatdir')), showWarnings=FALSE)
   dir.create(file.path(getOption('flycircuit.ffdir')), showWarnings=FALSE)
