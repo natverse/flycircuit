@@ -1,3 +1,8 @@
+flycircuit 0.6.1
+================
+* fix bug when creating data directories (based on rappdirs location) on a new
+  system
+
 flycircuit 0.6
 ==============
 * Store persistent data in directory determined by rappdirs package
