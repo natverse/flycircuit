@@ -8,11 +8,11 @@ Author: Greg Jefferis and James Manton
 Maintainer: Greg Jefferis <jefferis@gmail.com>
 Depends:
     R (>= 3.0.1),
-    rgl
+    rgl,
+    nat (>= 1.5.14)
 Suggests:
     testthat,
     knitr,
-    nat (>= 1.5.14),
     nat.nblast (>= 1.2),
     dendroextras
 Imports:
