@@ -43,6 +43,10 @@ image data provided by \url{http://flycircuit.tw}.
 
   }
 }
+\examples{
+# Show state of flycircuit package options
+options()[grep('^flycircuit', names(options()))]
+}
 \seealso{
 \code{\link{fc_download_data}}
 }

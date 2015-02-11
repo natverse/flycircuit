@@ -29,9 +29,13 @@
 #'   \item \code{flycircuit.remote_overwrite}: Determines how local cached 
 #'   versions of data available on the web are updated. When \code{NULL} (i.e. 
 #'   unset) the web version is checked and, if it is newer, it is donwloaded and
-#'   used to overwrite the cached copy. When \code{FALSE} the exisiting local
+#'   used to overwrite the cached copy. When \code{FALSE} the exisiting local 
 #'   copy is used; when \code{TRUE} the remote version is always downloaded.
 #'   
 #'   }
-#'   @seealso \code{\link{fc_download_data}}
+#' @seealso \code{\link{fc_download_data}}
+#'   
+#' @examples
+#' # Show state of flycircuit package options
+#' options()[grep('^flycircuit', names(options()))]
 NULL
