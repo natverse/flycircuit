@@ -167,7 +167,14 @@ fc_download_data <- function(url, type=c('data', 'db', 'bigmat', 'ff'),
   # If we've been given the URL for a bigmat .desc file, also download the bigmat
   if(folder == 'bigmat') {
     bigmaturl=sub("[.][^.]*$", "", url, perl=T)
-    rval=c(rval,download.file.wcheck(bigmaturl, destdir=folderpath, ...))
+    if(url.exists(bigmaturl)){
+      rval=c(rval,download.file.wcheck(bigmaturl, destdir=folderpath, ...))
+    } else {
+      # try xxx.bin as well if that didn't exist
+      bigmaturl=paste0(bigmaturl,'.bin')
+      rval=c(rval,download.file.wcheck(bigmaturl, destdir=folderpath, ...))
+    }
+    
   } else if(folder == 'ff') {
     # If we've been given the URL for a .ff file, also download the .ffrds file
     ffurl <- paste0(sub("[.][^.]*$", "", url, perl=T), '.ffrds')
