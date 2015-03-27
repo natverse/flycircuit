@@ -140,6 +140,7 @@ fcgn_forfile<-function(file,checkExists=FALSE){
 #' fc_glom('FruMARCM-F000446_seg001')
 fc_glom<-function(x){
   idids=fc_idid(x)
-  gloms=annotation[annotation$neuron_idid%in%idids & annotation$annotation_class=='ALGlomerulus',]
+  gloms=flycircuit::annotation[flycircuit::annotation$neuron_idid%in%idids & 
+                                 flycircuit::annotation$annotation_class=='ALGlomerulus', ]
   gloms[match(idids,gloms$neuron_idid),"text"]
 }
