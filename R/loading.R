@@ -151,6 +151,8 @@ fc_attach_ff <- function(ff, envir=NULL, force=FALSE) {
 #' \dontrun{
 #' fc_download_data("http://myurl.com/data", quiet=TRUE)
 #' fc_download_data("http://myurl.com/data.ff", type='ff')
+#' 
+#' fc_download_data("http://myurl.com/data.desc", type='bigmat')
 #' }
 fc_download_data <- function(url, type=c('data', 'db', 'bigmat', 'ff'),
                              overwrite=getOption('flycircuit.remote_overwrite'), ...) {
@@ -256,6 +258,11 @@ download.file.wcheck<-function(url, destdir=NULL, destfile=NULL, overwrite=NULL,
 #'   invisibly or \code{NULL} if nothing loaded. For rds files, the object 
 #'   itself. Otherwise, the path to the downloaded file.
 #' @export
+#' @examples 
+#' \dontrun{
+#' mydata=load_si_data("mydata.rda")
+#' bigmat=load_si_data("data.desc")
+#' }
 load_si_data <- function(data_name, type=c('auto', 'data', 'db', 'bigmat', 'ff', 'plain'), overwrite=FALSE, ...) {
   if(!exists(data_name, where=.GlobalEnv)) {
     type <- match.arg(type)

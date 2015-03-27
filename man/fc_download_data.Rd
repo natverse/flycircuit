@@ -41,6 +41,8 @@ takes too long.
 \dontrun{
 fc_download_data("http://myurl.com/data", quiet=TRUE)
 fc_download_data("http://myurl.com/data.ff", type='ff')
+
+fc_download_data("http://myurl.com/data.desc", type='bigmat')
 }
 }
 \seealso{

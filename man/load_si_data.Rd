@@ -33,4 +33,10 @@ downloaded file.
 Download data for Supplemental Information for NBLAST paper
 from Jefferis Lab website
 }
+\examples{
+\dontrun{
+mydata=load_si_data("mydata.rda")
+bigmat=load_si_data("data.desc")
+}
+}
 
