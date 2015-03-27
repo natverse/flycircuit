@@ -19,12 +19,12 @@ fc_gene_name<-function(x){
     # FIXME check that ALL x values look like gene_names
     if(regexpr('seg',x[1])>=0) return(x)
     else {
-      res=match(x,fcidtable$Name)
+      res=match(x,flycircuit::fcidtable$Name)
     }
   } else {
-    res=match(x,fcidtable$idid)
+    res=match(x,flycircuit::fcidtable$idid)
   }
-  fcidtable$gene_name[res]
+  flycircuit::fcidtable$gene_name[res]
 }
 
 #' @description \code{fc_idid} returns an integer \code{idid} of a fly circuit
@@ -42,12 +42,12 @@ fc_idid<-function(x){
       # but make sure they all are ...
       if(!all(xAreNames)) 
         stop("ambiguous flycircuit neuron Names:",paste(x[!xAreNames],collapse=", "))
-      res=match(x,fcidtable$Name)
+      res=match(x,flycircuit::fcidtable$Name)
     } else {
       # assume we have gene_names
-      res=match(x,fcidtable$gene_name)
+      res=match(x,flycircuit::fcidtable$gene_name)
     }
-    fcidtable$idid[res]
+    flycircuit::fcidtable$idid[res]
   } else {
     x
   }
@@ -71,13 +71,13 @@ fc_neuron<-function(x){
       return(x)
     } else {
       # assume we have gene_names
-      res=match(x,fcidtable$gene_name)
+      res=match(x,flycircuit::fcidtable$gene_name)
     }
   } else {
     # assume these are idids
-    res=match(x,fcidtable$idid)
+    res=match(x,flycircuit::fcidtable$idid)
   }
-  fcidtable$Name[res]
+  flycircuit::fcidtable$Name[res]
 }
 
 #' return sex of the animal for one or more FlyCircuit identifiers
@@ -120,7 +120,7 @@ fcgn_forfile<-function(file,checkExists=FALSE){
   # trim off channel and other suffix
   gn=sub("(seg[^_]*)_.*$","\\1",gn)
   if(checkExists){
-    missing=!gn%in%fcidtable$gene_name
+    missing=!gn%in%flycircuit::fcidtable$gene_name
     if(any(missing)){
       warning("gene_name:",gn[missing]," for file:",file[missing]," not present in fcid table")
       gn[missing]=NA_character_

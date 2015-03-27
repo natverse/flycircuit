@@ -79,7 +79,7 @@ pop3dfc <- function(x, slow=FALSE, type='shapes') {
 #' @importFrom rgl plot3d
 #' @export
 fcwbsurf <- function(col='grey', alpha=0.3, ...) {
-  plot3d(FCWB.surf, col=col, alpha=alpha, ...)
+  plot3d(flycircuit::FCWB.surf, col=col, alpha=alpha, ...)
 }
 
 #' Plot 3D surfaces of the FlyLight neuropil segmentation in FlyCircuit coordinate space
@@ -88,7 +88,7 @@ fcwbsurf <- function(col='grey', alpha=0.3, ...) {
 #' @export
 #' @importFrom rgl plot3d
 fcwbnpsurf <- function(...) {
-  plot3d(FCWBNP.surf, ...)
+  plot3d(flycircuit::FCWBNP.surf, ...)
 }
 
 #' Creates a new surface containing specified regions from a given surface
