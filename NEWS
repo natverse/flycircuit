@@ -1,3 +1,10 @@
+flycircuit 0.6.3
+================
+* load_si_data works with bigmat pairs of the form x.desc+x.bin
+* load_si_data no longer attempts to check for object existence
+* doc: load_si_data improvements
+* dev: fix check errors
+
 flycircuit 0.6.2
 ================
 * depend on nat
