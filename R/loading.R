@@ -271,25 +271,24 @@ download.file.wcheck<-function(url, destdir=NULL, destfile=NULL, overwrite=NULL,
 #' load_si_data("mydata.rda")
 #' bigmat=load_si_data("data.desc")
 #' }
-load_si_data <- function(data_name, type=c('auto', 'data', 'db', 'bigmat', 'ff', 'plain'), overwrite=FALSE, ...) {
-  if(!exists(data_name, where=.GlobalEnv)) {
-    type <- match.arg(type)
-    if(type == "auto") {
-      if(grepl("\\.rd[as]$", data_name)) type <- "data"
-      else if(grepl("\\.ff(rds)*$", data_name)) type <- "ff"
-      else if(grepl("\\.desc$", data_name)) type <- "bigmat"
-      else type <- "plain"
-    }
-    filepath <- fc_download_data(file.path(getOption('flycircuit.sidataurl'), data_name), overwrite=overwrite, type=ifelse(type=="plain", "data", type), ...)
-    
-    if(type == "plain") {
-      filepath
-    } else if(type == "data" || type == "db") {
-      data_name <- gsub("\\.rd[as]$", "", data_name)
-      load_fcdata(data_name)
-    } else if(type == "bigmat" || type == "ff") {
-      data_name <- gsub("\\.desc$", "", data_name)
-      fc_attach_bigmat(data_name)
-    }
+load_si_data <- function(data_name, type=c('auto', 'data', 'db', 'bigmat', 'ff', 'plain'),
+                         overwrite=FALSE, ...) {
+  type <- match.arg(type)
+  if(type == "auto") {
+    if(grepl("\\.rd[as]$", data_name)) type <- "data"
+    else if(grepl("\\.ff(rds)*$", data_name)) type <- "ff"
+    else if(grepl("\\.desc$", data_name)) type <- "bigmat"
+    else type <- "plain"
+  }
+  filepath <- fc_download_data(file.path(getOption('flycircuit.sidataurl'), data_name), overwrite=overwrite, type=ifelse(type=="plain", "data", type), ...)
+  
+  if(type == "plain") {
+    filepath
+  } else if(type == "data" || type == "db") {
+    data_name <- gsub("\\.rd[as]$", "", data_name)
+    load_fcdata(data_name)
+  } else if(type == "bigmat" || type == "ff") {
+    data_name <- gsub("\\.desc$", "", data_name)
+    fc_attach_bigmat(data_name)
   }
 }
