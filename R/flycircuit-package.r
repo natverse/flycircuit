@@ -34,7 +34,7 @@
 #'   
 #'   }
 #' @seealso \code{\link{fc_download_data}}
-#'   
+#' @import nat
 #' @examples
 #' # Show state of flycircuit package options
 #' options()[grep('^flycircuit', names(options()))]
