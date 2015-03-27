@@ -26,17 +26,25 @@ load_si_data(data_name, type = c("auto", "data", "db", "bigmat", "ff",
 \value{
 For rda files, a character vector of the names of objects
 created, invisibly or \code{NULL} if nothing loaded. For
-rds files, the object itself. Otherwise, the path to the
-downloaded file.
+rds, bigmat or ff files, the object itself. Otherwise, the
+path to the downloaded file.
 }
 \description{
 Download data for Supplemental Information for NBLAST paper
 from Jefferis Lab website
+}
+\details{
+Note that \code{bigmat} and \code{ff} objects will be
+attached using the function \code{\link{fc_attach_bigmat}}.
 }
 \examples{
 \dontrun{
 mydata=load_si_data("mydata.rda")
 bigmat=load_si_data("data.desc")
 }
+}
+\seealso{
+\code{\link{fc_download_data}},
+\code{\link{fc_attach_bigmat}}
 }
 

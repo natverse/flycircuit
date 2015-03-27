@@ -246,18 +246,21 @@ download.file.wcheck<-function(url, destdir=NULL, destfile=NULL, overwrite=NULL,
 #' Download data for Supplemental Information for NBLAST paper from Jefferis Lab
 #' website
 #' 
+#' @details Note that \code{bigmat} and \code{ff} objects will be attached using
+#'   the function \code{\link{fc_attach_bigmat}}.
 #' @param data_name the name of the file to load.
 #' @param type either \code{auto}, stating that the file should be handled 
 #'   automagically, \code{plain}, specifying that the file should just be 
 #'   downloaded, or the type of file (data, db, ff, or bigmat).
-#' @param overwrite whether to overwrite an existing file (default:
+#' @param overwrite whether to overwrite an existing file (default: 
 #'   \code{FALSE}). See \code{\link{fc_download_data}}.
 #' @param ... extra arguments to pass to \code{\link{fc_download_data}}.
 #'   
 #' @return For rda files, a character vector of the names of objects created, 
-#'   invisibly or \code{NULL} if nothing loaded. For rds files, the object 
-#'   itself. Otherwise, the path to the downloaded file.
+#'   invisibly or \code{NULL} if nothing loaded. For rds, bigmat or ff files, 
+#'   the object itself. Otherwise, the path to the downloaded file.
 #' @export
+#' @seealso \code{\link{fc_download_data}}, \code{\link{fc_attach_bigmat}}
 #' @examples 
 #' \dontrun{
 #' mydata=load_si_data("mydata.rda")
