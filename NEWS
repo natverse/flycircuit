@@ -1,3 +1,7 @@
+flycircuit 0.6.4
+================
+* update annotation database
+
 flycircuit 0.6.3
 ================
 * load_si_data works with bigmat pairs of the form x.desc+x.bin
