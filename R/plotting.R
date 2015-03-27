@@ -65,7 +65,6 @@ plot3dfc <- function(id, col, db=getOption('nat.default.neuronlist'), ...) {
 #' @param type Type of objects to remove see \code{pop3d}.
 #' @export
 #' @seealso \code{\link[rgl]{pop3d}}
-#' @importFrom rgl pop3d
 pop3dfc <- function(x, slow=FALSE, type='shapes') {
   .Deprecated('nat::npop3d', msg = 'Please use npop3d for identical functionality that can work with any neuronlist')
   nat::npop3d(x=x, slow=slow, type=type)
@@ -76,7 +75,6 @@ pop3dfc <- function(x, slow=FALSE, type='shapes') {
 #' @param col The colour of the surface
 #' @param alpha The opacity of the surface
 #' @param ... Extra arguments to pass to plot3d
-#' @importFrom rgl plot3d
 #' @export
 fcwbsurf <- function(col='grey', alpha=0.3, ...) {
   plot3d(flycircuit::FCWB.surf, col=col, alpha=alpha, ...)
@@ -86,7 +84,6 @@ fcwbsurf <- function(col='grey', alpha=0.3, ...) {
 #'
 #' @param ... Extra arguments to pass to plot3d
 #' @export
-#' @importFrom rgl plot3d
 fcwbnpsurf <- function(...) {
   plot3d(flycircuit::FCWBNP.surf, ...)
 }
