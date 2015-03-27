@@ -23,8 +23,11 @@
 #'   \item \code{flycircuit.bigmatdir}: location of \code{big.matrix} objects 
 #'   previously used for all by all score matrices.
 #'   
-#'   \item \code{flycircuit.scoremat}: name of the default regular or \code{ff} 
-#'   matrix object containing nblast scores.
+#'   \item \code{flycircuit.scoremat}: character vector naming the default 
+#'   regular or \code{ff} matrix object containing nblast scores. Note that 
+#'   although it is is permissible to set this to the actual score matrix rather
+#'   than a character vector naming the matrix, this turns out to have 
+#'   substantial performance penalties for large matrices.
 #'   
 #'   \item \code{flycircuit.remote_overwrite}: Determines how local cached 
 #'   versions of data available on the web are updated. When \code{NULL} (i.e. 
