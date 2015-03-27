@@ -128,3 +128,18 @@ fcgn_forfile<-function(file,checkExists=FALSE){
   }
   gn
 }
+
+#' Antennal lobe glomerulus (where applicable) for FlyCircuit identifiers 
+#' 
+#' These comes from manual annotations carried out for Costa et al. 
+#' 
+#' @inheritParams fc_neuron
+#' @return a character vector of glomerulus names
+#' @export
+#' @examples
+#' fc_glom('FruMARCM-F000446_seg001')
+fc_glom<-function(x){
+  idids=fc_idid(x)
+  gloms=annotation[annotation$neuron_idid%in%idids & annotation$annotation_class=='ALGlomerulus',]
+  gloms[match(idids,gloms$neuron_idid),"text"]
+}
