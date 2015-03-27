@@ -243,10 +243,13 @@ download.file.wcheck<-function(url, destdir=NULL, destfile=NULL, overwrite=NULL,
 }
 
 
-#' Download data for Supplemental Information for NBLAST paper from Jefferis Lab
-#' website
+#' Load NBLAST supplemental data objects, downloading when required
 #' 
-#' @details Note that \code{bigmat} and \code{ff} objects will be attached using
+#' \code{load_si_data} first checks to see if file must be downloaded from the 
+#' jefferislab.org website (because it is missing or out of date). It then loads
+#' the file into the current R session.
+#' 
+#' @details Note that \code{bigmat} and \code{ff} objects will be loaded using 
 #'   the function \code{\link{fc_attach_bigmat}}.
 #' @param data_name the name of the file to load.
 #' @param type either \code{auto}, stating that the file should be handled 
@@ -263,7 +266,9 @@ download.file.wcheck<-function(url, destdir=NULL, destfile=NULL, overwrite=NULL,
 #' @seealso \code{\link{fc_download_data}}, \code{\link{fc_attach_bigmat}}
 #' @examples 
 #' \dontrun{
-#' mydata=load_si_data("mydata.rda")
+#' mydata=load_si_data("mydata.rds")
+#' # note that rda files are loaded into the global environment.
+#' load_si_data("mydata.rda")
 #' bigmat=load_si_data("data.desc")
 #' }
 load_si_data <- function(data_name, type=c('auto', 'data', 'db', 'bigmat', 'ff', 'plain'), overwrite=FALSE, ...) {

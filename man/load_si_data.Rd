@@ -2,8 +2,7 @@
 % Please edit documentation in R/loading.R
 \name{load_si_data}
 \alias{load_si_data}
-\title{Download data for Supplemental Information for NBLAST paper from Jefferis Lab
-website}
+\title{Load NBLAST supplemental data objects, downloading when required}
 \usage{
 load_si_data(data_name, type = c("auto", "data", "db", "bigmat", "ff",
   "plain"), overwrite = FALSE, ...)
@@ -30,16 +29,20 @@ rds, bigmat or ff files, the object itself. Otherwise, the
 path to the downloaded file.
 }
 \description{
-Download data for Supplemental Information for NBLAST paper
-from Jefferis Lab website
+\code{load_si_data} first checks to see if file must be
+downloaded from the jefferislab.org website (because it is
+missing or out of date). It then loads the file into the
+current R session.
 }
 \details{
 Note that \code{bigmat} and \code{ff} objects will be
-attached using the function \code{\link{fc_attach_bigmat}}.
+loaded using the function \code{\link{fc_attach_bigmat}}.
 }
 \examples{
 \dontrun{
-mydata=load_si_data("mydata.rda")
+mydata=load_si_data("mydata.rds")
+# note that rda files are loaded into the global environment.
+load_si_data("mydata.rda")
 bigmat=load_si_data("data.desc")
 }
 }
