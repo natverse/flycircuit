@@ -294,14 +294,20 @@ load_si_data <- function(data_name, type=c('auto', 'data', 'db', 'bigmat', 'ff',
 }
 
 # Not exported for the moment - utility function to upload si data to server
-upload_si_data<-function(x, target="lmbfly:/var/www/html/si/nblast/flycircuit") {
+upload_si_data<-function(x, format=c('rds', 'rda'),
+                         target="lmbfly:/var/www/html/si/nblast/flycircuit") {
   xname=deparse(substitute(x))
+  format=match.arg(format)
   td=tempfile()
   dir.create(td)
   on.exit(unlink(td, recursive = T))
-  rdsfile=file.path(td, paste0(xname,'.rds'))
-  saveRDS(x, file=rdsfile)
-  scp_upload(rdsfile, target=target)
+  rdfile=file.path(td, paste0(xname, '.', format))
+  if(format=='rds'){
+    saveRDS(x, file=rdfile)
+  } else {
+    save(list=xname, file=rdfile)
+  }
+  scp_upload(rdfile, target=target)
 }
 
 scp_upload<-function (localpath, user, host, remotepath, target) 
