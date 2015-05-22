@@ -1,5 +1,5 @@
 Package: flycircuit
-Title: Functions to support analysis of the FlyCircuit single neuron dataset
+Title: Functions to Support Analysis of the FlyCircuit Single Neuron Dataset
 Description: This package contains a small number of functions specifically
     designed to assist in the spatial analysis of neurons from the collection
     available online at http://flycircuit.tw.
