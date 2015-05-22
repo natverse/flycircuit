@@ -1,3 +1,9 @@
+flycircuit 0.6.5
+================
+* update annotation database (1 April 2015, now 6565 NeuronType annotations)
+* add fc_glom function to find antennal lobe glomeruli for fc neurons
+* dev: update to roxygen2 v4.1.1
+
 flycircuit 0.6.4
 ================
 * update annotation database
