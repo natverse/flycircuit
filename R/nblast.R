@@ -50,8 +50,10 @@ fc_subscoremat<-function(query, target, scoremat=getOption('flycircuit.scoremat'
   normalisation <- match.arg(normalisation)
   if(distance && normalisation=='raw')
     stop("raw scores are always similarity scores")
-  query=fc_gene_name(query)
-  target=fc_gene_name(target)
+  if(!missing(query))
+    query=fc_gene_name(query)
+  if(!missing(target))
+    target=fc_gene_name(target)
   if(is.character(scoremat)) scoremat <- fc_attach_bigmat(scoremat)
   
   nat.nblast::sub_score_mat(query = query, target = target, 
