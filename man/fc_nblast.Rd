@@ -8,9 +8,13 @@ fc_nblast(query, target, scoremat = getOption("flycircuit.scoremat"),
   normalisation = c("raw", "normalised", "mean"))
 }
 \arguments{
-\item{query}{Vectors of FlyCircuit identifiers}
+\item{query}{Vectors of FlyCircuit identifiers (Neuron name, gene_name
+or integer idid are all acceptable since they will be processed by
+\code{\link{fc_gene_name}}).}
 
-\item{target}{Vectors of FlyCircuit identifiers}
+\item{target}{Vectors of FlyCircuit identifiers (Neuron name, gene_name
+or integer idid are all acceptable since they will be processed by
+\code{\link{fc_gene_name}}).}
 
 \item{scoremat}{A matrix, ff matrix, bigmatrix or a character vector
 specifiying the name of an ff matrix containing the all by all score

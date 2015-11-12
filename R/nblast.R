@@ -32,9 +32,11 @@ fc_nblast <- function(query, target, scoremat=getOption('flycircuit.scoremat'),
 #' Distances are returned as either \code{1 - normscore} in the forwards 
 #' direction, or as \code{1 - normscorebar}, where \code{normscorebar} is 
 #' \code{normscore} averaged across both directions.
-#' @param query,target Vectors of FlyCircuit identifiers
-#' @param scoremat A matrix, ff matrix, bigmatrix or a character vector
-#'   specifiying the name of an ff matrix containing the all by all score
+#' @param query,target Vectors of FlyCircuit identifiers (Neuron name, gene_name
+#'   or integer idid are all acceptable since they will be processed by 
+#'   \code{\link{fc_gene_name}}).
+#' @param scoremat A matrix, ff matrix, bigmatrix or a character vector 
+#'   specifiying the name of an ff matrix containing the all by all score 
 #'   matrix. Defaults to value of \code{options(flycircuit.scoremat)}.
 #' @param distance Logical indicating whether to return distances or scores.
 #' @param normalisation The type of normalisation procedure that should be 
@@ -48,7 +50,8 @@ fc_subscoremat<-function(query, target, scoremat=getOption('flycircuit.scoremat'
   normalisation <- match.arg(normalisation)
   if(distance && normalisation=='raw')
     stop("raw scores are always similarity scores")
-  
+  query=fc_gene_name(query)
+  target=fc_gene_name(target)
   if(is.character(scoremat)) scoremat <- fc_attach_bigmat(scoremat)
   
   nat.nblast::sub_score_mat(query = query, target = target, 

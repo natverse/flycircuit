@@ -8,7 +8,9 @@ fc_subscoremat(query, target, scoremat = getOption("flycircuit.scoremat"),
   distance = FALSE, normalisation = c("raw", "normalised", "mean"))
 }
 \arguments{
-\item{query,target}{Vectors of FlyCircuit identifiers}
+\item{query,target}{Vectors of FlyCircuit identifiers (Neuron name, gene_name
+or integer idid are all acceptable since they will be processed by
+\code{\link{fc_gene_name}}).}
 
 \item{scoremat}{A matrix, ff matrix, bigmatrix or a character vector
 specifiying the name of an ff matrix containing the all by all score
