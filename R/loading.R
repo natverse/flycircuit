@@ -83,7 +83,7 @@ load_fcdb <- function(db, Force=FALSE, ...) {
 fc_attach_bigmat <- function(bigmat, envir=NULL, force=FALSE) {
   if(is.null(envir)) envir=.extdata
   # Check to make sure we haven't been given an ff object
-  if(tail(strsplit(bigmat, "\\.")[[1]], n=1) == 'ff') {
+  if(tools::file_ext(bigmat)=='ff') {
     ffname <- sub("[.][^.]*$", "", bigmat, perl=T)
     return(fc_attach_ff(ffname))
   } else if(!exists(bigmat, where=envir)) {
