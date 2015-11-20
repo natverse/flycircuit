@@ -1,7 +1,13 @@
-<!--
-%\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{Quick-start guide}
--->
+---
+title: "Quick-start guide"
+author: "Gregory Jefferis"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Quick-start guide}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
 
 # Quick-start guide
 Data for various neurons can be downloaded from flybrain.mrc-lmb.cam.ac.uk and analysed using this package. The data include information on the location of the neurons in 3D space, details on innervation in different neuropils, and NBLAST scores. This quick-start guide is designed to give a brief examples of a subset of the analyses that can be carried out using this package, using an example dataset of 20 Kenyon cells.
