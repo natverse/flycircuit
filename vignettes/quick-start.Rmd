@@ -81,6 +81,12 @@ The package comes with some sample NBLAST scores for a set of 20 Kenyon cells.
 Each score is a pairwise comparison between two neurons. The score is asymmetric
 i.e. S(A,B)!=S(B,A). See ?kcs20scores for details.
 
+The scores were computed as follows:
+```{r compute-scores, eval=FALSE}
+kcs20scores=nblast_allbyall(kcs20)
+```
+
+
 Show the scores for the first five neurons:
 ```{r score-peek}
 kcs20scores[1:5, 1:5]
