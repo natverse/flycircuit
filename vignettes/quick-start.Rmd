@@ -34,7 +34,8 @@ library(nat.nblast)
 ### Typical startup
 In regular use in the Jefferis lab, we use the code available at 
 https://gist.github.com/jefferis/bbaf5d53353b3944c090 to set things up to use
-the complete flycircuit dataset. This results in a one-off 2GB all by all 
+our processed version of the  complete [flycircuit.tw](http://flycircuit.tw) 
+dataset. This results in a one-off 2GB all by all 
 NBLAST score matrix being downloaded from our website. Neurons (up to 1.3 Gb)
 will be downloaded when they are referenced.
 
@@ -49,7 +50,8 @@ which demonstration data is shipped with the *nat* and *flycircuit* packages.
 By default, any remote data will be downloaded to a subdirectory of the user 
 data directory (this is identified by the *rappdirs* package). On this machine
 this is `r getOption('flycircuit.datadir')`. This location should be the same
-for all R sessions so taht data is shared across sessions.
+for all R sessions so that data is shared across sessions (avoiding repeated 
+downloads).
 
 If you wish to save data to a different location then this can be set using: 
 ```{r package-options, eval=FALSE}
@@ -62,7 +64,8 @@ Morphological data for 20 Kenyon cells are distributed with the *nat* package.
 We can plot these 20 neurons and see where they are located in the brain:
 ```{r plot-kcs, rgl=TRUE, dev='png'}
 # set default view to frontal
-r3dDefaults$userMatrix=structure(c(1, 0, 0, 0, 0, -1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 1), .Dim = c(4L, 4L))
+r3dDefaults$userMatrix=structure(c(1, 0, 0, 0, 0, -1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 1),
+                                 .Dim = c(4L, 4L))
 open3d()
 plot3dfc(names(kcs20), db=kcs20)
 fcwbsurf()
