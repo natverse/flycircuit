@@ -2,7 +2,10 @@
 title: "Quick-start guide"
 author: "Gregory Jefferis"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_vignette:
+    fig_width: 7
+    fig_height: 5
 vignette: >
   %\VignetteIndexEntry{Quick-start guide}
   %\VignetteEngine{knitr::rmarkdown}
@@ -116,6 +119,7 @@ Look like a pair of alpha/beta core Kenyon cells.
 # hckc <- hclustfc(rownames(kcs20scores), scoremat=kcs20scores)
 hckc <- hclustfc(rownames(kcs20scores))
 library(dendroextras)
+par(mar=c(12, 4, 2, 2))   # Extra margin for labels
 plot(colour_clusters(hckc, k=3))
 ```
 
