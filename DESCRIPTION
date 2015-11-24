@@ -6,16 +6,17 @@ Description: This package contains a small number of functions specifically
 Version: 0.6.5
 Author: Greg Jefferis and James Manton
 Maintainer: Greg Jefferis <jefferis@gmail.com>
-Depends:
+Depends: 
     R (>= 3.0.1),
     rgl,
     nat (>= 1.5.14)
-Suggests:
+Suggests: 
     testthat,
     knitr,
     nat.nblast (>= 1.2),
-    dendroextras
-Imports:
+    dendroextras,
+    rmarkdown
+Imports: 
     bigmemory,
     ff,
     yaml,
