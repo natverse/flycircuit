@@ -202,13 +202,17 @@ fc_download_data <- function(url, type=c('data', 'db', 'bigmat', 'ff'),
 #' @param destfile Full path to local downloaded file
 #' @param overwrite Whether to check etag (\code{NULL}) or only download if file
 #'   is missing (\code{FALSE}) or always download (\code{TRUE}).
+#' @param mode See the \code{\link{download.file}} argument of the same name.
+#'   Must be set to \code{'wb'} on Windows to download binary files and
+#'   therefore defaults to this value.
 #' @param ... Additional arguments passed to \code{download.file}
 #' @seealso \code{\link{download.file}}
 #' @details The header will be cached in a file called XXXX.http_header.rds next
 #'   to the downloaded file
 #' @return Path to downloaded (or cached) file.
 #' @export
-download.file.wcheck<-function(url, destdir=NULL, destfile=NULL, overwrite=NULL, ...){
+download.file.wcheck<-function(url, destdir=NULL, destfile=NULL, overwrite=NULL,
+                               mode='wb', ...){
   if(is.null(destdir) && is.null(destfile)) stop("Must specify one of destdir or destfile")
   if(is.null(destfile)) destfile=file.path(destdir, basename(url))
   
@@ -230,7 +234,7 @@ download.file.wcheck<-function(url, destdir=NULL, destfile=NULL, overwrite=NULL,
       
     if(!overwrite && file.exists(destfile))
       message("Using cached version of file.")
-    else download.file(url, destfile=destfile, ...)
+    else download.file(url, destfile=destfile, mode=mode, ...)
   }, silent=T)
   
   if(inherits(rval, 'try-error')){

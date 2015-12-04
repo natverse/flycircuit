@@ -5,7 +5,7 @@
 \title{Download a remote file if it is new or updated}
 \usage{
 download.file.wcheck(url, destdir = NULL, destfile = NULL,
-  overwrite = NULL, ...)
+  overwrite = NULL, mode = "wb", ...)
 }
 \arguments{
 \item{url}{Location of remote file to download}
@@ -16,6 +16,10 @@ download.file.wcheck(url, destdir = NULL, destfile = NULL,
 
 \item{overwrite}{Whether to check etag (\code{NULL}) or only download if file
 is missing (\code{FALSE}) or always download (\code{TRUE}).}
+
+\item{mode}{See the \code{\link{download.file}} argument of the same name.
+Must be set to \code{'wb'} on Windows to download binary files and
+therefore defaults to this value.}
 
 \item{...}{Additional arguments passed to \code{download.file}}
 }
