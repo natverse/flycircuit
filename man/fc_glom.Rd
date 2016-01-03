@@ -4,14 +4,15 @@
 \alias{fc_glom}
 \title{Antennal lobe glomerulus (where applicable) for FlyCircuit identifiers}
 \usage{
-fc_glom(x)
+fc_glom(x = NULL)
 }
 \arguments{
-\item{x}{Vector of flycircuit identifiers (integer idid, chaacter/factor
-gene_name/Name)}
+\item{x}{A neuron identifier. When missing defaults to all neurons annotated
+with an ALGlomerulus tag.}
 }
 \value{
-a character vector of glomerulus names
+a character vector of glomerulus names, named by the neuron
+  identifier
 }
 \description{
 These comes from manual annotations carried out for Costa et al.
