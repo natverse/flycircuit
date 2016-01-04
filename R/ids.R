@@ -138,8 +138,13 @@ fcgn_forfile<-function(file,checkExists=FALSE){
 #' @return a character vector of glomerulus names, named by the neuron
 #'   identifier
 #' @export
+#' @seealso \code{\link{fc_neuron_type}}, \code{\link{fc_gene_name}}
 #' @examples
 #' fc_glom('FruMARCM-F000446_seg001')
+#' # how many neurons annotated with any glomerulus
+#' length(fc_glom())
+#' # how many neurons annotated for each glomerulus
+#' table(fc_glom())
 fc_glom<-function(x=NULL){
   gloms=flycircuit::annotation[flycircuit::annotation$annotation_class=='ALGlomerulus', ]
   if(!is.null(x)){

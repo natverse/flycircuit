@@ -19,5 +19,12 @@ These comes from manual annotations carried out for Costa et al.
 }
 \examples{
 fc_glom('FruMARCM-F000446_seg001')
+# how many neurons annotated with any glomerulus
+length(fc_glom())
+# how many neurons annotated for each glomerulus
+table(fc_glom())
+}
+\seealso{
+\code{\link{fc_neuron_type}}, \code{\link{fc_gene_name}}
 }
 
