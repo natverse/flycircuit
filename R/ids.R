@@ -148,4 +148,51 @@ fc_glom<-function(x=NULL){
   }
   structure(gloms[,"text"], .Names=fc_gene_name(gloms$neuron_idid))
 }
+
+#' Return metadata including NeuronType for FlyCircuit neurons
+#' 
+#' @description \code{fc_neuron_type} depends on a more generic worker function 
+#'   \code{fc_annotated_class}, which may be used to construct other convenience
+#'   functions.
+#'   
+#' @param x A neuron identifier. When missing defaults to all neurons annotated 
+#'   with the given annotation class.
+#' @param regex An optional \code{\link[base]{regex}} used to filter the 
+#'   annotation text values of the matching neurons.
+#' @param ... Additional arguments passed to \code{\link[base]{grepl}}.
+#' @return a character vector of annotation values, named by the neuron 
+#'   identifier
+#' @details In our schema, annotations are key-value pairs in which an 
+#'   annotation class, such as \bold{NeuronType}, may have multiple values (e.g.
+#'   \emph{gamma Kenyon cell}).
+#' @seealso \code{\link[base]{grepl}}, \code{\link{fc_gene_name}}, 
+#' @export
+#' @examples 
+#' # how many neurons are annotated with any type?
+#' length(fc_neuron_type())
+#' # how many types of neuron
+#' length(unique(fc_neuron_type()))
+#' # how many neurons of each type are present
+#' table(fc_neuron_type())
+#' # find all the Kenyon cells
+#' fc_neuron_type(regex="Kenyon")
+#' fc_neuron_type(regex="gamma Kenyon")
+#' fc_neuron_type(regex="gamma.*Kenyon")
+fc_neuron_type<-function(x=NULL, regex=NULL, ...){
+  fc_annotated_class("NeuronType", x, regex = regex, ...)
+}
+
+#' @export
+#' @rdname fc_neuron_type
+#' @param class The annotation class to select (for code{fc_annotated_class}).
+fc_annotated_class<-function(class, x=NULL, regex=NULL, ...){
+  types=flycircuit::annotation[flycircuit::annotation$annotation_class==class, ]
+  if(!is.null(x)){
+    idids=fc_idid(x)
+    types=types[match(idids,types$neuron_idid),]
+  }
+  res=structure(types[,"text"], .Names=fc_gene_name(types$neuron_idid))
+  if(!is.null(regex)) {
+    res[grepl(regex, res, ...)]
+  } else res
 }
