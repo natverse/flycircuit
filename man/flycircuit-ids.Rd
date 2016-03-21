@@ -6,15 +6,17 @@
 \alias{fc_neuron}
 \title{Convert between different FlyCircuit identifiers}
 \usage{
-fc_gene_name(x)
+fc_gene_name(x, ignore.case = TRUE)
 
-fc_idid(x)
+fc_idid(x, ignore.case = TRUE)
 
-fc_neuron(x)
+fc_neuron(x, ignore.case = TRUE)
 }
 \arguments{
 \item{x}{Vector of flycircuit identifiers (integer idid, chaacter/factor
 gene_name/Name)}
+
+\item{ignore.case}{whether to ignore the case of the input.}
 }
 \value{
 character vector of gene_name/Name or integer vector of idid.

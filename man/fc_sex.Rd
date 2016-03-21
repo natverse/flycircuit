@@ -4,11 +4,13 @@
 \alias{fc_sex}
 \title{return sex of the animal for one or more FlyCircuit identifiers}
 \usage{
-fc_sex(x)
+fc_sex(x, ignore.case = TRUE)
 }
 \arguments{
 \item{x}{Vector of flycircuit identifiers (integer idid, chaacter/factor
 gene_name/Name)}
+
+\item{ignore.case}{whether to ignore the case of the input.}
 }
 \value{
 a character vector with values "M", "F" or \code{NA_character_}

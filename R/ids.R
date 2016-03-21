@@ -6,6 +6,7 @@
 #' @details Depends on fcidtable dataframe
 #' @param x Vector of flycircuit identifiers (integer idid, chaacter/factor 
 #'   gene_name/Name)
+#' @param ignore.case whether to ignore the case of the input.
 #' @return character vector of gene_name/Name or integer vector of idid.
 #' @export
 #' @rdname flycircuit-ids
@@ -13,13 +14,22 @@
 #' @examples
 #' fc_gene_name(1)
 #' # "FruMARCM-M002262_seg001"
-fc_gene_name<-function(x){
+fc_gene_name<-function(x, ignore.case=TRUE){
   if(is.factor(x)) x=as.character(x)
   if(is.character(x)){
     # FIXME check that ALL x values look like gene_names
-    if(regexpr('seg',x[1])>=0) return(x)
-    else {
-      res=match(x,flycircuit::fcidtable$Name)
+    if(regexpr('seg',x[1])>=0) {
+      if(ignore.case) {
+        return(flycircuit::fcidtable$gene_name[match(tolower(x), tolower(flycircuit::fcidtable$gene_name))])
+      } else {
+        return(x)
+      }
+    } else {
+      if(ignore.case) {
+        res=match(tolower(x), tolower(flycircuit::fcidtable$Name))
+      } else {
+        res=match(x,flycircuit::fcidtable$Name)
+      }
     }
   } else {
     res=match(x,flycircuit::fcidtable$idid)
@@ -33,11 +43,11 @@ fc_gene_name<-function(x){
 #' @rdname flycircuit-ids
 #' @examples
 #' isTRUE(fc_idid("FruMARCM-M002262_seg001")==1)
-fc_idid<-function(x){
+fc_idid<-function(x, ignore.case=TRUE){
   if(is.factor(x)) x=as.character(x)
   if(is.character(x)){
     # check if we have been given neuron Names
-    xAreNames=grepl("^[\\w\\-]+-[MFX]+-\\d+$",x,perl=TRUE)
+    xAreNames=grepl("^[\\w\\-]+-[MFXmfx]+-\\d+$",x,perl=TRUE)
     if(any(xAreNames)){
       # but make sure they all are ...
       if(!all(xAreNames)) 
@@ -45,7 +55,11 @@ fc_idid<-function(x){
       res=match(x,flycircuit::fcidtable$Name)
     } else {
       # assume we have gene_names
-      res=match(x,flycircuit::fcidtable$gene_name)
+      if(ignore.case) {
+        res=match(tolower(x), tolower(flycircuit::fcidtable$gene_name))
+      } else {
+        res=match(x,flycircuit::fcidtable$gene_name)
+      }
     }
     flycircuit::fcidtable$idid[res]
   } else {
@@ -59,19 +73,28 @@ fc_idid<-function(x){
 #' @rdname flycircuit-ids
 #' @examples
 #' isTRUE(fc_neuron("FruMARCM-M002262_seg001")=="fru-M-200266")
-fc_neuron<-function(x){
+fc_neuron<-function(x, ignore.case=TRUE){
   if(is.factor(x)) x=as.character(x)
   if(is.character(x)){
     # check if we have been given neuron Names
-    xAreNames=grepl('^\\w+-[MFX]+-\\d+$',x,perl=TRUE)
+    xAreNames=grepl('^\\w+-[MFXmfx]+-\\d+$',x,perl=TRUE)
     if(any(xAreNames)){
       # but make sure they all are ...
       if(!all(xAreNames)) 
         stop("ambiguous flycircuit neuron Names:",paste(x[!xAreNames],collapse=", "))
-      return(x)
+      if(ignore.case) {
+        return(flycircuit::fcidtable$Name[match(tolower(x), tolower(flycircuit::fcidtable$Name))])
+      } else {
+        return(x)
+      }
     } else {
       # assume we have gene_names
       res=match(x,flycircuit::fcidtable$gene_name)
+      if(ignore.case) {
+        res=match(tolower(x), tolower(flycircuit::fcidtable$gene_name))
+      } else {
+        res=match(x,flycircuit::fcidtable$gene_name)
+      }
     }
   } else {
     # assume these are idids
@@ -91,8 +114,8 @@ fc_neuron<-function(x){
 #' @examples
 #' fc_sex(1)
 #' fc_sex(c("FruMARCM-M001589_seg001","TPHMARCM-596M_seg1"))
-fc_sex<-function(x){
-  nids=fc_neuron(x)
+fc_sex<-function(x, ignore.case=TRUE){
+  nids=fc_neuron(x, ignore.case=ignore.case)
   sexes=rep(NA_character_,length(nids))
   sexes[grepl("-M-",nids,fixed=T)]="M"
   sexes[grepl("-F-",nids,fixed=T)]="F"
