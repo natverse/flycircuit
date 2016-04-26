@@ -307,6 +307,19 @@ plot3d.APResult<-function(x,plot=c("exemplars","bycluster","all"),suppressPlot=F
 #' @importFrom apcluster apcluster
 #' @export
 #' @seealso \code{\link[apcluster]{apcluster},\link{fc_gene_name}}
+#' @examples
+#' \dontrun{
+#' library(nat)
+#' 
+#' apres <- apclusterfc(names(kcs20))
+#' 
+#' # Plot cluster exemplars
+#' plot3d(apres, db=kcs20)
+#' 
+#' # Interactively step through clusters, with the examplar plotted in black
+#' clear3d()
+#' plot3d(apres, db=kcs20, plot='bycluster')
+#' }
 apclusterfc <- function(gns, p=0, ..., scoremat=getOption('flycircuit.scoremat'), 
                       FUN=NULL, maxneurons=4000) {
   if (!is.na(maxneurons) && length(gns) > maxneurons) {

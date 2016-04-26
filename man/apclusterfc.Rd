@@ -41,6 +41,20 @@ use with apcluster by calculating 1-d.
 maxneurons of 4000 has been chosen to prevent inadvertent clustering of huge
 numbers of neurons. 4000 is reasonable on a decent laptop.
 }
+\examples{
+\dontrun{
+library(nat)
+
+apres <- apclusterfc(names(kcs20))
+
+# Plot cluster exemplars
+plot3d(apres, db=kcs20)
+
+# Interactively step through clusters, with the examplar plotted in black
+clear3d()
+plot3d(apres, db=kcs20, plot='bycluster')
+}
+}
 \seealso{
 \code{\link[apcluster]{apcluster},\link{fc_gene_name}}
 }
