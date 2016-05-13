@@ -43,12 +43,15 @@ numbers of neurons. 4000 is reasonable on a decent laptop.
 }
 \examples{
 \dontrun{
-library(nat)
-
 apres <- apclusterfc(names(kcs20))
 
 # Plot cluster exemplars
 plot3d(apres, db=kcs20)
+
+# compare affinity propagation clusters with manually defined types
+apdf=as.data.frame(apres)
+type_comparison=cbind(apdf['cluster'], kcs20[apdf$item,'type', drop=F])
+table(type_comparison$cluster, type_comparison$type)
 
 # Interactively step through clusters, with the examplar plotted in black
 clear3d()
