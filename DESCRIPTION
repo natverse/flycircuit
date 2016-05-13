@@ -24,7 +24,6 @@ Imports:
     apcluster,
     rappdirs,
     RCurl,
-    tools
     tools,
     grDevices,
     stats,
