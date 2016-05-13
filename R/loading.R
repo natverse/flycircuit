@@ -211,6 +211,7 @@ fc_download_data <- function(url, type=c('data', 'db', 'bigmat', 'ff'),
 #'   to the downloaded file
 #' @return Path to downloaded (or cached) file.
 #' @export
+#' @importFrom utils download.file
 download.file.wcheck<-function(url, destdir=NULL, destfile=NULL, overwrite=NULL,
                                mode='wb', ...){
   if(is.null(destdir) && is.null(destfile)) stop("Must specify one of destdir or destfile")

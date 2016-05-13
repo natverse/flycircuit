@@ -17,6 +17,7 @@
 #' @inheritParams nat.nblast::nhclust
 #'   
 #' @export
+#' @importFrom stats as.dist
 #' @family scoremats
 #' @seealso \code{\link{fc_gene_name}, \link[nat.nblast]{nhclust}, 
 #'   \link{hclust}, \link{dist}, \link[nat.nblast]{plot3d.hclust}}
@@ -102,6 +103,7 @@ as.data.frame.APResult <- function(x, row.names=NULL, optional=FALSE, clusters, 
 #' @return list with names of selected neurons for each cluster
 #' @importFrom yaml yaml.load_file
 #' @export
+#' @importFrom grDevices rainbow
 #' @seealso \code{\link[apcluster]{apcluster}}
 #' @examples
 #' \dontrun{

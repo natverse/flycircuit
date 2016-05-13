@@ -25,6 +25,10 @@ Imports:
     rappdirs,
     RCurl,
     tools
+    tools,
+    grDevices,
+    stats,
+    utils
 License: GPL-3
 LazyData: true
 VignetteBuilder: knitr
