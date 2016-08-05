@@ -23,3 +23,12 @@ Note: Windows users need [Rtools](http://www.murdoch-sutherland.com/Rtools/) and
 
 ## Getting Started
 Take a look at the package vignette (available through R's help system).
+
+## Getting the data
+We have pre-packaged a complete registered/skeletonised version of 16129 neurons from the flycircuit dataset. We are also distributing the all by all NBLAST scores for these neruons. Further details are available at https://gist.github.com/jefferis/bbaf5d53353b3944c090.
+
+You can get the data like so:
+
+```
+devtools::source_gist("bbaf5d53353b3944c090")
+```
