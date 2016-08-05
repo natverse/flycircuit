@@ -22,7 +22,7 @@ devtools::install_github("jefferis/flycircuit", dependencies=TRUE)
 Note: Windows users need [Rtools](http://www.murdoch-sutherland.com/Rtools/) and [devtools](http://CRAN.R-project.org/package=devtools) to install this way.
 
 ## Getting Started
-Take a look at the package vignette (available through R's help system).
+Take a look at the [package vignette](vignettes/quick-start.Rmd) (also available in fullly processed format through R's help system).
 
 ## Getting the data
 We have pre-packaged a complete registered/skeletonised version of 16129 neurons from the flycircuit dataset. We are also distributing the all by all NBLAST scores for these neruons. Further details are available at https://gist.github.com/jefferis/bbaf5d53353b3944c090.
