@@ -17,6 +17,7 @@ reference:
       - fc_neuron_type
       - fc_sex
       - fcidtable
+      - fc_gene_name
       - fcgn_forfile
       - flycircuit-ids
   - title: Clustering and searching
