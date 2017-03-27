@@ -11,7 +11,7 @@ Authors@R: c(
 Depends:
     R (>= 3.0.1),
     rgl,
-    nat (>= 1.5.14)
+    nat (>= 1.8.8)
 Suggests:
     testthat,
     knitr,
