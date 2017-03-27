@@ -1,3 +1,9 @@
+flycircuit 0.6.6
+================
+* Add fc_neuron_type
+* Add online docs with pkgdown
+* Insist on nat >= 1.8.8
+
 flycircuit 0.6.5
 ================
 * update annotation database (1 April 2015, now 6565 NeuronType annotations)
