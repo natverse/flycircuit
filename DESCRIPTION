@@ -15,7 +15,6 @@ Depends:
 Suggests:
     testthat,
     knitr,
-    nat.nblast (>= 1.2),
     dendroextras,
     rmarkdown
 Imports:
@@ -28,7 +27,8 @@ Imports:
     tools,
     grDevices,
     stats,
-    utils
+    utils,
+    nat.nblast (>= 1.2)
 License: GPL-3
 LazyData: true
 VignetteBuilder: knitr
