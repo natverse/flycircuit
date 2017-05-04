@@ -17,8 +17,7 @@ Suggests:
     knitr,
     nat.nblast (>= 1.2),
     dendroextras,
-    rmarkdown,
-    rglwidget
+    rmarkdown
 Imports:
     bigmemory,
     ff,
