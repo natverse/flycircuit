@@ -1,22 +1,13 @@
-language: c
-script: ./travis-tool.sh run_tests
-before_install:
-  - curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
-  - chmod 755 ./travis-tool.sh
-  - ./travis-tool.sh bootstrap
-  - ./travis-tool.sh r_binary_install rgl RANN igraph filehash digest testthat bigmemory ff RcppEigen
-  - ./travis-tool.sh install_github jefferis/nat jefferislab/nat.nblast Rexamine/stringi
-install:
-  - ./travis-tool.sh install_deps
-  - sh -e /etc/init.d/xvfb start
-notifications:
-  email:
-    on_success: change
-    on_failure: change
-env:
-  - global:
-    - R_BUILD_ARGS='--no-manual'
-    - R_CHECK_ARGS='--no-manual --as-cran'
-    - WARNINGS_ARE_ERRORS=1
-    - _R_CHECK_FORCE_SUGGESTS_=0
-    - DISPLAY=:99.0
+language: R
+sudo: false
+dist: trusty
+cache:
+  packages: true
+  directories:
+  - $HOME/usr/local
+
+before_script:
+  - export PATH=$PATH:$HOME/usr/local/bin
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3 # give xvfb some time to start
