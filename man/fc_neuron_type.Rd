@@ -42,9 +42,9 @@ length(unique(fc_neuron_type()))
 # how many neurons of each type are present
 table(fc_neuron_type())
 # find all the Kenyon cells
-fc_neuron_type(regex="Kenyon")
-fc_neuron_type(regex="gamma Kenyon")
-fc_neuron_type(regex="gamma.*Kenyon")
+table(fc_neuron_type(regex="Kenyon"))
+table(fc_neuron_type(regex="gamma Kenyon"))
+table(fc_neuron_type(regex="gamma.*Kenyon"))
 }
 \seealso{
 \code{\link[base]{grepl}}, \code{\link{fc_gene_name}},

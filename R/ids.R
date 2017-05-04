@@ -203,9 +203,9 @@ fc_glom<-function(x=NULL){
 #' # how many neurons of each type are present
 #' table(fc_neuron_type())
 #' # find all the Kenyon cells
-#' fc_neuron_type(regex="Kenyon")
-#' fc_neuron_type(regex="gamma Kenyon")
-#' fc_neuron_type(regex="gamma.*Kenyon")
+#' table(fc_neuron_type(regex="Kenyon"))
+#' table(fc_neuron_type(regex="gamma Kenyon"))
+#' table(fc_neuron_type(regex="gamma.*Kenyon"))
 fc_neuron_type<-function(x=NULL, regex=NULL, ...){
   fc_annotated_class("NeuronType", x, regex = regex, ...)
 }
