@@ -33,3 +33,5 @@ License: GPL-3
 LazyData: true
 VignetteBuilder: knitr
 RoxygenNote: 6.0.1
+Remotes: jefferis/nat,
+    jefferislab/nat.blast
