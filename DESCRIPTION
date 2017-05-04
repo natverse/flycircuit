@@ -34,4 +34,4 @@ LazyData: true
 VignetteBuilder: knitr
 RoxygenNote: 6.0.1
 Remotes: jefferis/nat,
-    jefferislab/nat.blast
+    jefferislab/nat.nblast
