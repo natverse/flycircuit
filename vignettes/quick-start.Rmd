@@ -20,8 +20,7 @@ Data for various neurons can be downloaded from flybrain.mrc-lmb.cam.ac.uk and a
 # Allow production of figures using RGL
 library(knitr)
 library(rgl)
-knit_hooks$set(rgl = hook_rgl)
-opts_chunk$set(dev=c('png','pdf'))
+rgl::setupKnitr()
 ```
 
 ### Load flycircuit and nat (NeuronAnatomy Toolbox) packages
