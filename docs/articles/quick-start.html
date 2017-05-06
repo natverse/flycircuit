@@ -50,7 +50,7 @@
       <h1>Quick-start guide</h1>
                         <h4 class="author">Gregory Jefferis</h4>
             
-            <h4 class="date">2017-05-05</h4>
+            <h4 class="date">2017-05-06</h4>
           </div>
 
     
@@ -66,8 +66,7 @@
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Allow production of figures using RGL</span>
 <span class="kw">library</span>(knitr)
 <span class="kw">library</span>(rgl)
-knit_hooks$<span class="kw">set</span>(<span class="dt">rgl =</span> hook_rgl)
-opts_chunk$<span class="kw">set</span>(<span class="dt">dev=</span><span class="kw">c</span>(<span class="st">'png'</span>,<span class="st">'pdf'</span>))</code></pre></div>
+rgl::<span class="kw">setupKnitr</span>()</code></pre></div>
 <div id="load-flycircuit-and-nat-neuronanatomy-toolbox-packages" class="section level3">
 <h3 class="hasAnchor">
 <html><body><a href="#load-flycircuit-and-nat-neuronanatomy-toolbox-packages" class="anchor"> </a></body></html>Load flycircuit and nat (NeuronAnatomy Toolbox) packages</h3>
