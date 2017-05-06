@@ -8,7 +8,7 @@ output:
     fig_height: 5
 vignette: >
   %\VignetteIndexEntry{Quick-start guide}
-  %\VignetteEngine{rmarkdown::render}
+  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
