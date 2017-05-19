@@ -19,7 +19,6 @@ reference:
       - fcidtable
       - fc_gene_name
       - fcgn_forfile
-      - flycircuit-ids
   - title: Clustering and searching
     contents:
     - apclusterfc
