@@ -4,10 +4,9 @@
 \name{flycircuit}
 \alias{flycircuit}
 \alias{flycircuit-package}
-\title{flycircuit}
+\title{Support functions for analysis of raw image data provided by flycircuit.tw}
 \description{
-This package provides support functions for analysis of raw image data 
-provided by \url{http://flycircuit.tw}.
+Support functions for analysis of raw image data provided by flycircuit.tw
 }
 \section{Package options}{
 
@@ -46,6 +45,9 @@ provided by \url{http://flycircuit.tw}.
 \examples{
 # Show state of flycircuit package options
 options()[grep('^flycircuit', names(options()))]
+}
+\references{
+\url{http://flycircuit.tw}
 }
 \seealso{
 \code{\link{fc_download_data}}

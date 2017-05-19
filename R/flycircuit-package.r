@@ -1,7 +1,4 @@
-#' flycircuit
-#' 
-#' This package provides support functions for analysis of raw image data 
-#' provided by \url{http://flycircuit.tw}.
+#' Support functions for analysis of raw image data provided by flycircuit.tw
 #' 
 #' @name flycircuit
 #' @docType package
@@ -37,6 +34,7 @@
 #'   
 #'   }
 #' @seealso \code{\link{fc_download_data}}
+#' @references \url{http://flycircuit.tw}
 #' @import nat rgl
 #' @examples
 #' # Show state of flycircuit package options
