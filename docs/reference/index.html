@@ -25,12 +25,14 @@
 <script src="../pkgdown.js"></script>
 
 <!-- mathjax -->
-<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+<script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
+
   </head>
 
   <body>
@@ -69,194 +71,262 @@
       <div class="row">
   <div class="col-md-9">
     <div class="page-header">
-      <h1>Function reference</h1>
-      <h4>version&nbsp;0.6.7</h4>
+      <h1>
+        Reference
+        <small>version&nbsp;0.6.8</small>
+      </h1>
     </div>
 
     <div class="contents">
-      <h2 id="section-package-help" class="hasAnchor"><a href="#section-package-help" class="anchor"></a>Package Help</h2>
-      <p class="section-desc"><p>Provides an overview of key functions and classes</p></p>
+      <table class="ref-index">
 
-      
-      <p><a href="flycircuit.html">flycircuit</a></p>
-      <ul>
-        <li><code><a href="flycircuit.html">flycircuit</a></code></li><li><code><a href="flycircuit.html">flycircuit-package</a></code></li>
-      </ul>
-          <h2 id="section-identifiers-and-annotations" class="hasAnchor"><a href="#section-identifiers-and-annotations" class="anchor"></a>Identifiers and Annotations</h2>
-      <p class="section-desc"><p>There are at least 3 different kinds of identifiers in use with the flycircuit database. These functions convert between them as well as making additional metadata available. Furthermore annotations carried out in the course of the Costa et al. NBLAST study are also available - these include the identification of 5400 neuronal types as well as the glomeruli innervated by 433 olfactory projection neurons.</p></p>
+      <colgroup>
+        <col class="alias" />
+        <col class="title" />
+      </colgroup>
 
-      
-      <p><a href="annotation.html">A dataframe containing manual annotations of some FlyCircuit neurons</a></p>
-      <ul>
-        <li><code><a href="annotation.html">annotation</a></code></li>
-      </ul>
-      
-      <p><a href="fc_glom.html">Antennal lobe glomerulus (where applicable) for FlyCircuit identifiers</a></p>
-      <ul>
-        <li><code><a href="fc_glom.html">fc_glom</a></code></li>
-      </ul>
-      
-      <p><a href="fc_neuron_type.html">Return metadata including NeuronType for FlyCircuit neurons</a></p>
-      <ul>
-        <li><code><a href="fc_neuron_type.html">fc_neuron_type</a></code></li><li><code><a href="fc_neuron_type.html">fc_annotated_class</a></code></li>
-      </ul>
-      
-      <p><a href="fc_sex.html">return sex of the animal for one or more FlyCircuit identifiers</a></p>
-      <ul>
-        <li><code><a href="fc_sex.html">fc_sex</a></code></li>
-      </ul>
-      
-      <p><a href="fcgn_forfile.html">Return the flycircuit gene_name identifier for a file</a></p>
-      <ul>
-        <li><code><a href="fcgn_forfile.html">fcgn_forfile</a></code></li>
-      </ul>
-      
-      <p><a href="fcidtable.html">fcidtable - Data.frame of flycircuit identifiers</a></p>
-      <ul>
-        <li><code><a href="fcidtable.html">fcidtable</a></code></li>
-      </ul>
-      
-      <p><a href="flycircuit-ids.html">Convert between different FlyCircuit identifiers</a></p>
-      <ul>
-        <li><code><a href="flycircuit-ids.html">fc_gene_name</a></code></li><li><code><a href="flycircuit-ids.html">fc_idid</a></code></li><li><code><a href="flycircuit-ids.html">fc_neuron</a></code></li>
-      </ul>
-          <h2 id="section-clustering-and-searching" class="hasAnchor"><a href="#section-clustering-and-searching" class="anchor"></a>Clustering and searching</h2>
-      <p class="section-desc"></p>
-
-      
-      <p><a href="apclusterfc.html">Affinity propagation clustering of FlyCircuit neurons</a></p>
-      <ul>
-        <li><code><a href="apclusterfc.html">apclusterfc</a></code></li>
-      </ul>
-      
-      <p><a href="as.data.frame.APResult.html">Convert APResult (apcluster output) to dataframe</a></p>
-      <ul>
-        <li><code><a href="as.data.frame.APResult.html">as.data.frame.APResult</a></code></li>
-      </ul>
-      
-      <p><a href="fc_nblast.html">Return (normalised) nblast similarity scores for FlyCircuit neurons</a></p>
-      <ul>
-        <li><code><a href="fc_nblast.html">fc_nblast</a></code></li>
-      </ul>
-      
-      <p><a href="fc_subscoremat.html">Return scores (or distances) for given query and target neurons</a></p>
-      <ul>
-        <li><code><a href="fc_subscoremat.html">fc_subscoremat</a></code></li>
-      </ul>
-      
-      <p><a href="hclustfc.html">Cluster a set of FlyCircuit neurons identified by gene_name</a></p>
-      <ul>
-        <li><code><a href="hclustfc.html">hclustfc</a></code></li>
-      </ul>
-      
-      <p><a href="kcs20scores.html">A matrix containing all by all nblast similarity scores for 20 neurons</a></p>
-      <ul>
-        <li><code><a href="kcs20scores.html">kcs20scores</a></code></li>
-      </ul>
-          <h2 id="section-plotting-and-surfaces" class="hasAnchor"><a href="#section-plotting-and-surfaces" class="anchor"></a>Plotting and surfaces</h2>
-      <p class="section-desc"></p>
-
-      
-      <p><a href="dpscan.html">Scan through a set of flycircuit neurons</a></p>
-      <ul>
-        <li><code><a href="dpscan.html">dpscan</a></code></li>
-      </ul>
-      
-      <p><a href="drawRegionSurf.html">Draw surface corresponding to a given list of regions from surface object</a></p>
-      <ul>
-        <li><code><a href="drawRegionSurf.html">drawRegionSurf</a></code></li>
-      </ul>
-      
-      <p><a href="FCWB.surf.html">FCWB.surf - Surface model of FCWB FlyCircuit reference brain</a></p>
-      <ul>
-        <li><code><a href="FCWB.surf.html">FCWB.surf</a></code></li>
-      </ul>
-      
-      <p><a href="FCWBNP.surf.html">FCWBNP.surf - Surface model of FlyLight neuropil segmentation in FlyCircuit
-</a></p>
-      <ul>
-        <li><code><a href="FCWBNP.surf.html">FCWBNP.surf</a></code></li>
-      </ul>
-      
-      <p><a href="fcwbnpsurf.html">Plot 3D surfaces of the FlyLight neuropil segmentation in FlyCircuit coordinate space</a></p>
-      <ul>
-        <li><code><a href="fcwbnpsurf.html">fcwbnpsurf</a></code></li>
-      </ul>
-      
-      <p><a href="fcwbsurf.html">Plot a 3D surface of the FlyCircuit reference brain</a></p>
-      <ul>
-        <li><code><a href="fcwbsurf.html">fcwbsurf</a></code></li>
-      </ul>
-      
-      <p><a href="getRegionsFromSurf.html">Return a list of regions contained in a surface</a></p>
-      <ul>
-        <li><code><a href="getRegionsFromSurf.html">getRegionsFromSurf</a></code></li>
-      </ul>
-      
-      <p><a href="getRegionSurf.html">Creates a new surface containing specified regions from a given surface</a></p>
-      <ul>
-        <li><code><a href="getRegionSurf.html">getRegionSurf</a></code></li>
-      </ul>
-      
-      <p><a href="plot3d.APResult.html">Plot exemplar neurons/all cluster members after clustering by affinity
-</a></p>
-      <ul>
-        <li><code><a href="plot3d.APResult.html">plot3d.APResult</a></code></li>
-      </ul>
-      
-      <p><a href="plot3dfc.html">Plot FlyCircuit neurons using rgl</a></p>
-      <ul>
-        <li><code><a href="plot3dfc.html">plot3dfc</a></code></li>
-      </ul>
-      
-      <p><a href="pop3dfc.html">Remove plotted FlyCircuit neurons (deprecated, see nat::npop3d)</a></p>
-      <ul>
-        <li><code><a href="pop3dfc.html">pop3dfc</a></code></li>
-      </ul>
-      
-      <p><a href="selectRegionsFromSurf.html">Select regions from a surface</a></p>
-      <ul>
-        <li><code><a href="selectRegionsFromSurf.html">selectRegionsFromSurf</a></code></li>
-      </ul>
-          <h2 id="section-support-for-remote-optional-data" class="hasAnchor"><a href="#section-support-for-remote-optional-data" class="anchor"></a>Support for remote / optional data</h2>
-      <p class="section-desc"><p>Some flycircuit functionality depends on data which is not bundled into the R package (since it is about 4GB in size). These functions handle download and access to such data.</p></p>
-
-      
-      <p><a href="download.file.wcheck.html">Download a remote file if it is new or updated</a></p>
-      <ul>
-        <li><code><a href="download.file.wcheck.html">download.file.wcheck</a></code></li>
-      </ul>
-      
-      <p><a href="fc_attach_bigmat.html">Attach a big.matrix (typically used for all-by-all blast distances)</a></p>
-      <ul>
-        <li><code><a href="fc_attach_bigmat.html">fc_attach_bigmat</a></code></li>
-      </ul>
-      
-      <p><a href="fc_attach_ff.html">Attach an ff object (typically used for all-by-all blast distances)</a></p>
-      <ul>
-        <li><code><a href="fc_attach_ff.html">fc_attach_ff</a></code></li>
-      </ul>
-      
-      <p><a href="fc_download_data.html">Download a data file from a remote location</a></p>
-      <ul>
-        <li><code><a href="fc_download_data.html">fc_download_data</a></code></li>
-      </ul>
-      
-      <p><a href="load_fcdata.html">Load an rda/rds object cached on disk into the Global Environment</a></p>
-      <ul>
-        <li><code><a href="load_fcdata.html">load_fcdata</a></code></li>
-      </ul>
-      
-      <p><a href="load_fcdb.html">Load a database cached in the db subfolder into the Global Environment</a></p>
-      <ul>
-        <li><code><a href="load_fcdb.html">load_fcdb</a></code></li>
-      </ul>
-      
-      <p><a href="load_si_data.html">Load NBLAST supplemental data objects, downloading when required</a></p>
-      <ul>
-        <li><code><a href="load_si_data.html">load_si_data</a></code></li>
-      </ul>
-    
+      <tbody>
+        <tr>
+          <th colspan="2">
+            <h2 id="section-package-help" class="hasAnchor"><a href="#section-package-help" class="anchor"></a>Package Help</h2>
+            <p class="section-desc"><p>Provides an overview of key functions and classes</p></p>
+          </th>
+        </tr>
+        <tr>
+          <!--  -->
+          <td>
+            <p><code><a href="flycircuit.html">flycircuit</a></code> </p>
+          </td>
+          <td><p>flycircuit</p></td>
+        </tr>
+      </tbody><tbody>
+        <tr>
+          <th colspan="2">
+            <h2 id="section-identifiers-and-annotations" class="hasAnchor"><a href="#section-identifiers-and-annotations" class="anchor"></a>Identifiers and Annotations</h2>
+            <p class="section-desc"><p>There are at least 3 different kinds of identifiers in use with the flycircuit database. These functions convert between them as well as making additional metadata available. Furthermore annotations carried out in the course of the Costa et al. NBLAST study are also available - these include the identification of 5400 neuronal types as well as the glomeruli innervated by 433 olfactory projection neurons.</p></p>
+          </th>
+        </tr>
+        <tr>
+          <!--  -->
+          <td>
+            <p><code><a href="annotation.html">annotation</a></code> </p>
+          </td>
+          <td><p>A dataframe containing manual annotations of some FlyCircuit neurons</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="fc_glom.html">fc_glom</a></code> </p>
+          </td>
+          <td><p>Antennal lobe glomerulus (where applicable) for FlyCircuit identifiers</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="fc_neuron_type.html">fc_neuron_type</a></code> <code><a href="fc_neuron_type.html">fc_annotated_class</a></code> </p>
+          </td>
+          <td><p>Return metadata including NeuronType for FlyCircuit neurons</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="fc_sex.html">fc_sex</a></code> </p>
+          </td>
+          <td><p>return sex of the animal for one or more FlyCircuit identifiers</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="fcidtable.html">fcidtable</a></code> </p>
+          </td>
+          <td><p>fcidtable - Data.frame of flycircuit identifiers</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="flycircuit-ids.html">fc_gene_name</a></code> <code><a href="flycircuit-ids.html">fc_idid</a></code> <code><a href="flycircuit-ids.html">fc_neuron</a></code> </p>
+          </td>
+          <td><p>Convert between different FlyCircuit identifiers</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="fcgn_forfile.html">fcgn_forfile</a></code> </p>
+          </td>
+          <td><p>Return the flycircuit gene_name identifier for a file</p></td>
+        </tr>
+      </tbody><tbody>
+        <tr>
+          <th colspan="2">
+            <h2 id="section-clustering-and-searching" class="hasAnchor"><a href="#section-clustering-and-searching" class="anchor"></a>Clustering and searching</h2>
+            <p class="section-desc"></p>
+          </th>
+        </tr>
+        <tr>
+          <!--  -->
+          <td>
+            <p><code><a href="apclusterfc.html">apclusterfc</a></code> </p>
+          </td>
+          <td><p>Affinity propagation clustering of FlyCircuit neurons</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="as.data.frame.APResult.html">as.data.frame</a></code> </p>
+          </td>
+          <td><p>Convert APResult (apcluster output) to dataframe</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="fc_nblast.html">fc_nblast</a></code> </p>
+          </td>
+          <td><p>Return (normalised) nblast similarity scores for FlyCircuit neurons</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="hclustfc.html">hclustfc</a></code> </p>
+          </td>
+          <td><p>Cluster a set of FlyCircuit neurons identified by gene_name</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="fc_subscoremat.html">fc_subscoremat</a></code> </p>
+          </td>
+          <td><p>Return scores (or distances) for given query and target neurons</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="kcs20scores.html">kcs20scores</a></code> </p>
+          </td>
+          <td><p>A matrix containing all by all nblast similarity scores for 20 neurons</p></td>
+        </tr>
+      </tbody><tbody>
+        <tr>
+          <th colspan="2">
+            <h2 id="section-plotting-and-surfaces" class="hasAnchor"><a href="#section-plotting-and-surfaces" class="anchor"></a>Plotting and surfaces</h2>
+            <p class="section-desc"></p>
+          </th>
+        </tr>
+        <tr>
+          <!--  -->
+          <td>
+            <p><code><a href="FCWB.surf.html">FCWB.surf</a></code> </p>
+          </td>
+          <td><p>FCWB.surf - Surface model of FCWB FlyCircuit reference brain</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="FCWBNP.surf.html">FCWBNP.surf</a></code> </p>
+          </td>
+          <td><p>FCWBNP.surf - Surface model of FlyLight neuropil segmentation in FlyCircuit
+coordinate space</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="fcwbnpsurf.html">fcwbnpsurf</a></code> </p>
+          </td>
+          <td><p>Plot 3D surfaces of the FlyLight neuropil segmentation in FlyCircuit coordinate space</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="fcwbsurf.html">fcwbsurf</a></code> </p>
+          </td>
+          <td><p>Plot a 3D surface of the FlyCircuit reference brain</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="getRegionsFromSurf.html">getRegionsFromSurf</a></code> </p>
+          </td>
+          <td><p>Return a list of regions contained in a surface</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="getRegionSurf.html">getRegionSurf</a></code> </p>
+          </td>
+          <td><p>Creates a new surface containing specified regions from a given surface</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="plot3d.APResult.html">plot3d</a></code> </p>
+          </td>
+          <td><p>Plot exemplar neurons/all cluster members after clustering by affinity
+propagation</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="plot3dfc.html">plot3dfc</a></code> </p>
+          </td>
+          <td><p>Plot FlyCircuit neurons using rgl</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="pop3dfc.html">pop3dfc</a></code> </p>
+          </td>
+          <td><p>Remove plotted FlyCircuit neurons (deprecated, see nat::npop3d)</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="selectRegionsFromSurf.html">selectRegionsFromSurf</a></code> </p>
+          </td>
+          <td><p>Select regions from a surface</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="dpscan.html">dpscan</a></code> </p>
+          </td>
+          <td><p>Scan through a set of flycircuit neurons</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="drawRegionSurf.html">drawRegionSurf</a></code> </p>
+          </td>
+          <td><p>Draw surface corresponding to a given list of regions from surface object</p></td>
+        </tr>
+      </tbody><tbody>
+        <tr>
+          <th colspan="2">
+            <h2 id="section-support-for-remote-optional-data" class="hasAnchor"><a href="#section-support-for-remote-optional-data" class="anchor"></a>Support for remote / optional data</h2>
+            <p class="section-desc"><p>Some flycircuit functionality depends on data which is not bundled into the R package (since it is about 4GB in size). These functions handle download and access to such data.</p></p>
+          </th>
+        </tr>
+        <tr>
+          <!--  -->
+          <td>
+            <p><code><a href="download.file.wcheck.html">download.file.wcheck</a></code> </p>
+          </td>
+          <td><p>Download a remote file if it is new or updated</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="fc_attach_bigmat.html">fc_attach_bigmat</a></code> </p>
+          </td>
+          <td><p>Attach a big.matrix (typically used for all-by-all blast distances)</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="fc_attach_ff.html">fc_attach_ff</a></code> </p>
+          </td>
+          <td><p>Attach an ff object (typically used for all-by-all blast distances)</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="fc_download_data.html">fc_download_data</a></code> </p>
+          </td>
+          <td><p>Download a data file from a remote location</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="load_fcdata.html">load_fcdata</a></code> </p>
+          </td>
+          <td><p>Load an rda/rds object cached on disk into the Global Environment</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="load_fcdb.html">load_fcdb</a></code> </p>
+          </td>
+          <td><p>Load a database cached in the db subfolder into the Global Environment</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="load_si_data.html">load_si_data</a></code> </p>
+          </td>
+          <td><p>Load NBLAST supplemental data objects, downloading when required</p></td>
+        </tr>
+      </tbody>
+      </table>
     </div>
   </div>
 

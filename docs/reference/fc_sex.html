@@ -25,12 +25,14 @@
 <script src="../pkgdown.js"></script>
 
 <!-- mathjax -->
-<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+<script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
+
   </head>
 
   <body>
@@ -77,24 +79,29 @@
 using the middle letter (e.g. -M-) to identify the sex.</p>
     
 
-    <pre><span class='fu'>fc_sex</span>(<span class='no'>x</span>, <span class='kw'>ignore.case</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>fc_sex</span>(<span class='no'>x</span>, <span class='kw'>ignore.case</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
-    <dl class="dl-horizontal">
-      <dt>x</dt>
-      <dd>Vector of flycircuit identifiers (integer idid, chaacter/factor 
-gene_name/Name)</dd>
-      <dt>ignore.case</dt>
-      <dd>whether to ignore the case of the input.</dd>
-    </dl>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x</th>
+      <td><p>Vector of flycircuit identifiers (integer idid, chaacter/factor 
+gene_name/Name)</p></td>
+    </tr>
+    <tr>
+      <th>ignore.case</th>
+      <td><p>whether to ignore the case of the input.</p></td>
+    </tr>
+    </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a character vector with values &quot;M&quot;, &quot;F&quot; or <code>NA_character_</code></p>
+    <p>a character vector with values "M", "F" or <code>NA_character_</code></p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>fc_sex</span>(<span class='fl'>1</span>)</div><div class='output co'>#&gt; [1] &quot;M&quot;</div><div class='input'><span class='fu'>fc_sex</span>(<span class='fu'>c</span>(<span class='st'>"FruMARCM-M001589_seg001"</span>,<span class='st'>"TPHMARCM-596M_seg1"</span>))</div><div class='output co'>#&gt; [1] &quot;M&quot; &quot;M&quot;</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>fc_sex</span>(<span class='fl'>1</span>)</div><div class='output co'>#&gt; [1] "M"</div><div class='input'><span class='fu'>fc_sex</span>(<span class='fu'>c</span>(<span class='st'>"FruMARCM-M001589_seg001"</span>,<span class='st'>"TPHMARCM-596M_seg1"</span>))</div><div class='output co'>#&gt; [1] "M" "M"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -25,12 +25,14 @@
 <script src="../pkgdown.js"></script>
 
 <!-- mathjax -->
-<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+<script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
+
   </head>
 
   <body>
@@ -76,14 +78,17 @@
     <p>These comes from manual annotations carried out for Costa et al.</p>
     
 
-    <pre><span class='fu'>fc_glom</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>fc_glom</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
-    <dl class="dl-horizontal">
-      <dt>x</dt>
-      <dd>A neuron identifier. When missing defaults to all neurons annotated 
-with an ALGlomerulus tag.</dd>
-    </dl>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x</th>
+      <td><p>A neuron identifier. When missing defaults to all neurons annotated 
+with an ALGlomerulus tag.</p></td>
+    </tr>
+    </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
@@ -92,12 +97,12 @@ with an ALGlomerulus tag.</dd>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p><code><a href='fc_neuron_type.html'>fc_neuron_type</a></code>, <code><a href='fc_gene_name.html'>fc_gene_name</a></code></p>
+    <p><code><a href='fc_neuron_type.html'>fc_neuron_type</a></code>, <code><a href='flycircuit-ids.html'>fc_gene_name</a></code></p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>fc_glom</span>(<span class='st'>'FruMARCM-F000446_seg001'</span>)</div><div class='output co'>#&gt; FruMARCM-F000446_seg001 
-#&gt;                  &quot;VL2p&quot; </div><div class='input'><span class='co'># how many neurons annotated with any glomerulus</span>
+#&gt;                  "VL2p" </div><div class='input'><span class='co'># how many neurons annotated with any glomerulus</span>
 <span class='fu'>length</span>(<span class='fu'>fc_glom</span>())</div><div class='output co'>#&gt; [1] 433</div><div class='input'><span class='co'># how many neurons annotated for each glomerulus</span>
 <span class='fu'>table</span>(<span class='fu'>fc_glom</span>())</div><div class='output co'>#&gt; 
 #&gt;   D doublet         DA1     DA1+DL3         DA2         DA4         DC2 

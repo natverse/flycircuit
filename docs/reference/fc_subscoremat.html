@@ -25,12 +25,14 @@
 <script src="../pkgdown.js"></script>
 
 <!-- mathjax -->
-<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+<script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
+
   </head>
 
   <body>
@@ -81,27 +83,36 @@ direction, or as <code>1 - normscorebar</code>, where <code>normscorebar</code> 
 <code>normscore</code> averaged across both directions.</p>
     
 
-    <pre><span class='fu'>fc_subscoremat</span>(<span class='no'>query</span>, <span class='no'>target</span>, <span class='kw'>scoremat</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"flycircuit.scoremat"</span>),
+    <pre class="usage"><span class='fu'>fc_subscoremat</span>(<span class='no'>query</span>, <span class='no'>target</span>, <span class='kw'>scoremat</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"flycircuit.scoremat"</span>),
   <span class='kw'>distance</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>normalisation</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"raw"</span>, <span class='st'>"normalised"</span>, <span class='st'>"mean"</span>))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
-    <dl class="dl-horizontal">
-      <dt>query, target</dt>
-      <dd>Vectors of FlyCircuit identifiers (Neuron name, gene_name
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>query, target</th>
+      <td><p>Vectors of FlyCircuit identifiers (Neuron name, gene_name
 or integer idid are all acceptable since they will be processed by 
-<code><a href='fc_gene_name.html'>fc_gene_name</a></code>).</dd>
-      <dt>scoremat</dt>
-      <dd>A matrix, ff matrix, bigmatrix or a character vector 
+<code><a href='flycircuit-ids.html'>fc_gene_name</a></code>).</p></td>
+    </tr>
+    <tr>
+      <th>scoremat</th>
+      <td><p>A matrix, ff matrix, bigmatrix or a character vector 
 specifiying the name of an ff matrix containing the all by all score 
-matrix. Defaults to value of <code>options(flycircuit.scoremat)</code>.</dd>
-      <dt>distance</dt>
-      <dd>Logical indicating whether to return distances or scores.</dd>
-      <dt>normalisation</dt>
-      <dd>The type of normalisation procedure that should be 
-carried out, selected from  <code>&#39;raw&#39;</code>, <code>&#39;normalised&#39;</code> or 
-<code>&#39;mean&#39;</code> (i.e. the average of normalised scores in both directions). 
-If <code>distance=TRUE</code> then this cannot be raw.</dd>
-    </dl>
+matrix. Defaults to value of <code>options(flycircuit.scoremat)</code>.</p></td>
+    </tr>
+    <tr>
+      <th>distance</th>
+      <td><p>Logical indicating whether to return distances or scores.</p></td>
+    </tr>
+    <tr>
+      <th>normalisation</th>
+      <td><p>The type of normalisation procedure that should be 
+carried out, selected from  <code>'raw'</code>, <code>'normalised'</code> or 
+<code>'mean'</code> (i.e. the average of normalised scores in both directions). 
+If <code>distance=TRUE</code> then this cannot be raw.</p></td>
+    </tr>
+    </table>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 

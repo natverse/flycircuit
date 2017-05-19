@@ -25,12 +25,14 @@
 <script src="../pkgdown.js"></script>
 
 <!-- mathjax -->
-<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+<script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
+
   </head>
 
   <body>
@@ -77,15 +79,20 @@
   FCWB_..._01_warp...</p>
     
 
-    <pre><span class='fu'>fcgn_forfile</span>(<span class='no'>file</span>, <span class='kw'>checkExists</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>fcgn_forfile</span>(<span class='no'>file</span>, <span class='kw'>checkExists</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
-    <dl class="dl-horizontal">
-      <dt>file</dt>
-      <dd>Path to file(s) to extract gene_name</dd>
-      <dt>checkExists</dt>
-      <dd>Check that calculated gene_name exists in identifiers table</dd>
-    </dl>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>file</th>
+      <td><p>Path to file(s) to extract gene_name</p></td>
+    </tr>
+    <tr>
+      <th>checkExists</th>
+      <td><p>Check that calculated gene_name exists in identifiers table</p></td>
+    </tr>
+    </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
@@ -93,11 +100,11 @@
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p><code><a href='fc_gene_name.html'>fc_gene_name</a>, <a href='fcidtable.html'>fcidtable</a></code></p>
+    <p><code><a href='flycircuit-ids.html'>fc_gene_name</a>, <a href='fcidtable.html'>fcidtable</a></code></p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>fcgn_forfile</span>(<span class='st'>'FruMARCM-M002373_seg002_03.nrrd-files/FruMARCM-M002373_seg002_03.nrrd.am'</span>)</div><div class='output co'>#&gt; [1] &quot;FruMARCM-M002373_seg002&quot;</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>fcgn_forfile</span>(<span class='st'>'FruMARCM-M002373_seg002_03.nrrd-files/FruMARCM-M002373_seg002_03.nrrd.am'</span>)</div><div class='output co'>#&gt; [1] "FruMARCM-M002373_seg002"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

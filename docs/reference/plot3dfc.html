@@ -25,12 +25,14 @@
 <script src="../pkgdown.js"></script>
 
 <!-- mathjax -->
-<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+<script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
+
   </head>
 
   <body>
@@ -76,21 +78,30 @@
     <p>Plot FlyCircuit neurons using rgl</p>
     
 
-    <pre><span class='fu'>plot3dfc</span>(<span class='no'>id</span>, <span class='no'>col</span>, <span class='kw'>db</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"nat.default.neuronlist"</span>), <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>plot3dfc</span>(<span class='no'>id</span>, <span class='no'>col</span>, <span class='kw'>db</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"nat.default.neuronlist"</span>), <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
-    <dl class="dl-horizontal">
-      <dt>id</dt>
-      <dd>Vector of FlyCircuit gene or neuron names or idids (passed to 
-<code><a href='fc_gene_name.html'>fc_gene_name</a></code>)</dd>
-      <dt>col</dt>
-      <dd>Function or vector specifying colour.</dd>
-      <dt>db</dt>
-      <dd>Object of class <code>neuronlist</code> or a character vector naming a 
-neuronlist that will be passed to <code>link{get}</code>.</dd>
-      <dt>...</dt>
-      <dd>Additional arguments for <code>plot3d</code></dd>
-    </dl>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>id</th>
+      <td><p>Vector of FlyCircuit gene or neuron names or idids (passed to 
+<code><a href='flycircuit-ids.html'>fc_gene_name</a></code>)</p></td>
+    </tr>
+    <tr>
+      <th>col</th>
+      <td><p>Function or vector specifying colour.</p></td>
+    </tr>
+    <tr>
+      <th>db</th>
+      <td><p>Object of class <code>neuronlist</code> or a character vector naming a 
+neuronlist that will be passed to <code>link{get}</code>.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments for <code>plot3d</code></p></td>
+    </tr>
+    </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
@@ -98,32 +109,28 @@ neuronlist that will be passed to <code>link{get}</code>.</dd>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><ul>
-<li> Colour defaults to black for a single neuron or rainbow(length(id)) 
+    <ul>
+<li><p>Colour defaults to black for a single neuron or rainbow(length(id)) 
   when more than one neuron is plotted. It can be specified as a function, a 
-  vector (length(id)) or a single recycled value.</p>
-    <p></li>
-<li> By default when more than 200 neurons are plotted in a single call 
-  rgl redraw is suspended. This can be &gt;10x faster.</p>
-    <p></li>
-<li> <code><a href='http://www.rdocumentation.org/packages/nat/topics/npop3d'>npop3d</a></code> can be used to remove the last plotted 
-  neurons.</p>
-    <p></li>
-<li> Plotted soma positions (when <code>soma=TRUE</code>) is passed as an 
+  vector (length(id)) or a single recycled value.</p></li>
+<li><p>By default when more than 200 neurons are plotted in a single call 
+  rgl redraw is suspended. This can be &gt;10x faster.</p></li>
+<li><p><code><a href='http://www.rdocumentation.org/packages/nat/topics/npop3d'>npop3d</a></code> can be used to remove the last plotted 
+  neurons.</p></li>
+<li><p>Plotted soma positions (when <code>soma=TRUE</code>) is passed as an 
   additional argument for plot3d.neuronlist are a prediction based on 
   location in the FlyCircuit template brain mapped onto my selected template.
-  The positions are looked up in the df attribute of the neuronlist.</p>
-    <p></li>
-</ul></p>
+  The positions are looked up in the df attribute of the neuronlist.</p></li>
+</ul>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p><code><a href='http://www.rdocumentation.org/packages/rgl/topics/plot3d'>plot3d</a>, <a href='pop3dfc.html'>pop3dfc</a>, <a href='fc_gene_name.html'>fc_gene_name</a></code></p>
+    <p><code><a href='http://www.rdocumentation.org/packages/rgl/topics/plot3d'>plot3d</a>, <a href='pop3dfc.html'>pop3dfc</a>, <a href='flycircuit-ids.html'>fc_gene_name</a></code></p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>open3d</span>()</div><div class='output co'>#&gt; glX 
-#&gt;   2 </div><div class='input'><span class='fu'>library</span>(<span class='no'>nat</span>)
+#&gt;   3 </div><div class='input'><span class='fu'>library</span>(<span class='no'>nat</span>)
 <span class='fu'>plot3dfc</span>(<span class='st'>"fru-M-300145"</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'green'</span>, <span class='kw'>db</span><span class='kw'>=</span><span class='no'>kcs20</span>)
 <span class='fu'>npop3d</span>()
 <span class='fu'>plot3dfc</span>(<span class='st'>"fru-M-100014"</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'red'</span>, <span class='kw'>db</span><span class='kw'>=</span><span class='no'>kcs20</span>, <span class='kw'>soma</span><span class='kw'>=</span><span class='fl'>TRUE</span>)

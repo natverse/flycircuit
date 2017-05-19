@@ -25,12 +25,14 @@
 <script src="../pkgdown.js"></script>
 
 <!-- mathjax -->
-<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+<script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
+
   </head>
 
   <body>
@@ -78,23 +80,32 @@
   functions.</p>
     
 
-    <pre><span class='fu'>fc_neuron_type</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>regex</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>fc_neuron_type</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>regex</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)
 
 <span class='fu'>fc_annotated_class</span>(<span class='no'>class</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>regex</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
-    <dl class="dl-horizontal">
-      <dt>x</dt>
-      <dd>A neuron identifier. When missing defaults to all neurons annotated 
-with the given annotation class.</dd>
-      <dt>regex</dt>
-      <dd>An optional <code><a href='http://www.rdocumentation.org/packages/base/topics/regex'>regex</a></code> used to filter the 
-annotation text values of the matching neurons.</dd>
-      <dt>...</dt>
-      <dd>Additional arguments passed to <code><a href='http://www.rdocumentation.org/packages/base/topics/grep'>grepl</a></code>.</dd>
-      <dt>class</dt>
-      <dd>The annotation class to select (for codefc_annotated_class).</dd>
-    </dl>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x</th>
+      <td><p>A neuron identifier. When missing defaults to all neurons annotated 
+with the given annotation class.</p></td>
+    </tr>
+    <tr>
+      <th>regex</th>
+      <td><p>An optional <code><a href='http://www.rdocumentation.org/packages/base/topics/regex'>regex</a></code> used to filter the 
+annotation text values of the matching neurons.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments passed to <code><a href='http://www.rdocumentation.org/packages/base/topics/grep'>grepl</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>class</th>
+      <td><p>The annotation class to select (for codefc_annotated_class).</p></td>
+    </tr>
+    </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
@@ -109,7 +120,7 @@ annotation text values of the matching neurons.</dd>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p><code><a href='http://www.rdocumentation.org/packages/base/topics/grep'>grepl</a></code>, <code><a href='fc_gene_name.html'>fc_gene_name</a></code>,</p>
+    <p><code><a href='http://www.rdocumentation.org/packages/base/topics/grep'>grepl</a></code>, <code><a href='flycircuit-ids.html'>fc_gene_name</a></code>,</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -275,9 +286,9 @@ annotation text values of the matching neurons.</dd>
 #&gt;                                                                    5 
 #&gt;                                                 AL Descending Neuron 
 #&gt;                                                                    1 
-#&gt;                          alpha&#39;/beta&#39; anterior-posterior Kenyon cell 
+#&gt;                          alpha'/beta' anterior-posterior Kenyon cell 
 #&gt;                                                                    1 
-#&gt;                                             alpha&#39;/beta&#39; Kenyon cell 
+#&gt;                                             alpha'/beta' Kenyon cell 
 #&gt;                                                                   85 
 #&gt;                                          alpha/beta core Kenyon cell 
 #&gt;                                                                  689 
@@ -518,9 +529,9 @@ annotation text values of the matching neurons.</dd>
 #&gt;                                                                  vPN 
 #&gt;                                                                  179 </div><div class='input'><span class='co'># find all the Kenyon cells</span>
 <span class='fu'>table</span>(<span class='fu'>fc_neuron_type</span>(<span class='kw'>regex</span><span class='kw'>=</span><span class='st'>"Kenyon"</span>))</div><div class='output co'>#&gt; 
-#&gt; alpha&#39;/beta&#39; anterior-posterior Kenyon cell 
+#&gt; alpha'/beta' anterior-posterior Kenyon cell 
 #&gt;                                           1 
-#&gt;                    alpha&#39;/beta&#39; Kenyon cell 
+#&gt;                    alpha'/beta' Kenyon cell 
 #&gt;                                          85 
 #&gt;                 alpha/beta core Kenyon cell 
 #&gt;                                         689 

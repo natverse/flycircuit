@@ -25,12 +25,14 @@
 <script src="../pkgdown.js"></script>
 
 <!-- mathjax -->
-<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+<script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
+
   </head>
 
   <body>
@@ -76,23 +78,34 @@
     <p>This can then be used for plots, clustering etc.</p>
     
 
-    <pre><span class='co'># S3 method for APResult</span>
+    <pre class="usage"><span class='co'># S3 method for APResult</span>
 <span class='fu'>as.data.frame</span>(<span class='no'>x</span>, <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>optional</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='no'>clusters</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
-    <dl class="dl-horizontal">
-      <dt>x</dt>
-      <dd>an <code>APResult</code> object.</dd>
-      <dt>row.names</dt>
-      <dd>ignored.</dd>
-      <dt>optional</dt>
-      <dd>logical. If <code>TRUE</code>, setting row names and converting column names (to syntactic names: see make.names) is optional.</dd>
-      <dt>clusters</dt>
-      <dd>a character vector of the names of the exemplars to include.</dd>
-      <dt>...</dt>
-      <dd>extra arguments to pass to <code>data.frame</code>.</dd>
-    </dl>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x</th>
+      <td><p>an <code>APResult</code> object.</p></td>
+    </tr>
+    <tr>
+      <th>row.names</th>
+      <td><p>ignored.</p></td>
+    </tr>
+    <tr>
+      <th>optional</th>
+      <td><p>logical. If <code>TRUE</code>, setting row names and converting column names (to syntactic names: see make.names) is optional.</p></td>
+    </tr>
+    <tr>
+      <th>clusters</th>
+      <td><p>a character vector of the names of the exemplars to include.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>extra arguments to pass to <code>data.frame</code>.</p></td>
+    </tr>
+    </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 

@@ -25,12 +25,14 @@
 <script src="../pkgdown.js"></script>
 
 <!-- mathjax -->
-<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+<script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
+
   </head>
 
   <body>
@@ -75,36 +77,45 @@
     
     <p>Precomputed scores are stored in bigmatrix form on disk. The bigmatrix object
 is created in the global environment once per session and then reused. When 
-<code>normalisation=&#39;normalised&#39;</code>, scores are in the interval [-1, 1] or,
+<code>normalisation='normalised'</code>, scores are in the interval [-1, 1] or,
 more exactly, range(scorematrix), as the raw scores are divided by the
-self-match score. Higher is always better. When <code>normalisation=&#39;mean&#39;</code>,
+self-match score. Higher is always better. When <code>normalisation='mean'</code>,
 the returned scores are the mean of the normalised forward and reverse scores
 (as used for clustering in <code><a href='hclustfc.html'>hclustfc</a></code>) but are similarity scores
 (not distances).</p>
     
 
-    <pre><span class='fu'>fc_nblast</span>(<span class='no'>query</span>, <span class='no'>target</span>, <span class='kw'>scoremat</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"flycircuit.scoremat"</span>),
+    <pre class="usage"><span class='fu'>fc_nblast</span>(<span class='no'>query</span>, <span class='no'>target</span>, <span class='kw'>scoremat</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"flycircuit.scoremat"</span>),
   <span class='kw'>normalisation</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"raw"</span>, <span class='st'>"normalised"</span>, <span class='st'>"mean"</span>))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
-    <dl class="dl-horizontal">
-      <dt>query</dt>
-      <dd>Vectors of FlyCircuit identifiers (Neuron name, gene_name
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>query</th>
+      <td><p>Vectors of FlyCircuit identifiers (Neuron name, gene_name
 or integer idid are all acceptable since they will be processed by 
-<code><a href='fc_gene_name.html'>fc_gene_name</a></code>).</dd>
-      <dt>target</dt>
-      <dd>Vectors of FlyCircuit identifiers (Neuron name, gene_name
+<code><a href='flycircuit-ids.html'>fc_gene_name</a></code>).</p></td>
+    </tr>
+    <tr>
+      <th>target</th>
+      <td><p>Vectors of FlyCircuit identifiers (Neuron name, gene_name
 or integer idid are all acceptable since they will be processed by 
-<code><a href='fc_gene_name.html'>fc_gene_name</a></code>).</dd>
-      <dt>scoremat</dt>
-      <dd>A matrix, ff matrix, bigmatrix or a character vector 
+<code><a href='flycircuit-ids.html'>fc_gene_name</a></code>).</p></td>
+    </tr>
+    <tr>
+      <th>scoremat</th>
+      <td><p>A matrix, ff matrix, bigmatrix or a character vector 
 specifiying the name of an ff matrix containing the all by all score 
-matrix. Defaults to value of <code>options(flycircuit.scoremat)</code>.</dd>
-      <dt>normalisation</dt>
-      <dd>the type of normalisation procedure that should be 
-carried out, selected from <code>&#39;raw&#39;</code>, <code>&#39;normalised&#39;</code> or 
-<code>&#39;mean&#39;</code> (i.e. the average of normalised scores in both directions).</dd>
-    </dl>
+matrix. Defaults to value of <code>options(flycircuit.scoremat)</code>.</p></td>
+    </tr>
+    <tr>
+      <th>normalisation</th>
+      <td><p>the type of normalisation procedure that should be 
+carried out, selected from <code>'raw'</code>, <code>'normalised'</code> or 
+<code>'mean'</code> (i.e. the average of normalised scores in both directions).</p></td>
+    </tr>
+    </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 

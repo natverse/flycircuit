@@ -25,12 +25,14 @@
 <script src="../pkgdown.js"></script>
 
 <!-- mathjax -->
-<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+<script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
+
   </head>
 
   <body>
@@ -73,32 +75,28 @@
     </div>
 
     
-    <p>The flycircuit database seems to have at least 3 unique identifiers for neurons.
-These are:
-<ul>
-<li>ididAn integer identifier which ranged from 1:16226 in the April
-2011 release
-</li>
-<li>gene_nameA character identifier of the general form
-&quot;DvGlutMARCM-F003905_seg001&quot;
-</li>
-<li>NameA character identifier of the general form &quot;VGlut-F-400794&quot;
-</li>
-</ul></p>
+    <p>fcidtable - Data.frame of flycircuit identifiers</p>
     
 
         
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Although the neuron <code>Name</code> is generally what is reported in publications
-the <code>gene_name</code> seems to widely used and is what connected to the 
-confocal image file name. The <code>_seg001</code> suffix in gene_names refers to 
-the segmentation of individiual neurons from stacks that might contain
-multiple labelled neurons after MARCM.</p>
+    <p>The flycircuit database seems to have at least 3 unique identifiers
+  for neurons. These are:</p><ul>
+<li><p>idid An integer identifier which ranged from 1:16226 in the April 
+  2011 release</p></li>
+<li><p>gene_name A character identifier of the general form 
+  "DvGlutMARCM-F003905_seg001"</p></li>
+<li><p>Name A character identifier of the general form "VGlut-F-400794"</p></li>
+</ul><p>Although the neuron <code>Name</code> is generally what is reported in
+  publications the <code>gene_name</code> seems to widely used and is what
+  connected to the confocal image file name. The <code>_seg001</code> suffix in
+  gene_names refers to the segmentation of individual neurons from stacks
+  that might contain multiple labelled neurons after MARCM.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p>Other flycircuit-ids: <code><a href='fc_gene_name.html'>fc_gene_name</a></code></p>
+    <p>Other flycircuit-ids: <code><a href='flycircuit-ids.html'>fc_gene_name</a></code></p>
     
 
   </div>

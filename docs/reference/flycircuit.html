@@ -25,12 +25,14 @@
 <script src="../pkgdown.js"></script>
 
 <!-- mathjax -->
-<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+<script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
+
   </head>
 
   <body>
@@ -80,34 +82,27 @@ provided by <a href = 'http://flycircuit.tw'>http://flycircuit.tw</a>.</p>
         
     <h2 class="hasAnchor" id="package-options"><a class="anchor" href="#package-options"></a>Package options</h2>
 
-    <p></p>
-    <p>flycircuit uses the following <code>options</code> to configure behaviour:</p>
-    <p><ul>
-<li> <code>flycircuit.datadir</code>: path to directory where downloaded data 
-  will be stored. Defaults to package&#39;s <code>extdata</code> folder.</p>
-    <p></li>
-<li> <code>flycircuit.dbdir</code>: location to which dataframes caching 
-  database tables will be downloaded.</p>
-    <p></li>
-<li> <code>flycircuit.ffdir</code>: location of <code>ff</code> objects used for all 
-  by all score matrices.</p>
-    <p></li>
-<li> <code>flycircuit.bigmatdir</code>: location of <code>big.matrix</code> objects 
-  previously used for all by all score matrices.</p>
-    <p></li>
-<li> <code>flycircuit.scoremat</code>: character vector naming the default 
+    
+    <p>flycircuit uses the following <code>options</code> to configure behaviour:</p><ul>
+<li><p><code>flycircuit.datadir</code>: path to directory where downloaded data 
+  will be stored. Defaults to package's <code>extdata</code> folder.</p></li>
+<li><p><code>flycircuit.dbdir</code>: location to which dataframes caching 
+  database tables will be downloaded.</p></li>
+<li><p><code>flycircuit.ffdir</code>: location of <code>ff</code> objects used for all 
+  by all score matrices.</p></li>
+<li><p><code>flycircuit.bigmatdir</code>: location of <code>big.matrix</code> objects 
+  previously used for all by all score matrices.</p></li>
+<li><p><code>flycircuit.scoremat</code>: character vector naming the default 
   regular or <code>ff</code> matrix object containing nblast scores. Note that 
   although it is is permissible to set this to the actual score matrix rather
   than a character vector naming the matrix, this turns out to have 
-  substantial performance penalties for large matrices.</p>
-    <p></li>
-<li> <code>flycircuit.remote_overwrite</code>: Determines how local cached 
+  substantial performance penalties for large matrices.</p></li>
+<li><p><code>flycircuit.remote_overwrite</code>: Determines how local cached 
   versions of data available on the web are updated. When <code>NULL</code> (i.e. 
   unset) the web version is checked and, if it is newer, it is donwloaded and
   used to overwrite the cached copy. When <code>FALSE</code> the exisiting local 
-  copy is used; when <code>TRUE</code> the remote version is always downloaded.</p>
-    <p></li>
-</ul></p>
+  copy is used; when <code>TRUE</code> the remote version is always downloaded.</p></li>
+</ul>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -117,22 +112,22 @@ provided by <a href = 'http://flycircuit.tw'>http://flycircuit.tw</a>.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Show state of flycircuit package options</span>
 <span class='fu'>options</span>()[<span class='fu'>grep</span>(<span class='st'>'^flycircuit'</span>, <span class='fu'>names</span>(<span class='fu'>options</span>()))]</div><div class='output co'>#&gt; $flycircuit.bigmatdir
-#&gt; [1] &quot;/Users/jefferis/Library/Application Support/rpkg-flycircuit/data/bigmatrix&quot;
+#&gt; [1] "/Users/jefferis/Library/Application Support/rpkg-flycircuit/data/bigmatrix"
 #&gt; 
 #&gt; $flycircuit.datadir
-#&gt; [1] &quot;/Users/jefferis/Library/Application Support/rpkg-flycircuit/data&quot;
+#&gt; [1] "/Users/jefferis/Library/Application Support/rpkg-flycircuit/data"
 #&gt; 
 #&gt; $flycircuit.dbdir
-#&gt; [1] &quot;/Users/jefferis/Library/Application Support/rpkg-flycircuit/db&quot;
+#&gt; [1] "/Users/jefferis/Library/Application Support/rpkg-flycircuit/db"
 #&gt; 
 #&gt; $flycircuit.ffdir
-#&gt; [1] &quot;/Users/jefferis/Library/Application Support/rpkg-flycircuit/data/ff&quot;
+#&gt; [1] "/Users/jefferis/Library/Application Support/rpkg-flycircuit/data/ff"
 #&gt; 
 #&gt; $flycircuit.scoremat
-#&gt; [1] &quot;kcs20scores&quot;
+#&gt; [1] "kcs20scores"
 #&gt; 
 #&gt; $flycircuit.sidataurl
-#&gt; [1] &quot;http://flybrain.mrc-lmb.cam.ac.uk/si/nblast/flycircuit&quot;
+#&gt; [1] "http://flybrain.mrc-lmb.cam.ac.uk/si/nblast/flycircuit"
 #&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
