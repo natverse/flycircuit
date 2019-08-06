@@ -1,11 +1,13 @@
 Package: flycircuit
-Title: Functions to Support Analysis of the FlyCircuit Single Neuron Dataset
-Description: This package contains a small number of functions specifically
+Title: Functions to support the analysis of the FlyCircuit single neuron dataset
+Description: This package functions specifically
     designed to assist in the spatial analysis of neurons from the collection
     available online at http://flycircuit.tw.
 Version: 0.6.8
 Authors@R: c(
-    person("Gregory", "Jefferis", , "jefferis@gmail.com", role = c("aut", "cre")),
+    person("Alexander", "Bates", email = "alexander.shakeel.bates@gmail.com", role = c("aut", "cre"), 
+    comment = c(ORCID = "0000-0002-1195-0445")),
+    person("Gregory", "Jefferis", email = "jefferis@gmail.com", role = c("aut"), comment = c(ORCID = "0000-0002-0587-9355")),
     person("James", "Manton", role = c("aut"))
     )
 Depends:
@@ -28,10 +30,13 @@ Imports:
     grDevices,
     stats,
     utils,
-    nat.nblast (>= 1.2)
+    nat.nblast (>= 1.2),
+    rvest
 License: GPL-3
 LazyData: true
 VignetteBuilder: knitr
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1
 Remotes: jefferis/nat,
-    jefferislab/nat.nblast
+    jefferislab/nat.nblast,
+    jefferislab/nat.templatebrains,
+    jefferislab/nat.flybrains
