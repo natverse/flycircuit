@@ -4,8 +4,9 @@
 \alias{apclusterfc}
 \title{Affinity propagation clustering of FlyCircuit neurons}
 \usage{
-apclusterfc(gns, p = 0, ..., scoremat = getOption("flycircuit.scoremat"),
-  FUN = NULL, maxneurons = 4000)
+apclusterfc(gns, p = 0, ...,
+  scoremat = getOption("flycircuit.scoremat"), FUN = NULL,
+  maxneurons = 4000)
 }
 \arguments{
 \item{gns}{flycircuit identifiers (passed to \code{\link{fc_gene_name}}).}

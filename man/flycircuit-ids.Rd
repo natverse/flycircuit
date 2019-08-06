@@ -44,3 +44,4 @@ isTRUE(fc_neuron("FruMARCM-M002262_seg001")=="fru-M-200266")
 \seealso{
 Other flycircuit-ids: \code{\link{fcidtable}}
 }
+\concept{flycircuit-ids}

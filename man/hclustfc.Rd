@@ -4,8 +4,9 @@
 \alias{hclustfc}
 \title{Cluster a set of FlyCircuit neurons identified by gene_name}
 \usage{
-hclustfc(gns, method = "ward", scoremat = getOption("flycircuit.scoremat"),
-  unsquare = FALSE, distfun = as.dist, ..., maxneurons = 4000)
+hclustfc(gns, method = "ward",
+  scoremat = getOption("flycircuit.scoremat"), unsquare = FALSE,
+  distfun = as.dist, ..., maxneurons = 4000)
 }
 \arguments{
 \item{gns}{FlyCircuit identifiers (passed to fc_gene_name).}
@@ -19,9 +20,10 @@ default).}
 by \code{hclust} (see details, default \code{FALSE}).}
 
 \item{distfun}{function to convert distance matrix returned by
-\code{sub_dist_mat} into R dist object (default= \code{\link{as.dist}}).}
+\code{sub_dist_mat} into R \code{dist} object (default=
+\code{\link{as.dist}}).}
 
-\item{...}{additional parameters passed to hclust.}
+\item{...}{additional parameters passed to \code{\link{hclust}}.}
 
 \item{maxneurons}{set this to a sensible value to avoid loading huge (order
 N^2) distances directly into memory.}
@@ -59,3 +61,4 @@ subset(hckcs, k=3)
 \code{\link{fc_gene_name}, \link[nat.nblast]{nhclust}, 
   \link{hclust}, \link{dist}, \link[nat.nblast]{plot3d.hclust}}
 }
+\concept{scoremats}
