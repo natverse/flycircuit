@@ -1,14 +1,18 @@
+[![natverse](https://img.shields.io/badge/natverse-Part%20of%20the%20natverse-a241b6)](https://natverse.github.io)
 [![Build Status](https://travis-ci.org/jefferis/flycircuit.svg)](https://travis-ci.org/jefferis/flycircuit)
 <img src="man/figures/logo.svg" align="right" height="139" />
 
 # flycircuit
+
 Plot and analyse neurons skeletonised from image data released by 
 [FlyCircuit](http://flycircuit.tw).
 
 ## Installation
+
 Currently there isn't a released version on [CRAN](http://cran.r-project.org/).
 
 ### Bleeding Edge
+
 You can, however, download the [tar ball](https://github.com/jefferis/flycircuit/tarball/master), and run `R CMD INSTALL` on it, or use the **devtools** package to install the development version:
 
 ```r
