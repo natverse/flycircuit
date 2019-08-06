@@ -31,11 +31,11 @@
   fcwb_chiangm <-
     reglist(
       solve(readRDS(system.file(
-        "extdata/InitialAffine/initialiseCMTKreg_ChiangMaleTowardsFCWB.rds",
+        "inst/extdata/InitialAffine/initialiseCMTKreg_ChiangMaleTowardsFCWB.rds",
         package = 'flycircuit'
       ))),
       cmtkreg(system.file(
-        "extdata/warp/FCWB_typicalbrainmale_01_warp_m0g80c8e1e-1x26r4.list/",
+        "inst/extdata/warp/FCWB_typicalbrainmale_01_warp_m0g80c8e1e-1x26r4.list/",
         package = 'flycircuit'
       ))
     )
@@ -43,12 +43,12 @@
   fcwb_chiangf <-
     reglist(
       solve(readRDS(system.file(
-        "extdata/InitialAffine/initialiseCMTKreg_ChiangFemaleTowardsFCWB.rds",
+        "inst/extdata/InitialAffine/initialiseCMTKreg_ChiangFemaleTowardsFCWB.rds",
         package = 'flycircuit'
       ))),
       cmtkreg(system.file(
-        "extdata/warp/FCWB_typicalbrainfemale_01_warp_m0g80c8e1e-1x26r4.list/",
-        package = 'catnat'
+        "inst/extdata/warp/FCWB_typicalbrainfemale_01_warp_m0g80c8e1e-1x26r4.list/",
+        package = 'flycircuit'
       ))
     )
   
