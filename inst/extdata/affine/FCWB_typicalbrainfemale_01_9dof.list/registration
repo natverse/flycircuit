@@ -1,0 +1,13 @@
+! TYPEDSTREAM 2.4
+
+registration {
+	reference_study "refbrain/FCWB.nrrd"
+	floating_study "images/typicalbrainfemale_01.nrrd"
+	affine_xform {
+		xlate -15.79144662 -18.63632928 18.11077 
+		rotate 2.902168277 -0.4784579975 0.01395274021 
+		scale 0.9839628981 0.9948993972 1.310331764 
+		shear 0.0001786768141 0.004778255769 0.02817440793 
+		center 281.9671085 152.7938375 51.5 
+	}
+}
