@@ -7,3 +7,5 @@ inst/extdata/.*
 vignettes/.*/
 ^_pkgdown\.yml$
 ^docs$
+^README\.Rmd$
+^\.travis\.yml$
