@@ -7,3 +7,4 @@ inst/extdata/.*
 vignettes/.*/
 ^_pkgdown\.yml$
 ^docs$
+^data-raw$

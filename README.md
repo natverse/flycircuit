@@ -5,17 +5,12 @@ Plot and analyse neurons skeletonised from image data released by
 [FlyCircuit](http://flycircuit.tw).
 
 ## Installation
-Currently there isn't a released version on [CRAN](http://cran.r-project.org/).
-
-### Bleeding Edge
-You can, however, download the [tar ball](https://github.com/jefferis/flycircuit/tarball/master), and run `R CMD INSTALL` on it, or use the **devtools** package to install the development version:
+Currently there isn't a released version on [CRAN](http://cran.r-project.org/),
+but you can use the **devtools** package to install the development version:
 
 ```r
 # if necessary
-install.packages("devtools")
-
-# install latest version of nat package (rather than CRAN version)
-devtools::install_github("jefferis/nat")
+if(!requireNamespace('devtools')) install.packages("devtools")
 devtools::install_github("jefferis/flycircuit", dependencies=TRUE)
 ```
 
@@ -32,3 +27,9 @@ You can get the data like so:
 ```
 devtools::source_gist("bbaf5d53353b3944c090")
 ```
+## Acknowledgements
+Run
+```r
+citation("flycircuit")
+```
+to get details of how to acknowledge the package
