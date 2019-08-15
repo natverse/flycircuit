@@ -4,8 +4,9 @@
 \alias{hclustfc}
 \title{Cluster a set of FlyCircuit neurons identified by gene_name}
 \usage{
-hclustfc(gns, method = "ward", scoremat = getOption("flycircuit.scoremat"),
-  unsquare = FALSE, distfun = as.dist, ..., maxneurons = 4000)
+hclustfc(gns, method = "ward",
+  scoremat = getOption("flycircuit.scoremat"), unsquare = FALSE,
+  distfun = as.dist, ..., maxneurons = 4000)
 }
 \arguments{
 \item{gns}{FlyCircuit identifiers (passed to fc_gene_name).}
@@ -59,3 +60,4 @@ subset(hckcs, k=3)
 \code{\link{fc_gene_name}, \link[nat.nblast]{nhclust}, 
   \link{hclust}, \link{dist}, \link[nat.nblast]{plot3d.hclust}}
 }
+\concept{scoremats}

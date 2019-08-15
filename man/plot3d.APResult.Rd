@@ -6,9 +6,9 @@
 propagation}
 \usage{
 \method{plot3d}{APResult}(x, plot = c("exemplars", "bycluster", "all"),
-  suppressPlot = FALSE, savefun = NULL, clusters = NULL, soma = TRUE,
-  Verbose = TRUE, selected = list(), selected_file = NULL, yaml = TRUE,
-  col = NULL, ...)
+  suppressPlot = FALSE, savefun = NULL, clusters = NULL,
+  soma = TRUE, Verbose = TRUE, selected = list(),
+  selected_file = NULL, yaml = TRUE, col = NULL, ...)
 }
 \arguments{
 \item{x}{An APResult object from apcluster}

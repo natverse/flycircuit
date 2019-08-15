@@ -30,3 +30,4 @@ The flycircuit database seems to have at least 3 unique identifiers
 \seealso{
 Other flycircuit-ids: \code{\link{fc_gene_name}}
 }
+\concept{flycircuit-ids}

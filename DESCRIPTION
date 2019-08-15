@@ -32,6 +32,7 @@ Imports:
 License: GPL-3
 LazyData: true
 VignetteBuilder: knitr
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1
 Remotes: jefferis/nat,
     jefferislab/nat.nblast
+Encoding: UTF-8
