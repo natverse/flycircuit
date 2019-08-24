@@ -5,9 +5,10 @@ Description: This package functions specifically
     available online at http://flycircuit.tw.
 Version: 0.6.8
 Authors@R: c(
-    person("Alexander", "Bates", email = "alexander.shakeel.bates@gmail.com", role = c("aut", "cre"), 
-    comment = c(ORCID = "0000-0002-1195-0445")),
-    person("Gregory", "Jefferis", email = "jefferis@gmail.com", role = c("aut"), comment = c(ORCID = "0000-0002-0587-9355")),
+    person("Alexander", "Bates", email = "alexander.shakeel.bates@gmail.com", 
+    role = c("ctb"), comment = c(ORCID = "0000-0002-1195-0445")),
+    person("Gregory", "Jefferis", email = "jefferis@gmail.com", 
+    role = c("aut", "cre"), comment = c(ORCID = "0000-0002-0587-9355")),
     person("James", "Manton", role = c("aut"))
     )
 Depends:
