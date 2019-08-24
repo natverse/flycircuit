@@ -67,6 +67,7 @@ reroot_flycircuit_neuron <- function(x){
 }
 
 # hidden
+#' @importFrom nat.templatebrains xform_brain
 Chiang2FCWB <- function(x, female = grepl("-F-",x)) {
   template_to_use=ifelse(female, "chiangf","chiangm")
   nat::nmapply(xform_brain, x, sample=template_to_use, MoreArgs = list(reference=nat.flybrains::FCWB))

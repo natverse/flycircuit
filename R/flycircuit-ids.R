@@ -19,6 +19,8 @@
 #' @return A vector of all FlyCircuit IDs
 #' @export
 flycircuit_get_ids <-  function(url = 'http://www.flycircuit.tw/modules.php?name=browsing&parent=browsing&op=list_gene'){
+  if(!requireNamespace("xml2", quietly = TRUE))
+    stop("Please install suggested package xml2 to use flycircuit_get_ids()!")
   webpage <- xml2::read_html(url)
   data_html <- rvest::html_nodes(webpage,'#Submit')
   data_html <- gsub('.*value="',"",data_html)
@@ -33,7 +35,7 @@ flycircuit_get_ids <-  function(url = 'http://www.flycircuit.tw/modules.php?name
       n = n*100
       for(s in c("male","female")){
         url = paste0("http://www.flycircuit.tw/modules.php?name=browsing&op=listGene_v2&driverOn=",l,"&genderOn=",s,"&groupON=",n,"&gidON=34#gidName34")
-        subpage <- read_html(url)
+        subpage <- xml2::read_html(url)
         subdata <- rvest::html_nodes(subpage,'a')
         subdata <- subdata[grepl("neuron=",subdata)]
         subdata <- gsub('.*neuron=',"",subdata)

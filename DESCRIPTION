@@ -19,7 +19,8 @@ Suggests:
     testthat,
     knitr,
     dendroextras,
-    rmarkdown
+    rmarkdown,
+    xml2
 Imports:
     bigmemory,
     ff,
@@ -32,7 +33,9 @@ Imports:
     stats,
     utils,
     nat.nblast (>= 1.2),
-    rvest
+    rvest,
+    nat.templatebrains,
+    nat.flybrains
 License: GPL-3
 LazyData: true
 VignetteBuilder: knitr
