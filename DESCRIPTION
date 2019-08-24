@@ -35,7 +35,9 @@ Imports:
     nat.nblast (>= 1.2),
     rvest,
     nat.templatebrains,
-    nat.flybrains
+    nat.flybrains,
+    stringr,
+    progress
 License: GPL-3
 LazyData: true
 VignetteBuilder: knitr

@@ -7,8 +7,8 @@
 \url{http://www.flycircuit.tw/}
 }
 \usage{
-
-  flycircuit_get_ids(url = "http://www.flycircuit.tw/modules.php?name=browsing&parent=browsing&op=list_gene")
+flycircuit_get_ids(url = paste0("http://www.flycircuit.tw/modules.php",
+  "?name=browsing&op=listGene_v2"))
 }
 \arguments{
 \item{url}{webpage of FlyCircuit neuron IDs to scrape}
@@ -22,7 +22,7 @@ be read into R using \code{\link{flycircuit_read_neurons}}. Note, this function
 can be quite slow to run.
 }
 \examples{
-\donttest{
+\dontrun{
 # Let's get all the FlyCircuit neurons we can
 fc.ids = flycircuit_get_ids()
 fcns <- flycircuit_read_neurons(fc.ids)
