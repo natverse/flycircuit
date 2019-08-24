@@ -10,20 +10,19 @@
 flycircuit_read_neurons(fc.ids, ...)
 }
 \arguments{
-\item{fc.ids}{a vectors of valid FlyCircuit neuron ids. To acquire these in bulk, see \code{\link{flycircuit_get_ids}}.}
+\item{fc.ids}{vector of valid FlyCircuit neuron ids. To acquire these in
+bulk, see \code{\link{flycircuit_get_ids}} and
+\code{\link{flycircuit-ids}}.}
 
 \item{...}{additional arguments passed to methods}
-
-\item{female}{whether the neurons to be transformed are female (TRUE) or male (FALSE)}
-
-\item{x}{some neuron or neuronlist}
 }
 \value{
-A \code{neuronlist} of FlyCircuit neurons registered in the intersex FCWB brain space
+A \code{neuronlist} of FlyCircuit neurons registered in the intersex
+  FCWB brain space
 }
 \description{
-Reads FlyCircuit skeletons from \url{http://www.flycircuit.tw/}, and bridges them into
-the FCWB space.
+Reads FlyCircuit skeletons from \url{http://www.flycircuit.tw/},
+  and bridges them into the FCWB space.
 }
 \examples{
 \donttest{
@@ -42,9 +41,9 @@ plot3d(FCWB, alpha = 0.1)
 
 # Now mirror all neurons to the right of the brain
 left.somas <- function(neuron,bound = boundingbox(FCWB.surf)[1,1]+((boundingbox(FCWB.surf)[2,1]-boundingbox(FCWB.surf)[1,1])/2)){
-    r = nat::rootpoints(neuron)
-    position = nat::xyzmatrix(neuron$d[r,])
-    position[,"X"]>bound
+  r = nat::rootpoints(neuron)
+  position = nat::xyzmatrix(neuron$d[r,])
+  position[,"X"]>bound
 }
 leftsomas = unlist(nat::nlapply(fcns,left.somas))
 fcsleft = nat.templatebrains::mirror_brain(fcns[leftsomas], brain = FCWB)
@@ -52,5 +51,8 @@ fcns = c(fcns[!names(fcns)\%in\%names(fcsleft)],fcsleft)
 }
 }
 \seealso{
+\code{\link{flycircuit_get_ids}}, \code{\link{flycircuit-ids}},
+  \code{\link{read.neurons}}
+
 \code{\link{flycircuit_get_ids}}, \code{\link{flycircuit_page}}
 }
