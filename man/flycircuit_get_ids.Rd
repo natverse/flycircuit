@@ -8,18 +8,29 @@
 }
 \usage{
 flycircuit_get_ids(url = paste0("http://www.flycircuit.tw/modules.php",
-  "?name=browsing&op=listGene_v2"))
+  "?name=browsing&op=listGene_v2"), rval = c("neuronid", "data.frame"))
 }
 \arguments{
 \item{url}{webpage of FlyCircuit neuron IDs to scrape}
+
+\item{rval}{Whether to return the neuron IDs alone or a data.frame with
+additional information.}
 }
 \value{
 A vector of all FlyCircuit IDs
 }
 \description{
-Scrape neuron IDs from \url{http://www.flycircuit.tw/}, which may then
-be read into R using \code{\link{flycircuit_read_neurons}}. Note, this function 
-can be quite slow to run.
+Scrape neuron IDs from \url{http://www.flycircuit.tw/}, which
+  may then be read into R using \code{\link{flycircuit_read_neurons}}. Note,
+  this function can be quite slow to run.
+}
+\details{
+There have now been multiple releases of FlyCircuit neurons. This
+  function has been tested with v1.2 current as of 2019-08-25. The original
+  id functions (\code{\link{flycircuit-ids}}) are targeted at version 1.0.
+  Several neuron ids have been retired between v1.0 and v1.2. Furthermore the
+  integer ids used in v1.0 (\code{idid}) are not compatible with those in
+  v1.2 (\code{nid}).
 }
 \examples{
 \dontrun{
@@ -31,5 +42,6 @@ plot3d(FCWB, alpha = 0.1)
 }
 }
 \seealso{
-\code{\link{flycircuit_read_neurons}}, \code{\link{flycircuit_page}}
+\code{\link{flycircuit_read_neurons}},
+  \code{\link{flycircuit_page}}, \code{\link{flycircuit-ids}}
 }

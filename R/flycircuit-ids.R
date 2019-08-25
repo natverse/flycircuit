@@ -1,12 +1,21 @@
-#' Scrape FlyCircuit.tw for neuron IDs 
+#' Scrape FlyCircuit.tw for neuron IDs
 #'
-#' @description Scrape neuron IDs from \url{http://www.flycircuit.tw/}, which may then
-#' be read into R using \code{\link{flycircuit_read_neurons}}. Note, this function 
-#' can be quite slow to run.
+#' @description Scrape neuron IDs from \url{http://www.flycircuit.tw/}, which
+#'   may then be read into R using \code{\link{flycircuit_read_neurons}}. Note,
+#'   this function can be quite slow to run.
 #'
 #' @param url webpage of FlyCircuit neuron IDs to scrape
-#' 
-#' @examples 
+#' @param rval Whether to return the neuron IDs alone or a data.frame with
+#'   additional information.
+#'
+#' @details There have now been multiple releases of FlyCircuit neurons. This
+#'   function has been tested with v1.2 current as of 2019-08-25. The original
+#'   id functions (\code{\link{flycircuit-ids}}) are targeted at version 1.0.
+#'   Several neuron ids have been retired between v1.0 and v1.2. Furthermore the
+#'   integer ids used in v1.0 (\code{idid}) are not compatible with those in
+#'   v1.2 (\code{nid}).
+#'
+#' @examples
 #' \dontrun{
 #' # Let's get all the FlyCircuit neurons we can
 #' fc.ids = flycircuit_get_ids()
@@ -15,46 +24,58 @@
 #' plot3d(FCWB, alpha = 0.1)
 #' }
 #' @source \url{http://www.flycircuit.tw/}
-#' @seealso \code{\link{flycircuit_read_neurons}}, \code{\link{flycircuit_page}}
+#' @seealso \code{\link{flycircuit_read_neurons}},
+#'   \code{\link{flycircuit_page}}, \code{\link{flycircuit-ids}}
 #' @return A vector of all FlyCircuit IDs
 #' @export
 flycircuit_get_ids <-  function(url=paste0("http://www.flycircuit.tw/modules.php",
-                                           "?name=browsing&op=listGene_v2")){
+                                           "?name=browsing&op=listGene_v2"),
+                                rval=c('neuronid','data.frame')) {
   if(!requireNamespace("xml2", quietly = TRUE))
     stop("Please install suggested package xml2 to use flycircuit_get_ids()!")
-  
+  rval=match.arg(rval)
   df <- flycircuit_image_summary(url)
   pb <-
     progress::progress_bar$new(total = sum(df$n, na.rm = T),
                                format = "  :current/:total ids [:bar]  eta: :eta",
                                show_after = 2)
-  ids = c()
+  idinfo=list()
   for (i in seq_len(nrow(df))) {
     urlparts=httr::parse_url(df$link[i])
     baseurlparts=httr::parse_url(url)
     urlparts[c("scheme", "hostname", "port")]=baseurlparts[c("scheme", "hostname", "port")]
     n = 0
+    nids = c()
+    neurons = c()
     nfound = 100 # signalling value
     # they are shown in batches of 100
     while (isTRUE(nfound == 100)) {
       urlparts$query$groupON=n
       u=httr::build_url(urlparts)
-      subpage <- xml2::read_html(u)
-      subdata <- rvest::html_nodes(subpage, 'a')
-      subdata <- subdata[grepl("neuron=", subdata)]
-      subdata <- gsub('.*neuron=', "", subdata)
-      subdata <- gsub("'.*", "", subdata)
-      subdata <- unlist(subdata[grepl("-", subdata)])
+      subdata <- xml2::read_html(u) %>%
+        rvest::html_nodes('#menu3 a')
       nfound = length(subdata)
       if (isTRUE(nfound > 0)) {
-        ids = c(ids, subdata)
+        neurons = c(neurons, xml2::xml_text(subdata))
+        nidtxt=stringr::str_match(xml2::xml_attr(subdata,'href'), 'nid=([0-9]{1,3})')[,2]
+        nids = c(nids, as.integer(nidtxt))
         pb$tick(nfound)
         n = n + 100
       }
     }
+    if(length(neurons))
+      idinfo[[i]]=dplyr::tibble(nid=nids, neuron=neurons)
     # message("Driver: ", df$driver[i], " sex:", df$sex[i], " nfound: ", nfound)
   }
-  unique(ids)
+  iddf=dplyr::bind_rows(idinfo, .id = 'row')
+  if(rval=='data.frame') {
+    df$row=seq_len(nrow(df))
+    m=merge(iddf, df[c("driver","sex","row")], by='row', all.x=T, sort=F)
+    m[['row']]=NULL
+    m
+  } else {
+    iddf$neuron
+  }
 }
 
 # Summary of numbers of images for each driver/sex

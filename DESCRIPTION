@@ -37,7 +37,9 @@ Imports:
     nat.templatebrains,
     nat.flybrains,
     stringr,
-    progress
+    progress,
+    dplyr,
+    httr
 License: GPL-3
 LazyData: true
 VignetteBuilder: knitr
