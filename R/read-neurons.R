@@ -17,19 +17,27 @@
 #' fcn <- flycircuit_read_neurons("Gad1-F-200234")
 #' plot3d(fcn)
 #' plot3d(FCWB)
-#'
+#' }
+#' 
+#' \dontrun{
 #' # We can also read all neurons
 #' clear3d()
+#' # nb this will take tens of minutes to hours
 #' fc.ids = flycircuit_get_ids()
 #' fcns <- flycircuit_read_neurons(fc.ids)
 #' plot3d(fcns)
 #' plot3d(FCWB, alpha = 0.1)
 #'
-#' # Now mirror all neurons to the right of the brain
-#' left.somas <- function(neuron,bound = boundingbox(FCWB.surf)[1,1]+((boundingbox(FCWB.surf)[2,1]-boundingbox(FCWB.surf)[1,1])/2)){
+#' ## Now mirror all neurons to the right of the brain
+#' # estimate whether soma is on left or right of midline
+#' # nb this assumes that FCWB brain surface is mirror symmetric
+#' # which is apporoximately but not exactly the case
+#' left.somas <- function(neuron, surf = FCWB.surf) {
+#'   bb=boundingbox(surf)
+#'   midline=(bb[1,1]+bb[2,1])/2
 #'   r = nat::rootpoints(neuron)
-#'   position = nat::xyzmatrix(neuron$d[r,])
-#'   position[,"X"]>bound
+#'   somaposition = nat::xyzmatrix(neuron$d[r,])
+#'   somaposition[,"X"]>midline
 #' }
 #' leftsomas = unlist(nat::nlapply(fcns,left.somas))
 #' fcsleft = nat.templatebrains::mirror_brain(fcns[leftsomas], brain = FCWB)
