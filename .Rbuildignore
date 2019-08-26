@@ -8,3 +8,5 @@ vignettes/.*/
 ^_pkgdown\.yml$
 ^docs$
 ^data-raw$
+^LICENSE\.md$
+^\.github$

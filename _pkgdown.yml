@@ -1,56 +1,86 @@
 reference:
-  - title: Package Help
-    desc: Provides an overview of key functions and classes
-    contents:
-    - flycircuit
-  - title: Identifiers and Annotations
-    desc: >
-      There are at least 3 different kinds of identifiers in use with the 
-      flycircuit database. These functions convert between them as well as making
-      additional metadata available. Furthermore annotations carried out in the
-      course of the Costa et al. NBLAST study are also available - these include
-      the identification of 5400 neuronal types as well as the glomeruli 
-      innervated by 433 olfactory projection neurons.
-    contents:
-      - annotation
-      - fc_glom
-      - fc_neuron_type
-      - fc_sex
-      - fcidtable
-      - fc_gene_name
-      - fcgn_forfile
-  - title: Clustering and searching
-    contents:
-    - apclusterfc
-    - as.data.frame.APResult
-    - fc_nblast
-    - hclustfc
-    - fc_subscoremat
-    - kcs20scores
-  - title: Plotting and surfaces
-    contents:
-    - FCWB.surf
-    - FCWBNP.surf
-    - fcwbnpsurf
-    - fcwbsurf
-    - getRegionsFromSurf
-    - getRegionSurf
-    - plot3d.APResult
-    - plot3dfc
-    - pop3dfc
-    - selectRegionsFromSurf
-    - dpscan
-    - drawRegionSurf
-  - title: Support for remote / optional data
-    desc: >
-      Some flycircuit functionality depends on data which is not bundled
-      into the R package (since it is about 4GB in size). These functions handle
-      download and access to such data.
-    contents:
-    - download.file.wcheck
-    - fc_attach_bigmat
-    - fc_attach_ff
-    - fc_download_data
-    - load_fcdata
-    - load_fcdb
-    - load_si_data
+- title: Package Help
+  desc: Provides an overview of key functions and classes
+  contents: flycircuit
+- title: Identifiers and Annotations
+  desc: |
+    There are at least 3 different kinds of identifiers in use with the  flycircuit database. These functions convert between them as well as making additional metadata available. Furthermore annotations carried out in the course of the Costa et al. NBLAST study are also available - these include the identification of 5400 neuronal types as well as the glomeruli  innervated by 433 olfactory projection neurons.
+  contents:
+  - annotation
+  - fc_glom
+  - fc_neuron_type
+  - fc_sex
+  - fcidtable
+  - fc_gene_name
+  - fcgn_forfile
+- title: Clustering and searching
+  contents:
+  - apclusterfc
+  - as.data.frame.APResult
+  - fc_nblast
+  - hclustfc
+  - fc_subscoremat
+  - kcs20scores
+- title: Plotting and surfaces
+  contents:
+  - FCWB.surf
+  - FCWBNP.surf
+  - fcwbnpsurf
+  - fcwbsurf
+  - getRegionsFromSurf
+  - getRegionSurf
+  - plot3d.APResult
+  - plot3dfc
+  - pop3dfc
+  - selectRegionsFromSurf
+  - dpscan
+  - drawRegionSurf
+- title: Support for remote / optional data
+  desc: |
+    Some flycircuit functionality depends on data which is not bundled into the R package (since it is about 4GB in size). These functions handle download and access to such data.
+  contents:
+  - download.file.wcheck
+  - fc_attach_bigmat
+  - fc_attach_ff
+  - fc_download_data
+  - load_fcdata
+  - load_fcdb
+  - load_si_data
+navbar:
+  structure:
+    left:
+    - home
+    - intro
+    - reference
+    - articles
+    - tutorials
+    - news
+    - help
+    right:
+    - natverse
+    - github
+  components:
+    home:
+      icon: fa-home fa-lg
+      href: index.html
+    reference:
+      text: Reference
+      href: reference/index.html
+    articles:
+      text: Articles
+      menu:
+      - text: Quick-start guide
+        href: articles/quick-start.html
+    news:
+      text: Changelog
+      href: news/index.html
+    github:
+      icon: fa-github fa-lg
+      href: https://github.com/jefferis/flycircuit
+    natverse:
+      text: natverse
+      href: https://natverse.github.io
+    help:
+      text: Help
+      href: SUPPORT.html
+
