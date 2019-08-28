@@ -4,19 +4,19 @@
 #'   and bridges them into the FCWB space.
 #'
 #' @param fc.ids vector of valid FlyCircuit neuron ids. To acquire these in
-#'   bulk, see \code{\link{flycircuit_get_ids}} and
+#'   bulk, see \code{\link{fc_get_ids}} and
 #'   \code{\link{flycircuit-ids}}.
 #' @param xform Whether or not to tranform neurons from their original space to
 #'   the \code{\link{FCWB}} template space.
 #' @param ... additional arguments passed to methods
-#' @seealso \code{\link{flycircuit_get_ids}}, \code{\link{flycircuit-ids}},
+#' @seealso \code{\link{fc_get_ids}}, \code{\link{flycircuit-ids}},
 #'   \code{\link{read.neurons}}
 #'
 #' @examples
 #' \donttest{
 #' # Let's read a neuron from the FlyCircuit database
 #' library(nat.flybrains)
-#' fcn <- flycircuit_read_neurons("Gad1-F-200234")
+#' fcn <- fc_read_neurons("Gad1-F-200234")
 #' plot3d(fcn)
 #' plot3d(FCWB)
 #' }
@@ -25,8 +25,8 @@
 #' # We can also read all neurons
 #' clear3d()
 #' # nb this will take tens of minutes to hours
-#' fc.ids = flycircuit_get_ids()
-#' fcns <- flycircuit_read_neurons(fc.ids)
+#' fc.ids = fc_get_ids()
+#' fcns <- fc_read_neurons(fc.ids)
 #' plot3d(fcns)
 #' plot3d(FCWB, alpha = 0.1)
 #'
@@ -46,11 +46,11 @@
 #' fcns = c(fcns[!names(fcns)%in%names(fcsleft)],fcsleft)
 #' }
 #' @source \url{http://www.flycircuit.tw/}
-#' @seealso \code{\link{flycircuit_get_ids}}, \code{\link{flycircuit_page}}
+#' @seealso \code{\link{fc_get_ids}}, \code{\link{fc_page}}
 #' @return A \code{neuronlist} of FlyCircuit neurons registered in the intersex
 #'   FCWB brain space
 #' @export
-flycircuit_read_neurons <- function(fc.ids, xform=TRUE, ...){
+fc_read_neurons <- function(fc.ids, xform=TRUE, ...){
   ids = c()
   fcns = nat::neuronlist()
   for (n in 1:length(fc.ids)){
@@ -65,12 +65,12 @@ flycircuit_read_neurons <- function(fc.ids, xform=TRUE, ...){
   names(fcns) = ids
   if(isTRUE(xform))
     fcns=Chiang2FCWB(fcns)
-  fcns = nat::nlapply(fcns, reroot_flycircuit_neuron)
+  fcns = nat::nlapply(fcns, fc_reroot_neuron)
   fcns
 }
 
-# hidden
-reroot_flycircuit_neuron <- function(x){
+
+fc_reroot_neuron <- function(x){
   x = nat::as.neuron(nat::as.ngraph(x), origin = which(x$d$Label==4))
   x$d$Label = 0
   x$d$Label[x$StartPoint] = 1
