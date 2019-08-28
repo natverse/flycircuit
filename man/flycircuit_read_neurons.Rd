@@ -7,12 +7,15 @@
 \url{http://www.flycircuit.tw/}
 }
 \usage{
-flycircuit_read_neurons(fc.ids, ...)
+flycircuit_read_neurons(fc.ids, xform = TRUE, ...)
 }
 \arguments{
 \item{fc.ids}{vector of valid FlyCircuit neuron ids. To acquire these in
 bulk, see \code{\link{flycircuit_get_ids}} and
 \code{\link{flycircuit-ids}}.}
+
+\item{xform}{Whether or not to tranform neurons from their original space to
+the \code{\link{FCWB}} template space.}
 
 \item{...}{additional arguments passed to methods}
 }

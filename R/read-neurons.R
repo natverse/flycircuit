@@ -6,6 +6,8 @@
 #' @param fc.ids vector of valid FlyCircuit neuron ids. To acquire these in
 #'   bulk, see \code{\link{flycircuit_get_ids}} and
 #'   \code{\link{flycircuit-ids}}.
+#' @param xform Whether or not to tranform neurons from their original space to
+#'   the \code{\link{FCWB}} template space.
 #' @param ... additional arguments passed to methods
 #' @seealso \code{\link{flycircuit_get_ids}}, \code{\link{flycircuit-ids}},
 #'   \code{\link{read.neurons}}
@@ -18,7 +20,7 @@
 #' plot3d(fcn)
 #' plot3d(FCWB)
 #' }
-#' 
+#'
 #' \dontrun{
 #' # We can also read all neurons
 #' clear3d()
@@ -48,7 +50,7 @@
 #' @return A \code{neuronlist} of FlyCircuit neurons registered in the intersex
 #'   FCWB brain space
 #' @export
-flycircuit_read_neurons <- function(fc.ids, ...){
+flycircuit_read_neurons <- function(fc.ids, xform=TRUE, ...){
   ids = c()
   fcns = nat::neuronlist()
   for (n in 1:length(fc.ids)){
@@ -61,8 +63,9 @@ flycircuit_read_neurons <- function(fc.ids, ...){
     }
   }
   names(fcns) = ids
-  fcns=Chiang2FCWB(fcns)
-  fcns = nat::nlapply(fcns,reroot_flycircuit_neuron)
+  if(isTRUE(xform))
+    fcns=Chiang2FCWB(fcns)
+  fcns = nat::nlapply(fcns, reroot_flycircuit_neuron)
   fcns
 }
 
