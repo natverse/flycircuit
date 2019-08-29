@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>FCWBNP.surf - Surface model of FlyLight neuropil segmentation in FlyCircuit
-coordinate space — FCWBNP.surf • flycircuit</title>
+<title>See a FlyCircuit neuron on the FlyCircuit website — fc_page • flycircuit</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -31,11 +30,9 @@ coordinate space — FCWBNP.surf • flycircuit</title>
 
 
 
-<meta property="og:title" content="FCWBNP.surf - Surface model of FlyLight neuropil segmentation in FlyCircuit
-coordinate space — FCWBNP.surf" />
+<meta property="og:title" content="See a FlyCircuit neuron on the FlyCircuit website — fc_page" />
 
-<meta property="og:description" content="FCWBNP.surf - Surface model of FlyLight neuropil segmentation in FlyCircuit
-coordinate space" />
+<meta property="og:description" content="See chosen FlyCircuit neuron on the FlyCircuit website, where maximal projection .lsm images are available." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -125,26 +122,60 @@ coordinate space" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>FCWBNP.surf - Surface model of FlyLight neuropil segmentation in FlyCircuit
-coordinate space</h1>
-    <small class="dont-index">Source: <a href='https://github.com/natverse/flycircuit/blob/master/R/flycircuit-data.R'><code>R/flycircuit-data.R</code></a></small>
-    <div class="hidden name"><code>FCWBNP.surf.Rd</code></div>
+    <h1>See a FlyCircuit neuron on the FlyCircuit website</h1>
+    <small class="dont-index">Source: <a href='https://github.com/natverse/flycircuit/blob/master/R/open-flycircuit.R'><code>R/open-flycircuit.R</code></a></small>
+    <div class="hidden name"><code>fc_page.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>FCWBNP.surf - Surface model of FlyLight neuropil segmentation in FlyCircuit
-coordinate space</p>
+    <p>See chosen FlyCircuit neuron on the FlyCircuit website, where maximal projection .lsm images are available.</p>
     
     </div>
 
-        
+    <pre class="usage"><span class='fu'>fc_page</span>(<span class='no'>fc.ids</span>, <span class='kw'>open</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>10</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>fc.ids</th>
+      <td><p>a vectors of FlyCircuit neuron IDs</p></td>
+    </tr>
+    <tr>
+      <th>open</th>
+      <td><p>Whether or not to open the pages in your default web browser</p></td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td><p>Maximum number of webpages to open</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
+    <p><a href='http://www.flycircuit.tw/'>http://www.flycircuit.tw/</a></p>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>the URLs (invisibly if they are being opened)</p>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># Find the details page from a neuron on the FlyCircuit database</span>
+<span class='fu'>fc_page</span>(<span class='st'>"Gad1-F-200234"</span>, <span class='kw'>open</span><span class='kw'>=</span><span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; [1] "http://flycircuit.tw/modules.php?name=clearpage&amp;op=detail_table&amp;neuron=Gad1-F-200234"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-                </ul>
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#source">Source</a></li>
+
+      <li><a href="#value">Value</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>
