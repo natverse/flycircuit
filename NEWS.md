@@ -1,3 +1,12 @@
+# flycircuit 0.6.9
+
+* new functions `fc_read_neurons()` to read traced skeletons from the flycircuit
+  website, `fc_get_ids()` to get a list of neuron identifiers, 
+  `fc_page()` to see the details page for a neuron (#44)
+  (thanks to @alexanderbates)
+* Fix FCWBNP.surf by updating to nat.flybrains version (#43)
+* switch to natverse github organisation 
+
 # flycircuit 0.6.8
 
 * Ensure that flycircuit package can be installed from github with development
