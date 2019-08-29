@@ -45,9 +45,7 @@ You can get the data like so:
 devtools::source_gist("bbaf5d53353b3944c090")
 ```
 
-You can also read skeletons hosted on the FlyCircuit website, as so
-
-You can get all the data like so:
+You can also read individual skeletons hosted on the FlyCircuit website:
 
 ``` r
  # Let's read a neuron from the FlyCircuit database
@@ -55,7 +53,10 @@ You can get all the data like so:
  fcn <- fc_read_neurons("Gad1-F-200234")
  plot3d(fcn)
  plot3d(FCWB)
- 
+```
+You could read all skeletons like so:
+
+```r
  # We can also read all neurons
  clear3d()
  fc.ids = fc_get_ids()
@@ -79,11 +80,17 @@ Acknowledging the data and tools
 
 Any work that uses data from this package should cite
 
+(for the original image data)
+
 **Chiang, Ann-Shyn, Chih-Yung Lin, Chao-Chun Chuang, Hsiu-Ming Chang, Chang-Huain Hsieh, Chang-Wei Yeh, Chi-Tin Shih, et al.** 2011. *Three-Dimensional Reconstruction of Brain-Wide Wiring Networks in Drosophila at Single-Cell Resolution.* Current Biology: CB 21 (1): 1–11.
+
+(for the automated neuronal tracings)
 
 **Lee, Ping-Chang, Chao-Chun Chuang, Ann-Shyn Chiang, and Yu-Tai Ching.** 2012. *High-Throughput Computer Method for 3D Neuronal Structure Reconstruction from the Image Stack of the Drosophila Brain and Its Applications.* PLoS Computational Biology 8 (9): e1002658.
 
-This package was created by [James Manton](https://scholar.google.co.uk/citations?user=iYVk_psAAAAJ&hl=en), [Marta Costa](https://scholar.google.co.uk/citations?user=yE5yjP0AAAAJ&hl=en), [Alexander Shakeel Bates](https://scholar.google.com/citations?user=BOVTiXIAAAAJ&hl=en) and [Dr. Gregory Jefferis](https://en.wikipedia.org/wiki/Gregory_Jefferis). You can cite this package as:
+This package was created by [James Manton](https://scholar.google.co.uk/citations?user=iYVk_psAAAAJ&hl=en), [Marta Costa](https://scholar.google.co.uk/citations?user=yE5yjP0AAAAJ&hl=en), [Alexander Shakeel Bates](https://scholar.google.com/citations?user=BOVTiXIAAAAJ&hl=en) and [Gregory Jefferis](https://en.wikipedia.org/wiki/Gregory_Jefferis). 
+
+You can obtain a citation for this package as:
 
 ``` r
 citation(package = "flycircuit")
