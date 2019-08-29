@@ -7,19 +7,24 @@
 \url{http://www.flycircuit.tw/}
 }
 \usage{
-fc_page(fc.ids, max = 10)
+fc_page(fc.ids, open = TRUE, max = 10)
 }
 \arguments{
 \item{fc.ids}{a vectors of FlyCircuit neuron IDs}
 
+\item{open}{Whether or not to open the pages in your default web browser}
+
 \item{max}{Maximum number of webpages to open}
+}
+\value{
+the URLs (invisibly if they are being opened)
 }
 \description{
 See chosen FlyCircuit neuron on the FlyCircuit website, where maximal projection .lsm images are available.
 }
 \examples{
 \donttest{
-# Let's read a neuron from the FlyCircuit database
-fc_page("Gad1-F-200234")
+# Find the details page from a neuron on the FlyCircuit database
+fc_page("Gad1-F-200234", open=FALSE)
 }
 }
