@@ -1,7 +1,7 @@
 <!-- badges: start -->
 [![natverse](https://img.shields.io/badge/natverse-Part%20of%20the%20natverse-a241b6)](https://natverse.github.io)
-[![Build Status](https://travis-ci.org/jefferis/flycircuit.svg)](https://travis-ci.org/jefferis/flycircuit)
-[![Docs](https://img.shields.io/badge/docs-100%25-brightgreen.svg)](https://jefferis.github.io/flycircuit/reference/)
+[![Build Status](https://travis-ci.org/natverse/flycircuit.svg)](https://travis-ci.org/natverse/flycircuit)
+[![Docs](https://img.shields.io/badge/docs-100%25-brightgreen.svg)](https://natverse.github.io/flycircuit/reference/)
 <!-- badges: end -->
 <img src="man/figures/logo.svg" align="right" height="139" />
 
@@ -17,7 +17,7 @@ but you can use the **devtools** package to install the development version:
 ```r
 # if necessary
 if(!requireNamespace('devtools')) install.packages("devtools")
-devtools::install_github("jefferis/flycircuit", dependencies=TRUE)
+devtools::install_github("natverse/flycircuit", dependencies=TRUE)
 ```
 
 Note: Windows users need [Rtools](http://www.murdoch-sutherland.com/Rtools/) and [devtools](http://CRAN.R-project.org/package=devtools) to install this way.

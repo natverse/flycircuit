@@ -76,7 +76,7 @@ navbar:
       href: news/index.html
     github:
       icon: fa-github fa-lg
-      href: https://github.com/jefferis/flycircuit
+      href: https://github.com/natverse/flycircuit
     natverse:
       text: natverse
       href: https://natverse.github.io
