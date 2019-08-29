@@ -28,6 +28,6 @@ The flycircuit database seems to have at least 3 unique identifiers
   that might contain multiple labelled neurons after MARCM.
 }
 \seealso{
-Other flycircuit-ids: \code{\link{fc_gene_name}}
+Other flycircuit-ids: \code{\link{flycircuit-ids}}
 }
 \concept{flycircuit-ids}

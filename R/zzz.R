@@ -25,6 +25,14 @@
   dir.create(file.path(getOption('flycircuit.dbdir')), showWarnings=FALSE)
   dir.create(file.path(getOption('flycircuit.bigmatdir')), showWarnings=FALSE)
   dir.create(file.path(getOption('flycircuit.ffdir')), showWarnings=FALSE)
+
+  add_registrations()
+  
+  invisible()
+}
+
+.onAttach <- function(libname, pkgname) {
+  invisible()
 }
 
 # environment to store downloaded data to avoid polluting global namespace

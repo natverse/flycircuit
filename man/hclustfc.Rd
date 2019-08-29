@@ -20,9 +20,10 @@ default).}
 by \code{hclust} (see details, default \code{FALSE}).}
 
 \item{distfun}{function to convert distance matrix returned by
-\code{sub_dist_mat} into R dist object (default= \code{\link{as.dist}}).}
+\code{sub_dist_mat} into R \code{dist} object (default=
+\code{\link{as.dist}}).}
 
-\item{...}{additional parameters passed to hclust.}
+\item{...}{additional parameters passed to \code{\link{hclust}}.}
 
 \item{maxneurons}{set this to a sensible value to avoid loading huge (order
 N^2) distances directly into memory.}
