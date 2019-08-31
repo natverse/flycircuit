@@ -7,7 +7,8 @@ writeLines(c(
   "If you are using this package, you will most likely need to cite ",
   "two papers, Chiang et al. (2011) for the raw image data and Costa et al. (2016) ",
   "for the functionality contained within this R package as well as its ",
-  "associated cell type annotations."
+  "associated cell type annotations. If you use traced neuron skeletons ",
+  "e.g. fc_read_neurons() you will also need to cite Lee et al. (2012)"
 )'
 ), con = con)
 dput(bib, file = con)
