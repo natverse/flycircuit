@@ -82,11 +82,16 @@ Any work that uses data from this package should cite
 
 (for the original image data)
 
-**Chiang, Ann-Shyn, Chih-Yung Lin, Chao-Chun Chuang, Hsiu-Ming Chang, Chang-Huain Hsieh, Chang-Wei Yeh, Chi-Tin Shih, et al.** 2011. *Three-Dimensional Reconstruction of Brain-Wide Wiring Networks in Drosophila at Single-Cell Resolution.* Current Biology: CB 21 (1): 1–11.
+**Chiang, Ann-Shyn, Chih-Yung Lin, Chao-Chun Chuang, Hsiu-Ming Chang, Chang-Huain Hsieh, Chang-Wei Yeh, Chi-Tin Shih, et al.** 2011. *Three-Dimensional Reconstruction of Brain-Wide Wiring Networks in Drosophila at Single-Cell Resolution.* Current Biology 21(1):1–11.  doi: [10.1016/j.cub.2010.11.056](https://doi.org/10.1016/j.cub.2010.11.056)
 
-(for the automated neuronal tracings)
+(for the automated traced neuronal skeletons)
 
-**Lee, Ping-Chang, Chao-Chun Chuang, Ann-Shyn Chiang, and Yu-Tai Ching.** 2012. *High-Throughput Computer Method for 3D Neuronal Structure Reconstruction from the Image Stack of the Drosophila Brain and Its Applications.* PLoS Computational Biology 8 (9): e1002658.
+**Lee, Ping-Chang, Chao-Chun Chuang, Ann-Shyn Chiang, and Yu-Tai Ching.** 2012. *High-Throughput Computer Method for 3D Neuronal Structure Reconstruction from the Image Stack of the Drosophila Brain and Its Applications.* PLoS Computational Biology 8(9):e1002658. doi: [10.1371/journal.pcbi.1002658](https://doi.org/10.1371/journal.pcbi.1002658)
+
+(for the package, cell type annotations and NBLAST results)
+
+**Costa M, Manton JD, Ostrovsky AD, Prohaska S, Jefferis GSXE.** (2016) *NBLAST: Rapid, Sensitive
+Comparison of Neuronal Structure and Construction of Neuron Family Databases.* Neuron 91(2):293-311. doi: 10.1016/j.neuron.2016.06.012 (URL: https://doi.org/10.1016/j.neuron.2016.06.012)
 
 This package was created by [James Manton](https://scholar.google.co.uk/citations?user=iYVk_psAAAAJ&hl=en), [Marta Costa](https://scholar.google.co.uk/citations?user=yE5yjP0AAAAJ&hl=en), [Alexander Shakeel Bates](https://scholar.google.com/citations?user=BOVTiXIAAAAJ&hl=en) and [Gregory Jefferis](https://en.wikipedia.org/wiki/Gregory_Jefferis). 
 
