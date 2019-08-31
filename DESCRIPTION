@@ -21,7 +21,9 @@ Description: Functions and data for spatial analysis and
     annotation of neurons from the 'FlyCircuit' collection available
     online at http://flycircuit.tw.
 License: GPL-3
-URL: https://github.com/natverse/flycircuit
+URL: https://github.com/natverse/flycircuit, 
+    https://natverse.github.io/flycircuit,
+    http://flycircuit.tw
 BugReports: https://github.com/natverse/flycircuit/issues
 Depends:
     nat (>= 1.8.8),
