@@ -4,8 +4,14 @@
 \alias{download.file.wcheck}
 \title{Download a remote file if it is new or updated}
 \usage{
-download.file.wcheck(url, destdir = NULL, destfile = NULL,
-  overwrite = NULL, mode = "wb", ...)
+download.file.wcheck(
+  url,
+  destdir = NULL,
+  destfile = NULL,
+  overwrite = NULL,
+  mode = "wb",
+  ...
+)
 }
 \arguments{
 \item{url}{Location of remote file to download}

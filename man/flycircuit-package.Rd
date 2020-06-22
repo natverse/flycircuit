@@ -68,16 +68,16 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Gregory Jefferis \email{jefferis@gmail.com} (0000-0002-0587-9355)
+\strong{Maintainer}: Gregory Jefferis \email{jefferis@gmail.com} (\href{https://orcid.org/0000-0002-0587-9355}{ORCID})
 
 Authors:
 \itemize{
-  \item James Manton (0000-0001-9260-3156)
+  \item James Manton (\href{https://orcid.org/0000-0001-9260-3156}{ORCID})
 }
 
 Other contributors:
 \itemize{
-  \item Alexander Bates \email{alexander.shakeel.bates@gmail.com} (0000-0002-1195-0445) [contributor]
+  \item Alexander Bates \email{alexander.shakeel.bates@gmail.com} (\href{https://orcid.org/0000-0002-1195-0445}{ORCID}) [contributor]
 }
 
 }

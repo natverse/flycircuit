@@ -4,8 +4,13 @@
 \alias{load_fcdata}
 \title{Load an rda/rds object cached on disk into the Global Environment}
 \usage{
-load_fcdata(data, Force = FALSE, folder = c("data", "db"),
-  envir = .GlobalEnv, inherits = TRUE)
+load_fcdata(
+  data,
+  Force = FALSE,
+  folder = c("data", "db"),
+  envir = .GlobalEnv,
+  inherits = TRUE
+)
 }
 \arguments{
 \item{data}{Name of object (and the stem of rda file).}

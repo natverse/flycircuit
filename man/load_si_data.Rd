@@ -4,8 +4,12 @@
 \alias{load_si_data}
 \title{Load NBLAST supplemental data objects, downloading when required}
 \usage{
-load_si_data(data_name, type = c("auto", "data", "db", "bigmat", "ff",
-  "plain"), overwrite = FALSE, ...)
+load_si_data(
+  data_name,
+  type = c("auto", "data", "db", "bigmat", "ff", "plain"),
+  overwrite = FALSE,
+  ...
+)
 }
 \arguments{
 \item{data_name}{the name of the file to load.}
