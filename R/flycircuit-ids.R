@@ -52,8 +52,7 @@ fc_get_ids <-  function(url=paste0("http://www.flycircuit.tw/modules.php",
     while (isTRUE(nfound == 100)) {
       urlparts$query$groupON=n
       u=httr::build_url(urlparts)
-      subdata <- xml2::read_html(u) %>%
-        rvest::html_nodes('#menu3 a')
+      subdata <- rvest::html_nodes(xml2::read_html(u), '#menu3 a')
       nfound = length(subdata)
       if (isTRUE(nfound > 0)) {
         neurons = c(neurons, xml2::xml_text(subdata))
