@@ -14,6 +14,10 @@
     warning("flycircuit package .onLoad: Unable to write to options('flycircuit.datadir'):", dd,
             ". Please check directory exists and is writeable!", 
             immediate. = T, call. = FALSE)
+  dd=normalizePath(dd, mustWork = FALSE)
+  # set the normalised path back as option because this is easier to read
+  options(flycircuit.datadir=dd)
+  
   # then set the other options (if they have not already been set by the user)
   op.flycircuit=list(
     flycircuit.dbdir=file.path(dirname(dd),'db'),
