@@ -38,7 +38,7 @@
 #'
 #'   }
 #'
-#' @import nat rgl
+#' @import nat
 #' @examples
 #' # Show state of flycircuit package options
 #' options()[grep('^flycircuit', names(options()))]

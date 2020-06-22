@@ -34,6 +34,7 @@
 #' npop3d()
 #' plot3dfc("fru-M-100014", col='red', db=kcs20, soma=TRUE)
 #' rgl.close()
+#' @importFrom rgl plot3d
 plot3dfc <- function(id, col, db=getOption('nat.default.neuronlist'), ...) {
   if(is.null(db)) stop("Must specify a neuronlist")
   if(is.character(db)) db=get(db)
@@ -136,6 +137,7 @@ getRegionsFromSurf <- function(surf) {
 #'   are within a selection region.
 #' @export
 #' @seealso \code{\link{select3d}}
+#' @importFrom rgl select3d
 selectRegionsFromSurf <- function(surf, selfun=NULL) {
   if(is.null(selfun)){
     message("Draw a selection box in the RGL window")
