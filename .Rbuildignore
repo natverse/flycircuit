@@ -11,3 +11,4 @@ vignettes/.*/
 ^LICENSE\.md$
 ^\.github$
 ^\.travis\.yml$
+^build-cmtk.sh$
