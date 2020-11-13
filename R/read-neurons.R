@@ -58,8 +58,8 @@ fc_read_neurons <- function(fc.ids, xform=TRUE, ...){
     swc=sprintf(baseurl, fc.ids[n], fc.ids[n])
     ofcn=tryCatch(nat::read.neuron(swc), error = function(e) warning("unable to read neuron: ", fc.ids[n]))
     if(!is.null(ofcn)) {
-      fcns = c(fcns, nat::as.neuronlist(ofcn))
-      ids = c(ids, fc.ids[n])
+      fcns = nat::union(fcns, nat::as.neuronlist(ofcn))
+      ids = union(ids, fc.ids[n])
     }
   }
   names(fcns) = ids
