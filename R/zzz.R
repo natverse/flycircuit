@@ -6,6 +6,18 @@
   op<-options()
   dd=getOption('flycircuit.datadir')
   
+  # Create directory if it does not already exist
+  # NB this will never be acceptable behaviour for a CRAN package
+  dir.create(file.path(dd), showWarnings=FALSE,
+             recursive = TRUE)
+  if(file.access(dd, mode=2)!=0)
+    warning("flycircuit package .onLoad: Unable to write to options('flycircuit.datadir'):", dd,
+            ". Please check directory exists and is writeable!", 
+            immediate. = T, call. = FALSE)
+  dd=normalizePath(dd, mustWork = FALSE)
+  # set the normalised path back as option because this is easier to read
+  options(flycircuit.datadir=dd)
+  
   # then set the other options (if they have not already been set by the user)
   op.flycircuit=list(
     flycircuit.dbdir=file.path(dirname(dd),'db'),
@@ -19,9 +31,6 @@
   toset <- !(names(op.flycircuit) %in% names(op))
   if(any(toset)) options(op.flycircuit[toset])
   
-  # Create directories if they do not already exist
-  # NB this will never be acceptable behaviour for a CRAN package
-  dir.create(file.path(getOption('flycircuit.datadir')), showWarnings=FALSE, recursive = TRUE)
   dir.create(file.path(getOption('flycircuit.dbdir')), showWarnings=FALSE)
   dir.create(file.path(getOption('flycircuit.bigmatdir')), showWarnings=FALSE)
   dir.create(file.path(getOption('flycircuit.ffdir')), showWarnings=FALSE)

@@ -1,5 +1,8 @@
+<!-- badges: start -->
 [![natverse](https://img.shields.io/badge/natverse-Part%20of%20the%20natverse-a241b6)](https://natverse.github.io)
-[![Build Status](https://travis-ci.org/jefferis/flycircuit.svg)](https://travis-ci.org/jefferis/flycircuit)
+[![Build Status](https://travis-ci.org/natverse/flycircuit.svg)](https://travis-ci.org/natverse/flycircuit)
+[![Docs](https://img.shields.io/badge/docs-100%25-brightgreen.svg)](https://natverse.github.io/flycircuit/reference/)
+<!-- badges: end -->
 <img src="man/figures/logo.svg" align="right" height="139" />
 
 # flycircuit
@@ -8,20 +11,13 @@ Plot and analyse neurons skeletonised from image data released by
 [FlyCircuit](http://flycircuit.tw).
 
 ## Installation
-
-Currently there isn't a released version on [CRAN](http://cran.r-project.org/).
-
-### Bleeding Edge
-
-You can, however, download the [tar ball](https://github.com/jefferis/flycircuit/tarball/master), and run `R CMD INSTALL` on it, or use the **remotes** package to install the development version:
+Currently there isn't a released version on [CRAN](http://cran.r-project.org/),
+but you can use the **devtools** package to install the development version:
 
 ```r
 # if necessary
-install.packages("remotes")
-
-# install latest version of nat package (rather than CRAN version)
-remotes::install_github("natverse/natverse")
-remotes::install_github("natverse/flycircuit", dependencies=TRUE)
+if(!requireNamespace('devtools')) install.packages("devtools")
+devtools::install_github("natverse/flycircuit", dependencies=TRUE)
 ```
 
 Note: Windows users need [Rtools](http://www.murdoch-sutherland.com/Rtools/) and [devtools](http://CRAN.R-project.org/package=devtools) to install this way.
@@ -49,9 +45,7 @@ You can get the data like so:
 devtools::source_gist("bbaf5d53353b3944c090")
 ```
 
-You can also read skeletons hosted on the FlyCircuit website, as so
-
-You can get all the data like so:
+You can also read individual skeletons hosted on the FlyCircuit website:
 
 ``` r
  # Let's read a neuron from the FlyCircuit database
@@ -59,7 +53,10 @@ You can get all the data like so:
  fcn <- fc_read_neurons("Gad1-F-200234")
  plot3d(fcn)
  plot3d(FCWB)
- 
+```
+You could read all skeletons like so:
+
+```r
  # We can also read all neurons
  clear3d()
  fc.ids = fc_get_ids()
@@ -83,11 +80,22 @@ Acknowledging the data and tools
 
 Any work that uses data from this package should cite
 
-**Chiang, Ann-Shyn, Chih-Yung Lin, Chao-Chun Chuang, Hsiu-Ming Chang, Chang-Huain Hsieh, Chang-Wei Yeh, Chi-Tin Shih, et al.** 2011. *Three-Dimensional Reconstruction of Brain-Wide Wiring Networks in Drosophila at Single-Cell Resolution.* Current Biology: CB 21 (1): 1–11.
+(for the original image data)
 
-**Lee, Ping-Chang, Chao-Chun Chuang, Ann-Shyn Chiang, and Yu-Tai Ching.** 2012. *High-Throughput Computer Method for 3D Neuronal Structure Reconstruction from the Image Stack of the Drosophila Brain and Its Applications.* PLoS Computational Biology 8 (9): e1002658.
+**Chiang, Ann-Shyn, Chih-Yung Lin, Chao-Chun Chuang, Hsiu-Ming Chang, Chang-Huain Hsieh, Chang-Wei Yeh, Chi-Tin Shih, et al.** 2011. *Three-Dimensional Reconstruction of Brain-Wide Wiring Networks in Drosophila at Single-Cell Resolution.* Current Biology 21(1):1–11.  doi: [10.1016/j.cub.2010.11.056](https://doi.org/10.1016/j.cub.2010.11.056)
 
-This package was created by [James Manton](https://scholar.google.co.uk/citations?user=iYVk_psAAAAJ&hl=en), [Marta Costa](https://scholar.google.co.uk/citations?user=yE5yjP0AAAAJ&hl=en), [Alexander Shakeel Bates](https://scholar.google.com/citations?user=BOVTiXIAAAAJ&hl=en) and [Dr. Gregory Jefferis](https://en.wikipedia.org/wiki/Gregory_Jefferis). You can cite this package as:
+(for the automated traced neuronal skeletons)
+
+**Lee, Ping-Chang, Chao-Chun Chuang, Ann-Shyn Chiang, and Yu-Tai Ching.** 2012. *High-Throughput Computer Method for 3D Neuronal Structure Reconstruction from the Image Stack of the Drosophila Brain and Its Applications.* PLoS Computational Biology 8(9):e1002658. doi: [10.1371/journal.pcbi.1002658](https://doi.org/10.1371/journal.pcbi.1002658)
+
+(for the package, cell type annotations and NBLAST results)
+
+**Costa M, Manton JD, Ostrovsky AD, Prohaska S, Jefferis GSXE.** (2016) *NBLAST: Rapid, Sensitive
+Comparison of Neuronal Structure and Construction of Neuron Family Databases.* Neuron 91(2):293-311. doi: 10.1016/j.neuron.2016.06.012 (URL: https://doi.org/10.1016/j.neuron.2016.06.012)
+
+This package was created by [James Manton](https://scholar.google.co.uk/citations?user=iYVk_psAAAAJ&hl=en), [Marta Costa](https://scholar.google.co.uk/citations?user=yE5yjP0AAAAJ&hl=en), [Alexander Shakeel Bates](https://scholar.google.com/citations?user=BOVTiXIAAAAJ&hl=en) and [Gregory Jefferis](https://en.wikipedia.org/wiki/Gregory_Jefferis). 
+
+You can obtain a citation for this package as:
 
 ``` r
 citation(package = "flycircuit")

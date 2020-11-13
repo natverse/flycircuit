@@ -1,13 +1,20 @@
 language: R
 sudo: false
-dist: trusty
+dist: xenial
 cache:
   packages: true
   directories:
   - $HOME/usr/local
 
-before_script:
+addons:
+  apt:
+    packages:
+    - libglu1-mesa-dev
+
+before_install:
+  - curl -OL https://raw.githubusercontent.com/jefferis/nat/master/build-cmtk.sh
+  - bash build-cmtk.sh
   - export PATH=$PATH:$HOME/usr/local/bin
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
-  - sleep 3 # give xvfb some time to start
+
+services:
+  - xvfb

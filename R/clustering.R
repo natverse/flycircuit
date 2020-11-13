@@ -111,6 +111,7 @@ as.data.frame.APResult <- function(x, row.names=NULL, optional=FALSE, clusters, 
 #' myselection=LoadObjsFromRda('myselectionfile.rda')[[1]]
 #' mynewselection=plot3d(apres15kv2ns,'bycluster',selected=myselection)
 #' }
+#' @importFrom rgl par3d rgl.close rgl.cur rgl.pop rgl.set
 plot3d.APResult<-function(x,plot=c("exemplars","bycluster","all"),suppressPlot=FALSE,
                           savefun=NULL,clusters=NULL,soma=TRUE,Verbose=TRUE,selected=list(),
                           selected_file=NULL, yaml=TRUE, col=NULL,...){
