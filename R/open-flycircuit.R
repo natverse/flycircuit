@@ -7,11 +7,11 @@
 #' @examples 
 #' \donttest{
 #' # Let's read a neuron from the FlyCircuit database
-#' flycircuit_page("Gad1-F-200234")
+#' fc_page("Gad1-F-200234")
 #' }
 #' @export
 #' @importFrom utils browseURL
-flycircuit_page <- function (fc.ids, max = 10){
+fc_page <- function (fc.ids, max = 10){
   if(length(fc.ids)>10){
     stop("Too many FlyCircuit IDs!!!")
   }

@@ -9,7 +9,7 @@
 #' @param ignore.case whether to ignore the case of the input.
 #' @return character vector of gene_name/Name or integer vector of idid.
 #' @export
-#' @rdname flycircuit-ids
+#' @name flycircuit-ids
 #' @family flycircuit-ids
 #' @examples
 #' fc_gene_name(1)

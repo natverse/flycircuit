@@ -31,13 +31,13 @@ Take a look at the [package vignette](vignettes/quick-start.Rmd) (also available
 
 ```r
 # read FlyCircuit neurons
-?flycircuit_read_neurons
+?fc_read_neurons
 
 # open FlyCircuit
-?flycircuit_page
+?fc_page
 
 # get FlyCircuit IDs
-?flycircuit_get_ids
+?fc_get_ids
 ```
 
 ## Getting the data
@@ -56,14 +56,14 @@ You can get all the data like so:
 ``` r
  # Let's read a neuron from the FlyCircuit database
  library(nat.flybrains)
- fcn <- flycircuit_read_neurons("Gad1-F-200234")
+ fcn <- fc_read_neurons("Gad1-F-200234")
  plot3d(fcn)
  plot3d(FCWB)
  
  # We can also read all neurons
  clear3d()
- fc.ids = flycircuit_get_ids()
- fcns <- flycircuit_read_neurons(fc.ids)
+ fc.ids = fc_get_ids()
+ fcns <- fc_read_neurons(fc.ids)
  plot3d(fcns)
  plot3d(FCWB, alpha = 0.1)
  
