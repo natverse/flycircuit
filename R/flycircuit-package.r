@@ -1,6 +1,8 @@
 #' Support functions for analysis of raw image data provided by flycircuit.tw
 #' 
 #' @name flycircuit
+#' @description Support functions for analysis of raw image data provided by flycircuit.tw: read neurons,
+#' read their IDs, summon the relevant flyciruit web-pages, get hold of precomputed flycircuit data.
 #' @docType package
 #' @section Package options:
 #'   

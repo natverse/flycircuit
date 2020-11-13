@@ -7,8 +7,10 @@
 \url{http://www.flycircuit.tw/}
 }
 \usage{
-fc_get_ids(url = paste0("http://www.flycircuit.tw/modules.php",
-  "?name=browsing&op=listGene_v2"), rval = c("neuronid", "data.frame"))
+fc_get_ids(
+  url = paste0("http://www.flycircuit.tw/modules.php", "?name=browsing&op=listGene_v2"),
+  rval = c("neuronid", "data.frame")
+)
 }
 \arguments{
 \item{url}{webpage of FlyCircuit neuron IDs to scrape}

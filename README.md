@@ -13,15 +13,15 @@ Currently there isn't a released version on [CRAN](http://cran.r-project.org/).
 
 ### Bleeding Edge
 
-You can, however, download the [tar ball](https://github.com/jefferis/flycircuit/tarball/master), and run `R CMD INSTALL` on it, or use the **devtools** package to install the development version:
+You can, however, download the [tar ball](https://github.com/jefferis/flycircuit/tarball/master), and run `R CMD INSTALL` on it, or use the **remotes** package to install the development version:
 
 ```r
 # if necessary
-install.packages("devtools")
+install.packages("remotes")
 
 # install latest version of nat package (rather than CRAN version)
-devtools::install_github("natverse/natverse")
-devtools::install_github("jefferis/flycircuit", dependencies=TRUE)
+remotes::install_github("natverse/natverse")
+remotes::install_github("natverse/flycircuit", dependencies=TRUE)
 ```
 
 Note: Windows users need [Rtools](http://www.murdoch-sutherland.com/Rtools/) and [devtools](http://CRAN.R-project.org/package=devtools) to install this way.

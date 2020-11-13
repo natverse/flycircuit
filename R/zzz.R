@@ -37,3 +37,32 @@
 
 # environment to store downloaded data to avoid polluting global namespace
 .extdata <- new.env()
+
+# # Note that the Morpho affine registrations need to be inverted
+# # see e.g. elmr::tpsreg for discussion of source/reference conventions
+# fcwb_chiangm <-
+#   reglist(
+#     solve(readRDS(system.file(
+#       "inst/extdata/InitialAffine/initialiseCMTKreg_ChiangMaleTowardsFCWB.rds",
+#       package = 'flycircuit'
+#     ))),
+#     cmtkreg(system.file(
+#       "inst/extdata/warp/FCWB_typicalbrainmale_01_warp_m0g80c8e1e-1x26r4.list/",
+#       package = 'flycircuit'
+#     ))
+#   )
+# 
+# fcwb_chiangf <-
+#   reglist(
+#     solve(readRDS(system.file(
+#       "inst/extdata/InitialAffine/initialiseCMTKreg_ChiangFemaleTowardsFCWB.rds",
+#       package = 'flycircuit'
+#     ))),
+#     cmtkreg(system.file(
+#       "inst/extdata/warp/FCWB_typicalbrainfemale_01_warp_m0g80c8e1e-1x26r4.list/",
+#       package = 'flycircuit'
+#     ))
+#   )
+# 
+# nat.templatebrains::add_reglist(fcwb_chiangf, reference = nat.flybrains::FCWB, sample = 'chiangf')
+# nat.templatebrains::add_reglist(fcwb_chiangm, reference = nat.flybrains::FCWB, sample = 'chiangm')

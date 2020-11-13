@@ -3,10 +3,10 @@
 \docType{package}
 \name{flycircuit}
 \alias{flycircuit}
-\alias{flycircuit-package}
 \title{Support functions for analysis of raw image data provided by flycircuit.tw}
 \description{
-Support functions for analysis of raw image data provided by flycircuit.tw
+Support functions for analysis of raw image data provided by flycircuit.tw: read neurons,
+read their IDs, summon the relevant flyciruit web-pages, get hold of precomputed flycircuit data.
 }
 \section{Package options}{
 

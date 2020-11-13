@@ -4,8 +4,12 @@
 \alias{fc_download_data}
 \title{Download a data file from a remote location}
 \usage{
-fc_download_data(url, type = c("data", "db", "bigmat", "ff"),
-  overwrite = getOption("flycircuit.remote_overwrite"), ...)
+fc_download_data(
+  url,
+  type = c("data", "db", "bigmat", "ff"),
+  overwrite = getOption("flycircuit.remote_overwrite"),
+  ...
+)
 }
 \arguments{
 \item{url}{the location of the remote file.}

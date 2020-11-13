@@ -4,9 +4,19 @@
 \alias{dpscan}
 \title{Scan through a set of flycircuit neurons}
 \usage{
-dpscan(neurons, db = NULL, col = "red", Verbose = T, Wait = T,
-  sleep = 0.1, extrafun = NULL, selected_file = NULL,
-  selected_col = "green", yaml = TRUE, ...)
+dpscan(
+  neurons,
+  db = NULL,
+  col = "red",
+  Verbose = T,
+  Wait = T,
+  sleep = 0.1,
+  extrafun = NULL,
+  selected_file = NULL,
+  selected_col = "green",
+  yaml = TRUE,
+  ...
+)
 }
 \arguments{
 \item{neurons}{vector of flycircuit identifiers to plot *(anything that 

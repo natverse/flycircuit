@@ -4,8 +4,12 @@
 \alias{fc_nblast}
 \title{Return (normalised) nblast similarity scores for FlyCircuit neurons}
 \usage{
-fc_nblast(query, target, scoremat = getOption("flycircuit.scoremat"),
-  normalisation = c("raw", "normalised", "mean"))
+fc_nblast(
+  query,
+  target,
+  scoremat = getOption("flycircuit.scoremat"),
+  normalisation = c("raw", "normalised", "mean")
+)
 }
 \arguments{
 \item{query}{Vectors of FlyCircuit identifiers (Neuron name, gene_name

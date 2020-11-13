@@ -4,8 +4,7 @@
 \alias{as.data.frame.APResult}
 \title{Convert APResult (apcluster output) to dataframe}
 \usage{
-\method{as.data.frame}{APResult}(x, row.names = NULL, optional = FALSE,
-  clusters, ...)
+\method{as.data.frame}{APResult}(x, row.names = NULL, optional = FALSE, clusters, ...)
 }
 \arguments{
 \item{x}{an \code{APResult} object.}

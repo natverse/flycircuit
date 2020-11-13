@@ -11,6 +11,7 @@ Authors@R: c(
     role = c("aut", "cre"), comment = c(ORCID = "0000-0002-0587-9355")),
     person("James", "Manton", role = c("aut"))
     )
+Encoding: UTF-8
 Depends:
     R (>= 3.0.1),
     rgl,
@@ -43,7 +44,7 @@ Imports:
 License: GPL-3
 LazyData: true
 VignetteBuilder: knitr
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.1
 Remotes: jefferis/nat,
     jefferislab/nat.nblast,
     jefferislab/nat.templatebrains,

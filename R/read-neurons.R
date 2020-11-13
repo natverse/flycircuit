@@ -69,7 +69,7 @@ fc_read_neurons <- function(fc.ids, xform=TRUE, ...){
   fcns
 }
 
-
+# hidden
 fc_reroot_neuron <- function(x){
   x = nat::as.neuron(nat::as.ngraph(x), origin = which(x$d$Label==4))
   x$d$Label = 0
