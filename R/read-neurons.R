@@ -51,18 +51,19 @@
 #'   FCWB brain space
 #' @export
 fc_read_neurons <- function(fc.ids, xform=TRUE, ...){
-  ids = c()
   fcns = nat::neuronlist()
   for (n in 1:length(fc.ids)){
     baseurl="http://flycircuit.tw/flycircuitSourceData/NeuronData_v1.2/%s/%s_seg001_linesetTransformRelease.swc"
     swc=sprintf(baseurl, fc.ids[n], fc.ids[n])
     ofcn=tryCatch(nat::read.neuron(swc), error = function(e) warning("unable to read neuron: ", fc.ids[n]))
+    ofcn$id = fc.ids[n]
     if(!is.null(ofcn)) {
       fcns = nat::union(fcns, nat::as.neuronlist(ofcn))
-      ids = union(ids, fc.ids[n])
     }
   }
-  names(fcns) = ids
+  names(fcns) = sapply(fcns, function(x) x$id)
+  fcns[,"id"] =  names(fcns)
+  fcns[,"dataset"] = "flycircuit"
   if(isTRUE(xform))
     fcns=Chiang2FCWB(fcns)
   fcns = nat::nlapply(fcns, fc_reroot_neuron)
