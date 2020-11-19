@@ -55,19 +55,23 @@ fc_read_neurons <- function(fc.ids, xform=TRUE, ...){
   for (n in 1:length(fc.ids)){
     baseurl="http://flycircuit.tw/flycircuitSourceData/NeuronData_v1.2/%s/%s_seg001_linesetTransformRelease.swc"
     swc=sprintf(baseurl, fc.ids[n], fc.ids[n])
-    ofcn=tryCatch(nat::read.neuron(swc), error = function(e) warning("unable to read neuron: ", fc.ids[n]))
-    ofcn$id = fc.ids[n]
+    ofcn=tryCatch(nat::read.neuron(swc), error = function(e){
+      warning("unable to read neuron: ", fc.ids[n])
+      NULL
+    })
     if(!is.null(ofcn)) {
+      ofcn$id = fc.ids[n]
       fcns = nat::union(fcns, nat::as.neuronlist(ofcn))
     }
   }
-  names(fcns) = sapply(fcns, function(x) x$id)
-  fcns[,"id"] =  names(fcns)
-  fcns[,"dataset"] = "flycircuit"
+  fcns.good = fcns[sapply(fcns, nat::is.neuron)]
+  names(fcns.good) = sapply(fcns.good, function(x) x$id)
+  fcns.good[,"id"] =  names(fcns.good)
+  fcns.good[,"dataset"] = "flycircuit"
   if(isTRUE(xform))
-    fcns=Chiang2FCWB(fcns)
-  fcns = nat::nlapply(fcns, fc_reroot_neuron)
-  fcns
+    fcns.good=Chiang2FCWB(fcns.good)
+  fcns.good = nat::nlapply(fcns.good, fc_reroot_neuron)
+  fcns.good
 }
 
 
