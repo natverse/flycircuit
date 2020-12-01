@@ -68,13 +68,13 @@ fc_read_neurons <- function(fc.ids, xform=TRUE, ...){
   names(fcns.good) = sapply(fcns.good, function(x) x$id)
   fcns.good[,"id"] =  names(fcns.good)
   fcns.good[,"dataset"] = "flycircuit"
-  if(isTRUE(xform))
-    fcns.good=Chiang2FCWB(fcns.good)
   fcns.good = nat::nlapply(fcns.good, fc_reroot_neuron)
+  if(isTRUE(xform))
+    fcns.good=Chiang2FCWB(fcns.good, OmitFailures = TRUE)
   fcns.good
 }
 
-
+# hidden
 fc_reroot_neuron <- function(x){
   x = nat::as.neuron(nat::as.ngraph(x), origin = which(x$d$Label==4))
   x$d$Label = 0
@@ -84,7 +84,7 @@ fc_reroot_neuron <- function(x){
 
 # hidden
 #' @importFrom nat.templatebrains xform_brain
-Chiang2FCWB <- function(x, female = grepl("-F-",x)) {
+Chiang2FCWB <- function(x, female = grepl("-F-",x), ...) {
   template_to_use=ifelse(female, "chiangf","chiangm")
-  nat::nmapply(xform_brain, x, sample=template_to_use, MoreArgs = list(reference=nat.flybrains::FCWB))
+  nat::nmapply(xform_brain, x, sample=template_to_use, MoreArgs = list(reference=nat.flybrains::FCWB), ...)
 }
