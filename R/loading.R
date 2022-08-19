@@ -285,7 +285,7 @@ load_si_data <- function(data_name, type=c('auto', 'data', 'db', 'bigmat', 'ff',
     else if(grepl("\\.desc$", data_name)) type <- "bigmat"
     else type <- "plain"
   }
-  filepath <- fc_download_data(file.path(getOption('flycircuit.sidataurl'), data_name), overwrite=overwrite, type=ifelse(type=="plain", "data", type), ...)
+  filepath <- fc_download_data(flycircuit.sidataurl(data_name), overwrite=overwrite, type=ifelse(type=="plain", "data", type), ...)
   
   if(type == "plain") {
     filepath
