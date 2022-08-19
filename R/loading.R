@@ -298,6 +298,30 @@ load_si_data <- function(data_name, type=c('auto', 'data', 'db', 'bigmat', 'ff',
   }
 }
 
+
+flycircuit.sidataurl_memo <- memoise::memoise(function() {
+  res=getOption('flycircuit.sidataurl')
+  if(is.null(res))
+    stop("Please set options(flycircuit.sidataurl)!")
+  for(u in res) {
+    if(my_url_ok(u)) return(u)
+    warning("Unable to reach SI data URL: ", u)
+  }
+  stop("Unable to reach any SI data URLs!\n",
+       "Ask on https://groups.google.com/g/nat-user for help.")
+}, ~memoise::timeout(3600))
+
+# private function to return full URL to SI data
+flycircuit.sidataurl <- function(...) {
+  baseurl=flycircuit.sidataurl_memo()
+  file.path(baseurl, ..., fsep="/")
+}
+
+my_url_ok <- function(url, timeout=4) {
+  stat=try(httr::status_code(httr::HEAD(url, httr::timeout(timeout))), silent = T)
+  identical(stat, 200L)
+}
+
 # Not exported for the moment - utility function to upload si data to server
 upload_si_data<-function(x, format=c('rds', 'rda'),
                          target="lmbfly:/var/www/html/si/nblast/flycircuit") {
