@@ -6,9 +6,7 @@
 \alias{flycircuit-package}
 \title{Support functions for analysis of raw image data provided by flycircuit.tw}
 \description{
-Functions and data for spatial analysis and
-    annotation of neurons from the 'FlyCircuit' collection available
-    online at http://flycircuit.tw.
+Functions and data for spatial analysis and annotation of neurons from the 'FlyCircuit' collection available online at http://flycircuit.tw.
 }
 \section{Additional data}{
  You can find out more about the data processing

@@ -44,6 +44,11 @@ mydata=load_si_data("mydata.rds")
 load_si_data("mydata.rda")
 bigmat=load_si_data("data.desc")
 }
+\donttest{
+# working example - P1 neuron clustering
+p1df=load_si_data('p1df.rds')
+table(p1df$cluster)
+}
 }
 \seealso{
 \code{\link{fc_download_data}}, \code{\link{fc_attach_bigmat}}

@@ -276,6 +276,11 @@ download.file.wcheck<-function(url, destdir=NULL, destfile=NULL, overwrite=NULL,
 #' load_si_data("mydata.rda")
 #' bigmat=load_si_data("data.desc")
 #' }
+#' \donttest{
+#' # working example - P1 neuron clustering
+#' p1df=load_si_data('p1df.rds')
+#' table(p1df$cluster)
+#' }
 load_si_data <- function(data_name, type=c('auto', 'data', 'db', 'bigmat', 'ff', 'plain'),
                          overwrite=FALSE, ...) {
   type <- match.arg(type)
