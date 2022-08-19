@@ -24,7 +24,7 @@
     flycircuit.bigmatdir=file.path(dd,'bigmatrix'),
     flycircuit.ffdir=file.path(dd,'ff'),
     flycircuit.scoremat='kcs20scores',
-    flycircuit.sidataurl='http://flybrain.mrc-lmb.cam.ac.uk/si/nblast/flycircuit',
+    flycircuit.sidataurl=c('http://flybrain.mrc-lmb.cam.ac.uk/si/nblast/flycircuit','http://virtualflybrain.org/data/VFB/nblast/flycircuit'),
     flycircuit.remote_overwrite=NULL
   )
   

@@ -276,6 +276,11 @@ download.file.wcheck<-function(url, destdir=NULL, destfile=NULL, overwrite=NULL,
 #' load_si_data("mydata.rda")
 #' bigmat=load_si_data("data.desc")
 #' }
+#' \donttest{
+#' # working example - P1 neuron clustering
+#' p1df=load_si_data('p1df.rds')
+#' table(p1df$cluster)
+#' }
 load_si_data <- function(data_name, type=c('auto', 'data', 'db', 'bigmat', 'ff', 'plain'),
                          overwrite=FALSE, ...) {
   type <- match.arg(type)
@@ -285,7 +290,7 @@ load_si_data <- function(data_name, type=c('auto', 'data', 'db', 'bigmat', 'ff',
     else if(grepl("\\.desc$", data_name)) type <- "bigmat"
     else type <- "plain"
   }
-  filepath <- fc_download_data(file.path(getOption('flycircuit.sidataurl'), data_name), overwrite=overwrite, type=ifelse(type=="plain", "data", type), ...)
+  filepath <- fc_download_data(flycircuit.sidataurl(data_name), overwrite=overwrite, type=ifelse(type=="plain", "data", type), ...)
   
   if(type == "plain") {
     filepath
@@ -296,6 +301,30 @@ load_si_data <- function(data_name, type=c('auto', 'data', 'db', 'bigmat', 'ff',
     data_name <- gsub("\\.desc$", "", data_name)
     fc_attach_bigmat(data_name)
   }
+}
+
+
+flycircuit.sidataurl_memo <- memoise::memoise(function() {
+  res=getOption('flycircuit.sidataurl')
+  if(is.null(res))
+    stop("Please set options(flycircuit.sidataurl)!")
+  for(u in res) {
+    if(my_url_ok(u)) return(u)
+    warning("Unable to reach SI data URL: ", u)
+  }
+  stop("Unable to reach any SI data URLs!\n",
+       "Ask on https://groups.google.com/g/nat-user for help.")
+}, ~memoise::timeout(3600))
+
+# private function to return full URL to SI data
+flycircuit.sidataurl <- function(...) {
+  baseurl=flycircuit.sidataurl_memo()
+  file.path(baseurl, ..., fsep="/")
+}
+
+my_url_ok <- function(url, timeout=4) {
+  stat=try(httr::status_code(httr::HEAD(url, httr::timeout(timeout))), silent = T)
+  identical(stat, 200L)
 }
 
 # Not exported for the moment - utility function to upload si data to server

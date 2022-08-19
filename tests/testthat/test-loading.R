@@ -12,7 +12,15 @@ test_that("load_fcdata can load local file", {
   on.exit(unlink(rdapath), add = TRUE)
 })
 
-if(RCurl::url.exists("http://flybrain.mrc-lmb.cam.ac.uk")) {
+test_that("flycircuit.sidataurl()",{
+  siurl=try(suppressWarnings(flycircuit.sidataurl()), silent = T)
+  skip_if(inherits(siurl, 'try-error'), 
+          message = "Can't reach SI servers!")
+  expect_is(p1df <- load_si_data('p1df.rds'), 'data.frame')
+})
+
+
+if(RCurl::url.exists("http://flybrain.mrc-lmb.cam.ac.uk/fcremtest")) {
 context("Downloading data")  
 test_that("can download data from remote location", {
   
