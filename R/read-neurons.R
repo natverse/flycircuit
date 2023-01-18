@@ -86,11 +86,12 @@ fc_reroot_neuron <- function(x){
 #' @importFrom nat.templatebrains xform_brain
 Chiang2FCWB <- function(x, female = grepl("-F-", names(x)), ...) {
   
-  if(any(female)) {
-    xf=xform_brain(x, subset=female, sample='chiangf', reference=nat.flybrains::FCWB, ...)
-  }
-  if(!all(female)) {
-    xfm=xform_brain(xf, subset=!female, sample='chiangm', reference=nat.flybrains::FCWB, ...)
-  }
-  xfm
+  xf <- if(any(female)) {
+    xform_brain(x, subset=female, sample='chiangf', reference=nat.flybrains::FCWB, ...)
+  } else x
+  
+  xm <- if(!all(female)) {
+    xform_brain(xf, subset=!female, sample='chiangm', reference=nat.flybrains::FCWB, ...)
+  } else xf
+  xm
 }
